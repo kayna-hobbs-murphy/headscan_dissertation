@@ -1,0 +1,67 @@
+---
+title: "PCA"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#remove identifiers and demographic data
+PCAdata <- headscan[-c(1, 29, 30, 31)]
+
+
+str(PCAdata)
+```
+
+
+```{r}
+#deleting rows with NA values (for example only)
+PCAdata <- PCAdata %>% drop_na()
+
+#numerical class
+#PCAdata <- PCAdata %>% mutate_if(is.character, as.numeric)
+PCAdata <- as.data.frame(sapply(PCAdata, as.numeric))
+
+#rounding
+PCAdata <- round(PCAdata, 1)
+```
+
+```{r}
+#calculate principal components
+results <- prcomp(PCAdata, scale=TRUE)
+
+#reverse the signs (R calculates eigenvectors in negative direction)
+results$rotation <- -1*results$rotation
+
+#display PCs
+results$rotation
+```
+
+```{r}
+var_explained = results$sdev^2 / sum(results$sdev^2)
+
+library(ggplot2)
+```
+
+
+```{r, fig.width=5, fig.height=6}
+qplot(c(1:27), var_explained) + 
+  geom_line() + 
+  xlab("Principal Component") + 
+  ylab("Variance Explained") +
+  ggtitle("Scree Plot") +
+  ylim(0, 1)
+```
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,200 @@
+---
+title: "data cleaning code"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readr)
+library(readxl)
+library(tidyverse)
+```
+
+```{r}
+kayna_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Data Collection Team Files\\Measurement data\\Collection data\\Kayna data.xlsx")
+jared_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Data Collection Team Files\\Measurement data\\Collection data\\Jared data.xlsx")
+bell_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Data Collection Team Files\\Measurement data\\Collection data\\Isabel data.xlsx")
+chan_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Data Collection Team Files\\Measurement data\\Collection data\\Chandler data.xlsx")
+```
+
+
+```{r}
+#deleting row "Measurement IDs" & columns "Dummy(cm)", "Any issues?"
+kayna_data <- kayna_data[-1,-c(7,30)]
+jared_data <- jared_data[-1,-c(7,30)]
+bell_data <- bell_data[-1,-c(7,30)]
+chan_data <- chan_data[-1,-c(7,30)]
+```
+
+```{r}
+#Renaming columns to names found in Appendix B of Proposal
+kayna_data <- kayna_data %>% 
+  rename(ID = "Measurement Names",
+         AA_C = "Alare to Alare Contour (cm)",
+         BGl_C = "Back of Head to Glabella Contour (cm)",
+         BiW_C = "Bizygomatic Width Contour (cm)",
+         BiW_L = "Bizygomatic Width Linear (cm)",
+         ChCh_C = "Cheillion to Cheillion Contour (cm)",
+         GoSub_C = "Gonion to Submandibular Contour (cm)",
+         NRB_L = "Nasal Root Breadth (cm)",
+         ProA_L = "Pronasale to Alare Linear (cm)",
+         ProA_C = "Pronasale to Alare Contour (cm)",
+         ProS_L = "Pronasale to Subnasale Linear (cm)",
+         ProS_C = "Pronasale to Subnasale Contour (cm)",
+         SelP_L = "Sellion to Pronosale Linear (cm)",
+         SelP_C = "Sellion to Pronosale Contour (cm)",
+         SelDH_C = "Sellion Dorsal Hump Contour (cm)",
+         SelM_L = "Sellion to Menton Linear (cm)",
+         SnasM_L = "Subnasale to Menton Linear (cm)",
+         SnasM_C = "Subnasale to Menton Contour (cm)",
+         SmanM_L = "Submandibular to Menton Linear (cm)",
+         SmanM_C = "Submandibular to Menton Contour (cm)",
+         TrHO_C = "Top of Head to Obtasion Contour (cm)",
+         TrEJ_C = "Tragion to Earlobe Juncture Contour (cm)",
+         TrGo_C = "Tragion to Gonion Contour (cm)",
+         TrSel_C = "Tragion to Sellion Contour (cm)",
+         TrSman_C = "Tragion to Submandibular Contour (cm)",
+         TrSnas_C = "Tragion to Subnasale Contour (cm)",
+         TrTr_C = "Tragion to Tragion Contour (cm)",
+         TrTr_L = "Tragion to Tragion Linear (cm)")
+```
+
+```{r}
+#Renaming columns to names found in Appendix B of Proposal
+jared_data <- jared_data %>% 
+  rename(ID = "Measurement Names",
+         AA_C = "Alare to Alare Contour (cm)",
+         BGl_C = "Back of Head to Glabella Contour (cm)",
+         BiW_C = "Bizygomatic Width Contour (cm)",
+         BiW_L = "Bizygomatic Width Linear (cm)",
+         ChCh_C = "Cheillion to Cheillion Contour (cm)",
+         GoSub_C = "Gonion to Submandibular Contour (cm)",
+         NRB_L = "Nasal Root Breadth (cm)",
+         ProA_L = "Pronasale to Alare Linear (cm)",
+         ProA_C = "Pronasale to Alare Contour (cm)",
+         ProS_L = "Pronasale to Subnasale Linear (cm)",
+         ProS_C = "Pronasale to Subnasale Contour (cm)",
+         SelP_L = "Sellion to Pronosale Linear (cm)",
+         SelP_C = "Sellion to Pronosale Contour (cm)",
+         SelDH_C = "Sellion Dorsal Hump Contour (cm)",
+         SelM_L = "Sellion to Menton Linear (cm)",
+         SnasM_L = "Subnasale to Menton Linear (cm)",
+         SnasM_C = "Subnasale to Menton Contour (cm)",
+         SmanM_L = "Submandibular to Menton Linear (cm)",
+         SmanM_C = "Submandibular to Menton Contour (cm)",
+         TrHO_C = "Top of Head to Obtasion Contour (cm)",
+         TrEJ_C = "Tragion to Earlobe Juncture Contour (cm)",
+         TrGo_C = "Tragion to Gonion Contour (cm)",
+         TrSel_C = "Tragion to Sellion Contour (cm)",
+         TrSman_C = "Tragion to Submandibular Contour (cm)",
+         TrSnas_C = "Tragion to Subnasale Contour (cm)",
+         TrTr_C = "Tragion to Tragion Contour (cm)",
+         TrTr_L = "Tragion to Tragion Linear (cm)")
+```
+
+```{r}
+#Renaming columns to names found in Appendix B of Proposal
+bell_data <- bell_data %>% 
+  rename(ID = "Measurement Names",
+         AA_C = "Alare to Alare Contour (cm)",
+         BGl_C = "Back of Head to Glabella Contour (cm)",
+         BiW_C = "Bizygomatic Width Contour (cm)",
+         BiW_L = "Bizygomatic Width Linear (cm)",
+         ChCh_C = "Cheillion to Cheillion Contour (cm)",
+         GoSub_C = "Gonion to Submandibular Contour (cm)",
+         NRB_L = "Nasal Root Breadth (cm)",
+         ProA_L = "Pronasale to Alare Linear (cm)",
+         ProA_C = "Pronasale to Alare Contour (cm)",
+         ProS_L = "Pronasale to Subnasale Linear (cm)",
+         ProS_C = "Pronasale to Subnasale Contour (cm)",
+         SelP_L = "Sellion to Pronosale Linear (cm)",
+         SelP_C = "Sellion to Pronosale Contour (cm)",
+         SelDH_C = "Sellion Dorsal Hump Contour (cm)",
+         SelM_L = "Sellion to Menton Linear (cm)",
+         SnasM_L = "Subnasale to Menton Linear (cm)",
+         SnasM_C = "Subnasale to Menton Contour (cm)",
+         SmanM_L = "Submandibular to Menton Linear (cm)",
+         SmanM_C = "Submandibular to Menton Contour (cm)",
+         TrHO_C = "Top of Head to Obtasion Contour (cm)",
+         TrEJ_C = "Tragion to Earlobe Juncture Contour (cm)",
+         TrGo_C = "Tragion to Gonion Contour (cm)",
+         TrSel_C = "Tragion to Sellion Contour (cm)",
+         TrSman_C = "Tragion to Submandibular Contour (cm)",
+         TrSnas_C = "Tragion to Subnasale Contour (cm)",
+         TrTr_C = "Tragion to Tragion Contour (cm)",
+         TrTr_L = "Tragion to Tragion Linear (cm)")
+```
+
+```{r}
+#Renaming columns to names found in Appendix B of Proposal
+chan_data <- chan_data %>% 
+  rename(ID = "Measurement Names",
+         AA_C = "Alare to Alare Contour (cm)",
+         BGl_C = "Back of Head to Glabella Contour (cm)",
+         BiW_C = "Bizygomatic Width Contour (cm)",
+         BiW_L = "Bizygomatic Width Linear (cm)",
+         ChCh_C = "Cheillion to Cheillion Contour (cm)",
+         GoSub_C = "Gonion to Submandibular Contour (cm)",
+         NRB_L = "Nasal Root Breadth (cm)",
+         ProA_L = "Pronasale to Alare Linear (cm)",
+         ProA_C = "Pronasale to Alare Contour (cm)",
+         ProS_L = "Pronasale to Subnasale Linear (cm)",
+         ProS_C = "Pronasale to Subnasale Contour (cm)",
+         SelP_L = "Sellion to Pronosale Linear (cm)",
+         SelP_C = "Sellion to Pronosale Contour (cm)",
+         SelDH_C = "Sellion Dorsal Hump Contour (cm)",
+         SelM_L = "Sellion to Menton Linear (cm)",
+         SnasM_L = "Subnasale to Menton Linear (cm)",
+         SnasM_C = "Subnasale to Menton Contour (cm)",
+         SmanM_L = "Submandibular to Menton Linear (cm)",
+         SmanM_C = "Submandibular to Menton Contour (cm)",
+         TrHO_C = "Top of Head to Obtasion Contour (cm)",
+         TrEJ_C = "Tragion to Earlobe Juncture Contour (cm)",
+         TrGo_C = "Tragion to Gonion Contour (cm)",
+         TrSel_C = "Tragion to Sellion Contour (cm)",
+         TrSman_C = "Tragion to Submandibular Contour (cm)",
+         TrSnas_C = "Tragion to Subnasale Contour (cm)",
+         TrTr_C = "Tragion to Tragion Contour (cm)",
+         TrTr_L = "Tragion to Tragion Linear (cm)")
+```
+
+```{r}
+all_data <- rbind(kayna_data, jared_data, bell_data, chan_data)
+```
+
+```{r}
+#Rounding all numbers to one decimal place. Not sure why it is any different... only one decimal place in excel!
+#kayna_data <- round(kayna_data$AA_C, 1)
+#Does not work with NA values... Maybe do this before data analysis in each step?
+```
+
+```{r}
+#importing demographic data
+demographic <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\data analysis\\data analysis R\\abbrv_headscan_demo.xlsx")
+```
+
+```{r}
+demographic$Ethnicity <- 
+  recode_factor(demographic$Ethnicity, AIAN = "American Indian or Alaska Native",
+                Asian = "Asian/Asian American",
+                Black = "Black, African or African American",
+                LatinX = "Latin/Hispanic",
+                NHOPI = "Native Hawaiian or Other Pacific Islander",
+                Other = "Other",
+                PTNS = "Prefer not to say",
+                white = "White/Caucasian")
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+#headscan <- inner_join(all_data, demographic, by="ID")
+```
+
