@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(readr)
 library(readxl)
 library(tidyverse)
+library(arsenal)
 ```
 
 ```{r}
@@ -86,6 +87,7 @@ demographic <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Diss
 ```
 
 ```{r}
+#renaming ethnicity factors to match Table 3.1
 demographic$Ethnicity <- 
   recode_factor(demographic$Ethnicity, 'American Indian or Alaska Native'= "AIAN",
                 'Asian/Asian American' = "Asian",
@@ -98,11 +100,14 @@ demographic$Ethnicity <-
 ```
 
 ```{r}
+#putting age in bins seen in Table 3.3
 demographic$Age <- as.numeric(demographic$Age)
 demographic$age_group <-
   cut(demographic$Age, c(18, 34, 54, 74), c("18-34", "35-54", "55-74"), include.lowest=TRUE)
 ```
+
 ```{r}
+#renaming columns tidy, deleting numeric age column
 demographic <- demographic %>% 
   rename(race_eth = "Ethnicity",
          gender = "Gender")
@@ -110,6 +115,7 @@ demographic <- demographic [-c(2)]
 ```
 
 ```{r}
-#headscan <- inner_join(all_data, demographic, by="ID")
+headscan <- inner_join(all_data, demographic, by="ID")
 ```
+
 
