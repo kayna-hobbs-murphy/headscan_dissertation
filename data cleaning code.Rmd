@@ -97,6 +97,17 @@ demographic$Ethnicity <-
                 'White/Caucasian' = "white")
 ```
 
+```{r}
+demographic$Age <- as.numeric(demographic$Age)
+demographic$age_group <-
+  cut(demographic$Age, c(18, 34, 54, 74), c("18-34", "35-54", "55-74"), include.lowest=TRUE)
+```
+```{r}
+demographic <- demographic %>% 
+  rename(race_eth = "Ethnicity",
+         gender = "Gender")
+demographic <- demographic [-c(2)]
+```
 
 ```{r}
 #headscan <- inner_join(all_data, demographic, by="ID")
