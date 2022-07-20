@@ -10,19 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-library(readxl)
-library(tidyverse)
-library(scales)
+#must run data cleaning code first
 ```
 
 
-```{r }
-demographics<-read_excel("headscan_demographics.xlsx")
-```
-```{r}
-head(demographics)
-colnames(demographics)
-```
+
 
 ```{r}
 demographics<-select(.data=demographics, 1:4)

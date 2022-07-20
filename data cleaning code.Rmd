@@ -115,6 +115,7 @@ demographic <- demographic [-c(2)]
 
 ```{r}
 headscan_full <- inner_join(all_data, demographic, by="ID")
+str(headscan_full)
 ```
 
 
