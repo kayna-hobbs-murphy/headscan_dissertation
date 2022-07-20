@@ -17,7 +17,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
-#explore ages
+#explore ages numeric
+#put this all in table form
 mean(headscan_full$age, na.rm=TRUE)
 median(headscan_full$age, na.rm=TRUE)
 sd(headscan_full$age, na.rm=TRUE)
@@ -26,15 +27,21 @@ max(headscan_full$age, na.rm=TRUE)
 ```
 
 ```{r}
-#explore race_eth
+#explore race_eth, frequency of each
 ```
 
 ```{r}
-#explore gender
+#explore gender, frequency of each
 ```
 
 
+```{r}
+summary(headscan_full)
+```
 
+```{r}
+colSums(is.na(headscan_full))
+```
 
 
 
@@ -47,30 +54,17 @@ PLOTS
 
 
 
-```{r}
-ggplot(data=headscan_full)+
-  geom_histogram(binwidth=2, aes(x=age, fill=race_eth))+
-  scale_fill_grey()+
-  labs(title= "Demographics of Headscan Sample",
-       subtitle = "Data collected by Human Solutions",
-       fill= "Ethnicity",
-       y="Count",
-       x="Age")
-```
 
-```{r}
-ggplot(data=headscan_full)+
-  geom_boxplot(aes(x=race_eth, y=age, fill=gender))+
-  scale_fill_grey()+
-  theme(axis.text.x = element_text(angle = 45))
-```
+
+
 
 
 
 
 ```{r, fig.width= 7, fig.height=4}
 ggplot(data=headscan_full, aes(x= age, fill=gender))+
-  scale_fill_grey()+
+ 
+  scale_fill_grey(na.value="gray90")+
   geom_histogram(binwidth = 3)+
   labs(title="Headscan Sample Demographics: Age",
        subtitle="sorted by Race/Ethnicity, color by Gender",
@@ -78,6 +72,25 @@ ggplot(data=headscan_full, aes(x= age, fill=gender))+
        x="Age",
        fill="Gender")+
   facet_wrap(~race_eth, scales="free_y")+
-  scale_y_continuous(breaks = function(x) unique(floor(pretty(seq(0, (max(x) + 1) * 1.1)))))
+  scale_y_continuous(breaks = function(x) unique(floor(pretty(seq(0, (max(x) + 1) * 1.1)))))+
+  geom_vline(xintercept = 35, color="red", linetype= "dashed")+
+  geom_vline(xintercept = 55, color="red", linetype= "dashed")
+  
 ```
 
+```{r}
+#ggplot(data=headscan_full)+
+  #geom_histogram(binwidth=2, aes(x=age, fill=race_eth))+
+  #scale_fill_grey()+
+  #labs(title= "Demographics of Headscan Sample",
+       #subtitle = "Data collected by Human Solutions",
+       #fill= "Ethnicity",
+       #y="Count",
+       #x="Age")
+```
+```{r}
+#ggplot(data=headscan_full)+
+  #geom_boxplot(aes(x=race_eth, y=age, fill=gender))+
+  #scale_fill_grey()+
+  #theme(axis.text.x = element_text(angle = 45))
+```
