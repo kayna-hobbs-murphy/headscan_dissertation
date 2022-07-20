@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 #must run data cleaning code first
-library(vtable)
+library(knitr)
 ```
 
 
@@ -19,23 +19,79 @@ library(vtable)
 
 ```{r}
 #explore ages numeric
-#put this all in table form
-mean(headscan_full$age, na.rm=TRUE)
-median(headscan_full$age, na.rm=TRUE)
-sd(headscan_full$age, na.rm=TRUE)
-min(headscan_full$age, na.rm=TRUE)
-max(headscan_full$age, na.rm=TRUE)
-
 summary(headscan_full$age)
 ```
 
-```{r}
 
+```{r}
+age_sumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(age, na.rm = TRUE),
+            max = max(age, na.rm = TRUE),
+            mean = mean(age, na.rm = TRUE),
+            sd = sd(age, na.rm = TRUE),
+            na = sum(is.na(age)))
+
+age_sumstats <- age_sumstats %>% 
+  mutate(across(where(is.numeric), round, 1))
+            
+kable(age_sumstats, 
+      caption = "Age SumStats")
 ```
 
+```{r}
+raceage_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>%
+  summarise(n = n(),
+            min = min(age, na.rm = TRUE),
+            max = max(age, na.rm = TRUE),
+            mean = mean(age, na.rm = TRUE),
+            sd = sd(age, na.rm = TRUE),
+            na = sum(is.na(age)))
+
+raceage_sumstats <- raceage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 1))
+           
+kable(raceage_sumstats, 
+      caption = "Age SumStats for each Race/Ethnicity")
+```
+
+```{r}
+genderage_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>%
+  summarise(n = n(),
+            min = min(age, na.rm = TRUE),
+            max = max(age, na.rm = TRUE),
+            mean = mean(age, na.rm = TRUE),
+            sd = sd(age, na.rm = TRUE),
+            na = sum(is.na(age)))
+  
+genderage_sumstats <- genderage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 1))
+          
+kable(genderage_sumstats, 
+      caption = "Age SumStats for each Gender")
+```
+```{r}
+agegroup_sumstats <- headscan_full %>% 
+  group_by(age_group) %>%
+  summarise(n = n(),
+            min = min(age, na.rm = TRUE),
+            max = max(age, na.rm = TRUE),
+            mean = mean(age, na.rm = TRUE),
+            sd = sd(age, na.rm = TRUE),
+            na = sum(is.na(age)))
+
+agegroup_sumstats <- agegroup_sumstats %>% 
+  mutate(across(where(is.numeric), round, 1))
+          
+kable(agegroup_sumstats, 
+      caption = "Age SumStats for each Age Group")
+```
 
 ```{r}
 #explore race_eth, frequency of each
+
 ```
 
 ```{r}
@@ -81,7 +137,7 @@ ggplot(data=headscan_full, aes(x= age, fill=gender))+
        fill="Gender")+
   facet_wrap(~race_eth, scales="free_y")+
   scale_y_continuous(breaks = function(x) unique(floor(pretty(seq(0, (max(x) + 1) * 1.1)))))+
-  geom_vline(xintercept = 35, color="red", linetype= "dashed")+
+  geom_vline(xintercept = 37, color="red", linetype= "dashed")+
   geom_vline(xintercept = 55, color="red", linetype= "dashed")
   
 ```

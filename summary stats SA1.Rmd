@@ -1,0 +1,31 @@
+---
+title: "summary stats SA1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(psych)
+```
+
+```{r}
+AA_C_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>%
+  summarise(n = n(),
+            min = min(AA_C, na.rm = TRUE),
+            max = max(AA_C, na.rm = TRUE),
+            mean = mean(AA_C, na.rm = TRUE),
+            sd = sd(AA_C, na.rm = TRUE),
+            na = sum(is.na(AA_C)))
+
+AA_C_sumstats <- AA_C_sumstats %>% 
+  mutate(across(where(is.numeric), round, 1))
+           
+kable(AA_C_sumstats, 
+      caption = "Alare Alare Contour SumStats for each Race/Ethnicity")
+```
+
+

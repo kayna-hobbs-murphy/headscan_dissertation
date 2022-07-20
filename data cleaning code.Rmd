@@ -156,3 +156,7 @@ headscan_full$gender <- as.factor(headscan_full$gender)
 str(headscan_full)
 ```
 
+```{r}
+levels(headscan_full$race_eth)
+```
+
