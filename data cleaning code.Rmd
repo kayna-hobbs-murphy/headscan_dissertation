@@ -158,5 +158,6 @@ str(headscan_full)
 
 ```{r}
 levels(headscan_full$race_eth)
+levels(headscan_full$gender)
 ```
 

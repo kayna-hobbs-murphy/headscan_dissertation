@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 #must run data cleaning code first
 library(knitr)
+library(kableExtra)
 ```
 
 
@@ -30,13 +31,20 @@ age_sumstats <- headscan_full %>%
             max = max(age, na.rm = TRUE),
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
+            quant5th = quantile(age, 0.05, na.rm=TRUE),
+            quant25th = quantile(age, 0.25, na.rm=TRUE),
+            quant50th = quantile(age, 0.50, na.rm=TRUE),
+            quant75th = quantile(age, 0.75, na.rm=TRUE),
+            quant95th = quantile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 age_sumstats <- age_sumstats %>% 
   mutate(across(where(is.numeric), round, 1))
             
-kable(age_sumstats, 
-      caption = "Age SumStats")
+age_sumstats %>% 
+  kbl(caption = "Age SumStats") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
+  
 ```
 
 ```{r}
