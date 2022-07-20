@@ -9,19 +9,19 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(readxl)
+library(tidyverse)
+library(scales)
+```
 
 
 ```{r }
-list.files()
-setwd("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\data analysis\\data analysis R")
-library(readxl)
 demographics<-read_excel("headscan_demographics.xlsx")
+```
+```{r}
 head(demographics)
-
 colnames(demographics)
-
-library(tidyverse)
-library(scales)
 ```
 
 ```{r}
