@@ -109,13 +109,47 @@ demographic$age_group <-
 #renaming columns tidy, deleting numeric age column
 demographic <- demographic %>% 
   rename(race_eth = "Ethnicity",
-         gender = "Gender")
+         gender = "Gender", 
+         coder = "Coder")
 demographic <- demographic [-c(2)]
 ```
 
 ```{r}
+#joining datasets and checking properties
 headscan_full <- inner_join(all_data, demographic, by="ID")
 str(headscan_full)
 ```
 
+```{r}
+#assigning correct data types
+headscan_full$AA_C <- as.numeric(headscan_full$AA_C)
+headscan_full$BGl_C <- as.numeric(headscan_full$BGl_C)
+headscan_full$BiW_C <- as.numeric(headscan_full$BiW_C)
+headscan_full$BiW_L <- as.numeric(headscan_full$BiW_L)
+headscan_full$ChCh_C <- as.numeric(headscan_full$ChCh_C)
+headscan_full$GoSub_C <- as.numeric(headscan_full$GoSub_C)
+headscan_full$NRB_L <- as.numeric(headscan_full$NRB_L)
+headscan_full$ProA_L <- as.numeric(headscan_full$ProA_L)
+headscan_full$ProA_C <- as.numeric(headscan_full$ProA_C)
+headscan_full$ProS_C <- as.numeric(headscan_full$ProS_C)
+headscan_full$ProS_L <- as.numeric(headscan_full$ProS_L)
+headscan_full$SelP_C <- as.numeric(headscan_full$SelP_C)
+headscan_full$SelP_L <- as.numeric(headscan_full$SelP_L)
+headscan_full$SelDH_C <- as.numeric(headscan_full$SelDH_C)
+headscan_full$SelM_L <- as.numeric(headscan_full$SelM_L)
+headscan_full$SnasM_C <- as.numeric(headscan_full$SnasM_C)
+headscan_full$SmanM_C <- as.numeric(headscan_full$SmanM_C)
+headscan_full$SmanM_L <- as.numeric(headscan_full$SmanM_L)
+headscan_full$SnasM_L <- as.numeric(headscan_full$SnasM_L)
+headscan_full$TrHO_C <- as.numeric(headscan_full$TrHO_C)
+headscan_full$TrEJ_C <- as.numeric(headscan_full$TrEJ_C)
+headscan_full$TrGo_C <- as.numeric(headscan_full$TrGo_C)
+headscan_full$TrSel_C <- as.numeric(headscan_full$TrSel_C)
+headscan_full$TrSman_C <- as.numeric(headscan_full$TrSman_C)
+headscan_full$TrSnas_C <- as.numeric(headscan_full$TrSnas_C)
+headscan_full$TrTr_C <- as.numeric(headscan_full$TrTr_C)
+headscan_full$TrTr_L <- as.numeric(headscan_full$TrTr_L)
+
+headscan_full$
+```
 
