@@ -17,143 +17,67 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
+#explore ages
 mean(headscan_full$age, na.rm=TRUE)
 median(headscan_full$age, na.rm=TRUE)
 sd(headscan_full$age, na.rm=TRUE)
 min(headscan_full$age, na.rm=TRUE)
 max(headscan_full$age, na.rm=TRUE)
+```
 
+```{r}
+#explore race_eth
+```
+
+```{r}
+#explore gender
+```
+
+
+
+
+
+
+
+
+
+
+
+PLOTS
+
+
+
+```{r}
 ggplot(data=headscan_full)+
   geom_histogram(binwidth=2, aes(x=age, fill=race_eth))+
-  scale_fill_grey(start = 0.2, end = 1)+
+  scale_fill_grey()+
   labs(title= "Demographics of Headscan Sample",
        subtitle = "Data collected by Human Solutions",
        fill= "Ethnicity",
        y="Count",
        x="Age")
-
-
-
-asian_women<-filter(.data=demographics,
-                    gender == "Female",
-                    ethnicity == "Asian/Asian American")
-asian_women<-select(.data=asian_women, c(2))
-asian_women$gender_ethnicity <-  "Female & Asian/Asian American"
-  
-asian_men<-filter(.data=demographics,
-                  gender == "Male",
-                  ethnicity == "Asian/Asian American")
-asian_men<-select(.data=asian_men, c(2))
-asian_men$gender_ethnicity <-  "Male & Asian/Asian American"
-
-black_women<-filter(.data=demographics,
-                    gender == "Female",
-                    ethnicity == "Black, African or African American")
-black_women<-select(.data=black_women, c(2))
-black_women$gender_ethnicity <-  "Female & Black/African/African American"
-
-black_men<-filter(.data=demographics,
-                  gender == "Male",
-                  ethnicity == "Black, African or African American")
-black_men<-select(.data=black_men, c(2))
-black_men$gender_ethnicity <-  "Male & Black/African/African American"
-
-white_women<-filter(.data=demographics,
-                    gender == "Female",
-                    ethnicity == "White/Caucasian")
-white_women<-select(.data=white_women, c(2))
-white_women$gender_ethnicity <-  "Female & White/Caucasian"
-
-white_men<-filter(.data=demographics,
-                  gender == "Male",
-                  ethnicity == "White/Caucasian")
-white_men<-select(.data=white_men, c(2))
-white_men$gender_ethnicity <-  "Male & White/Caucasian"
-
-latinx_women<-filter(.data=demographics,
-                     gender == "Female",
-                     ethnicity == "Latin/Hispanic")
-latinx_women<-select(.data=latinx_women, c(2))
-latinx_women$gender_ethnicity <-  "Female & LatinX"
-
-latinx_men<-filter(.data=demographics,
-                   gender == "Male",
-                   ethnicity == "Latin/Hispanic")
-latinx_men<-select(.data=latinx_men, c(2))
-latinx_men$gender_ethnicity <-  "Male & LatinX"
-
-merge_cols<-c("age","gender_ethnicity")
-
-demographics2 <- merge(asian_men, asian_women, by = merge_cols, all=TRUE)
-demographics3 <- merge(demographics2, black_men, by = merge_cols, all=TRUE)
-demographics4 <- merge(demographics3, black_women, by = merge_cols, all=TRUE)
-demographics5 <- merge(demographics4, white_men, by = merge_cols, all=TRUE)
-demographics6 <- merge(demographics5, white_women, by = merge_cols, all=TRUE)
-demographics7 <- merge(demographics6, latinx_men, by = merge_cols, all=TRUE)
-demographics_final <- merge(demographics7, latinx_women, by = merge_cols, all=TRUE)
 ```
 
 ```{r}
-ggplot(data=demographics_final, aes(x=age, fill=gender_ethnicity))+
-  scale_fill_grey(start = 0.2, end = 1)+
-  geom_histogram(binwidth = 2, position="stack")+
-  labs(title= "Age of Headscan Sample",
-       subtitle = "Color by gender and race/ethnicity*",
-       y = "Count",
-       x= "Age",
-       fill="Gender and Race/Ethnicity",
-       caption="*only male/female gender and four most common race/ethnicities included in this graph")
-```  
-
-```{r}
-ggplot(data=demographics_final)+
-  geom_boxplot(aes(x=gender_ethnicity, y=age))+
-  theme(axis.text.x = element_text(angle = 45))
-```
-
-```{r}
-ggplot(data=demographics)+
-  geom_boxplot(aes(x=ethnicity, y=age, fill=gender))+
-  scale_fill_grey(start = 0.2, end = 1)+
+ggplot(data=headscan_full)+
+  geom_boxplot(aes(x=race_eth, y=age, fill=gender))+
+  scale_fill_grey()+
   theme(axis.text.x = element_text(angle = 45))
 ```
 
 
 
-```{r}
-demographics$ethnicity <- recode(demographics$ethnicity,
-                "American Indian or Alaska Native" ='AI/AN',
-                "Asian/Asian American" = 'Asian',
-                "Black, African or African American" = 'Black',
-                "Latin/Hispanic" = 'LatinX',
-                "Native Hawaiian or Other Pacific Islander" = 'NH/OPI',
-                "Prefer not to say" = 'PNTS',
-                "White/Caucasian" = 'white')
-```
-
-```{r}
-freq_table <- demographics %>% group_by(ethnicity) %>% summarise(freq=n())
-as.data.frame(freq_table)
-demographics$ethnicity <- factor(demographics$ethnicity, levels=freq_table$ethnicity[order(freq_table$freq, decreasing = T)])
-```
 
 ```{r, fig.width= 7, fig.height=4}
-
-
-
-
-ggplot(data=demographics, aes(x= age, fill=gender))+
-  scale_fill_grey(start = 0.2, end = 1)+
+ggplot(data=headscan_full, aes(x= age, fill=gender))+
+  scale_fill_grey()+
   geom_histogram(binwidth = 3)+
   labs(title="Headscan Sample Demographics: Age",
        subtitle="sorted by Race/Ethnicity, color by Gender",
        y="Count (variable scale per group)",
        x="Age",
        fill="Gender")+
-  facet_wrap(~ethnicity, scales="free_y")+
+  facet_wrap(~race_eth, scales="free_y")+
   scale_y_continuous(breaks = function(x) unique(floor(pretty(seq(0, (max(x) + 1) * 1.1)))))
-
-
-
 ```
 

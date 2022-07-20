@@ -109,7 +109,8 @@ demographic$age_group <-
 #renaming columns tidy, deleting numeric age column
 demographic <- demographic %>% 
   rename(race_eth = "Ethnicity",
-         gender = "Gender")
+         gender = "Gender",
+         age = "Age")
 ```
 
 ```{r}
