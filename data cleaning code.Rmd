@@ -30,10 +30,10 @@ chan_data <- chan_data[-1,-c(7,30)]
 
 ```{r}
 #adding columns to each to indicate coder
-kayna_data$Coder <- "Kayna"
-jared_data$Coder <- "Jared"
-bell_data$Coder <- "Isabel"
-chan_data$Coder <- "Chandler"
+kayna_data$coder <- "Kayna"
+jared_data$coder <- "Jared"
+bell_data$coder <- "Isabel"
+chan_data$coder <- "Chandler"
 
 ```
 
@@ -109,8 +109,7 @@ demographic$age_group <-
 #renaming columns tidy, deleting numeric age column
 demographic <- demographic %>% 
   rename(race_eth = "Ethnicity",
-         gender = "Gender", 
-         coder = "Coder")
+         gender = "Gender")
 demographic <- demographic [-c(2)]
 ```
 
@@ -150,6 +149,10 @@ headscan_full$TrSnas_C <- as.numeric(headscan_full$TrSnas_C)
 headscan_full$TrTr_C <- as.numeric(headscan_full$TrTr_C)
 headscan_full$TrTr_L <- as.numeric(headscan_full$TrTr_L)
 
-headscan_full$
+headscan_full$coder <- as.factor(headscan_full$coder)
+headscan_full$gender <- as.factor(headscan_full$gender)
+```
+```{r}
+str(headscan_full)
 ```
 
