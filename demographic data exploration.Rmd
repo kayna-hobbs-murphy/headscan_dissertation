@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 #must run data cleaning code first
+library(vtable)
 ```
 
 
@@ -24,7 +25,14 @@ median(headscan_full$age, na.rm=TRUE)
 sd(headscan_full$age, na.rm=TRUE)
 min(headscan_full$age, na.rm=TRUE)
 max(headscan_full$age, na.rm=TRUE)
+
+summary(headscan_full$age)
 ```
+
+```{r}
+
+```
+
 
 ```{r}
 #explore race_eth, frequency of each
