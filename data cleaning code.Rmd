@@ -110,7 +110,6 @@ demographic$age_group <-
 demographic <- demographic %>% 
   rename(race_eth = "Ethnicity",
          gender = "Gender")
-demographic <- demographic [-c(2)]
 ```
 
 ```{r}

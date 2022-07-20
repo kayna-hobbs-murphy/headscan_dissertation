@@ -17,31 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
-demographics<-select(.data=demographics, 1:4)
+mean(headscan_full$age, na.rm=TRUE)
+median(headscan_full$age, na.rm=TRUE)
+sd(headscan_full$age, na.rm=TRUE)
+min(headscan_full$age, na.rm=TRUE)
+max(headscan_full$age, na.rm=TRUE)
 
-demographics<-rename(.data=demographics,
-                     age=Age,
-                     gender=Gender,
-                     ethnicity=Ethnicity)
-
-demographics<-mutate(.data=demographics,
-                     age = as.numeric(age),
-                     gender= as.factor(gender),
-                     ethnicity=as.factor(ethnicity))
-
-demographics<-filter(.data=demographics,
-                     !is.na(age),
-                     !is.na(ethnicity),
-                     !is.na(gender))
-                     
-mean(demographics$age, na.rm=TRUE)
-median(demographics$age, na.rm=TRUE)
-sd(demographics$age, na.rm=TRUE)
-min(demographics$age, na.rm=TRUE)
-max(demographics$age, na.rm=TRUE)
-
-ggplot(data=demographics)+
-  geom_histogram(binwidth=2, aes(x=age, fill=ethnicity))+
+ggplot(data=headscan_full)+
+  geom_histogram(binwidth=2, aes(x=age, fill=race_eth))+
   scale_fill_grey(start = 0.2, end = 1)+
   labs(title= "Demographics of Headscan Sample",
        subtitle = "Data collected by Human Solutions",
