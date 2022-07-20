@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-library(psych)
+#must run data cleaning code first
 ```
 
 ```{r}
