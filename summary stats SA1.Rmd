@@ -8,9 +8,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-#must run data cleaning code first
 library(tidyverse)
 library(flextable)
+library(readxl)
 ```
 
 ```{r}
@@ -27,7 +27,7 @@ my_ft_theme <- function(ft, ...) {
 ```
 
 ```{r}
-load(file= "headscan_full")
+headscan_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
 ```
 
 
