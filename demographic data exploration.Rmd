@@ -1,8 +1,9 @@
 ---
 title: "data exploration"
 output:
-  word_document: default
-  html_document: default
+  pdf_document:
+    latex_engine: xelatex
+mainfont: Times New Roman
 ---
 
 ```{r setup, include=FALSE}

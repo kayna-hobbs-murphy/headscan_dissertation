@@ -46,5 +46,3 @@ AACrace_sumstats %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 ```
 
-
-testing testing 
