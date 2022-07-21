@@ -126,6 +126,41 @@
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(devtools)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'devtools' was built under R version 4.2.1
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: usethis
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'usethis' was built under R version 4.2.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install\_github}\NormalTok{(}\StringTok{"hughjonesd/huxtable"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## WARNING: Rtools is required to build R packages, but is not currently installed.
+## 
+## Please download and install Rtools 4.2 from https://cran.r-project.org/bin/windows/Rtools/ or https://www.r-project.org/nosvn/winutf8/ucrt3/.
+\end{verbatim}
+
+\begin{verbatim}
+## Skipping install of 'huxtable' from a github remote, the SHA1 (3e1fde62) has not changed since last install.
+##   Use `force = TRUE` to force installation
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\#must run data cleaning code first}
 \FunctionTok{library}\NormalTok{(tidyverse)}
 \end{Highlighting}
@@ -208,7 +243,7 @@
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-3}Age SumStats}
+\caption{\label{tab:unnamed-chunk-4}Age SumStats}
 \centering
 \begin{tabu} to \linewidth {>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
 \hline
@@ -247,7 +282,7 @@ n & min & max & mean & sd & se & quant5th & quant25th & quant50th & quant75th & 
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-4}Age SumStats by Race/Ethnicity}
+\caption{\label{tab:unnamed-chunk-5}Age SumStats by Race/Ethnicity}
 \centering
 \begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
 \hline
@@ -300,7 +335,7 @@ white & 1240 & 18 & 62 & 36.05 & 11.64 & 0.33 & 19.00 & 25.00 & 36.0 & 46.00 & 5
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-5}Age SumStats by Gender}
+\caption{\label{tab:unnamed-chunk-6}Age SumStats by Gender}
 \centering
 \begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
 \hline
@@ -361,7 +396,7 @@ NA & 8 & 22 & 49 & 39.12 & 9.79 & 3.46 & 24.45 & 33.5 & 41.5 & 46.75 & 49.0 & 0\
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-6}Age SumStats by Age Group}
+\caption{\label{tab:unnamed-chunk-7}Age SumStats by Age Group}
 \centering
 \begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
 \hline
@@ -413,7 +448,7 @@ PLOTS
 ## Warning: Removed 1 rows containing non-finite values (stat_bin).
 \end{verbatim}
 
-\includegraphics{demographic-data-exploration_files/figure-latex/unnamed-chunk-9-1.pdf}
+\includegraphics{demographic-data-exploration_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]

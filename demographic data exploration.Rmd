@@ -1,28 +1,34 @@
 ---
 title: "data exploration"
 output:
-  pdf_document: default
-  latex_engine: xelatex
-  word_document: default
-mainfont: Times New Roman
+   pdf_document:
+     latex_engine: xelatex
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-```{r}
-install_github("hughjonesd/huxtable")
-```
+
 
 ```{r}
-#must run data cleaning code first
 library(tidyverse)
 library(knitr)
 library(kableExtra)
+library(devtools)
+library(huxtable)
+options(huxtable.latex_use_fontspec = TRUE)
 ```
+
 
 ```{r}
 load(file="headscan_full")
+```
+
+```{r}
+headscan_full %>%
+      head() %>%
+      as_huxtable() %>% 
+      set_font("Times New Roman")
 ```
 
 
