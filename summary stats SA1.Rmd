@@ -10,22 +10,40 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 #must run data cleaning code first
 ```
+```{r}
+colSums(is.na(headscan_full))
+```
+```{r}
+measureNAprops <- colMeans(is.na(headscan_full))
+
+measureNAprops %>% 
+  kbl(caption="proportion of NA values per each measurement and demographic") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
+```
+
 
 ```{r}
-AA_C_sumstats <- headscan_full %>% 
-  group_by(race_eth) %>%
+AACrace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
   summarise(n = n(),
             min = min(AA_C, na.rm = TRUE),
             max = max(AA_C, na.rm = TRUE),
             mean = mean(AA_C, na.rm = TRUE),
             sd = sd(AA_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            quant5th = quantile(AA_C, 0.05, na.rm=TRUE),
+            quant25th = quantile(AA_C, 0.25, na.rm=TRUE),
+            quant50th = quantile(AA_C, 0.50, na.rm=TRUE),
+            quant75th = quantile(AA_C, 0.75, na.rm=TRUE),
+            quant95th = quantile(AA_C, 0.95, na.rm=TRUE),
             na = sum(is.na(AA_C)))
 
-AA_C_sumstats <- AA_C_sumstats %>% 
-  mutate(across(where(is.numeric), round, 1))
-           
-kable(AA_C_sumstats, 
-      caption = "Alare Alare Contour SumStats for each Race/Ethnicity")
+AACrace_sumstats <- AACrace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+            
+AACrace_sumstats %>% 
+  kbl(caption = "Alare to Alare Contour SumStats by Race/Ethnicity") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 ```
 
 

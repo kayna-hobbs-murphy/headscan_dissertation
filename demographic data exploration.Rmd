@@ -13,7 +13,6 @@ knitr::opts_chunk$set(echo = TRUE)
 #must run data cleaning code first
 ```
 
-
 ```{r}
 age_sumstats <- headscan_full %>% 
   summarise(n = n(),
@@ -21,6 +20,7 @@ age_sumstats <- headscan_full %>%
             max = max(age, na.rm = TRUE),
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
+            se = sd/sqrt(n),
             quant5th = quantile(age, 0.05, na.rm=TRUE),
             quant25th = quantile(age, 0.25, na.rm=TRUE),
             quant50th = quantile(age, 0.50, na.rm=TRUE),
@@ -29,7 +29,7 @@ age_sumstats <- headscan_full %>%
             na = sum(is.na(age)))
 
 age_sumstats <- age_sumstats %>% 
-  mutate(across(where(is.numeric), round, 1))
+  mutate(across(where(is.numeric), round, 2))
             
 age_sumstats %>% 
   kbl(caption = "Age SumStats") %>% 
@@ -38,52 +38,73 @@ age_sumstats %>%
 
 ```{r}
 raceage_sumstats <- headscan_full %>% 
-  group_by(race_eth) %>%
+  group_by(race_eth) %>% 
   summarise(n = n(),
             min = min(age, na.rm = TRUE),
             max = max(age, na.rm = TRUE),
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
+            se = sd/sqrt(n),
+            quant5th = quantile(age, 0.05, na.rm=TRUE),
+            quant25th = quantile(age, 0.25, na.rm=TRUE),
+            quant50th = quantile(age, 0.50, na.rm=TRUE),
+            quant75th = quantile(age, 0.75, na.rm=TRUE),
+            quant95th = quantile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 raceage_sumstats <- raceage_sumstats %>% 
-  mutate(across(where(is.numeric), round, 1))
-           
-kable(raceage_sumstats, 
-      caption = "Age SumStats for each Race/Ethnicity")
+  mutate(across(where(is.numeric), round, 2))
+            
+raceage_sumstats %>% 
+  kbl(caption = "Age SumStats by Race/Ethnicity") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 ```
 
 ```{r}
 genderage_sumstats <- headscan_full %>% 
-  group_by(race_eth) %>%
+  group_by(gender) %>% 
   summarise(n = n(),
             min = min(age, na.rm = TRUE),
             max = max(age, na.rm = TRUE),
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
+            se = sd/sqrt(n),
+            quant5th = quantile(age, 0.05, na.rm=TRUE),
+            quant25th = quantile(age, 0.25, na.rm=TRUE),
+            quant50th = quantile(age, 0.50, na.rm=TRUE),
+            quant75th = quantile(age, 0.75, na.rm=TRUE),
+            quant95th = quantile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
-  
+
 genderage_sumstats <- genderage_sumstats %>% 
-  mutate(across(where(is.numeric), round, 1))
-          
-kable(genderage_sumstats, 
-      caption = "Age SumStats for each Gender")
+  mutate(across(where(is.numeric), round, 2))
+            
+genderage_sumstats %>% 
+  kbl(caption = "Age SumStats by Gender") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 ```
 ```{r}
 agegroup_sumstats <- headscan_full %>% 
-  group_by(age_group) %>%
+  group_by(age_group) %>% 
   summarise(n = n(),
             min = min(age, na.rm = TRUE),
             max = max(age, na.rm = TRUE),
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
+            se = sd/sqrt(n),
+            quant5th = quantile(age, 0.05, na.rm=TRUE),
+            quant25th = quantile(age, 0.25, na.rm=TRUE),
+            quant50th = quantile(age, 0.50, na.rm=TRUE),
+            quant75th = quantile(age, 0.75, na.rm=TRUE),
+            quant95th = quantile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 agegroup_sumstats <- agegroup_sumstats %>% 
-  mutate(across(where(is.numeric), round, 1))
-          
-kable(agegroup_sumstats, 
-      caption = "Age SumStats for each Age Group")
+  mutate(across(where(is.numeric), round, 2))
+            
+agegroup_sumstats %>% 
+  kbl(caption = "Age SumStats by Age Group") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 ```
 
 ```{r}
@@ -96,13 +117,8 @@ kable(agegroup_sumstats,
 ```
 
 
-```{r}
-summary(headscan_full)
-```
 
-```{r}
-colSums(is.na(headscan_full))
-```
+
 
 
 
