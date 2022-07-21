@@ -44,5 +44,10 @@ AACrace_sumstats <- AACrace_sumstats %>%
 AACrace_sumstats %>% 
   kbl(caption = "Alare to Alare Contour SumStats by Race/Ethnicity") %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
+
+flextable(AACrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Alare to Alare Contour SumStats by Race/Ethnicity")
 ```
 

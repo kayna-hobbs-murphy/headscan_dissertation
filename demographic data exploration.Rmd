@@ -70,13 +70,13 @@ age_sumstats <- age_sumstats %>%
 age_sumstats %>% 
   kbl(caption = "Age SumStats") %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
-```
 
-```{r} 
 flextable(age_sumstats) %>%
   my_ft_theme()%>% 
-  bold(part = "header") 
+  bold(part = "header") %>% 
+  set_caption("Age SumStats")
 ```
+
 
 ```{r} 
 raceage_sumstats <- headscan_full %>% 
@@ -100,12 +100,13 @@ raceage_sumstats <- raceage_sumstats %>%
 raceage_sumstats %>% 
   kbl(caption = "Age SumStats by Race/Ethnicity") %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
-```
-```{r} 
+
 flextable(raceage_sumstats) %>%
   my_ft_theme()%>% 
-  bold(part = "header") 
+  bold(part = "header") %>% 
+  set_caption("Age SumStats by Race/Ethnicity")
 ```
+
 
 ```{r}
 genderage_sumstats <- headscan_full %>% 
@@ -129,13 +130,11 @@ genderage_sumstats <- genderage_sumstats %>%
 genderage_sumstats %>% 
   kbl(caption = "Age SumStats by Gender") %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
-```
-
-```{r}
 
 flextable(genderage_sumstats) %>%
   my_ft_theme()%>% 
-  bold(part = "header") 
+  bold(part = "header") %>% 
+  set_caption("Age SumStats by Gender")
 ```
 
 
@@ -161,12 +160,11 @@ agegroup_sumstats <- agegroup_sumstats %>%
 agegroup_sumstats %>% 
   kbl(caption = "Age SumStats by Age Group") %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
-```
 
-```{r}
 flextable(agegroup_sumstats) %>%
   my_ft_theme()%>% 
-  bold(part = "header") 
+  bold(part = "header") %>% 
+  set_caption("Age SumStats by Age Group")
 ```
 
 ```{r}
