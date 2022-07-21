@@ -66,6 +66,5 @@ flextable(AACrace_sumstats) %>%
   autofit() %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
-
 ```
 
