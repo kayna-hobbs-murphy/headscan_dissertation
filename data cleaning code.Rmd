@@ -84,7 +84,7 @@ all_data <- all_data %>%
 
 ```{r}
 #importing demographic data
-demographic <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\data analysis\\data analysis R\\abbrv_headscan_demo.xlsx")
+demographic <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\abbrv_headscan_demo.xlsx")
 ```
 
 ```{r}
@@ -162,5 +162,9 @@ str(headscan_full)
 levels(headscan_full$race_eth)
 levels(headscan_full$gender)
 levels(headscan_full$age_group)
+```
+
+```{r}
+save(headscan_full, file= "headscan_full")
 ```
 

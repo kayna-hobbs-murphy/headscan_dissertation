@@ -1,18 +1,30 @@
 ---
 title: "data exploration"
 output:
-  pdf_document:
-    latex_engine: xelatex
+  pdf_document: default
+  latex_engine: xelatex
+  word_document: default
 mainfont: Times New Roman
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r}
+install_github("hughjonesd/huxtable")
+```
 
 ```{r}
 #must run data cleaning code first
+library(tidyverse)
+library(knitr)
+library(kableExtra)
 ```
+
+```{r}
+load(file="headscan_full")
+```
+
 
 ```{r}
 age_sumstats <- headscan_full %>% 
@@ -141,7 +153,6 @@ PLOTS
 
 ```{r, fig.width= 7, fig.height=4}
 ggplot(data=headscan_full, aes(x= age, fill=gender))+
- 
   scale_fill_grey(na.value="gray90")+
   geom_histogram(binwidth = 3)+
   labs(title="Headscan Sample Demographics: Age",
