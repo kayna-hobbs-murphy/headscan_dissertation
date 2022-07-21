@@ -10,6 +10,20 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 #must run data cleaning code first
 ```
+
+```{r}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
 ```{r}
 colSums(is.na(headscan_full))
 ```
@@ -45,11 +59,6 @@ AACrace_sumstats <- AACrace_sumstats %>%
 #AACrace_sumstats %>% 
   #kbl(caption = "Alare to Alare Contour SumStats by Race/Ethnicity") %>% 
   #kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
-
-flextable(AACrace_sumstats) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats by Race/Ethnicity")
 
 #Size 12 Table TNR
 flextable(AACrace_sumstats) %>%
