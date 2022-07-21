@@ -12,6 +12,7 @@ library(readxl)
 library(tidyverse)
 library(knitr)
 library(kableExtra)
+library(writexl)
 ```
 
 ```{r}
@@ -165,7 +166,6 @@ levels(headscan_full$age_group)
 ```
 
 ```{r}
-save(headscan_full, file= "headscan_full")
-write.csv(headscan_full, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.csv")
+write_xlsx(headscan_full, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
 ```
 
