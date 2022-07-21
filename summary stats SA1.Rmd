@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 #must run data cleaning code first
+library(tidyverse)
 library(flextable)
 ```
 
@@ -26,23 +27,30 @@ my_ft_theme <- function(ft, ...) {
 ```
 
 ```{r}
+load(file= "headscan_full")
+```
+
+
+```{r}
 colSums(is.na(headscan_full))
 ```
 ```{r}
 measureNAprops <- colMeans(is.na(headscan_full))
 
-measureNAprops %>% 
-  kbl(caption="proportion of NA values per each measurement and demographic") %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
+#HTML Table
+#measureNAprops %>% 
+  #kbl(caption="proportion of NA values per each measurement and demographic") %>% 
+  #kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 
 measureNAprops1 <- as.data.frame(measureNAprops)
 measureNAprops1 <- rownames_to_column(measureNAprops1, "measure_name")
+measureNAprops1 <- measureNAprops1 %>% slice(-c(1, 29:33))
 
 #Size 12 Table TNR
 flextable(measureNAprops1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Proportions of NA values for each Measure") %>% 
+  set_caption("Proportions of NA values for each Measurement Location") %>% 
   set_header_labels(values = list(measure_name = "Measurement Location",
                                   measureNAprops = "Proportion of NA values"))
 
