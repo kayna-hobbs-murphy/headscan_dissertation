@@ -3,6 +3,7 @@ title: "data exploration"
 output:
   word_document: default
   html_document: default
+always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
@@ -14,10 +15,10 @@ library(knitr)
 library(kableExtra)
 library(officer)
 library(flextable)
-#library(extrafont)
 ```
 
 ```{r}
+#times new roman tables
 my_ft_theme <- function(ft, ...) {
   # Remove vertical cell padding
   ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
@@ -30,16 +31,12 @@ my_ft_theme <- function(ft, ...) {
 ```
 
 ```{r}
+#times new roman ggplots
+#library(remotes)
+#remotes::install_version("Rttf2pt1", version = "1.3.8")
+#library(extrafont)
 #font_import(paths = NULL, recursive = TRUE, prompt = TRUE,pattern = NULL)
-```
-
-```{r}
-library(remotes)
-remotes::install_version("Rttf2pt1", version = "1.3.8")
-library(extrafont)
-import_fonts()
-loadfonts(device = "win")
-fonts()
+#loadfonts(device = "win")
 ```
 
 
@@ -57,24 +54,34 @@ age_sumstats <- headscan_full %>%
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
             se = sd/sqrt(n),
-            quant5th = quantile(age, 0.05, na.rm=TRUE),
-            quant25th = quantile(age, 0.25, na.rm=TRUE),
-            quant50th = quantile(age, 0.50, na.rm=TRUE),
-            quant75th = quantile(age, 0.75, na.rm=TRUE),
-            quant95th = quantile(age, 0.95, na.rm=TRUE),
+            percent5th = percentile(age, 0.05, na.rm=TRUE),
+            percent25th = percentile(age, 0.25, na.rm=TRUE),
+            percent50th = percentile(age, 0.50, na.rm=TRUE),
+            percent75th = percentile(age, 0.75, na.rm=TRUE),
+            percent95th = percentile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 age_sumstats <- age_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
-            
-age_sumstats %>% 
-  kbl(caption = "Age SumStats") %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 
+#HTML Table           
+#age_sumstats %>% 
+  #kbl(caption = "Age SumStats") %>% 
+  #kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
+
+#Size 12 Table TNR
 flextable(age_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Age SumStats")
+
+#Autofit Width Table TNR
+flextable(age_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Age SumStats") %>% 
+  autofit() %>% 
+  fit_to_width(7.5)
 ```
 
 
@@ -87,24 +94,36 @@ raceage_sumstats <- headscan_full %>%
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
             se = sd/sqrt(n),
-            quant5th = quantile(age, 0.05, na.rm=TRUE),
-            quant25th = quantile(age, 0.25, na.rm=TRUE),
-            quant50th = quantile(age, 0.50, na.rm=TRUE),
-            quant75th = quantile(age, 0.75, na.rm=TRUE),
-            quant95th = quantile(age, 0.95, na.rm=TRUE),
+            percent5th = percentile(age, 0.05, na.rm=TRUE),
+            percent25th = percentile(age, 0.25, na.rm=TRUE),
+            percent50th = percentile(age, 0.50, na.rm=TRUE),
+            percent75th = percentile(age, 0.75, na.rm=TRUE),
+            percent95th = percentile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 raceage_sumstats <- raceage_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
-            
-raceage_sumstats %>% 
-  kbl(caption = "Age SumStats by Race/Ethnicity") %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
+   
+#HTML Table         
+#raceage_sumstats %>% 
+  #kbl(caption = "Age SumStats by Race/Ethnicity") %>% 
+  #kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 
+#Size 12 Table TNR
 flextable(raceage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Age SumStats by Race/Ethnicity")
+  set_caption("Age SumStats by Race/Ethnicity") %>% 
+  set_header_labels(values = list(race_eth = "Race/Ethnicity"))
+
+#Autofit Width Table TNR
+flextable(raceage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Age SumStats by Race/Ethnicity") %>% 
+  autofit() %>% 
+  fit_to_width(7.5) %>% 
+  set_header_labels(values = list(race_eth = "Race/Ethnicity"))
 ```
 
 
@@ -117,24 +136,38 @@ genderage_sumstats <- headscan_full %>%
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
             se = sd/sqrt(n),
-            quant5th = quantile(age, 0.05, na.rm=TRUE),
-            quant25th = quantile(age, 0.25, na.rm=TRUE),
-            quant50th = quantile(age, 0.50, na.rm=TRUE),
-            quant75th = quantile(age, 0.75, na.rm=TRUE),
-            quant95th = quantile(age, 0.95, na.rm=TRUE),
+            percent5th = percentile(age, 0.05, na.rm=TRUE),
+            percent25th = percentile(age, 0.25, na.rm=TRUE),
+            percent50th = percentile(age, 0.50, na.rm=TRUE),
+            percent75th = percentile(age, 0.75, na.rm=TRUE),
+            percent95th = percentile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 genderage_sumstats <- genderage_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
-            
-genderage_sumstats %>% 
-  kbl(caption = "Age SumStats by Gender") %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 
+#HTML Table
+#genderage_sumstats %>% 
+  #kbl(caption = "Age SumStats by Gender") %>% 
+  #kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
+
+#Size 12 Table TNR
 flextable(genderage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Age SumStats by Gender")
+  set_caption("Age SumStats by Gender") %>% 
+  set_header_labels(values = list(gender = "Gender"))
+
+#Autofit Width Table TNR
+flextable(genderage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Age SumStats by Gender") %>% 
+  autofit() %>% 
+  fit_to_width(7.5) %>% 
+  set_header_labels(values = list(gender = "Gender"))
+
+
 ```
 
 
@@ -147,24 +180,36 @@ agegroup_sumstats <- headscan_full %>%
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
             se = sd/sqrt(n),
-            quant5th = quantile(age, 0.05, na.rm=TRUE),
-            quant25th = quantile(age, 0.25, na.rm=TRUE),
-            quant50th = quantile(age, 0.50, na.rm=TRUE),
-            quant75th = quantile(age, 0.75, na.rm=TRUE),
-            quant95th = quantile(age, 0.95, na.rm=TRUE),
+            percent5th = percentile(age, 0.05, na.rm=TRUE),
+            percent25th = percentile(age, 0.25, na.rm=TRUE),
+            percent50th = percentile(age, 0.50, na.rm=TRUE),
+            percent75th = percentile(age, 0.75, na.rm=TRUE),
+            percent95th = percentile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 agegroup_sumstats <- agegroup_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
-            
-agegroup_sumstats %>% 
-  kbl(caption = "Age SumStats by Age Group") %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
+   
+#HTML Table         
+#agegroup_sumstats %>% 
+  #kbl(caption = "Age SumStats by Age Group") %>% 
+  #kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 
+#Size 12 Table TNR
 flextable(agegroup_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Age SumStats by Age Group")
+  set_caption("Age SumStats by Age Group")%>% 
+  set_header_labels(values = list(age_group = "Age Group"))
+
+#Autofit Width Table TNR
+flextable(agegroup_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Age SumStats by Age Group") %>% 
+  autofit() %>% 
+  fit_to_width(7.5) %>%
+  set_header_labels(values = list(age_group = "Age Group"))
 ```
 
 ```{r}
@@ -194,9 +239,9 @@ PLOTS
 
 
 
-```{r, fig.width= 7, fig.height=4}
+```{r, fig.width= 6.5, fig.height=3.5}
 ggplot(data=headscan_full, aes(x= age, fill=gender))+
-  theme(text=element_text(family= "TT Times New Roman"))+
+  theme(text=element_text(family= "Times New Roman"))+
   scale_fill_grey(na.value="gray90")+
   geom_histogram(binwidth = 3)+
   labs(title="Headscan Sample Demographics: Age",
