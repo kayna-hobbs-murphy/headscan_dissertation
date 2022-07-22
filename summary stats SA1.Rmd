@@ -39,30 +39,32 @@ headscan_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Diss
 ```
 
 ```{r}
-colSums(is.na(headscan_full))
-```
-```{r}
-measureNAprops <- colMeans(is.na(headscan_full))
+#exploring NA values for measurements
+measureNAsums <- colSums(is.na(headscan_full))
 
-#HTML Table
-#measureNAprops %>% 
-  #kbl(caption="proportion of NA values per each measurement and demographic") %>% 
-  #kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
+measureNAprops <- colMeans(is.na(headscan_full))
 
 measureNAprops1 <- as.data.frame(measureNAprops)
 measureNAprops1 <- rownames_to_column(measureNAprops1, "measure_name")
 measureNAprops1 <- measureNAprops1 %>% slice(-c(1, 29:33))
 
+measureNAsums1 <- as.data.frame(measureNAsums)
+measureNAsums1 <- rownames_to_column(measureNAsums1, "measure_name")
+measureNAsums1 <- measureNAsums1 %>% slice(-c(1, 29:33))
+
+measureNAs <- inner_join(measureNAprops1, measureNAsums1, by = "measure_name")
+
 #Size 12 Table TNR
-flextable(measureNAprops1) %>%
+flextable(measureNAs) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Proportions of NA values for each Measurement Location") %>% 
+  set_caption("NA values for each Measurement Location") %>% 
   set_header_labels(values = list(measure_name = "Measurement Location",
-                                  measureNAprops = "Proportion of NA values"))
+                                  measureNAprops = "Proportion of NA values",
+                                  measureNAsums = "Count of NA values"))
 
 ```
-AA_C 
+AA_C race/eth, gender, age group sumstats
 
 ```{r}
 #AA_C race/eth sumstats
@@ -102,8 +104,6 @@ flextable(AA_Crace_sumstats) %>%
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 ```
 
-
-
 ```{r}
 #AA_C gender sumstats
 AA_Cgender_sumstats <- headscan_full %>% 
@@ -141,7 +141,6 @@ flextable(AA_Cgender_sumstats) %>%
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 ```
-
 
 ```{r}
 #AA_C age group sumstats
@@ -182,7 +181,7 @@ flextable(AA_Cage_sumstats) %>%
 ```
 
 
-BGl_C  
+BGl_C  race/eth, gender, age group sumstats
 
 ```{r}
 #BGl_C race/eth sumstats
@@ -222,8 +221,6 @@ flextable(BGl_Crace_sumstats) %>%
 #%>% set_header_labels(values = list(BGl_C = "Alare/AlareCont"))
 ```
 
-
-
 ```{r}
 #BGl_C gender sumstats
 BGl_Cgender_sumstats <- headscan_full %>% 
@@ -260,7 +257,6 @@ flextable(BGl_Cgender_sumstats) %>%
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BGl_C = "Alare/AlareCont"))
 ```
-
 
 ```{r}
 #BGl_C age group sumstats
@@ -299,7 +295,6 @@ flextable(BGl_Cage_sumstats) %>%
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BGl_C = "Alare/AlareCont"))
 ```
-
 
 
 
@@ -343,8 +338,6 @@ flextable(BiW_Lrace_sumstats) %>%
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 ```
 
-
-
 ```{r}
 #BiW_L gender sumstats
 BiW_Lgender_sumstats <- headscan_full %>% 
@@ -381,7 +374,6 @@ flextable(BiW_Lgender_sumstats) %>%
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 ```
-
 
 ```{r}
 #BiW_L age group sumstats
@@ -463,8 +455,6 @@ flextable(BiW_Crace_sumstats) %>%
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 ```
 
-
-
 ```{r}
 #BiW_C gender sumstats
 BiW_Cgender_sumstats <- headscan_full %>% 
@@ -501,125 +491,6 @@ flextable(BiW_Cgender_sumstats) %>%
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 ```
-
-
-```{r}
-#BiW_C age group sumstats
-BiW_Cage_sumstats <- headscan_full %>% 
-  group_by(age_group) %>% 
-  summarise(n = n(),
-            min = min(BiW_C, na.rm = TRUE),
-            max = max(BiW_C, na.rm = TRUE),
-            mean = mean(BiW_C, na.rm = TRUE),
-            sd = sd(BiW_C, na.rm = TRUE),
-            se = sd/sqrt(n),
-            percent5th = percentile(BiW_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(BiW_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(BiW_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(BiW_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(BiW_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(BiW_C)))
-
-BiW_Cage_sumstats <- BiW_Cage_sumstats %>% 
-  mutate(across(where(is.numeric), round, 2))
-
-
-#Size 12 Table TNR
-flextable(BiW_Cage_sumstats) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Gender") 
-#%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
-
-#Autofit Width Table TNR
-flextable(BiW_Cage_sumstats) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Gender") 
-  autofit() %>% 
-  fit_to_width(7.5) 
-#%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
-```
-
-BiW_C  
-
-```{r}
-#BiW_C race/eth sumstats
-BiW_Crace_sumstats <- headscan_full %>% 
-  group_by(race_eth) %>% 
-  summarise(n = n(),
-            min = min(BiW_C, na.rm = TRUE),
-            max = max(BiW_C, na.rm = TRUE),
-            mean = mean(BiW_C, na.rm = TRUE),
-            sd = sd(BiW_C, na.rm = TRUE),
-            se = sd/sqrt(n),
-            percent5th = percentile(BiW_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(BiW_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(BiW_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(BiW_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(BiW_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(BiW_C))) 
-
-BiW_Crace_sumstats <- BiW_Crace_sumstats %>% 
-  mutate(across(where(is.numeric), round, 2))
-
-
-#Size 12 Table TNR
-flextable(BiW_Crace_sumstats) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Race/Ethnicity") 
-#%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
-
-#Autofit Width Table TNR
-flextable(BiW_Crace_sumstats) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Race/Ethnicity") 
-  autofit() %>% 
-  fit_to_width(7.5) 
-#%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
-```
-
-
-
-```{r}
-#BiW_C gender sumstats
-BiW_Cgender_sumstats <- headscan_full %>% 
-  group_by(gender) %>% 
-  summarise(n = n(),
-            min = min(BiW_C, na.rm = TRUE),
-            max = max(BiW_C, na.rm = TRUE),
-            mean = mean(BiW_C, na.rm = TRUE),
-            sd = sd(BiW_C, na.rm = TRUE),
-            se = sd/sqrt(n),
-            percent5th = percentile(BiW_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(BiW_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(BiW_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(BiW_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(BiW_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(BiW_C)))
-
-BiW_Cgender_sumstats <- BiW_Cgender_sumstats %>% 
-  mutate(across(where(is.numeric), round, 2))
-
-#Size 12 Table TNR
-flextable(BiW_Cgender_sumstats) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Gender") 
-#%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
-
-#Autofit Width Table TNR
-flextable(BiW_Cgender_sumstats) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Gender") 
-  autofit() %>% 
-  fit_to_width(7.5) 
-#%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
-```
-
 
 ```{r}
 #BiW_C age group sumstats
@@ -687,20 +558,18 @@ ChCh_Crace_sumstats <- ChCh_Crace_sumstats %>%
 flextable(ChCh_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion Chellion ContourSumStats by Race/Ethnicity") 
+  set_caption("Chellion Chellion Contour SumStats by Race/Ethnicity") 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ChCh_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion Chellion ContourSumStats by Race/Ethnicity") 
+  set_caption("Chellion Chellion Contour SumStats by Race/Ethnicity") 
   autofit() %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 ```
-
-
 
 ```{r}
 #ChCh_C gender sumstats
@@ -726,19 +595,18 @@ ChCh_Cgender_sumstats <- ChCh_Cgender_sumstats %>%
 flextable(ChCh_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion Chellion ContourSumStats by Gender") 
+  set_caption("Chellion Chellion Contour SumStats by Gender") 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ChCh_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion Chellion ContourSumStats by Gender") 
+  set_caption("Chellion Chellion Contour SumStats by Gender") 
   autofit() %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 ```
-
 
 ```{r}
 #ChCh_C age group sumstats
@@ -765,16 +633,602 @@ ChCh_Cage_sumstats <- ChCh_Cage_sumstats %>%
 flextable(ChCh_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion Chellion ContourSumStats by Gender") 
+  set_caption("Chellion Chellion Contour SumStats by Gender") 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ChCh_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion Chellion ContourSumStats by Gender") 
+  set_caption("Chellion Chellion Contour SumStats by Gender") 
   autofit() %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 ```
 
+
+GoSub_C  
+
+```{r}
+#GoSub_C race/eth sumstats
+GoSub_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(GoSub_C, na.rm = TRUE),
+            max = max(GoSub_C, na.rm = TRUE),
+            mean = mean(GoSub_C, na.rm = TRUE),
+            sd = sd(GoSub_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(GoSub_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(GoSub_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(GoSub_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(GoSub_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(GoSub_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(GoSub_C))) 
+
+GoSub_Crace_sumstats <- GoSub_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(GoSub_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Gonion Submandibular Contour SumStats by Race/Ethnicity") 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(GoSub_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Gonion Submandibular Contour SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+```
+
+```{r}
+#GoSub_C gender sumstats
+GoSub_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(GoSub_C, na.rm = TRUE),
+            max = max(GoSub_C, na.rm = TRUE),
+            mean = mean(GoSub_C, na.rm = TRUE),
+            sd = sd(GoSub_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(GoSub_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(GoSub_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(GoSub_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(GoSub_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(GoSub_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(GoSub_C)))
+
+GoSub_Cgender_sumstats <- GoSub_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(GoSub_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Gonion Submandibular Contour SumStats by Gender") 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(GoSub_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Gonion Submandibular Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+```
+
+```{r}
+#GoSub_C age group sumstats
+GoSub_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(GoSub_C, na.rm = TRUE),
+            max = max(GoSub_C, na.rm = TRUE),
+            mean = mean(GoSub_C, na.rm = TRUE),
+            sd = sd(GoSub_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(GoSub_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(GoSub_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(GoSub_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(GoSub_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(GoSub_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(GoSub_C)))
+
+GoSub_Cage_sumstats <- GoSub_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(GoSub_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Gonion Submandibular Contour SumStats by Gender") 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(GoSub_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Gonion Submandibular Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+```
+
+
+
+NRB_L  
+
+```{r}
+#NRB_L race/eth sumstats
+NRB_Lrace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(NRB_L, na.rm = TRUE),
+            max = max(NRB_L, na.rm = TRUE),
+            mean = mean(NRB_L, na.rm = TRUE),
+            sd = sd(NRB_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(NRB_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(NRB_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(NRB_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(NRB_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(NRB_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(NRB_L))) 
+
+NRB_Lrace_sumstats <- NRB_Lrace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(NRB_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Nasal Root Breadth SumStats by Race/Ethnicity") 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(NRB_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Nasal Root Breadth SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+```
+
+```{r}
+#NRB_L gender sumstats
+NRB_Lgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(NRB_L, na.rm = TRUE),
+            max = max(NRB_L, na.rm = TRUE),
+            mean = mean(NRB_L, na.rm = TRUE),
+            sd = sd(NRB_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(NRB_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(NRB_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(NRB_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(NRB_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(NRB_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(NRB_L)))
+
+NRB_Lgender_sumstats <- NRB_Lgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(NRB_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Nasal Root Breadth SumStats by Gender") 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(NRB_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Nasal Root Breadth SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+```
+
+```{r}
+#NRB_L age group sumstats
+NRB_Lage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(NRB_L, na.rm = TRUE),
+            max = max(NRB_L, na.rm = TRUE),
+            mean = mean(NRB_L, na.rm = TRUE),
+            sd = sd(NRB_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(NRB_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(NRB_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(NRB_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(NRB_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(NRB_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(NRB_L)))
+
+NRB_Lage_sumstats <- NRB_Lage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(NRB_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Nasal Root Breadth SumStats by Gender") 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(NRB_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Nasal Root Breadth SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+```
+
+
+
+
+
+ProA_L  
+
+```{r}
+#ProA_L race/eth sumstats
+ProA_Lrace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(ProA_L, na.rm = TRUE),
+            max = max(ProA_L, na.rm = TRUE),
+            mean = mean(ProA_L, na.rm = TRUE),
+            sd = sd(ProA_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProA_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProA_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProA_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProA_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProA_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProA_L))) 
+
+ProA_Lrace_sumstats <- ProA_Lrace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(ProA_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Length SumStats by Race/Ethnicity") 
+#%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(ProA_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Length SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
+```
+
+```{r}
+#ProA_L gender sumstats
+ProA_Lgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(ProA_L, na.rm = TRUE),
+            max = max(ProA_L, na.rm = TRUE),
+            mean = mean(ProA_L, na.rm = TRUE),
+            sd = sd(ProA_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProA_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProA_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProA_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProA_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProA_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProA_L)))
+
+ProA_Lgender_sumstats <- ProA_Lgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(ProA_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Length SumStats by Gender") 
+#%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(ProA_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Length SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
+```
+
+```{r}
+#ProA_L age group sumstats
+ProA_Lage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(ProA_L, na.rm = TRUE),
+            max = max(ProA_L, na.rm = TRUE),
+            mean = mean(ProA_L, na.rm = TRUE),
+            sd = sd(ProA_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProA_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProA_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProA_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProA_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProA_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProA_L)))
+
+ProA_Lage_sumstats <- ProA_Lage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(ProA_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Length SumStats by Gender") 
+#%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(ProA_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Length SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
+```
+
+
+
+
+ProA_C  
+
+```{r}
+#ProA_C race/eth sumstats
+ProA_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(ProA_C, na.rm = TRUE),
+            max = max(ProA_C, na.rm = TRUE),
+            mean = mean(ProA_C, na.rm = TRUE),
+            sd = sd(ProA_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProA_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProA_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProA_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProA_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProA_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProA_C))) 
+
+ProA_Crace_sumstats <- ProA_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(ProA_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(ProA_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Contour SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
+```
+
+```{r}
+#ProA_C gender sumstats
+ProA_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(ProA_C, na.rm = TRUE),
+            max = max(ProA_C, na.rm = TRUE),
+            mean = mean(ProA_C, na.rm = TRUE),
+            sd = sd(ProA_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProA_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProA_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProA_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProA_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProA_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProA_C)))
+
+ProA_Cgender_sumstats <- ProA_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(ProA_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(ProA_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
+```
+
+```{r}
+#ProA_C age group sumstats
+ProA_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(ProA_C, na.rm = TRUE),
+            max = max(ProA_C, na.rm = TRUE),
+            mean = mean(ProA_C, na.rm = TRUE),
+            sd = sd(ProA_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProA_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProA_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProA_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProA_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProA_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProA_C)))
+
+ProA_Cage_sumstats <- ProA_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(ProA_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(ProA_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Alare Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
+```
+
+
+
+ProS_L  
+
+```{r}
+#ProS_L race/eth sumstats
+ProS_Lrace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(ProS_L, na.rm = TRUE),
+            max = max(ProS_L, na.rm = TRUE),
+            mean = mean(ProS_L, na.rm = TRUE),
+            sd = sd(ProS_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProS_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProS_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProS_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProS_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProS_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProS_L))) 
+
+ProS_Lrace_sumstats <- ProS_Lrace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(ProS_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Sellion Length SumStats by Race/Ethnicity") 
+#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(ProS_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Sellion Length SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+```
+
+```{r}
+#ProS_L gender sumstats
+ProS_Lgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(ProS_L, na.rm = TRUE),
+            max = max(ProS_L, na.rm = TRUE),
+            mean = mean(ProS_L, na.rm = TRUE),
+            sd = sd(ProS_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProS_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProS_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProS_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProS_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProS_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProS_L)))
+
+ProS_Lgender_sumstats <- ProS_Lgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(ProS_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Sellion Length SumStats by Gender") 
+#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(ProS_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Sellion Length SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+```
+
+```{r}
+#ProS_L age group sumstats
+ProS_Lage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(ProS_L, na.rm = TRUE),
+            max = max(ProS_L, na.rm = TRUE),
+            mean = mean(ProS_L, na.rm = TRUE),
+            sd = sd(ProS_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProS_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProS_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProS_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProS_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProS_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProS_L)))
+
+ProS_Lage_sumstats <- ProS_Lage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(ProS_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Sellion Length SumStats by Gender") 
+#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(ProS_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Sellion Length SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+```
