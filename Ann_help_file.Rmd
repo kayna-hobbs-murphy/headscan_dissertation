@@ -1,0 +1,53 @@
+---
+title: "for Ann to test"
+output: html_document
+---
+
+```{r}
+sessionInfo()
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#loading packages
+library(tidyverse)
+library(readxl)
+library(officer)
+library(flextable)
+library(extrafont)
+```
+
+```{r}
+#loading and checking dataset
+headscan_full <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
+str(headscan_full)
+```
+
+```{r}
+age_sumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(age, na.rm = TRUE),
+            max = max(age, na.rm = TRUE),
+            mean = mean(age, na.rm = TRUE),
+            sd = sd(age, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(age, 0.05, na.rm=TRUE),
+            percent25th = percentile(age, 0.25, na.rm=TRUE),
+            percent50th = percentile(age, 0.50, na.rm=TRUE),
+            percent75th = percentile(age, 0.75, na.rm=TRUE),
+            percent95th = percentile(age, 0.95, na.rm=TRUE),
+            na = sum(is.na(age)))
+
+#I use this type of code several times to generate tables for demographic 
+#and measurement summary statistics. It was working for me just fine, then
+#all the sudden started telling me that replacement was 10 or 12, and 
+#data was only 7. The work-arounds that exist on the internet don't seem
+#to explain why this would happen with the summarise function. I have 
+#tried to do this command without assigning to the age_sumstats new dataset,
+#and the same problem happens. I can't say that I did anything different before 
+#it stopped working for me! I appreciate your help. 
+```
+

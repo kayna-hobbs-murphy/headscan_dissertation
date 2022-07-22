@@ -42,8 +42,8 @@ my_ft_theme <- function(ft, ...) {
 #load(file="headscan_full")
 #headscan_full <- read_csv("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.csv")
 #is.data.frame(headscan_full)
-#str(headscan_full)
 headscan_full <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
+str(headscan_full)
 ```
 
 
