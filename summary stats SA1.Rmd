@@ -71,7 +71,7 @@ AACrace_sumstats <- headscan_full %>%
             percent50th = percentile(AA_C, 0.50, na.rm=TRUE),
             percent75th = percentile(AA_C, 0.75, na.rm=TRUE),
             percent95th = percentile(AA_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(AA_C)))
+            na = sum(is.na(AA_C))) 
 
 AACrace_sumstats <- AACrace_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -97,4 +97,46 @@ flextable(AACrace_sumstats) %>%
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 ```
+
+```{r}
+AACgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(AA_C, na.rm = TRUE),
+            max = max(AA_C, na.rm = TRUE),
+            mean = mean(AA_C, na.rm = TRUE),
+            sd = sd(AA_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(AA_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(AA_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(AA_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(AA_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(AA_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(AA_C)))
+
+AACgender_sumstats <- AACgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#HTML Table            
+#AACrace_sumstats %>% 
+  #kbl(caption = "Alare to Alare Contour SumStats by Gender") %>% 
+  #kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
+
+#Size 12 Table TNR
+flextable(AACgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Alare to Alare Contour SumStats by Gender") 
+#%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(AACgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Alare to Alare Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
+```
+
 
