@@ -123,7 +123,6 @@ flextable(raceage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Age SumStats by Race/Ethnicity") %>% 
-  autofit() %>% 
   fit_to_width(7.5) %>% 
   set_header_labels(values = list(race_eth = "Race/Ethnicity"))
 ```
@@ -165,7 +164,6 @@ flextable(genderage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Age SumStats by Gender") %>% 
-  autofit() %>% 
   fit_to_width(7.5) %>% 
   set_header_labels(values = list(gender = "Gender"))
 
@@ -208,8 +206,7 @@ flextable(agegroup_sumstats) %>%
 flextable(agegroup_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Age SumStats by Age Group") %>% 
-  autofit() %>% 
+  set_caption("Age SumStats by Age Group") %>%  
   fit_to_width(7.5) %>%
   set_header_labels(values = list(age_group = "Age Group"))
 ```
