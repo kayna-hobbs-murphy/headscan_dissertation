@@ -1145,17 +1145,17 @@ ProS_Lrace_sumstats <- ProS_Lrace_sumstats %>%
 flextable(ProS_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Sellion Length SumStats by Race/Ethnicity") 
-#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+  set_caption("Pronasale Subnasale Length SumStats by Race/Ethnicity") 
+#%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Sellion Length SumStats by Race/Ethnicity") 
+  set_caption("Pronasale Subnasale Length SumStats by Race/Ethnicity") 
   autofit() %>% 
   fit_to_width(7.5) 
-#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+#%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 ```
 
 ```{r}
@@ -1182,17 +1182,17 @@ ProS_Lgender_sumstats <- ProS_Lgender_sumstats %>%
 flextable(ProS_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Sellion Length SumStats by Gender") 
-#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+  set_caption("Pronasale Subnasale Length SumStats by Gender") 
+#%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Sellion Length SumStats by Gender") 
+  set_caption("Pronasale Subnasale Length SumStats by Gender") 
   autofit() %>% 
   fit_to_width(7.5) 
-#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+#%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 ```
 
 ```{r}
@@ -1220,15 +1220,601 @@ ProS_Lage_sumstats <- ProS_Lage_sumstats %>%
 flextable(ProS_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Sellion Length SumStats by Gender") 
-#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+  set_caption("Pronasale Subnasale Length SumStats by Gender") 
+#%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Sellion Length SumStats by Gender") 
+  set_caption("Pronasale Subnasale Length SumStats by Gender") 
   autofit() %>% 
   fit_to_width(7.5) 
-#%>% set_header_labels(values = list(ProS_L = "Sellion/SellionCont"))
+#%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 ```
+
+ProS_C  
+
+```{r}
+#ProS_C race/eth sumstats
+ProS_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(ProS_C, na.rm = TRUE),
+            max = max(ProS_C, na.rm = TRUE),
+            mean = mean(ProS_C, na.rm = TRUE),
+            sd = sd(ProS_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProS_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProS_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProS_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProS_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProS_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProS_C))) 
+
+ProS_Crace_sumstats <- ProS_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(ProS_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Subnasale Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(ProS_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Subnasale Contour SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
+```
+
+```{r}
+#ProS_C gender sumstats
+ProS_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(ProS_C, na.rm = TRUE),
+            max = max(ProS_C, na.rm = TRUE),
+            mean = mean(ProS_C, na.rm = TRUE),
+            sd = sd(ProS_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProS_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProS_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProS_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProS_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProS_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProS_C)))
+
+ProS_Cgender_sumstats <- ProS_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(ProS_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Subnasale Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(ProS_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Subnasale Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
+```
+
+```{r}
+#ProS_C age group sumstats
+ProS_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(ProS_C, na.rm = TRUE),
+            max = max(ProS_C, na.rm = TRUE),
+            mean = mean(ProS_C, na.rm = TRUE),
+            sd = sd(ProS_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(ProS_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(ProS_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(ProS_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(ProS_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(ProS_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProS_C)))
+
+ProS_Cage_sumstats <- ProS_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(ProS_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Subnasale Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(ProS_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale Subnasale Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
+```
+
+
+
+SelP_L  
+
+```{r}
+#SelP_L race/eth sumstats
+SelP_Lrace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(SelP_L, na.rm = TRUE),
+            max = max(SelP_L, na.rm = TRUE),
+            mean = mean(SelP_L, na.rm = TRUE),
+            sd = sd(SelP_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelP_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelP_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelP_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelP_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelP_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelP_L))) 
+
+SelP_Lrace_sumstats <- SelP_Lrace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SelP_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Length SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelP_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Length SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
+```
+
+```{r}
+#SelP_L gender sumstats
+SelP_Lgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(SelP_L, na.rm = TRUE),
+            max = max(SelP_L, na.rm = TRUE),
+            mean = mean(SelP_L, na.rm = TRUE),
+            sd = sd(SelP_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelP_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelP_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelP_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelP_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelP_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelP_L)))
+
+SelP_Lgender_sumstats <- SelP_Lgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(SelP_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Length SumStats by Gender") 
+#%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelP_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Length SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
+```
+
+```{r}
+#SelP_L age group sumstats
+SelP_Lage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(SelP_L, na.rm = TRUE),
+            max = max(SelP_L, na.rm = TRUE),
+            mean = mean(SelP_L, na.rm = TRUE),
+            sd = sd(SelP_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelP_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelP_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelP_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelP_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelP_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelP_L)))
+
+SelP_Lage_sumstats <- SelP_Lage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SelP_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Length SumStats by Gender") 
+#%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelP_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Length SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
+```
+
+
+
+SelP_C  
+
+```{r}
+#SelP_C race/eth sumstats
+SelP_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(SelP_C, na.rm = TRUE),
+            max = max(SelP_C, na.rm = TRUE),
+            mean = mean(SelP_C, na.rm = TRUE),
+            sd = sd(SelP_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelP_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelP_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelP_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelP_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelP_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelP_C))) 
+
+SelP_Crace_sumstats <- SelP_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SelP_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelP_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
+```
+
+```{r}
+#SelP_C gender sumstats
+SelP_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(SelP_C, na.rm = TRUE),
+            max = max(SelP_C, na.rm = TRUE),
+            mean = mean(SelP_C, na.rm = TRUE),
+            sd = sd(SelP_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelP_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelP_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelP_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelP_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelP_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelP_C)))
+
+SelP_Cgender_sumstats <- SelP_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(SelP_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelP_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
+```
+
+```{r}
+#SelP_C age group sumstats
+SelP_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(SelP_C, na.rm = TRUE),
+            max = max(SelP_C, na.rm = TRUE),
+            mean = mean(SelP_C, na.rm = TRUE),
+            sd = sd(SelP_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelP_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelP_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelP_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelP_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelP_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelP_C)))
+
+SelP_Cage_sumstats <- SelP_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SelP_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelP_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
+```
+
+
+
+SelDH_C  
+
+```{r}
+#SelDH_C race/eth sumstats
+SelDH_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(SelDH_C, na.rm = TRUE),
+            max = max(SelDH_C, na.rm = TRUE),
+            mean = mean(SelDH_C, na.rm = TRUE),
+            sd = sd(SelDH_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelDH_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelDH_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelDH_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelDH_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelDH_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelDH_C))) 
+
+SelDH_Crace_sumstats <- SelDH_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SelDH_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelDH_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+```
+
+```{r}
+#SelDH_C gender sumstats
+SelDH_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(SelDH_C, na.rm = TRUE),
+            max = max(SelDH_C, na.rm = TRUE),
+            mean = mean(SelDH_C, na.rm = TRUE),
+            sd = sd(SelDH_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelDH_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelDH_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelDH_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelDH_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelDH_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelDH_C)))
+
+SelDH_Cgender_sumstats <- SelDH_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(SelDH_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelDH_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+```
+
+```{r}
+#SelDH_C age group sumstats
+SelDH_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(SelDH_C, na.rm = TRUE),
+            max = max(SelDH_C, na.rm = TRUE),
+            mean = mean(SelDH_C, na.rm = TRUE),
+            sd = sd(SelDH_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelDH_C, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelDH_C, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelDH_C, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelDH_C, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelDH_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelDH_C)))
+
+SelDH_Cage_sumstats <- SelDH_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SelDH_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelDH_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+```
+
+
+
+SelM_L  
+
+```{r}
+#SelM_L race/eth sumstats
+SelM_Lrace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(SelM_L, na.rm = TRUE),
+            max = max(SelM_L, na.rm = TRUE),
+            mean = mean(SelM_L, na.rm = TRUE),
+            sd = sd(SelM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelM_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelM_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelM_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelM_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelM_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelM_L))) 
+
+SelM_Lrace_sumstats <- SelM_Lrace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SelM_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Menton Length SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelM_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Menton Length SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
+```
+
+```{r}
+#SelM_L gender sumstats
+SelM_Lgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(SelM_L, na.rm = TRUE),
+            max = max(SelM_L, na.rm = TRUE),
+            mean = mean(SelM_L, na.rm = TRUE),
+            sd = sd(SelM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelM_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelM_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelM_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelM_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelM_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelM_L)))
+
+SelM_Lgender_sumstats <- SelM_Lgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(SelM_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Menton Length SumStats by Gender") 
+#%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelM_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Menton Length SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
+```
+
+```{r}
+#SelM_L age group sumstats
+SelM_Lage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(SelM_L, na.rm = TRUE),
+            max = max(SelM_L, na.rm = TRUE),
+            mean = mean(SelM_L, na.rm = TRUE),
+            sd = sd(SelM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = percentile(SelM_L, 0.05, na.rm=TRUE),
+            percent25th = percentile(SelM_L, 0.25, na.rm=TRUE),
+            percent50th = percentile(SelM_L, 0.50, na.rm=TRUE),
+            percent75th = percentile(SelM_L, 0.75, na.rm=TRUE),
+            percent95th = percentile(SelM_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelM_L)))
+
+SelM_Lage_sumstats <- SelM_Lage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SelM_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Menton Length SumStats by Gender") 
+#%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelM_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Menton Length SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
+```
+
+
+
