@@ -2196,14 +2196,14 @@ TrEJ_Crace_sumstats <- TrEJ_Crace_sumstats %>%
 flextable(TrEJ_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Race/Ethnicity") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrEJ_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Race/Ethnicity") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats by Race/Ethnicity") 
   autofit() %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
@@ -2233,14 +2233,14 @@ TrEJ_Cgender_sumstats <- TrEJ_Cgender_sumstats %>%
 flextable(TrEJ_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Gender") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats by Gender") 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrEJ_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Gender") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats by Gender") 
   autofit() %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
@@ -2271,17 +2271,719 @@ TrEJ_Cage_sumstats <- TrEJ_Cage_sumstats %>%
 flextable(TrEJ_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Gender") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats by Gender") 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrEJ_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Gender") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats by Gender") 
   autofit() %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
+```
+
+
+
+TrGo_C  
+
+```{r}
+#TrGo_C race/eth sumstats
+TrGo_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(TrGo_C, na.rm = TRUE),
+            max = max(TrGo_C, na.rm = TRUE),
+            mean = mean(TrGo_C, na.rm = TRUE),
+            sd = sd(TrGo_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrGo_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrGo_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrGo_C))) 
+
+TrGo_Crace_sumstats <- TrGo_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrGo_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrGo_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+```
+
+```{r}
+#TrGo_C gender sumstats
+TrGo_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(TrGo_C, na.rm = TRUE),
+            max = max(TrGo_C, na.rm = TRUE),
+            mean = mean(TrGo_C, na.rm = TRUE),
+            sd = sd(TrGo_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrGo_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrGo_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrGo_C)))
+
+TrGo_Cgender_sumstats <- TrGo_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(TrGo_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrGo_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+```
+
+```{r}
+#TrGo_C age group sumstats
+TrGo_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(TrGo_C, na.rm = TRUE),
+            max = max(TrGo_C, na.rm = TRUE),
+            mean = mean(TrGo_C, na.rm = TRUE),
+            sd = sd(TrGo_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrGo_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrGo_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrGo_C)))
+
+TrGo_Cage_sumstats <- TrGo_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrGo_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrGo_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+```
+
+
+
+TrSel_C  
+
+```{r}
+#TrSel_C race/eth sumstats
+TrSel_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(TrSel_C, na.rm = TRUE),
+            max = max(TrSel_C, na.rm = TRUE),
+            mean = mean(TrSel_C, na.rm = TRUE),
+            sd = sd(TrSel_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSel_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSel_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSel_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSel_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSel_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSel_C))) 
+
+TrSel_Crace_sumstats <- TrSel_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrSel_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Sellion Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSel_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Sellion Contour SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
+```
+
+```{r}
+#TrSel_C gender sumstats
+TrSel_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(TrSel_C, na.rm = TRUE),
+            max = max(TrSel_C, na.rm = TRUE),
+            mean = mean(TrSel_C, na.rm = TRUE),
+            sd = sd(TrSel_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSel_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSel_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSel_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSel_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSel_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSel_C)))
+
+TrSel_Cgender_sumstats <- TrSel_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(TrSel_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Sellion Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSel_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Sellion Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
+```
+
+```{r}
+#TrSel_C age group sumstats
+TrSel_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(TrSel_C, na.rm = TRUE),
+            max = max(TrSel_C, na.rm = TRUE),
+            mean = mean(TrSel_C, na.rm = TRUE),
+            sd = sd(TrSel_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSel_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSel_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSel_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSel_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSel_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSel_C)))
+
+TrSel_Cage_sumstats <- TrSel_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrSel_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Sellion Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSel_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Sellion Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
+```
+
+
+
+TrSman_C  
+
+```{r}
+#TrSman_C race/eth sumstats
+TrSman_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(TrSman_C, na.rm = TRUE),
+            max = max(TrSman_C, na.rm = TRUE),
+            mean = mean(TrSman_C, na.rm = TRUE),
+            sd = sd(TrSman_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSman_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSman_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSman_C))) 
+
+TrSman_Crace_sumstats <- TrSman_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrSman_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSman_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+```
+
+```{r}
+#TrSman_C gender sumstats
+TrSman_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(TrSman_C, na.rm = TRUE),
+            max = max(TrSman_C, na.rm = TRUE),
+            mean = mean(TrSman_C, na.rm = TRUE),
+            sd = sd(TrSman_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSman_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSman_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSman_C)))
+
+TrSman_Cgender_sumstats <- TrSman_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(TrSman_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSman_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+```
+
+```{r}
+#TrSman_C age group sumstats
+TrSman_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(TrSman_C, na.rm = TRUE),
+            max = max(TrSman_C, na.rm = TRUE),
+            mean = mean(TrSman_C, na.rm = TRUE),
+            sd = sd(TrSman_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSman_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSman_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSman_C)))
+
+TrSman_Cage_sumstats <- TrSman_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrSman_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSman_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+```
+
+
+
+TrSnas_C  
+
+```{r}
+#TrSnas_C race/eth sumstats
+TrSnas_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(TrSnas_C, na.rm = TRUE),
+            max = max(TrSnas_C, na.rm = TRUE),
+            mean = mean(TrSnas_C, na.rm = TRUE),
+            sd = sd(TrSnas_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSnas_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSnas_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSnas_C))) 
+
+TrSnas_Crace_sumstats <- TrSnas_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrSnas_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSnas_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+```
+
+```{r}
+#TrSnas_C gender sumstats
+TrSnas_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(TrSnas_C, na.rm = TRUE),
+            max = max(TrSnas_C, na.rm = TRUE),
+            mean = mean(TrSnas_C, na.rm = TRUE),
+            sd = sd(TrSnas_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSnas_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSnas_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSnas_C)))
+
+TrSnas_Cgender_sumstats <- TrSnas_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(TrSnas_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSnas_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+```
+
+```{r}
+#TrSnas_C age group sumstats
+TrSnas_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(TrSnas_C, na.rm = TRUE),
+            max = max(TrSnas_C, na.rm = TRUE),
+            mean = mean(TrSnas_C, na.rm = TRUE),
+            sd = sd(TrSnas_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSnas_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSnas_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSnas_C)))
+
+TrSnas_Cage_sumstats <- TrSnas_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrSnas_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSnas_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+```
+
+
+
+TrTr_C  
+
+```{r}
+#TrTr_C race/eth sumstats
+TrTr_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(TrTr_C, na.rm = TRUE),
+            max = max(TrTr_C, na.rm = TRUE),
+            mean = mean(TrTr_C, na.rm = TRUE),
+            sd = sd(TrTr_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrTr_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrTr_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrTr_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrTr_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrTr_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrTr_C))) 
+
+TrTr_Crace_sumstats <- TrTr_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrTr_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Tragion Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
+
+#Autofit Width Table TNR
+flextable(TrTr_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Tragion Contour SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
+```
+
+```{r}
+#TrTr_C gender sumstats
+TrTr_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(TrTr_C, na.rm = TRUE),
+            max = max(TrTr_C, na.rm = TRUE),
+            mean = mean(TrTr_C, na.rm = TRUE),
+            sd = sd(TrTr_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrTr_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrTr_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrTr_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrTr_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrTr_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrTr_C)))
+
+TrTr_Cgender_sumstats <- TrTr_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(TrTr_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Tragion Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
+
+#Autofit Width Table TNR
+flextable(TrTr_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Tragion Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
+```
+
+```{r}
+#TrTr_C age group sumstats
+TrTr_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(TrTr_C, na.rm = TRUE),
+            max = max(TrTr_C, na.rm = TRUE),
+            mean = mean(TrTr_C, na.rm = TRUE),
+            sd = sd(TrTr_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrTr_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrTr_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrTr_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrTr_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrTr_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrTr_C)))
+
+TrTr_Cage_sumstats <- TrTr_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrTr_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Tragion Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
+
+#Autofit Width Table TNR
+flextable(TrTr_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Tragion Contour SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
+```
+
+
+
+TrTr_L  
+
+```{r}
+#TrTr_L race/eth sumstats
+TrTr_Lrace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(TrTr_L, na.rm = TRUE),
+            max = max(TrTr_L, na.rm = TRUE),
+            mean = mean(TrTr_L, na.rm = TRUE),
+            sd = sd(TrTr_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrTr_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrTr_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrTr_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrTr_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrTr_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrTr_L))) 
+
+TrTr_Lrace_sumstats <- TrTr_Lrace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrTr_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_Laption("Tragion to Tragion Linear SumStats by Race/Ethnicity") 
+#%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
+
+#Autofit Width Table TNR
+flextable(TrTr_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_Laption("Tragion to Tragion Linear SumStats by Race/Ethnicity") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
+```
+
+```{r}
+#TrTr_L gender sumstats
+TrTr_Lgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(TrTr_L, na.rm = TRUE),
+            max = max(TrTr_L, na.rm = TRUE),
+            mean = mean(TrTr_L, na.rm = TRUE),
+            sd = sd(TrTr_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrTr_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrTr_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrTr_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrTr_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrTr_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrTr_L)))
+
+TrTr_Lgender_sumstats <- TrTr_Lgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(TrTr_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_Laption("Tragion to Tragion Linear SumStats by Gender") 
+#%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
+
+#Autofit Width Table TNR
+flextable(TrTr_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_Laption("Tragion to Tragion Linear SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
+```
+
+```{r}
+#TrTr_L age group sumstats
+TrTr_Lage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(TrTr_L, na.rm = TRUE),
+            max = max(TrTr_L, na.rm = TRUE),
+            mean = mean(TrTr_L, na.rm = TRUE),
+            sd = sd(TrTr_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrTr_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrTr_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrTr_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrTr_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrTr_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrTr_L)))
+
+TrTr_Lage_sumstats <- TrTr_Lage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrTr_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_Laption("Tragion to Tragion Linear SumStats by Gender") 
+#%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
+
+#Autofit Width Table TNR
+flextable(TrTr_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_Laption("Tragion to Tragion Linear SumStats by Gender") 
+  autofit() %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 ```
 
 
