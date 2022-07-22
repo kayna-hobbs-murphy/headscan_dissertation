@@ -56,11 +56,11 @@ age_sumstats <- headscan_full %>%
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(age, 0.05, na.rm=TRUE),
-            percent25th = percentile(age, 0.25, na.rm=TRUE),
-            percent50th = percentile(age, 0.50, na.rm=TRUE),
-            percent75th = percentile(age, 0.75, na.rm=TRUE),
-            percent95th = percentile(age, 0.95, na.rm=TRUE),
+            percent5th = quantile(age, 0.05, na.rm=TRUE),
+            percent25th = quantile(age, 0.25, na.rm=TRUE),
+            percent50th = quantile(age, 0.50, na.rm=TRUE),
+            percent75th = quantile(age, 0.75, na.rm=TRUE),
+            percent95th = quantile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 age_sumstats <- age_sumstats %>% 
@@ -96,11 +96,11 @@ raceage_sumstats <- headscan_full %>%
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(age, 0.05, na.rm=TRUE),
-            percent25th = percentile(age, 0.25, na.rm=TRUE),
-            percent50th = percentile(age, 0.50, na.rm=TRUE),
-            percent75th = percentile(age, 0.75, na.rm=TRUE),
-            percent95th = percentile(age, 0.95, na.rm=TRUE),
+            percent5th = quantile(age, 0.05, na.rm=TRUE),
+            percent25th = quantile(age, 0.25, na.rm=TRUE),
+            percent50th = quantile(age, 0.50, na.rm=TRUE),
+            percent75th = quantile(age, 0.75, na.rm=TRUE),
+            percent95th = quantile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 raceage_sumstats <- raceage_sumstats %>% 
@@ -138,11 +138,11 @@ genderage_sumstats <- headscan_full %>%
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(age, 0.05, na.rm=TRUE),
-            percent25th = percentile(age, 0.25, na.rm=TRUE),
-            percent50th = percentile(age, 0.50, na.rm=TRUE),
-            percent75th = percentile(age, 0.75, na.rm=TRUE),
-            percent95th = percentile(age, 0.95, na.rm=TRUE),
+            percent5th = quantile(age, 0.05, na.rm=TRUE),
+            percent25th = quantile(age, 0.25, na.rm=TRUE),
+            percent50th = quantile(age, 0.50, na.rm=TRUE),
+            percent75th = quantile(age, 0.75, na.rm=TRUE),
+            percent95th = quantile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 genderage_sumstats <- genderage_sumstats %>% 
@@ -182,11 +182,11 @@ agegroup_sumstats <- headscan_full %>%
             mean = mean(age, na.rm = TRUE),
             sd = sd(age, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(age, 0.05, na.rm=TRUE),
-            percent25th = percentile(age, 0.25, na.rm=TRUE),
-            percent50th = percentile(age, 0.50, na.rm=TRUE),
-            percent75th = percentile(age, 0.75, na.rm=TRUE),
-            percent95th = percentile(age, 0.95, na.rm=TRUE),
+            percent5th = quantile(age, 0.05, na.rm=TRUE),
+            percent25th = quantile(age, 0.25, na.rm=TRUE),
+            percent50th = quantile(age, 0.50, na.rm=TRUE),
+            percent75th = quantile(age, 0.75, na.rm=TRUE),
+            percent95th = quantile(age, 0.95, na.rm=TRUE),
             na = sum(is.na(age)))
 
 agegroup_sumstats <- agegroup_sumstats %>% 

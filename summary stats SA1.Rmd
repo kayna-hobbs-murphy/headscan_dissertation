@@ -76,11 +76,11 @@ AA_Crace_sumstats <- headscan_full %>%
             mean = mean(AA_C, na.rm = TRUE),
             sd = sd(AA_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(AA_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(AA_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(AA_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(AA_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(AA_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(AA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(AA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(AA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(AA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(AA_C, 0.95, na.rm=TRUE),
             na = sum(is.na(AA_C))) 
 
 AA_Crace_sumstats <- AA_Crace_sumstats %>% 
@@ -114,11 +114,11 @@ AA_Cgender_sumstats <- headscan_full %>%
             mean = mean(AA_C, na.rm = TRUE),
             sd = sd(AA_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(AA_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(AA_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(AA_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(AA_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(AA_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(AA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(AA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(AA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(AA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(AA_C, 0.95, na.rm=TRUE),
             na = sum(is.na(AA_C)))
 
 AA_Cgender_sumstats <- AA_Cgender_sumstats %>% 
@@ -152,11 +152,11 @@ AA_Cage_sumstats <- headscan_full %>%
             mean = mean(AA_C, na.rm = TRUE),
             sd = sd(AA_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(AA_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(AA_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(AA_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(AA_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(AA_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(AA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(AA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(AA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(AA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(AA_C, 0.95, na.rm=TRUE),
             na = sum(is.na(AA_C)))
 
 AA_Cage_sumstats <- AA_Cage_sumstats %>% 
@@ -193,11 +193,11 @@ BGl_Crace_sumstats <- headscan_full %>%
             mean = mean(BGl_C, na.rm = TRUE),
             sd = sd(BGl_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(BGl_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(BGl_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(BGl_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(BGl_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(BGl_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(BGl_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BGl_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BGl_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BGl_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BGl_C, 0.95, na.rm=TRUE),
             na = sum(is.na(BGl_C))) 
 
 BGl_Crace_sumstats <- BGl_Crace_sumstats %>% 
@@ -231,11 +231,11 @@ BGl_Cgender_sumstats <- headscan_full %>%
             mean = mean(BGl_C, na.rm = TRUE),
             sd = sd(BGl_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(BGl_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(BGl_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(BGl_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(BGl_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(BGl_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(BGl_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BGl_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BGl_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BGl_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BGl_C, 0.95, na.rm=TRUE),
             na = sum(is.na(BGl_C)))
 
 BGl_Cgender_sumstats <- BGl_Cgender_sumstats %>% 
@@ -268,11 +268,11 @@ BGl_Cage_sumstats <- headscan_full %>%
             mean = mean(BGl_C, na.rm = TRUE),
             sd = sd(BGl_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(BGl_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(BGl_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(BGl_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(BGl_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(BGl_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(BGl_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BGl_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BGl_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BGl_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BGl_C, 0.95, na.rm=TRUE),
             na = sum(is.na(BGl_C)))
 
 BGl_Cage_sumstats <- BGl_Cage_sumstats %>% 
@@ -310,11 +310,11 @@ BiW_Lrace_sumstats <- headscan_full %>%
             mean = mean(BiW_L, na.rm = TRUE),
             sd = sd(BiW_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(BiW_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(BiW_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(BiW_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(BiW_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(BiW_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(BiW_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(BiW_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(BiW_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(BiW_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(BiW_L, 0.95, na.rm=TRUE),
             na = sum(is.na(BiW_L))) 
 
 BiW_Lrace_sumstats <- BiW_Lrace_sumstats %>% 
@@ -348,11 +348,11 @@ BiW_Lgender_sumstats <- headscan_full %>%
             mean = mean(BiW_L, na.rm = TRUE),
             sd = sd(BiW_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(BiW_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(BiW_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(BiW_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(BiW_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(BiW_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(BiW_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(BiW_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(BiW_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(BiW_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(BiW_L, 0.95, na.rm=TRUE),
             na = sum(is.na(BiW_L)))
 
 BiW_Lgender_sumstats <- BiW_Lgender_sumstats %>% 
@@ -385,11 +385,11 @@ BiW_Lage_sumstats <- headscan_full %>%
             mean = mean(BiW_L, na.rm = TRUE),
             sd = sd(BiW_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(BiW_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(BiW_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(BiW_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(BiW_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(BiW_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(BiW_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(BiW_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(BiW_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(BiW_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(BiW_L, 0.95, na.rm=TRUE),
             na = sum(is.na(BiW_L)))
 
 BiW_Lage_sumstats <- BiW_Lage_sumstats %>% 
@@ -427,11 +427,11 @@ BiW_Crace_sumstats <- headscan_full %>%
             mean = mean(BiW_C, na.rm = TRUE),
             sd = sd(BiW_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(BiW_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(BiW_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(BiW_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(BiW_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(BiW_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(BiW_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BiW_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BiW_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BiW_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE),
             na = sum(is.na(BiW_C))) 
 
 BiW_Crace_sumstats <- BiW_Crace_sumstats %>% 
@@ -465,11 +465,11 @@ BiW_Cgender_sumstats <- headscan_full %>%
             mean = mean(BiW_C, na.rm = TRUE),
             sd = sd(BiW_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(BiW_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(BiW_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(BiW_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(BiW_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(BiW_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(BiW_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BiW_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BiW_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BiW_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE),
             na = sum(is.na(BiW_C)))
 
 BiW_Cgender_sumstats <- BiW_Cgender_sumstats %>% 
@@ -502,11 +502,11 @@ BiW_Cage_sumstats <- headscan_full %>%
             mean = mean(BiW_C, na.rm = TRUE),
             sd = sd(BiW_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(BiW_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(BiW_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(BiW_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(BiW_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(BiW_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(BiW_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BiW_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BiW_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BiW_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE),
             na = sum(is.na(BiW_C)))
 
 BiW_Cage_sumstats <- BiW_Cage_sumstats %>% 
@@ -543,11 +543,11 @@ ChCh_Crace_sumstats <- headscan_full %>%
             mean = mean(ChCh_C, na.rm = TRUE),
             sd = sd(ChCh_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ChCh_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(ChCh_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(ChCh_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(ChCh_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(ChCh_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(ChCh_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE),
             na = sum(is.na(ChCh_C))) 
 
 ChCh_Crace_sumstats <- ChCh_Crace_sumstats %>% 
@@ -581,11 +581,11 @@ ChCh_Cgender_sumstats <- headscan_full %>%
             mean = mean(ChCh_C, na.rm = TRUE),
             sd = sd(ChCh_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ChCh_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(ChCh_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(ChCh_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(ChCh_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(ChCh_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(ChCh_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE),
             na = sum(is.na(ChCh_C)))
 
 ChCh_Cgender_sumstats <- ChCh_Cgender_sumstats %>% 
@@ -618,11 +618,11 @@ ChCh_Cage_sumstats <- headscan_full %>%
             mean = mean(ChCh_C, na.rm = TRUE),
             sd = sd(ChCh_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ChCh_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(ChCh_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(ChCh_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(ChCh_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(ChCh_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(ChCh_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE),
             na = sum(is.na(ChCh_C)))
 
 ChCh_Cage_sumstats <- ChCh_Cage_sumstats %>% 
@@ -659,11 +659,11 @@ GoSub_Crace_sumstats <- headscan_full %>%
             mean = mean(GoSub_C, na.rm = TRUE),
             sd = sd(GoSub_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(GoSub_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(GoSub_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(GoSub_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(GoSub_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
             na = sum(is.na(GoSub_C))) 
 
 GoSub_Crace_sumstats <- GoSub_Crace_sumstats %>% 
@@ -697,11 +697,11 @@ GoSub_Cgender_sumstats <- headscan_full %>%
             mean = mean(GoSub_C, na.rm = TRUE),
             sd = sd(GoSub_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(GoSub_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(GoSub_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(GoSub_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(GoSub_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
             na = sum(is.na(GoSub_C)))
 
 GoSub_Cgender_sumstats <- GoSub_Cgender_sumstats %>% 
@@ -734,11 +734,11 @@ GoSub_Cage_sumstats <- headscan_full %>%
             mean = mean(GoSub_C, na.rm = TRUE),
             sd = sd(GoSub_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(GoSub_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(GoSub_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(GoSub_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(GoSub_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
             na = sum(is.na(GoSub_C)))
 
 GoSub_Cage_sumstats <- GoSub_Cage_sumstats %>% 
@@ -776,11 +776,11 @@ NRB_Lrace_sumstats <- headscan_full %>%
             mean = mean(NRB_L, na.rm = TRUE),
             sd = sd(NRB_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(NRB_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(NRB_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(NRB_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(NRB_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(NRB_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
             na = sum(is.na(NRB_L))) 
 
 NRB_Lrace_sumstats <- NRB_Lrace_sumstats %>% 
@@ -814,11 +814,11 @@ NRB_Lgender_sumstats <- headscan_full %>%
             mean = mean(NRB_L, na.rm = TRUE),
             sd = sd(NRB_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(NRB_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(NRB_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(NRB_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(NRB_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(NRB_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
             na = sum(is.na(NRB_L)))
 
 NRB_Lgender_sumstats <- NRB_Lgender_sumstats %>% 
@@ -851,11 +851,11 @@ NRB_Lage_sumstats <- headscan_full %>%
             mean = mean(NRB_L, na.rm = TRUE),
             sd = sd(NRB_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(NRB_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(NRB_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(NRB_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(NRB_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(NRB_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
             na = sum(is.na(NRB_L)))
 
 NRB_Lage_sumstats <- NRB_Lage_sumstats %>% 
@@ -895,11 +895,11 @@ ProA_Lrace_sumstats <- headscan_full %>%
             mean = mean(ProA_L, na.rm = TRUE),
             sd = sd(ProA_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProA_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProA_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProA_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProA_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProA_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProA_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_L, 0.95, na.rm=TRUE),
             na = sum(is.na(ProA_L))) 
 
 ProA_Lrace_sumstats <- ProA_Lrace_sumstats %>% 
@@ -933,11 +933,11 @@ ProA_Lgender_sumstats <- headscan_full %>%
             mean = mean(ProA_L, na.rm = TRUE),
             sd = sd(ProA_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProA_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProA_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProA_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProA_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProA_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProA_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_L, 0.95, na.rm=TRUE),
             na = sum(is.na(ProA_L)))
 
 ProA_Lgender_sumstats <- ProA_Lgender_sumstats %>% 
@@ -970,11 +970,11 @@ ProA_Lage_sumstats <- headscan_full %>%
             mean = mean(ProA_L, na.rm = TRUE),
             sd = sd(ProA_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProA_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProA_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProA_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProA_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProA_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProA_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_L, 0.95, na.rm=TRUE),
             na = sum(is.na(ProA_L)))
 
 ProA_Lage_sumstats <- ProA_Lage_sumstats %>% 
@@ -1013,11 +1013,11 @@ ProA_Crace_sumstats <- headscan_full %>%
             mean = mean(ProA_C, na.rm = TRUE),
             sd = sd(ProA_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProA_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProA_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProA_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProA_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProA_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_C, 0.95, na.rm=TRUE),
             na = sum(is.na(ProA_C))) 
 
 ProA_Crace_sumstats <- ProA_Crace_sumstats %>% 
@@ -1051,11 +1051,11 @@ ProA_Cgender_sumstats <- headscan_full %>%
             mean = mean(ProA_C, na.rm = TRUE),
             sd = sd(ProA_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProA_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProA_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProA_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProA_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProA_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_C, 0.95, na.rm=TRUE),
             na = sum(is.na(ProA_C)))
 
 ProA_Cgender_sumstats <- ProA_Cgender_sumstats %>% 
@@ -1088,11 +1088,11 @@ ProA_Cage_sumstats <- headscan_full %>%
             mean = mean(ProA_C, na.rm = TRUE),
             sd = sd(ProA_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProA_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProA_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProA_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProA_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProA_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_C, 0.95, na.rm=TRUE),
             na = sum(is.na(ProA_C)))
 
 ProA_Cage_sumstats <- ProA_Cage_sumstats %>% 
@@ -1130,11 +1130,11 @@ ProS_Lrace_sumstats <- headscan_full %>%
             mean = mean(ProS_L, na.rm = TRUE),
             sd = sd(ProS_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProS_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProS_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProS_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProS_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProS_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProS_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProS_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProS_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProS_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProS_L, 0.95, na.rm=TRUE),
             na = sum(is.na(ProS_L))) 
 
 ProS_Lrace_sumstats <- ProS_Lrace_sumstats %>% 
@@ -1168,11 +1168,11 @@ ProS_Lgender_sumstats <- headscan_full %>%
             mean = mean(ProS_L, na.rm = TRUE),
             sd = sd(ProS_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProS_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProS_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProS_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProS_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProS_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProS_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProS_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProS_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProS_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProS_L, 0.95, na.rm=TRUE),
             na = sum(is.na(ProS_L)))
 
 ProS_Lgender_sumstats <- ProS_Lgender_sumstats %>% 
@@ -1205,11 +1205,11 @@ ProS_Lage_sumstats <- headscan_full %>%
             mean = mean(ProS_L, na.rm = TRUE),
             sd = sd(ProS_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProS_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProS_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProS_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProS_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProS_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProS_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProS_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProS_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProS_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProS_L, 0.95, na.rm=TRUE),
             na = sum(is.na(ProS_L)))
 
 ProS_Lage_sumstats <- ProS_Lage_sumstats %>% 
@@ -1245,11 +1245,11 @@ ProS_Crace_sumstats <- headscan_full %>%
             mean = mean(ProS_C, na.rm = TRUE),
             sd = sd(ProS_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProS_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProS_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProS_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProS_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProS_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProS_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProS_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProS_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProS_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProS_C, 0.95, na.rm=TRUE),
             na = sum(is.na(ProS_C))) 
 
 ProS_Crace_sumstats <- ProS_Crace_sumstats %>% 
@@ -1283,11 +1283,11 @@ ProS_Cgender_sumstats <- headscan_full %>%
             mean = mean(ProS_C, na.rm = TRUE),
             sd = sd(ProS_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProS_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProS_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProS_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProS_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProS_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProS_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProS_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProS_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProS_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProS_C, 0.95, na.rm=TRUE),
             na = sum(is.na(ProS_C)))
 
 ProS_Cgender_sumstats <- ProS_Cgender_sumstats %>% 
@@ -1320,11 +1320,11 @@ ProS_Cage_sumstats <- headscan_full %>%
             mean = mean(ProS_C, na.rm = TRUE),
             sd = sd(ProS_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(ProS_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(ProS_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(ProS_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(ProS_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(ProS_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(ProS_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProS_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProS_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProS_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProS_C, 0.95, na.rm=TRUE),
             na = sum(is.na(ProS_C)))
 
 ProS_Cage_sumstats <- ProS_Cage_sumstats %>% 
@@ -1362,11 +1362,11 @@ SelP_Lrace_sumstats <- headscan_full %>%
             mean = mean(SelP_L, na.rm = TRUE),
             sd = sd(SelP_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelP_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelP_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelP_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelP_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelP_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelP_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelP_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelP_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelP_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelP_L, 0.95, na.rm=TRUE),
             na = sum(is.na(SelP_L))) 
 
 SelP_Lrace_sumstats <- SelP_Lrace_sumstats %>% 
@@ -1400,11 +1400,11 @@ SelP_Lgender_sumstats <- headscan_full %>%
             mean = mean(SelP_L, na.rm = TRUE),
             sd = sd(SelP_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelP_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelP_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelP_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelP_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelP_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelP_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelP_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelP_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelP_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelP_L, 0.95, na.rm=TRUE),
             na = sum(is.na(SelP_L)))
 
 SelP_Lgender_sumstats <- SelP_Lgender_sumstats %>% 
@@ -1437,11 +1437,11 @@ SelP_Lage_sumstats <- headscan_full %>%
             mean = mean(SelP_L, na.rm = TRUE),
             sd = sd(SelP_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelP_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelP_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelP_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelP_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelP_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelP_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelP_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelP_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelP_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelP_L, 0.95, na.rm=TRUE),
             na = sum(is.na(SelP_L)))
 
 SelP_Lage_sumstats <- SelP_Lage_sumstats %>% 
@@ -1479,11 +1479,11 @@ SelP_Crace_sumstats <- headscan_full %>%
             mean = mean(SelP_C, na.rm = TRUE),
             sd = sd(SelP_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelP_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelP_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelP_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelP_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelP_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelP_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelP_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelP_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelP_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelP_C, 0.95, na.rm=TRUE),
             na = sum(is.na(SelP_C))) 
 
 SelP_Crace_sumstats <- SelP_Crace_sumstats %>% 
@@ -1517,11 +1517,11 @@ SelP_Cgender_sumstats <- headscan_full %>%
             mean = mean(SelP_C, na.rm = TRUE),
             sd = sd(SelP_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelP_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelP_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelP_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelP_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelP_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelP_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelP_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelP_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelP_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelP_C, 0.95, na.rm=TRUE),
             na = sum(is.na(SelP_C)))
 
 SelP_Cgender_sumstats <- SelP_Cgender_sumstats %>% 
@@ -1554,11 +1554,11 @@ SelP_Cage_sumstats <- headscan_full %>%
             mean = mean(SelP_C, na.rm = TRUE),
             sd = sd(SelP_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelP_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelP_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelP_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelP_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelP_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelP_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelP_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelP_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelP_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelP_C, 0.95, na.rm=TRUE),
             na = sum(is.na(SelP_C)))
 
 SelP_Cage_sumstats <- SelP_Cage_sumstats %>% 
@@ -1596,11 +1596,11 @@ SelDH_Crace_sumstats <- headscan_full %>%
             mean = mean(SelDH_C, na.rm = TRUE),
             sd = sd(SelDH_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelDH_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelDH_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelDH_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelDH_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelDH_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelDH_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelDH_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelDH_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelDH_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelDH_C, 0.95, na.rm=TRUE),
             na = sum(is.na(SelDH_C))) 
 
 SelDH_Crace_sumstats <- SelDH_Crace_sumstats %>% 
@@ -1634,11 +1634,11 @@ SelDH_Cgender_sumstats <- headscan_full %>%
             mean = mean(SelDH_C, na.rm = TRUE),
             sd = sd(SelDH_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelDH_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelDH_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelDH_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelDH_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelDH_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelDH_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelDH_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelDH_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelDH_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelDH_C, 0.95, na.rm=TRUE),
             na = sum(is.na(SelDH_C)))
 
 SelDH_Cgender_sumstats <- SelDH_Cgender_sumstats %>% 
@@ -1671,11 +1671,11 @@ SelDH_Cage_sumstats <- headscan_full %>%
             mean = mean(SelDH_C, na.rm = TRUE),
             sd = sd(SelDH_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelDH_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelDH_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelDH_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelDH_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelDH_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelDH_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelDH_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelDH_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelDH_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelDH_C, 0.95, na.rm=TRUE),
             na = sum(is.na(SelDH_C)))
 
 SelDH_Cage_sumstats <- SelDH_Cage_sumstats %>% 
@@ -1713,11 +1713,11 @@ SelM_Lrace_sumstats <- headscan_full %>%
             mean = mean(SelM_L, na.rm = TRUE),
             sd = sd(SelM_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelM_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelM_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelM_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelM_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelM_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelM_L, 0.95, na.rm=TRUE),
             na = sum(is.na(SelM_L))) 
 
 SelM_Lrace_sumstats <- SelM_Lrace_sumstats %>% 
@@ -1751,11 +1751,11 @@ SelM_Lgender_sumstats <- headscan_full %>%
             mean = mean(SelM_L, na.rm = TRUE),
             sd = sd(SelM_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelM_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelM_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelM_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelM_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelM_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelM_L, 0.95, na.rm=TRUE),
             na = sum(is.na(SelM_L)))
 
 SelM_Lgender_sumstats <- SelM_Lgender_sumstats %>% 
@@ -1788,11 +1788,11 @@ SelM_Lage_sumstats <- headscan_full %>%
             mean = mean(SelM_L, na.rm = TRUE),
             sd = sd(SelM_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SelM_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(SelM_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(SelM_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(SelM_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(SelM_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(SelM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelM_L, 0.95, na.rm=TRUE),
             na = sum(is.na(SelM_L)))
 
 SelM_Lage_sumstats <- SelM_Lage_sumstats %>% 
@@ -1830,11 +1830,11 @@ SnasM_Lrace_sumstats <- headscan_full %>%
             mean = mean(SnasM_L, na.rm = TRUE),
             sd = sd(SnasM_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SnasM_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(SnasM_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(SnasM_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(SnasM_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(SnasM_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(SnasM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_L, 0.95, na.rm=TRUE),
             na = sum(is.na(SnasM_L))) 
 
 SnasM_Lrace_sumstats <- SnasM_Lrace_sumstats %>% 
@@ -1868,11 +1868,11 @@ SnasM_Lgender_sumstats <- headscan_full %>%
             mean = mean(SnasM_L, na.rm = TRUE),
             sd = sd(SnasM_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SnasM_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(SnasM_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(SnasM_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(SnasM_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(SnasM_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(SnasM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_L, 0.95, na.rm=TRUE),
             na = sum(is.na(SnasM_L)))
 
 SnasM_Lgender_sumstats <- SnasM_Lgender_sumstats %>% 
@@ -1905,11 +1905,11 @@ SnasM_Lage_sumstats <- headscan_full %>%
             mean = mean(SnasM_L, na.rm = TRUE),
             sd = sd(SnasM_L, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SnasM_L, 0.05, na.rm=TRUE),
-            percent25th = percentile(SnasM_L, 0.25, na.rm=TRUE),
-            percent50th = percentile(SnasM_L, 0.50, na.rm=TRUE),
-            percent75th = percentile(SnasM_L, 0.75, na.rm=TRUE),
-            percent95th = percentile(SnasM_L, 0.95, na.rm=TRUE),
+            percent5th = quantile(SnasM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_L, 0.95, na.rm=TRUE),
             na = sum(is.na(SnasM_L)))
 
 SnasM_Lage_sumstats <- SnasM_Lage_sumstats %>% 
@@ -1947,11 +1947,11 @@ SnasM_Crace_sumstats <- headscan_full %>%
             mean = mean(SnasM_C, na.rm = TRUE),
             sd = sd(SnasM_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SnasM_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(SnasM_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(SnasM_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(SnasM_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(SnasM_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(SnasM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE),
             na = sum(is.na(SnasM_C))) 
 
 SnasM_Crace_sumstats <- SnasM_Crace_sumstats %>% 
@@ -1985,11 +1985,11 @@ SnasM_Cgender_sumstats <- headscan_full %>%
             mean = mean(SnasM_C, na.rm = TRUE),
             sd = sd(SnasM_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SnasM_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(SnasM_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(SnasM_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(SnasM_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(SnasM_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(SnasM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE),
             na = sum(is.na(SnasM_C)))
 
 SnasM_Cgender_sumstats <- SnasM_Cgender_sumstats %>% 
@@ -2022,11 +2022,11 @@ SnasM_Cage_sumstats <- headscan_full %>%
             mean = mean(SnasM_C, na.rm = TRUE),
             sd = sd(SnasM_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(SnasM_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(SnasM_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(SnasM_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(SnasM_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(SnasM_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(SnasM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE),
             na = sum(is.na(SnasM_C)))
 
 SnasM_Cage_sumstats <- SnasM_Cage_sumstats %>% 
@@ -2064,11 +2064,11 @@ TrHO_Crace_sumstats <- headscan_full %>%
             mean = mean(TrHO_C, na.rm = TRUE),
             sd = sd(TrHO_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(TrHO_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(TrHO_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(TrHO_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(TrHO_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(TrHO_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(TrHO_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrHO_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrHO_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrHO_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrHO_C, 0.95, na.rm=TRUE),
             na = sum(is.na(TrHO_C))) 
 
 TrHO_Crace_sumstats <- TrHO_Crace_sumstats %>% 
@@ -2102,11 +2102,11 @@ TrHO_Cgender_sumstats <- headscan_full %>%
             mean = mean(TrHO_C, na.rm = TRUE),
             sd = sd(TrHO_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(TrHO_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(TrHO_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(TrHO_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(TrHO_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(TrHO_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(TrHO_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrHO_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrHO_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrHO_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrHO_C, 0.95, na.rm=TRUE),
             na = sum(is.na(TrHO_C)))
 
 TrHO_Cgender_sumstats <- TrHO_Cgender_sumstats %>% 
@@ -2139,11 +2139,11 @@ TrHO_Cage_sumstats <- headscan_full %>%
             mean = mean(TrHO_C, na.rm = TRUE),
             sd = sd(TrHO_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(TrHO_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(TrHO_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(TrHO_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(TrHO_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(TrHO_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(TrHO_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrHO_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrHO_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrHO_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrHO_C, 0.95, na.rm=TRUE),
             na = sum(is.na(TrHO_C)))
 
 TrHO_Cage_sumstats <- TrHO_Cage_sumstats %>% 
@@ -2181,11 +2181,11 @@ TrEJ_Crace_sumstats <- headscan_full %>%
             mean = mean(TrEJ_C, na.rm = TRUE),
             sd = sd(TrEJ_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(TrEJ_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(TrEJ_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(TrEJ_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(TrEJ_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(TrEJ_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(TrEJ_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrEJ_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrEJ_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrEJ_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrEJ_C, 0.95, na.rm=TRUE),
             na = sum(is.na(TrEJ_C))) 
 
 TrEJ_Crace_sumstats <- TrEJ_Crace_sumstats %>% 
@@ -2219,11 +2219,11 @@ TrEJ_Cgender_sumstats <- headscan_full %>%
             mean = mean(TrEJ_C, na.rm = TRUE),
             sd = sd(TrEJ_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(TrEJ_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(TrEJ_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(TrEJ_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(TrEJ_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(TrEJ_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(TrEJ_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrEJ_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrEJ_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrEJ_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrEJ_C, 0.95, na.rm=TRUE),
             na = sum(is.na(TrEJ_C)))
 
 TrEJ_Cgender_sumstats <- TrEJ_Cgender_sumstats %>% 
@@ -2256,11 +2256,11 @@ TrEJ_Cage_sumstats <- headscan_full %>%
             mean = mean(TrEJ_C, na.rm = TRUE),
             sd = sd(TrEJ_C, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = percentile(TrEJ_C, 0.05, na.rm=TRUE),
-            percent25th = percentile(TrEJ_C, 0.25, na.rm=TRUE),
-            percent50th = percentile(TrEJ_C, 0.50, na.rm=TRUE),
-            percent75th = percentile(TrEJ_C, 0.75, na.rm=TRUE),
-            percent95th = percentile(TrEJ_C, 0.95, na.rm=TRUE),
+            percent5th = quantile(TrEJ_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrEJ_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrEJ_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrEJ_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrEJ_C, 0.95, na.rm=TRUE),
             na = sum(is.na(TrEJ_C)))
 
 TrEJ_Cage_sumstats <- TrEJ_Cage_sumstats %>% 
