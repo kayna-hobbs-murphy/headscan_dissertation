@@ -2828,14 +2828,14 @@ TrTr_Lrace_sumstats <- TrTr_Lrace_sumstats %>%
 flextable(TrTr_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_Laption("Tragion to Tragion Linear SumStats by Race/Ethnicity") 
+  set_caption("Tragion to Tragion Linear SumStats by Race/Ethnicity") 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_Laption("Tragion to Tragion Linear SumStats by Race/Ethnicity") %>% 
+  set_caption("Tragion to Tragion Linear SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 ```
@@ -2864,14 +2864,14 @@ TrTr_Lgender_sumstats <- TrTr_Lgender_sumstats %>%
 flextable(TrTr_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_Laption("Tragion to Tragion Linear SumStats by Gender") 
+  set_caption("Tragion to Tragion Linear SumStats by Gender") 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_Laption("Tragion to Tragion Linear SumStats by Gender") %>% 
+  set_caption("Tragion to Tragion Linear SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 ```
@@ -2901,14 +2901,14 @@ TrTr_Lage_sumstats <- TrTr_Lage_sumstats %>%
 flextable(TrTr_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_Laption("Tragion to Tragion Linear SumStats by Gender") 
+  set_caption("Tragion to Tragion Linear SumStats by Gender") 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_Laption("Tragion to Tragion Linear SumStats by Gender") %>% 
+  set_caption("Tragion to Tragion Linear SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 ```
