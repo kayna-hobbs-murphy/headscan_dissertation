@@ -105,7 +105,19 @@ ggplot(data=measureNAs, aes(x=measure_name, y=measureNAprops))+
        y="Proportion of Missing Values",
        x="Measure Abbreviation (see Appendix B)")
 ```
+
 AA_C race/eth, gender, age group sumstats
+
+```{r}
+#histogram of all AA_C values
+ggplot(data=headscan_full, aes(x=AA_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Alare to Alare Contour Measurement Distribution",
+       y="Frequency",
+       x="Alare to Alare Contour (cm)")
+```
+
 
 ```{r}
 #AA_C race/eth sumstats
@@ -164,7 +176,6 @@ AA_Cgender_sumstats <- headscan_full %>%
 AA_Cgender_sumstats <- AA_Cgender_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
 
-
 #Size 12 Table TNR
 flextable(AA_Cgender_sumstats) %>%
   my_ft_theme()%>% 
@@ -180,7 +191,7 @@ flextable(AA_Cgender_sumstats) %>%
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
-#boxplot
+#boxplot reorderd by median
 headscan_full %>% 
   ungroup() %>% 
   mutate(gender= fct_reorder(gender, AA_C, FUN=median, na.rm=TRUE)) %>% 
@@ -188,19 +199,20 @@ headscan_full %>%
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  ylim(4, 9)+
   labs(title="AA_C values per Gender",
+       subtitle = "17 missing AA_C values not plotted",
        y="AA_C Measurement (cm)",
        x="Gender")
 
-#bar chart
-#ggplot(data=headscan_full, aes(x=gender))+
-  #geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
-  #theme(text=element_text(family= "Times New Roman"))+
-  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  #labs(title="Gender Frequency",
-       #y="Count",
-       #x="Gender")
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=AA_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="AA_C values per Gender",
+       subtitle = "17 missing AA_C values not plotted",
+       y="AA_C Measurement (cm)",
+       x="Gender")
 ```
 
 ```{r}
