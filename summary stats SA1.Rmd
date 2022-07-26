@@ -648,14 +648,14 @@ BiW_Lage_sumstats <- BiW_Lage_sumstats %>%
 flextable(BiW_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Linear SumStats by Gender") 
+  set_caption("Bizygomatic Width Linear SumStats by Age Group") 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Linear SumStats by Gender") %>% 
+  set_caption("Bizygomatic Width Linear SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
@@ -742,7 +742,7 @@ headscan_full %>%
   ggplot(aes(y=BiW_C, x=race_eth))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
-  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Contour values per Race/Ethnicity",
        y="BiW_C Measurement (cm)",
        x="Race/Ethnicity")
@@ -751,7 +751,7 @@ headscan_full %>%
 ggplot(data=headscan_full, aes(y=BiW_C, x=race_eth))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
-  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Contour values per Race/Ethnicity",
        y="BiW_C Measurement (cm)",
        x="Race/Ethnicity")
@@ -843,14 +843,14 @@ BiW_Cage_sumstats <- BiW_Cage_sumstats %>%
 flextable(BiW_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Gender") 
+  set_caption("Bizygomatic Width Contour SumStats by Age Group") 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Gender") %>% 
+  set_caption("Bizygomatic Width Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
@@ -861,7 +861,7 @@ headscan_full %>%
   ggplot(aes(y=BiW_C, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
-  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Contour values per Age Group",
        y="BiW_C Measurement (cm)",
        x="Age Group")
@@ -870,7 +870,7 @@ headscan_full %>%
 ggplot(data=headscan_full, aes(y=BiW_C, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
-  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Contour values per Age Group",
        y="BiW_C Measurement (cm)",
        x="Age Group")
@@ -1229,42 +1229,50 @@ GoSub_Cage_sumstats <- GoSub_Cage_sumstats %>%
 flextable(GoSub_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Gender") 
+  set_caption("Gonion to Submandibular Contour SumStats by Age Group") 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(GoSub_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Gender") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #boxplot reorderd by median
 headscan_full %>% 
   ungroup() %>% 
-  mutate(gender= fct_reorder(gender, GoSub_C, FUN=median, na.rm=TRUE)) %>% 
-  ggplot(aes(y=GoSub_C, x=gender))+
+  mutate(age_group= fct_reorder(age_group, GoSub_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=GoSub_C, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Gonion to Submandibular Contour values per Gender",
+  labs(title="Gonion to Submandibular Contour values per Age Group",
        y="GoSub_C Measurement (cm)",
-       x="Gender")
+       x="Age Group")
 
 #boxplot not reordered by median
-ggplot(data=headscan_full, aes(y=GoSub_C, x=gender))+
+ggplot(data=headscan_full, aes(y=GoSub_C, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Gonion to Submandibular Contour values per Gender",
+  labs(title="Gonion to Submandibular Contour values per Age Group",
        y="GoSub_C Measurement (cm)",
-       x="Gender")
+       x="Age Group")
 
 ```
 
 ```{r}
+#REMOVING OUTLIER
 
+max(headscan_full$GoSub_C, na.rm = TRUE)
+
+	
+#400-20210129-009
+
+
+headscan_full$GoSub1 <- headscan_full %>% mutate(GoSub_C = replace(GoSub_C, GoSub_C>40, NA))
 ```
 
 
@@ -1272,7 +1280,7 @@ GoSub_C WITH Outlier Removed!!!!
 
 ```{r}
 #histogram of all GoSub_C values
-ggplot(data=headscan_full, aes(x=GoSub_C))+
+ggplot(data=headscan_full, aes(x=GoSub_C1))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Gonion to Submandibular Contour Measurement Distribution",
@@ -1282,187 +1290,198 @@ ggplot(data=headscan_full, aes(x=GoSub_C))+
 
 
 ```{r}
-#GoSub_C race/eth sumstats
-GoSub_Crace_sumstats <- headscan_full %>% 
+#GoSub_C1 race/eth sumstats
+GoSub_C1race_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
   summarise(n = n(),
-            min = min(GoSub_C, na.rm = TRUE),
-            max = max(GoSub_C, na.rm = TRUE),
-            mean = mean(GoSub_C, na.rm = TRUE),
-            mdn = median(GoSub_C, na.rm = TRUE),
-            sd = sd(GoSub_C, na.rm = TRUE),
+            min = min(GoSub_C11, na.rm = TRUE),
+            max = max(GoSub_C11, na.rm = TRUE),
+            mean = mean(GoSub_C11, na.rm = TRUE),
+            mdn = median(GoSub_C1, na.rm = TRUE),
+            sd = sd(GoSub_C1, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
-            percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
-            percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
-            percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C))) 
+            percent5th = quantile(GoSub_C1, 0.05, na.rm=TRUE),
+            percent25th = quantile(GoSub_C1, 0.25, na.rm=TRUE),
+            percent50th = quantile(GoSub_C1, 0.50, na.rm=TRUE),
+            percent75th = quantile(GoSub_C1, 0.75, na.rm=TRUE),
+            percent95th = quantile(GoSub_C1, 0.95, na.rm=TRUE),
+            na = sum(is.na(GoSub_C1))) 
 
-GoSub_Crace_sumstats <- GoSub_Crace_sumstats %>% 
+GoSub_C1race_sumstats <- GoSub_C1race_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
 
 
 #Size 12 Table TNR
-flextable(GoSub_Crace_sumstats) %>%
+flextable(GoSub_C1race_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Gonion to Submandibular Contour SumStats by Race/Ethnicity") 
-#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+#%>% set_header_labels(values = list(GoSub_C1 = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
-flextable(GoSub_Crace_sumstats) %>%
+flextable(GoSub_C1race_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Gonion to Submandibular Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
-#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+#%>% set_header_labels(values = list(GoSub_C1 = "Alare/AlareCont"))
 
 #boxplot reorderd by median
 headscan_full %>% 
   ungroup() %>% 
-  mutate(race_eth= fct_reorder(race_eth, GoSub_C, FUN=median, na.rm=TRUE)) %>% 
-  ggplot(aes(y=GoSub_C, x=race_eth))+
+  mutate(race_eth= fct_reorder(race_eth, GoSub_C1, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=GoSub_C1, x=race_eth))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
-  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values per Race/Ethnicity",
-       y="GoSub_C Measurement (cm)",
+       y="GoSub_C1 Measurement (cm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
-ggplot(data=headscan_full, aes(y=GoSub_C, x=race_eth))+
+ggplot(data=headscan_full, aes(y=GoSub_C1, x=race_eth))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
-  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values per Race/Ethnicity",
-       y="GoSub_C Measurement (cm)",
+       y="GoSub_C1 Measurement (cm)",
        x="Race/Ethnicity")
 
 ```
 
 ```{r}
-#GoSub_C gender sumstats
-GoSub_Cgender_sumstats <- headscan_full %>% 
+#GoSub_C1 gender sumstats
+GoSub_C1gender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
   summarise(n = n(),
-            min = min(GoSub_C, na.rm = TRUE),
-            max = max(GoSub_C, na.rm = TRUE),
-            mean = mean(GoSub_C, na.rm = TRUE),
-            mdn = median(GoSub_C, na.rm = TRUE),
-            sd = sd(GoSub_C, na.rm = TRUE),
+            min = min(GoSub_C1, na.rm = TRUE),
+            max = max(GoSub_C1, na.rm = TRUE),
+            mean = mean(GoSub_C1, na.rm = TRUE),
+            mdn = median(GoSub_C1, na.rm = TRUE),
+            sd = sd(GoSub_C1, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
-            percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
-            percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
-            percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C)))
+            percent5th = quantile(GoSub_C1, 0.05, na.rm=TRUE),
+            percent25th = quantile(GoSub_C1, 0.25, na.rm=TRUE),
+            percent50th = quantile(GoSub_C1, 0.50, na.rm=TRUE),
+            percent75th = quantile(GoSub_C1, 0.75, na.rm=TRUE),
+            percent95th = quantile(GoSub_C1, 0.95, na.rm=TRUE),
+            na = sum(is.na(GoSub_C1)))
 
-GoSub_Cgender_sumstats <- GoSub_Cgender_sumstats %>% 
+GoSub_C1gender_sumstats <- GoSub_C1gender_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
 
 #Size 12 Table TNR
-flextable(GoSub_Cgender_sumstats) %>%
+flextable(GoSub_C1gender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Gonion to Submandibular Contour SumStats by Gender") 
-#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+#%>% set_header_labels(values = list(GoSub_C1 = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
-flextable(GoSub_Cgender_sumstats) %>%
+flextable(GoSub_C1gender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Gonion to Submandibular Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
-#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+#%>% set_header_labels(values = list(GoSub_C1 = "Alare/AlareCont"))
 
 #boxplot reorderd by median
 headscan_full %>% 
   ungroup() %>% 
-  mutate(gender= fct_reorder(gender, GoSub_C, FUN=median, na.rm=TRUE)) %>% 
-  ggplot(aes(y=GoSub_C, x=gender))+
+  mutate(gender= fct_reorder(gender, GoSub_C1, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=GoSub_C1, x=gender))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values per Gender",
-       y="GoSub_C Measurement (cm)",
+       y="GoSub_C1 Measurement (cm)",
        x="Gender")
 
 #boxplot not reordered by median
-ggplot(data=headscan_full, aes(y=GoSub_C, x=gender))+
+ggplot(data=headscan_full, aes(y=GoSub_C1, x=gender))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values per Gender",
-       y="GoSub_C Measurement (cm)",
+       y="GoSub_C1 Measurement (cm)",
        x="Gender")
 
 ```
 
 ```{r}
-#GoSub_C age group sumstats
-GoSub_Cage_sumstats <- headscan_full %>% 
+#GoSub_C1 age group sumstats
+GoSub_C1age_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
   summarise(n = n(),
-            min = min(GoSub_C, na.rm = TRUE),
-            max = max(GoSub_C, na.rm = TRUE),
-            mean = mean(GoSub_C, na.rm = TRUE),
-            mdn = median(GoSub_C, na.rm = TRUE),
-            sd = sd(GoSub_C, na.rm = TRUE),
+            min = min(GoSub_C1, na.rm = TRUE),
+            max = max(GoSub_C1, na.rm = TRUE),
+            mean = mean(GoSub_C1, na.rm = TRUE),
+            mdn = median(GoSub_C1, na.rm = TRUE),
+            sd = sd(GoSub_C1, na.rm = TRUE),
             se = sd/sqrt(n),
-            percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
-            percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
-            percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
-            percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C)))
+            percent5th = quantile(GoSub_C1, 0.05, na.rm=TRUE),
+            percent25th = quantile(GoSub_C1, 0.25, na.rm=TRUE),
+            percent50th = quantile(GoSub_C1, 0.50, na.rm=TRUE),
+            percent75th = quantile(GoSub_C1, 0.75, na.rm=TRUE),
+            percent95th = quantile(GoSub_C1, 0.95, na.rm=TRUE),
+            na = sum(is.na(GoSub_C1)))
 
-GoSub_Cage_sumstats <- GoSub_Cage_sumstats %>% 
+GoSub_C1age_sumstats <- GoSub_C1age_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
 
 
 #Size 12 Table TNR
-flextable(GoSub_Cage_sumstats) %>%
+flextable(GoSub_C1age_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Gender") 
-#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+  set_caption("Gonion to Submandibular Contour SumStats by Age Group") 
+#%>% set_header_labels(values = list(GoSub_C1 = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
-flextable(GoSub_Cage_sumstats) %>%
+flextable(GoSub_C1age_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Gender") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
-#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+#%>% set_header_labels(values = list(GoSub_C1 = "Alare/AlareCont"))
 
 #boxplot reorderd by median
 headscan_full %>% 
   ungroup() %>% 
-  mutate(gender= fct_reorder(gender, GoSub_C, FUN=median, na.rm=TRUE)) %>% 
-  ggplot(aes(y=GoSub_C, x=gender))+
+  mutate(age_group= fct_reorder(age_group, GoSub_C1, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=GoSub_C1, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
-  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Gonion to Submandibular Contour values per Gender",
-       y="GoSub_C Measurement (cm)",
-       x="Gender")
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Gonion to Submandibular Contour values per Age Group",
+       y="GoSub_C1 Measurement (cm)",
+       x="Age Group")
 
 #boxplot not reordered by median
-ggplot(data=headscan_full, aes(y=GoSub_C, x=gender))+
+ggplot(data=headscan_full, aes(y=GoSub_C1, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
-  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Gonion to Submandibular Contour values per Gender",
-       y="GoSub_C Measurement (cm)",
-       x="Gender")
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Gonion to Submandibular Contour values per Age Group",
+       y="GoSub_C1 Measurement (cm)",
+       x="Age Group")
 
 ```
 
 
 
-NRB_L  
+NRB_L 
+
+```{r}
+#histogram of all AA_C values
+ggplot(data=headscan_full, aes(x=AA_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Alare to Alare Contour Measurement Distribution",
+       y="Frequency",
+       x="Alare to Alare Contour (cm)")
+```
+
 
 ```{r}
 #NRB_L race/eth sumstats
@@ -1472,6 +1491,7 @@ NRB_Lrace_sumstats <- headscan_full %>%
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
+            mdn = median(AA_C, na.rm = TRUE),
             sd = sd(NRB_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(NRB_L, 0.05, na.rm=TRUE),
@@ -1499,6 +1519,28 @@ flextable(NRB_Lrace_sumstats) %>%
   set_caption("Nasal Root Breadth SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, AA_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=AA_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="AA_C values per Race/Ethncity",
+       y="AA_C Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=AA_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="AA_C values per Race/Ethncity",
+       y="AA_C Measurement (cm)",
+       x="Race/Ethncity")
+
 ```
 
 ```{r}
@@ -1509,6 +1551,7 @@ NRB_Lgender_sumstats <- headscan_full %>%
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
+            mdn = median(AA_C, na.rm = TRUE),
             sd = sd(NRB_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(NRB_L, 0.05, na.rm=TRUE),
@@ -1535,6 +1578,28 @@ flextable(NRB_Lgender_sumstats) %>%
   set_caption("Nasal Root Breadth SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, AA_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=AA_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="AA_C values per Gender",
+       y="AA_C Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=AA_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="AA_C values per Gender",
+       y="AA_C Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -1545,6 +1610,7 @@ NRB_Lage_sumstats <- headscan_full %>%
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
+            mdn = median(AA_C, na.rm = TRUE),
             sd = sd(NRB_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(NRB_L, 0.05, na.rm=TRUE),
@@ -1562,16 +1628,38 @@ NRB_Lage_sumstats <- NRB_Lage_sumstats %>%
 flextable(NRB_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Gender") 
+  set_caption("Nasal Root Breadth SumStats by Age Group") 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(NRB_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Gender") %>% 
+  set_caption("Nasal Root Breadth SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, AA_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=AA_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="AA_C values per Age Group",
+       y="AA_C Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=AA_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="AA_C values per Age Group",
+       y="AA_C Measurement (cm)",
+       x="Age Group")
+
 ```
 
 
