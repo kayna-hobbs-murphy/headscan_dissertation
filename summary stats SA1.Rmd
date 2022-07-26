@@ -120,13 +120,14 @@ ggplot(data=headscan_full, aes(x=AA_C))+
 
 
 ```{r}
-#AA_C race/eth sumstats
+#AA_C race_eth sumstats
 AA_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
   summarise(n = n(),
             min = min(AA_C, na.rm = TRUE),
             max = max(AA_C, na.rm = TRUE),
             mean = mean(AA_C, na.rm = TRUE),
+            mdn = median(AA_C, na.rm = TRUE),
             sd = sd(AA_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(AA_C, 0.05, na.rm=TRUE),
@@ -154,6 +155,27 @@ flextable(AA_Crace_sumstats) %>%
   set_caption("Alare to Alare Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, AA_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=AA_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="AA_C values per Race/Ethnicity",
+       y="AA_C Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=AA_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="AA_C values per Race/Ethnicity",
+       y="AA_C Measurement (cm)",
+       x="Race/Ethnicity")
+
+#theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
 ```
 
 ```{r}
@@ -164,6 +186,7 @@ AA_Cgender_sumstats <- headscan_full %>%
             min = min(AA_C, na.rm = TRUE),
             max = max(AA_C, na.rm = TRUE),
             mean = mean(AA_C, na.rm = TRUE),
+            mdn = median(AA_C, na.rm = TRUE),
             sd = sd(AA_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(AA_C, 0.05, na.rm=TRUE),
@@ -200,7 +223,6 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="AA_C values per Gender",
-       subtitle = "17 missing AA_C values not plotted",
        y="AA_C Measurement (cm)",
        x="Gender")
 
@@ -210,7 +232,6 @@ ggplot(data=headscan_full, aes(y=AA_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="AA_C values per Gender",
-       subtitle = "17 missing AA_C values not plotted",
        y="AA_C Measurement (cm)",
        x="Gender")
 ```
@@ -223,6 +244,7 @@ AA_Cage_sumstats <- headscan_full %>%
             min = min(AA_C, na.rm = TRUE),
             max = max(AA_C, na.rm = TRUE),
             mean = mean(AA_C, na.rm = TRUE),
+            mdn = median(AA_C, na.rm = TRUE),
             sd = sd(AA_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(AA_C, 0.05, na.rm=TRUE),
@@ -250,6 +272,29 @@ flextable(AA_Cage_sumstats) %>%
   set_caption("Alare to Alare Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, AA_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=AA_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="AA_C values per Age Group",
+       subtitle = "17 missing AA_C values not plotted",
+       y="AA_C Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=AA_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="AA_C values per Age Group",
+       subtitle = "17 missing AA_C values not plotted",
+       y="AA_C Measurement (cm)",
+       x="Age Group")
 ```
 
 
