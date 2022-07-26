@@ -92,6 +92,14 @@ flextable(age_sumstats) %>%
   set_caption("Age SumStats") %>% 
   autofit() %>% 
   fit_to_width(7.5)
+
+#bar chart
+ggplot(data=headscan_full, aes(x=age))+
+  geom_bar(stat="bin", binwidth = 4, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Frequency",
+       y="Count",
+       x="Age")
 ```
 
 
@@ -133,6 +141,25 @@ flextable(raceage_sumstats) %>%
   set_caption("Age SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   set_header_labels(values = list(race_eth = "Race/Ethnicity"))
+
+#boxplot
+ggplot(data=headscan_full, aes(y=age, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Frequency per Race/Ethnicity",
+       y="Age",
+       x="Race/Ethnicity")
+
+#bar chart
+ggplot(data=headscan_full, aes(x=race_eth))+
+  geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Race/Ethnicity Frequency",
+       y="Count",
+       x="Race/Ethnicity")
+
+#geom_text(stat="count", aes(label=..count..), vjust=-0.5)+
+#couldnt figure out how to make this in TNR
 ```
 
 
@@ -175,7 +202,23 @@ flextable(genderage_sumstats) %>%
   fit_to_width(7.5) %>% 
   set_header_labels(values = list(gender = "Gender"))
 
+#boxplot
+ggplot(data=headscan_full, aes(y=age, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Age Frequency per Gender",
+       y="Age",
+       x="Gender")
 
+#bar chart
+ggplot(data=headscan_full, aes(x=gender))+
+  geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Gender Frequency",
+       y="Count",
+       x="Gender")
 ```
 
 
@@ -217,34 +260,23 @@ flextable(agegroup_sumstats) %>%
   set_caption("Age SumStats by Age Group") %>%  
   fit_to_width(7.5) %>%
   set_header_labels(values = list(age_group = "Age Group"))
+
+#boxplot
+ggplot(data=headscan_full, aes(y=age, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Frequency per Age Group",
+       y="Age",
+       x="Age Group")
+
+#bar chart
+ggplot(data=headscan_full, aes(x=age_group))+
+  geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Group Frequency",
+       y="Count",
+       x="Age Group")
 ```
-
-```{r}
-#explore race_eth, frequency of each
-
-```
-
-```{r}
-#explore gender, frequency of each
-```
-
-
-
-
-
-
-
-
-
-
-
-
-PLOTS
-
-
-
-
-
 
 ```{r, fig.width= 6.5, fig.height=3.5}
 ggplot(data=headscan_full, aes(x= age, fill=gender))+
@@ -264,18 +296,19 @@ ggplot(data=headscan_full, aes(x= age, fill=gender))+
 ```
 
 ```{r}
-#ggplot(data=headscan_full)+
-  #geom_histogram(binwidth=2, aes(x=age, fill=race_eth))+
-  #scale_fill_grey()+
-  #labs(title= "Demographics of Headscan Sample",
-       #subtitle = "Data collected by Human Solutions",
-       #fill= "Ethnicity",
-       #y="Count",
-       #x="Age")
+ggplot(data=headscan_full)+
+  geom_histogram(binwidth=4, aes(x=age, fill=race_eth))+
+  scale_fill_grey()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title= "Demographics of Headscan Sample",
+       subtitle = "Data collected by Human Solutions",
+       fill= "Ethnicity",
+       y="Count",
+       x="Age")
 ```
 ```{r}
-#ggplot(data=headscan_full)+
-  #geom_boxplot(aes(x=race_eth, y=age, fill=gender))+
-  #scale_fill_grey()+
-  #theme(axis.text.x = element_text(angle = 45))
+ggplot(data=headscan_full)+
+  geom_boxplot(aes(x=race_eth, y=age, fill=gender))+
+  scale_fill_grey()+
+  theme(axis.text.x = element_text(angle = 45))
 ```
