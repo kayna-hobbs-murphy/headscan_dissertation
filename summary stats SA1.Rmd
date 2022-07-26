@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(flextable)
 library(readxl)
+library(extrafont)
 ```
 
 ```{r}
@@ -30,6 +31,13 @@ my_ft_theme <- function(ft, ...) {
 
 ```{r}
 headscan_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
+headscan_full$coder <- as.factor(headscan_full$coder)
+headscan_full$gender <- as.factor(headscan_full$gender)
+headscan_full$race_eth <- as.factor(headscan_full$race_eth)
+headscan_full$age_group <- as.factor(headscan_full$age_group)
+#reordering factors by frequency
+headscan_full$race_eth <- factor(headscan_full$race_eth, levels = c("white", "Black", "LatinX", "Asian", "Other", "AIAN", "PTNS", "NHOPI"))
+str(headscan_full)
 ```
 
 ```{r}
@@ -54,7 +62,11 @@ measureNAsums1 <- as.data.frame(measureNAsums)
 measureNAsums1 <- rownames_to_column(measureNAsums1, "measure_name")
 measureNAsums1 <- measureNAsums1 %>% slice(-c(1, 29:33))
 
-measureNAs <- inner_join(measureNAprops1, measureNAsums1, by = "measure_name")
+measureNAs <- inner_join(measureNAprops1, measureNAsums1, by = "measure_name", desc)
+
+measureNAs$measure_name <- fct_reorder(measureNAs$measure_name, measureNAs$measureNAsums, .desc=TRUE)
+
+str(measureNAs$measure_name)
 
 #Size 12 Table TNR
 flextable(measureNAs) %>%
@@ -65,6 +77,23 @@ flextable(measureNAs) %>%
                                   measureNAprops = "Proportion of NA values",
                                   measureNAsums = "Count of NA values"))
 
+#boxplot
+#ggplot(data=measureNAs, aes(y=measureNAsums, x=measure_name))+
+  #geom_boxplot(color= "black", fill = "white")+
+  #theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  #labs(title="Missing Values per Measurement Location",
+       #y="Count of Missing Values",
+       #x="Measure Abbreviation")
+
+#bar chart
+ggplot(data=measureNAs, aes(x=measure_name, y=measureNAsums))+
+  geom_bar(stat= "identity", color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  labs(title="Missing Values per Measurement Location",
+       y="Count of Missing Values",
+       x="Measure Abbreviation (see Appendix B)")
 ```
 AA_C race/eth, gender, age group sumstats
 
