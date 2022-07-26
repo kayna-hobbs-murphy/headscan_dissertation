@@ -1898,7 +1898,7 @@ ProA_L
 ggplot(data=headscan_full, aes(x=ProA_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Pronasale Alare Length Measurement Distribution",
+  labs(title="Pronasale to Alare Length Measurement Distribution",
        y="Frequency",
        x="Pronasale Alare Length (cm)")
 ```
@@ -1930,14 +1930,14 @@ ProA_Lrace_sumstats <- ProA_Lrace_sumstats %>%
 flextable(ProA_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Alare Length SumStats by Race/Ethnicity") 
+  set_caption("Pronasale to Alare Length SumStats by Race/Ethnicity") 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ProA_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Alare Length SumStats by Race/Ethnicity") %>% 
+  set_caption("Pronasale to Alare Length SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
@@ -1949,18 +1949,18 @@ headscan_full %>%
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale Alare Length values per Gender",
+  labs(title="Pronasale to Alare Length values by Race/Ethnicity",
        y="Measurement (cm)",
-       x="Gender")
+       x="Race/Ethnicity")
 
 #boxplot not reordered by median
 ggplot(data=headscan_full, aes(y=ProA_L, x=race_eth))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale Alare Length values per Gender",
+  labs(title="Pronasale to Alare Length values by Race/Ethnicity",
        y="Measurement (cm)",
-       x="Gender")
+       x="Race/Ethnicity")
 
 ```
 
@@ -1989,14 +1989,14 @@ ProA_Lgender_sumstats <- ProA_Lgender_sumstats %>%
 flextable(ProA_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Alare Length SumStats by Gender") 
+  set_caption("Pronasale to Alare Length SumStats by Gender") 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ProA_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Alare Length SumStats by Gender") %>% 
+  set_caption("Pronasale to Alare Length SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
@@ -2008,7 +2008,7 @@ headscan_full %>%
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale Alare Length values per Gender",
+  labs(title="Pronasale to Alare Length values by Gender",
        y="Measurement (cm)",
        x="Gender")
 
@@ -2017,7 +2017,7 @@ ggplot(data=headscan_full, aes(y=ProA_L, x=gender))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale Alare Length values per Gender",
+  labs(title="Pronasale to Alare Length values by Gender",
        y="Measurement (cm)",
        x="Gender")
 
@@ -2056,7 +2056,7 @@ flextable(ProA_Lage_sumstats) %>%
 flextable(ProA_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Alare Length SumStats by Age Group") %>% 
+  set_caption("Pronasale to Alare Length SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
@@ -2068,7 +2068,7 @@ headscan_full %>%
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale Alare Length values per Age Group",
+  labs(title="Pronasale to Alare Length values by Age Group",
        y="Measurement (cm)",
        x="Age Group")
 
@@ -2077,7 +2077,7 @@ ggplot(data=headscan_full, aes(y=ProA_L, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale Alare Length values per Age Group",
+  labs(title="Pronasale to Alare Length values by Age Group",
        y="Measurement (cm)",
        x="Age Group")
 
@@ -2144,7 +2144,7 @@ headscan_full %>%
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale to Alare Contour values per Race/Ethnicity",
+  labs(title="Pronasale to Alare Contour values by Race/Ethnicity",
        y="Measurement (cm)",
        x="Race/Ethnicity")
 
@@ -2153,7 +2153,7 @@ ggplot(data=headscan_full, aes(y=ProA_C, x=race_eth))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale to Alare Contour values per Race/Ethnicity",
+  labs(title="Pronasale to Alare Contour values by Race/Ethnicity",
        y="Measurement (cm)",
        x="Race/Ethnicity")
 
@@ -2203,7 +2203,7 @@ headscan_full %>%
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale to Alare Contour values per Gender",
+  labs(title="Pronasale to Alare Contour values by Gender",
        y="Measurement (cm)",
        x="Gender")
 
@@ -2212,7 +2212,7 @@ ggplot(data=headscan_full, aes(y=ProA_C, x=gender))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale to Alare Contour values per Gender",
+  labs(title="Pronasale to Alare Contour values by Gender",
        y="Measurement (cm)",
        x="Gender")
 
@@ -2263,7 +2263,7 @@ headscan_full %>%
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale to Alare Contour values per Age Group",
+  labs(title="Pronasale to Alare Contour values by Age Group",
        y="Measurement (cm)",
        x="Age Group")
 
@@ -2272,7 +2272,7 @@ ggplot(data=headscan_full, aes(y=ProA_C, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Pronasale to Alare Contour values per Age Group",
+  labs(title="Pronasale to Alare Contour values by Age Group",
        y="Measurement (cm)",
        x="Age Group")
 
@@ -2283,6 +2283,17 @@ ggplot(data=headscan_full, aes(y=ProA_C, x=age_group))+
 ProS_L  
 
 ```{r}
+#histogram of all ProS_L values
+ggplot(data=headscan_full, aes(x=ProS_L))+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Pronasale to Subnasale Length Measurement Distribution",
+       y="Frequency",
+       x="Pronasale to Subnasale Length (cm)")
+```
+
+
+```{r}
 #ProS_L race/eth sumstats
 ProS_Lrace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -2290,6 +2301,7 @@ ProS_Lrace_sumstats <- headscan_full %>%
             min = min(ProS_L, na.rm = TRUE),
             max = max(ProS_L, na.rm = TRUE),
             mean = mean(ProS_L, na.rm = TRUE),
+            mdn = median(AA_C, na.rm = TRUE),
             sd = sd(ProS_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(ProS_L, 0.05, na.rm=TRUE),
@@ -2307,16 +2319,38 @@ ProS_Lrace_sumstats <- ProS_Lrace_sumstats %>%
 flextable(ProS_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Length SumStats by Race/Ethnicity") 
+  set_caption("Pronasale to Subnasale Length SumStats by Race/Ethnicity") 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Length SumStats by Race/Ethnicity") %>% 
+  set_caption("Pronasale to Subnasale Length SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, ProS_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=ProS_L, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Length values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=ProS_L, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Length values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
 ```
 
 ```{r}
@@ -2327,6 +2361,7 @@ ProS_Lgender_sumstats <- headscan_full %>%
             min = min(ProS_L, na.rm = TRUE),
             max = max(ProS_L, na.rm = TRUE),
             mean = mean(ProS_L, na.rm = TRUE),
+            mdn = median(ProS_L, na.rm = TRUE),
             sd = sd(ProS_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(ProS_L, 0.05, na.rm=TRUE),
@@ -2343,16 +2378,38 @@ ProS_Lgender_sumstats <- ProS_Lgender_sumstats %>%
 flextable(ProS_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Length SumStats by Gender") 
+  set_caption("Pronasale to Subnasale Length SumStats by Gender") 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Length SumStats by Gender") %>% 
+  set_caption("Pronasale to Subnasale Length SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, ProS_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=ProS_L, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Length values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=ProS_L, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Length values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -2363,6 +2420,7 @@ ProS_Lage_sumstats <- headscan_full %>%
             min = min(ProS_L, na.rm = TRUE),
             max = max(ProS_L, na.rm = TRUE),
             mean = mean(ProS_L, na.rm = TRUE),
+            mdn = median(ProS_L, na.rm = TRUE),
             sd = sd(ProS_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(ProS_L, 0.05, na.rm=TRUE),
@@ -2390,9 +2448,43 @@ flextable(ProS_Lage_sumstats) %>%
   set_caption("Pronasale Subnasale Length SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, ProS_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=ProS_L, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=ProS_L, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
 ```
 
+
+
 ProS_C  
+
+```{r}
+#histogram of all ProS_C values
+ggplot(data=headscan_full, aes(x=ProS_C))+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Pronasale to Subnasale Contour Measurement Distribution",
+       y="Frequency",
+       x="Pronasale to Subnasale Contour (cm)")
+```
 
 ```{r}
 #ProS_C race/eth sumstats
@@ -2402,6 +2494,7 @@ ProS_Crace_sumstats <- headscan_full %>%
             min = min(ProS_C, na.rm = TRUE),
             max = max(ProS_C, na.rm = TRUE),
             mean = mean(ProS_C, na.rm = TRUE),
+            mdn = median(ProS_C, na.rm = TRUE),
             sd = sd(ProS_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(ProS_C, 0.05, na.rm=TRUE),
@@ -2419,16 +2512,38 @@ ProS_Crace_sumstats <- ProS_Crace_sumstats %>%
 flextable(ProS_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Contour SumStats by Race/Ethnicity") 
+  set_caption("Pronasale to Subnasale Contour SumStats by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Pronasale to Subnasale Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, ProS_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=ProS_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=ProS_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
 ```
 
 ```{r}
@@ -2439,6 +2554,7 @@ ProS_Cgender_sumstats <- headscan_full %>%
             min = min(ProS_C, na.rm = TRUE),
             max = max(ProS_C, na.rm = TRUE),
             mean = mean(ProS_C, na.rm = TRUE),
+            mdn = median(ProS_C, na.rm = TRUE),
             sd = sd(ProS_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(ProS_C, 0.05, na.rm=TRUE),
@@ -2455,16 +2571,38 @@ ProS_Cgender_sumstats <- ProS_Cgender_sumstats %>%
 flextable(ProS_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Contour SumStats by Gender") 
+  set_caption("Pronasale to Subnasale Contour SumStats by Gender") 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Contour SumStats by Gender") %>% 
+  set_caption("Pronasale to Subnasale Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, ProS_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=ProS_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=ProS_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -2475,6 +2613,7 @@ ProS_Cage_sumstats <- headscan_full %>%
             min = min(ProS_C, na.rm = TRUE),
             max = max(ProS_C, na.rm = TRUE),
             mean = mean(ProS_C, na.rm = TRUE),
+            mdn = median(ProS_C, na.rm = TRUE),
             sd = sd(ProS_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(ProS_C, 0.05, na.rm=TRUE),
@@ -2492,21 +2631,53 @@ ProS_Cage_sumstats <- ProS_Cage_sumstats %>%
 flextable(ProS_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Contour SumStats by Gender") 
+  set_caption("Pronasale to Subnasale Contour SumStats by Gender") 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Contour SumStats by Gender") %>% 
+  set_caption("Pronasale to Subnasale Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, ProS_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=ProS_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=ProS_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Pronasale to Subnasale Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
 ```
 
 
 
 SelP_L  
+
+```{r}
+#histogram of all SelP_L values
+ggplot(data=headscan_full, aes(x=SelP_L))+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Sellion to Pronasale Length Measurement Distribution",
+       y="Frequency",
+       x="Sellion to Pronasale Length (cm)")
+```
 
 ```{r}
 #SelP_L race/eth sumstats
@@ -2516,6 +2687,7 @@ SelP_Lrace_sumstats <- headscan_full %>%
             min = min(SelP_L, na.rm = TRUE),
             max = max(SelP_L, na.rm = TRUE),
             mean = mean(SelP_L, na.rm = TRUE),
+            mdn = median(SelP_L, na.rm = TRUE),
             sd = sd(SelP_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(SelP_L, 0.05, na.rm=TRUE),
@@ -2543,6 +2715,27 @@ flextable(SelP_Lrace_sumstats) %>%
   set_caption("Sellion to Pronasale Length SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, SelP_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SelP_L, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Length values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SelP_L, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Length values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
 ```
 
 ```{r}
@@ -2553,6 +2746,7 @@ SelP_Lgender_sumstats <- headscan_full %>%
             min = min(SelP_L, na.rm = TRUE),
             max = max(SelP_L, na.rm = TRUE),
             mean = mean(SelP_L, na.rm = TRUE),
+            mdn = median(SelP_L, na.rm = TRUE),
             sd = sd(SelP_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(SelP_L, 0.05, na.rm=TRUE),
@@ -2579,6 +2773,28 @@ flextable(SelP_Lgender_sumstats) %>%
   set_caption("Sellion to Pronasale Length SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, SelP_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SelP_L, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Length values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SelP_L, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Length values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -2589,6 +2805,7 @@ SelP_Lage_sumstats <- headscan_full %>%
             min = min(SelP_L, na.rm = TRUE),
             max = max(SelP_L, na.rm = TRUE),
             mean = mean(SelP_L, na.rm = TRUE),
+            mdn = median(SelP_L, na.rm = TRUE),
             sd = sd(SelP_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(SelP_L, 0.05, na.rm=TRUE),
@@ -2616,11 +2833,43 @@ flextable(SelP_Lage_sumstats) %>%
   set_caption("Sellion to Pronasale Length SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, SelP_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SelP_L, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SelP_L, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
 ```
 
 
 
 SelP_C  
+
+```{r}
+#histogram of all SelP_C  values
+ggplot(data=headscan_full, aes(x=SelP_C ))+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Sellion to Pronasale Contour Measurement Distribution",
+       y="Frequency",
+       x="Sellion to Pronasale Contour (cm)")
+```
 
 ```{r}
 #SelP_C race/eth sumstats
@@ -2630,6 +2879,7 @@ SelP_Crace_sumstats <- headscan_full %>%
             min = min(SelP_C, na.rm = TRUE),
             max = max(SelP_C, na.rm = TRUE),
             mean = mean(SelP_C, na.rm = TRUE),
+            mdn = median(SelP_C, na.rm = TRUE),
             sd = sd(SelP_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(SelP_C, 0.05, na.rm=TRUE),
@@ -2657,6 +2907,27 @@ flextable(SelP_Crace_sumstats) %>%
   set_caption("Sellion to Pronasale Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, SelP_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SelP_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SelP_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
 ```
 
 ```{r}
@@ -2667,6 +2938,7 @@ SelP_Cgender_sumstats <- headscan_full %>%
             min = min(SelP_C, na.rm = TRUE),
             max = max(SelP_C, na.rm = TRUE),
             mean = mean(SelP_C, na.rm = TRUE),
+            mdn = median(SelP_C, na.rm = TRUE),
             sd = sd(SelP_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(SelP_C, 0.05, na.rm=TRUE),
@@ -2693,6 +2965,27 @@ flextable(SelP_Cgender_sumstats) %>%
   set_caption("Sellion to Pronasale Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, SelP_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SelP_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SelP_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
 ```
 
 ```{r}
@@ -2703,6 +2996,7 @@ SelP_Cage_sumstats <- headscan_full %>%
             min = min(SelP_C, na.rm = TRUE),
             max = max(SelP_C, na.rm = TRUE),
             mean = mean(SelP_C, na.rm = TRUE),
+            mdn = median(SelP_C, na.rm = TRUE),
             sd = sd(SelP_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(SelP_C, 0.05, na.rm=TRUE),
@@ -2730,11 +3024,43 @@ flextable(SelP_Cage_sumstats) %>%
   set_caption("Sellion to Pronasale Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, SelP_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SelP_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SelP_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Pronasale Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
 ```
 
 
 
 SelDH_C  
+
+```{r}
+#histogram of all SelDH_C  values
+ggplot(data=headscan_full, aes(x=SelDH_C ))+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Sellion to Dorsal Hump Contour Measurement Distribution",
+       y="Frequency",
+       x="Sellion to Dorsal Hump Contour (cm)")
+```
 
 ```{r}
 #SelDH_C race/eth sumstats
@@ -2744,6 +3070,7 @@ SelDH_Crace_sumstats <- headscan_full %>%
             min = min(SelDH_C, na.rm = TRUE),
             max = max(SelDH_C, na.rm = TRUE),
             mean = mean(SelDH_C, na.rm = TRUE),
+            mdn = median(SelDH_C, na.rm = TRUE),
             sd = sd(SelDH_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(SelDH_C, 0.05, na.rm=TRUE),
@@ -2771,6 +3098,27 @@ flextable(SelDH_Crace_sumstats) %>%
   set_caption("Sellion to Dorsal Hump Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, SelDH_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SelDH_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Dorsal Hump Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SelDH_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Dorsal Hump Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
 ```
 
 ```{r}
@@ -2781,6 +3129,7 @@ SelDH_Cgender_sumstats <- headscan_full %>%
             min = min(SelDH_C, na.rm = TRUE),
             max = max(SelDH_C, na.rm = TRUE),
             mean = mean(SelDH_C, na.rm = TRUE),
+            mdn = median(SelDH_C, na.rm = TRUE),
             sd = sd(SelDH_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(SelDH_C, 0.05, na.rm=TRUE),
@@ -2807,6 +3156,27 @@ flextable(SelDH_Cgender_sumstats) %>%
   set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, SelDH_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SelDH_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Dorsal Hump Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SelDH_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Dorsal Hump Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
 ```
 
 ```{r}
@@ -2817,6 +3187,7 @@ SelDH_Cage_sumstats <- headscan_full %>%
             min = min(SelDH_C, na.rm = TRUE),
             max = max(SelDH_C, na.rm = TRUE),
             mean = mean(SelDH_C, na.rm = TRUE),
+            mdn = median(SelDH_C, na.rm = TRUE),
             sd = sd(SelDH_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(SelDH_C, 0.05, na.rm=TRUE),
@@ -2844,7 +3215,44 @@ flextable(SelDH_Cage_sumstats) %>%
   set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, SelDH_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SelDH_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Dorsal Hump Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SelDH_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Sellion to Dorsal Hump Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
 ```
+
+SelDH_C without outliers
+```{r}
+
+
+
+max(headscan_full$SelDH_C, na.rm = TRUE)
+
+	
+#400-20210129-009
+
+#CODE TO REMOVE OUTLIER, use later to remove from headscan_full
+SelDH_C_no_out <- headscan_full %>% mutate(SelDH_C = replace(SelDH_C, SelDH_C>4, NA))
+```
+
+
 
 
 
