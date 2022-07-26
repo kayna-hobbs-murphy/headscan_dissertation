@@ -14,6 +14,7 @@ library(tidyverse)
 library(flextable)
 library(readxl)
 library(extrafont)
+library(forcats)
 ```
 
 ```{r}
@@ -86,13 +87,22 @@ flextable(measureNAs) %>%
        #y="Count of Missing Values",
        #x="Measure Abbreviation")
 
-#bar chart
+#bar chart with counts
 ggplot(data=measureNAs, aes(x=measure_name, y=measureNAsums))+
   geom_bar(stat= "identity", color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
-  labs(title="Missing Values per Measurement Location",
+  labs(title="Missing Values per Measurement Location (Count)",
        y="Count of Missing Values",
+       x="Measure Abbreviation (see Appendix B)")
+
+#bar chart with proportions
+ggplot(data=measureNAs, aes(x=measure_name, y=measureNAprops))+
+  geom_bar(stat= "identity", color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  labs(title="Missing Values per Measurement Location (Proportion)",
+       y="Proportion of Missing Values",
        x="Measure Abbreviation (see Appendix B)")
 ```
 AA_C race/eth, gender, age group sumstats
@@ -169,6 +179,28 @@ flextable(AA_Cgender_sumstats) %>%
   set_caption("Alare to Alare Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
+
+#boxplot
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, AA_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=AA_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  ylim(4, 9)+
+  labs(title="AA_C values per Gender",
+       y="AA_C Measurement (cm)",
+       x="Gender")
+
+#bar chart
+#ggplot(data=headscan_full, aes(x=gender))+
+  #geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
+  #theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  #labs(title="Gender Frequency",
+       #y="Count",
+       #x="Gender")
 ```
 
 ```{r}
