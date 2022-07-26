@@ -1,0 +1,23 @@
+---
+title: "removing outliers"
+output: html_document
+date: "2022-07-26"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+
+
+max(headscan_full$GoSub_C, na.rm = TRUE)
+
+	
+#400-20210129-009
+
+#CODE TO REMOVE OUTLIER, use later to remove from headscan_full
+GoSub_no_out <- headscan_full %>% mutate(GoSub_C = replace(GoSub_C, GoSub_C>40, NA))
+```
+
