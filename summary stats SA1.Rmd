@@ -2438,14 +2438,14 @@ ProS_Lage_sumstats <- ProS_Lage_sumstats %>%
 flextable(ProS_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Length SumStats by Gender") 
+  set_caption("Pronasale Subnasale Length SumStats by Age Group") 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Length SumStats by Gender") %>% 
+  set_caption("Pronasale Subnasale Length SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
@@ -2631,14 +2631,14 @@ ProS_Cage_sumstats <- ProS_Cage_sumstats %>%
 flextable(ProS_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Contour SumStats by Gender") 
+  set_caption("Pronasale to Subnasale Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Contour SumStats by Gender") %>% 
+  set_caption("Pronasale to Subnasale Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
@@ -2823,14 +2823,14 @@ SelP_Lage_sumstats <- SelP_Lage_sumstats %>%
 flextable(SelP_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Length SumStats by Gender") 
+  set_caption("Sellion to Pronasale Length SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelP_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Length SumStats by Gender") %>% 
+  set_caption("Sellion to Pronasale Length SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 
@@ -3014,14 +3014,14 @@ SelP_Cage_sumstats <- SelP_Cage_sumstats %>%
 flextable(SelP_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Contour SumStats by Gender") 
+  set_caption("Sellion to Pronasale Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelP_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Contour SumStats by Gender") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 
@@ -3033,7 +3033,7 @@ headscan_full %>%
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Sellion to Pronasale Length values by Age Group",
+  labs(title="Sellion to Pronasale Contour values by Age Group",
        y="Measurement (cm)",
        x="Age Group")
 
@@ -3042,7 +3042,7 @@ ggplot(data=headscan_full, aes(y=SelP_C, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Sellion to Pronasale Length values by Age Group",
+  labs(title="Sellion to Pronasale Contour values by Age Group",
        y="Measurement (cm)",
        x="Age Group")
 
@@ -3210,14 +3210,14 @@ SelDH_Cage_sumstats <- SelDH_Cage_sumstats %>%
 flextable(SelDH_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") 
+  set_caption("Sellion to Dorsal Hump Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelDH_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
@@ -3412,14 +3412,14 @@ SelDH_Cage_sumstats1 <- SelDH_Cage_sumstats1 %>%
 flextable(SelDH_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") 
+  set_caption("Sellion to Dorsal Hump Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelDH_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
@@ -3431,7 +3431,7 @@ SelDH_C_no_out %>%
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Sellion to Dorsal Hump Length values by Age Group",
+  labs(title="Sellion to Dorsal Hump Contour values by Age Group",
        y="Measurement (cm)",
        x="Age Group")
 
@@ -3440,7 +3440,7 @@ ggplot(data=SelDH_C_no_out, aes(y=SelDH_C, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Sellion to Dorsal Hump Length values by Age Group",
+  labs(title="Sellion to Dorsal Hump Contour values by Age Group",
        y="Measurement (cm)",
        x="Age Group")
 ```
@@ -3603,14 +3603,14 @@ SelM_Lage_sumstats <- SelM_Lage_sumstats %>%
 flextable(SelM_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Menton Length SumStats by Gender") 
+  set_caption("Sellion to Menton Length SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelM_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Menton Length SumStats by Gender") %>% 
+  set_caption("Sellion to Menton Length SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 
@@ -3796,14 +3796,14 @@ SnasM_Lage_sumstats <- SnasM_Lage_sumstats %>%
 flextable(SnasM_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Length SumStats by Gender") 
+  set_caption("Subnasale to Menton Length SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Length SumStats by Gender") %>% 
+  set_caption("Subnasale to Menton Length SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 
@@ -3831,7 +3831,7 @@ ggplot(data=headscan_full, aes(y=SnasM_L, x=age_group))+
 
 
 
-SnasM_C  
+SnasM_C  without outliers removed
 
 ```{r}
 #histogram of all SnasM_C values
@@ -3991,21 +3991,254 @@ SnasM_Cage_sumstats <- SnasM_Cage_sumstats %>%
 flextable(SnasM_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Gender") 
+  set_caption("Subnasale to Menton Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Contour SumStats by Age Group") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, SnasM_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SnasM_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Subnasale to Menton Contour values by Age Group",
+       subtitle = "without outlier removed",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SnasM_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Subnasale to Menton Contour values by Age Group",
+       subtitle = "without outlier removed",
+       y="Measurement (cm)",
+       x="Age Group")
+```
+
+SnasM_C  with outlier removed
+
+```{r}
+
+
+
+max(headscan_full$SnasM_C, na.rm = TRUE)
+
+	
+#400-20210129-009
+
+#CODE TO REMOVE OUTLIER, use later to remove from headscan_full
+SnasM_C_no_out <- headscan_full %>% mutate(SnasM_C = replace(SnasM_C, SnasM_C>16, NA))
+```
+
+```{r}
+#histogram of all SnasM_C values
+ggplot(data=SnasM_C_no_out, aes(x=SnasM_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Subnasale to Menton Contour Measurement Distribution",
+       y="Frequency",
+       x="Subnasale to Menton Contour (cm)")
+```
+
+```{r}
+#SnasM_C race/eth sumstats
+SnasM_Crace_sumstats1 <- SnasM_C_no_out %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(SnasM_C, na.rm = TRUE),
+            max = max(SnasM_C, na.rm = TRUE),
+            mean = mean(SnasM_C, na.rm = TRUE),
+            mdn = median(SnasM_C, na.rm = TRUE),
+            sd = sd(SnasM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SnasM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SnasM_C))) 
+
+SnasM_Crace_sumstats1 <- SnasM_Crace_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SnasM_Crace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SnasM_Crace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Contour SumStats by Race/Ethnicity") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+SnasM_C_no_out %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, SnasM_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SnasM_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Subnasale to Menton Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=SnasM_C_no_out, aes(y=SnasM_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Subnasale to Menton Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+```
+
+```{r}
+#SnasM_C gender sumstats
+SnasM_Cgender_sumstats1 <- SnasM_C_no_out %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(SnasM_C, na.rm = TRUE),
+            max = max(SnasM_C, na.rm = TRUE),
+            mean = mean(SnasM_C, na.rm = TRUE),
+            mdn = median(SnasM_C, na.rm = TRUE),
+            sd = sd(SnasM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SnasM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SnasM_C)))
+
+SnasM_Cgender_sumstats1 <- SnasM_Cgender_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(SnasM_Cgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SnasM_Cgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
   set_caption("Subnasale to Menton Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+SnasM_C_no_out %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, SnasM_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SnasM_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Subnasale to Menton Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=SnasM_C_no_out, aes(y=SnasM_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Subnasale to Menton Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
 ```
 
+```{r}
+#SnasM_C age group sumstats
+SnasM_Cage_sumstats1 <- SnasM_C_no_out %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(SnasM_C, na.rm = TRUE),
+            max = max(SnasM_C, na.rm = TRUE),
+            mean = mean(SnasM_C, na.rm = TRUE),
+            sd = sd(SnasM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SnasM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SnasM_C)))
 
+SnasM_Cage_sumstats1 <- SnasM_Cage_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SnasM_Cage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Contour SumStats by Age Group") 
+#%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SnasM_Cage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Contour SumStats by Age Group") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+SnasM_C_no_out %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, SnasM_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SnasM_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Subnasale to Menton Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=SnasM_C_no_out, aes(y=SnasM_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Subnasale to Menton Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+```
 
 TrHO_C  
+
+```{r}
+#histogram of all TrHO_C values
+ggplot(data=headscan_full, aes(x=TrHO_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Top of Head to Otobasion Contour Measurement Distribution",
+       y="Frequency",
+       x="Top of Head to Otobasion Contour (cm)")
+```
+
 
 ```{r}
 #TrHO_C race/eth sumstats
@@ -4015,6 +4248,7 @@ TrHO_Crace_sumstats <- headscan_full %>%
             min = min(TrHO_C, na.rm = TRUE),
             max = max(TrHO_C, na.rm = TRUE),
             mean = mean(TrHO_C, na.rm = TRUE),
+            mdn = median(TrHO_C, na.rm = TRUE),
             sd = sd(TrHO_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrHO_C, 0.05, na.rm=TRUE),
@@ -4042,6 +4276,28 @@ flextable(TrHO_Crace_sumstats) %>%
   set_caption("Top of Head to Otobasion Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrHO_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrHO_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Top of Head to Otobasion Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrHO_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Top of Head to Otobasion Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
 ```
 
 ```{r}
@@ -4052,6 +4308,7 @@ TrHO_Cgender_sumstats <- headscan_full %>%
             min = min(TrHO_C, na.rm = TRUE),
             max = max(TrHO_C, na.rm = TRUE),
             mean = mean(TrHO_C, na.rm = TRUE),
+            mdn = median(TrHO_C, na.rm = TRUE),
             sd = sd(TrHO_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrHO_C, 0.05, na.rm=TRUE),
@@ -4078,6 +4335,28 @@ flextable(TrHO_Cgender_sumstats) %>%
   set_caption("Top of Head to Otobasion Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrHO_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrHO_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Top of Head to Otobasion Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrHO_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Top of Head to Otobasion Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -4088,6 +4367,7 @@ TrHO_Cage_sumstats <- headscan_full %>%
             min = min(TrHO_C, na.rm = TRUE),
             max = max(TrHO_C, na.rm = TRUE),
             mean = mean(TrHO_C, na.rm = TRUE),
+            mdn = median(TrHO_C, na.rm = TRUE),
             sd = sd(TrHO_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrHO_C, 0.05, na.rm=TRUE),
@@ -4105,21 +4385,54 @@ TrHO_Cage_sumstats <- TrHO_Cage_sumstats %>%
 flextable(TrHO_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Gender") 
+  set_caption("Top of Head to Otobasion Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrHO_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Gender") %>% 
+  set_caption("Top of Head to Otobasion Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrHO_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrHO_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Top of Head to Otobasion Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrHO_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Top of Head to Otobasion Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
 ```
 
 
 
 TrEJ_C  
+
+```{r}
+#histogram of all TrEJ_C values
+ggplot(data=headscan_full, aes(x=TrEJ_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Tragion to Earlobe Juncture Contour Measurement Distribution",
+       y="Frequency",
+       x="Tragion to Earlobe Juncture Contour (cm)")
+```
+
 
 ```{r}
 #TrEJ_C race/eth sumstats
@@ -4129,6 +4442,7 @@ TrEJ_Crace_sumstats <- headscan_full %>%
             min = min(TrEJ_C, na.rm = TRUE),
             max = max(TrEJ_C, na.rm = TRUE),
             mean = mean(TrEJ_C, na.rm = TRUE),
+            mdn = median(TrEJ_C, na.rm = TRUE),
             sd = sd(TrEJ_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrEJ_C, 0.05, na.rm=TRUE),
@@ -4156,6 +4470,28 @@ flextable(TrEJ_Crace_sumstats) %>%
   set_caption("Tragion to Earlobe Juncture Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrEJ_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrEJ_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Earlobe Juncture Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrEJ_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Earlobe Juncture Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
 ```
 
 ```{r}
@@ -4166,6 +4502,7 @@ TrEJ_Cgender_sumstats <- headscan_full %>%
             min = min(TrEJ_C, na.rm = TRUE),
             max = max(TrEJ_C, na.rm = TRUE),
             mean = mean(TrEJ_C, na.rm = TRUE),
+            mdn = median(TrEJ_C, na.rm = TRUE),
             sd = sd(TrEJ_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrEJ_C, 0.05, na.rm=TRUE),
@@ -4192,6 +4529,28 @@ flextable(TrEJ_Cgender_sumstats) %>%
   set_caption("Tragion to Earlobe Juncture Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrEJ_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrEJ_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Earlobe Juncture Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrEJ_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Earlobe Juncture Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -4202,6 +4561,7 @@ TrEJ_Cage_sumstats <- headscan_full %>%
             min = min(TrEJ_C, na.rm = TRUE),
             max = max(TrEJ_C, na.rm = TRUE),
             mean = mean(TrEJ_C, na.rm = TRUE),
+            mdn = median(TrEJ_C, na.rm = TRUE),
             sd = sd(TrEJ_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrEJ_C, 0.05, na.rm=TRUE),
@@ -4219,21 +4579,54 @@ TrEJ_Cage_sumstats <- TrEJ_Cage_sumstats %>%
 flextable(TrEJ_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Earlobe Juncture Contour SumStats by Gender") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrEJ_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Earlobe Juncture Contour SumStats by Gender") %>% 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrEJ_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrEJ_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Earlobe Juncture Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrEJ_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Earlobe Juncture Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
 ```
 
 
 
-TrGo_C  
+TrGo_C  without outliers removed
+
+```{r}
+#histogram of all TrGo_C values
+ggplot(data=headscan_full, aes(x=TrGo_C))+
+  geom_bar(stat="bin", bins=30, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Tragion to Gonion Contour Measurement Distribution",
+       subtitle = "without outliers removed",
+       y="Frequency",
+       x="Tragion to Gonion Contour (cm)")
+```
+
 
 ```{r}
 #TrGo_C race/eth sumstats
@@ -4243,6 +4636,7 @@ TrGo_Crace_sumstats <- headscan_full %>%
             min = min(TrGo_C, na.rm = TRUE),
             max = max(TrGo_C, na.rm = TRUE),
             mean = mean(TrGo_C, na.rm = TRUE),
+            mdn = median(TrGo_C, na.rm = TRUE),
             sd = sd(TrGo_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
@@ -4270,6 +4664,30 @@ flextable(TrGo_Crace_sumstats) %>%
   set_caption("Tragion to Gonion Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrGo_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrGo_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrGo_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
 ```
 
 ```{r}
@@ -4280,6 +4698,7 @@ TrGo_Cgender_sumstats <- headscan_full %>%
             min = min(TrGo_C, na.rm = TRUE),
             max = max(TrGo_C, na.rm = TRUE),
             mean = mean(TrGo_C, na.rm = TRUE),
+            mdn = median(TrGo_C, na.rm = TRUE),
             sd = sd(TrGo_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
@@ -4306,6 +4725,30 @@ flextable(TrGo_Cgender_sumstats) %>%
   set_caption("Tragion to Gonion Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrGo_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrGo_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Gender",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrGo_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Gender",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -4316,6 +4759,7 @@ TrGo_Cage_sumstats <- headscan_full %>%
             min = min(TrGo_C, na.rm = TRUE),
             max = max(TrGo_C, na.rm = TRUE),
             mean = mean(TrGo_C, na.rm = TRUE),
+            mdn = median(TrGo_C, na.rm = TRUE),
             sd = sd(TrGo_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
@@ -4333,21 +4777,262 @@ TrGo_Cage_sumstats <- TrGo_Cage_sumstats %>%
 flextable(TrGo_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Gender") 
+  set_caption("Tragion to Gonion Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrGo_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Age Group") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrGo_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrGo_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Age Group",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrGo_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Age Group",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Age Group")
+
+```
+
+
+TrGo_C  with outliers removed
+
+```{r}
+
+
+
+max(headscan_full$TrGo_C, na.rm = TRUE)
+
+	
+#400-20210129-009
+
+#CODE TO REMOVE OUTLIER, use later to remove from headscan_full
+TrGo_C_no_out <- headscan_full %>% mutate(TrGo_C = replace(TrGo_C, TrGo_C>17, NA))
+```
+
+```{r}
+#histogram of all TrGo_C values
+ggplot(data=TrGo_C_no_out, aes(x=TrGo_C))+
+  geom_bar(stat="bin", bins=30, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Tragion to Gonion Contour Measurement Distribution",
+       y="Frequency",
+       x="Tragion to Gonion Contour (cm)")
+```
+
+
+```{r}
+#TrGo_C race/eth sumstats
+TrGo_Crace_sumstats1 <- TrGo_C_no_out %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(TrGo_C, na.rm = TRUE),
+            max = max(TrGo_C, na.rm = TRUE),
+            mean = mean(TrGo_C, na.rm = TRUE),
+            mdn = median(TrGo_C, na.rm = TRUE),
+            sd = sd(TrGo_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrGo_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrGo_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrGo_C))) 
+
+TrGo_Crace_sumstats1 <- TrGo_Crace_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrGo_Crace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrGo_Crace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Race/Ethnicity") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+TrGo_C_no_out %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrGo_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrGo_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=TrGo_C_no_out, aes(y=TrGo_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+```
+
+```{r}
+#TrGo_C gender sumstats
+TrGo_Cgender_sumstats1 <- TrGo_C_no_out %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(TrGo_C, na.rm = TRUE),
+            max = max(TrGo_C, na.rm = TRUE),
+            mean = mean(TrGo_C, na.rm = TRUE),
+            mdn = median(TrGo_C, na.rm = TRUE),
+            sd = sd(TrGo_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrGo_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrGo_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrGo_C)))
+
+TrGo_Cgender_sumstats1 <- TrGo_Cgender_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(TrGo_Cgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrGo_Cgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
   set_caption("Tragion to Gonion Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+TrGo_C_no_out %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrGo_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrGo_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=TrGo_C_no_out, aes(y=TrGo_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+```
+
+```{r}
+#TrGo_C age group sumstats
+TrGo_Cage_sumstats1 <- TrGo_C_no_out %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(TrGo_C, na.rm = TRUE),
+            max = max(TrGo_C, na.rm = TRUE),
+            mean = mean(TrGo_C, na.rm = TRUE),
+            mdn = median(TrGo_C, na.rm = TRUE),
+            sd = sd(TrGo_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrGo_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrGo_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrGo_C)))
+
+TrGo_Cage_sumstats1 <- TrGo_Cage_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrGo_Cage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Age Group") 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrGo_Cage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats by Age Group") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+TrGo_C_no_out %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrGo_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrGo_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=TrGo_C_no_out, aes(y=TrGo_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Gonion Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
 ```
 
 
 
 TrSel_C  
+
+```{r}
+#histogram of all TrSel_C values
+ggplot(data=headscan_full, aes(x=TrSel_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Tragion to Sellion Contour Measurement Distribution",
+       y="Frequency",
+       x="Tragion to Sellion Contour (cm)")
+```
+
 
 ```{r}
 #TrSel_C race/eth sumstats
@@ -4357,6 +5042,7 @@ TrSel_Crace_sumstats <- headscan_full %>%
             min = min(TrSel_C, na.rm = TRUE),
             max = max(TrSel_C, na.rm = TRUE),
             mean = mean(TrSel_C, na.rm = TRUE),
+            mdn = median(TrSel_C, na.rm = TRUE),
             sd = sd(TrSel_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrSel_C, 0.05, na.rm=TRUE),
@@ -4384,6 +5070,28 @@ flextable(TrSel_Crace_sumstats) %>%
   set_caption("Tragion to Sellion Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrSel_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSel_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Sellion Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrSel_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Sellion Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
 ```
 
 ```{r}
@@ -4394,6 +5102,7 @@ TrSel_Cgender_sumstats <- headscan_full %>%
             min = min(TrSel_C, na.rm = TRUE),
             max = max(TrSel_C, na.rm = TRUE),
             mean = mean(TrSel_C, na.rm = TRUE),
+            mdn = median(TrSel_C, na.rm = TRUE),
             sd = sd(TrSel_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrSel_C, 0.05, na.rm=TRUE),
@@ -4420,6 +5129,28 @@ flextable(TrSel_Cgender_sumstats) %>%
   set_caption("Tragion to Sellion Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrSel_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSel_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Sellion Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrSel_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Sellion Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -4430,6 +5161,7 @@ TrSel_Cage_sumstats <- headscan_full %>%
             min = min(TrSel_C, na.rm = TRUE),
             max = max(TrSel_C, na.rm = TRUE),
             mean = mean(TrSel_C, na.rm = TRUE),
+            mdn = median(TrSel_C, na.rm = TRUE),
             sd = sd(TrSel_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrSel_C, 0.05, na.rm=TRUE),
@@ -4447,21 +5179,55 @@ TrSel_Cage_sumstats <- TrSel_Cage_sumstats %>%
 flextable(TrSel_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Sellion Contour SumStats by Gender") 
+  set_caption("Tragion to Sellion Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSel_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Sellion Contour SumStats by Gender") %>% 
+  set_caption("Tragion to Sellion Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrSel_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSel_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Sellion Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrSel_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Sellion Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
 ```
 
 
 
-TrSman_C  
+TrSman_C  without outlier removed
+
+
+```{r}
+#histogram of all TrSman_C values
+ggplot(data=headscan_full, aes(x=TrSman_C))+
+  geom_bar(stat="bin", bins=35, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Tragion to Submandibular Contour Measurement Distribution",
+       subtitle = "without outliers removed",
+       y="Frequency",
+       x="Tragion to Submandibular Contour (cm)")
+```
 
 ```{r}
 #TrSman_C race/eth sumstats
@@ -4471,6 +5237,7 @@ TrSman_Crace_sumstats <- headscan_full %>%
             min = min(TrSman_C, na.rm = TRUE),
             max = max(TrSman_C, na.rm = TRUE),
             mean = mean(TrSman_C, na.rm = TRUE),
+            mdn = median(TrSman_C, na.rm = TRUE),
             sd = sd(TrSman_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
@@ -4498,6 +5265,30 @@ flextable(TrSman_Crace_sumstats) %>%
   set_caption("Tragion to Submandibular Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrSman_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSman_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrSman_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
 ```
 
 ```{r}
@@ -4508,6 +5299,7 @@ TrSman_Cgender_sumstats <- headscan_full %>%
             min = min(TrSman_C, na.rm = TRUE),
             max = max(TrSman_C, na.rm = TRUE),
             mean = mean(TrSman_C, na.rm = TRUE),
+            mdn = median(TrSman_C, na.rm = TRUE),
             sd = sd(TrSman_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
@@ -4534,6 +5326,30 @@ flextable(TrSman_Cgender_sumstats) %>%
   set_caption("Tragion to Submandibular Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrSman_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSman_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Gender",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrSman_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Gender",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -4544,6 +5360,7 @@ TrSman_Cage_sumstats <- headscan_full %>%
             min = min(TrSman_C, na.rm = TRUE),
             max = max(TrSman_C, na.rm = TRUE),
             mean = mean(TrSman_C, na.rm = TRUE),
+            mdn = median(TrSman_C, na.rm = TRUE),
             sd = sd(TrSman_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
@@ -4561,21 +5378,257 @@ TrSman_Cage_sumstats <- TrSman_Cage_sumstats %>%
 flextable(TrSman_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Gender") 
+  set_caption("Tragion to Submandibular Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSman_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Age Group") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrSman_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSman_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Age Group",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrSman_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Age Group",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Age Group")
+```
+
+TrSman_C  with outlier removed
+
+```{r}
+
+
+
+max(headscan_full$TrSman_C, na.rm = TRUE)
+
+	
+#400-20210129-009
+
+#CODE TO REMOVE OUTLIER, use later to remove from headscan_full
+TrSman_C_no_out <- headscan_full %>% mutate(TrSman_C = replace(TrSman_C, TrSman_C>29, NA))
+```
+
+```{r}
+#histogram of all TrSman_C values
+ggplot(data=TrSman_C_no_out, aes(x=TrSman_C))+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Tragion to Submandibular Contour Measurement Distribution",
+       y="Frequency",
+       x="Tragion to Submandibular Contour (cm)")
+```
+
+```{r}
+#TrSman_C race/eth sumstats
+TrSman_Crace_sumstats1 <- TrSman_C_no_out %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(TrSman_C, na.rm = TRUE),
+            max = max(TrSman_C, na.rm = TRUE),
+            mean = mean(TrSman_C, na.rm = TRUE),
+            mdn = median(TrSman_C, na.rm = TRUE),
+            sd = sd(TrSman_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSman_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSman_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSman_C))) 
+
+TrSman_Crace_sumstats1 <- TrSman_Crace_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrSman_Crace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSman_Crace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Race/Ethnicity") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+TrSman_C_no_out %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrSman_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSman_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=TrSman_C_no_out, aes(y=TrSman_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+```
+
+```{r}
+#TrSman_C gender sumstats
+TrSman_Cgender_sumstats1 <- TrSman_C_no_out %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(TrSman_C, na.rm = TRUE),
+            max = max(TrSman_C, na.rm = TRUE),
+            mean = mean(TrSman_C, na.rm = TRUE),
+            mdn = median(TrSman_C, na.rm = TRUE),
+            sd = sd(TrSman_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSman_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSman_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSman_C)))
+
+TrSman_Cgender_sumstats1 <- TrSman_Cgender_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(TrSman_Cgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSman_Cgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
   set_caption("Tragion to Submandibular Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+TrSman_C_no_out %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrSman_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSman_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=TrSman_C_no_out, aes(y=TrSman_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
+```{r}
+#TrSman_C age group sumstats
+TrSman_Cage_sumstats1 <- TrSman_C_no_out %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(TrSman_C, na.rm = TRUE),
+            max = max(TrSman_C, na.rm = TRUE),
+            mean = mean(TrSman_C, na.rm = TRUE),
+            mdn = median(TrSman_C, na.rm = TRUE),
+            sd = sd(TrSman_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSman_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSman_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSman_C)))
 
+TrSman_Cage_sumstats1 <- TrSman_Cage_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrSman_Cage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Age Group") 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSman_Cage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats by Age Group") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+TrSman_C_no_out %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrSman_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSman_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=TrSman_C_no_out, aes(y=TrSman_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Submandibular Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+```
 
 TrSnas_C  
+
+```{r}
+#histogram of all TrSnas_C  values
+ggplot(data=headscan_full, aes(x=TrSnas_C))+
+  geom_bar(stat="bin", bins=35, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Tragion to Subnasale Contour Measurement Distribution",
+       subtitle = "without outliers removed",
+       y="Frequency",
+       x="Tragion to Subnasale Contour (cm)")
+```
+
 
 ```{r}
 #TrSnas_C race/eth sumstats
@@ -4585,6 +5638,7 @@ TrSnas_Crace_sumstats <- headscan_full %>%
             min = min(TrSnas_C, na.rm = TRUE),
             max = max(TrSnas_C, na.rm = TRUE),
             mean = mean(TrSnas_C, na.rm = TRUE),
+            mdn = median(TrSnas_C, na.rm = TRUE),
             sd = sd(TrSnas_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
@@ -4612,6 +5666,30 @@ flextable(TrSnas_Crace_sumstats) %>%
   set_caption("Tragion to Subnasale Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrSnas_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSnas_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Contour values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrSnas_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Contour values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
 ```
 
 ```{r}
@@ -4622,6 +5700,7 @@ TrSnas_Cgender_sumstats <- headscan_full %>%
             min = min(TrSnas_C, na.rm = TRUE),
             max = max(TrSnas_C, na.rm = TRUE),
             mean = mean(TrSnas_C, na.rm = TRUE),
+            mdn = median(TrSnas_C, na.rm = TRUE),
             sd = sd(TrSnas_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
@@ -4648,6 +5727,30 @@ flextable(TrSnas_Cgender_sumstats) %>%
   set_caption("Tragion to Subnasale Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrSnas_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSnas_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Contour values by Gender",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrSnas_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Contour values by Gender",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -4658,6 +5761,7 @@ TrSnas_Cage_sumstats <- headscan_full %>%
             min = min(TrSnas_C, na.rm = TRUE),
             max = max(TrSnas_C, na.rm = TRUE),
             mean = mean(TrSnas_C, na.rm = TRUE),
+            mdn = median(TrSnas_C, na.rm = TRUE),
             sd = sd(TrSnas_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
@@ -4675,17 +5779,246 @@ TrSnas_Cage_sumstats <- TrSnas_Cage_sumstats %>%
 flextable(TrSnas_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Gender") 
+  set_caption("Tragion to Subnasale Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSnas_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Age Group") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrSnas_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSnas_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Contour values by Age Group",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrSnas_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Contour values by Age Group",
+       subtitle = "without outliers removed",
+       y="Measurement (cm)",
+       x="Age Group")
+
+```
+TrSnas_C  with outliers removed
+
+```{r}
+
+
+
+max(headscan_full$TrSnas_C, na.rm = TRUE)
+
+	
+#400-20210129-009
+
+#CODE TO REMOVE OUTLIER, use later to remove from headscan_full
+TrSnas_C_no_out <- headscan_full %>% mutate(TrSnas_C = replace(TrSnas_C, TrSnas_C>30, NA))
+```
+
+```{r}
+#histogram of all TrSnas_C  values
+ggplot(data=TrSnas_C_no_out, aes(x=TrSnas_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Tragion to Subnasale Contour Measurement Distribution",
+       y="Frequency",
+       x="Tragion to Subnasale Contour (cm)")
+```
+
+
+```{r}
+#TrSnas_C race/eth sumstats
+TrSnas_Crace_sumstats1 <- TrSnas_C_no_out %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(),
+            min = min(TrSnas_C, na.rm = TRUE),
+            max = max(TrSnas_C, na.rm = TRUE),
+            mean = mean(TrSnas_C, na.rm = TRUE),
+            mdn = median(TrSnas_C, na.rm = TRUE),
+            sd = sd(TrSnas_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSnas_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSnas_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSnas_C))) 
+
+TrSnas_Crace_sumstats1 <- TrSnas_Crace_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrSnas_Crace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSnas_Crace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Race/Ethnicity") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+TrSnas_C_no_out %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrSnas_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSnas_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=TrSnas_C_no_out, aes(y=TrSnas_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+```
+
+```{r}
+#TrSnas_C gender sumstats
+TrSnas_Cgender_sumstats1 <- TrSnas_C_no_out %>% 
+  group_by(gender) %>% 
+  summarise(n = n(),
+            min = min(TrSnas_C, na.rm = TRUE),
+            max = max(TrSnas_C, na.rm = TRUE),
+            mean = mean(TrSnas_C, na.rm = TRUE),
+            mdn = median(TrSnas_C, na.rm = TRUE),
+            sd = sd(TrSnas_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSnas_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSnas_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSnas_C)))
+
+TrSnas_Cgender_sumstats1 <- TrSnas_Cgender_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(TrSnas_Cgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Gender") 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSnas_Cgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
   set_caption("Tragion to Subnasale Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+TrSnas_C_no_out %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrSnas_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSnas_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=TrSnas_C_no_out, aes(y=TrSnas_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
+
+```{r}
+#TrSnas_C age group sumstats
+TrSnas_Cage_sumstats1 <- TrSnas_C_no_out %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(),
+            min = min(TrSnas_C, na.rm = TRUE),
+            max = max(TrSnas_C, na.rm = TRUE),
+            mean = mean(TrSnas_C, na.rm = TRUE),
+            mdn = median(TrSnas_C, na.rm = TRUE),
+            sd = sd(TrSnas_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSnas_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSnas_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSnas_C)))
+
+TrSnas_Cage_sumstats1 <- TrSnas_Cage_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrSnas_Cage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Age Group") 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSnas_Cage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats by Age Group") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#boxplot reorderd by median
+TrSnas_C_no_out %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrSnas_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrSnas_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=TrSnas_C_no_out, aes(y=TrSnas_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Subnasale Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+```
+
 
 
 
