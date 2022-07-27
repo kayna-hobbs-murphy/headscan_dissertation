@@ -8,7 +8,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-```{r}
+
+```{r packages}
 library(tidyverse)
 library(readxl)
 library(officer)
@@ -16,7 +17,7 @@ library(flextable)
 library(extrafont)
 ```
 
-```{r}
+```{r table function}
 #times new roman tables
 my_ft_theme <- function(ft, ...) {
   # Remove vertical cell padding
@@ -29,7 +30,7 @@ my_ft_theme <- function(ft, ...) {
 }
 ```
 
-```{r}
+```{r installing TNR font}
 #times new roman ggplots
 #library(remotes)
 #remotes::install_version("Rttf2pt1", version = "1.3.8")
@@ -39,7 +40,7 @@ my_ft_theme <- function(ft, ...) {
 
 
 
-```{r}
+```{r loading data}
 #load(file="headscan_full")
 #headscan_full <- read_csv("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.csv")
 #is.data.frame(headscan_full)
@@ -56,7 +57,7 @@ str(headscan_full)
 
 
 
-```{r} 
+```{r numeric age sumstats} 
 age_sumstats <- headscan_full %>% 
   summarise(n = n(),
             min = min(age, na.rm = TRUE),
@@ -103,7 +104,7 @@ ggplot(data=headscan_full, aes(x=age))+
 ```
 
 
-```{r} 
+```{r race age sumstats} 
 raceage_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
   summarise(n = n(),
@@ -163,7 +164,7 @@ ggplot(data=headscan_full, aes(x=race_eth))+
 ```
 
 
-```{r}
+```{r gender age sumstats}
 genderage_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
   summarise(n = n(),
@@ -222,7 +223,7 @@ ggplot(data=headscan_full, aes(x=gender))+
 ```
 
 
-```{r}
+```{r age group sumstats}
 agegroup_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
   summarise(n = n(),
@@ -278,7 +279,7 @@ ggplot(data=headscan_full, aes(x=age_group))+
        x="Age Group")
 ```
 
-```{r, fig.width= 6.5, fig.height=3.5}
+```{r ggplot wrapped, fig.width= 6.5, fig.height=3.5}
 ggplot(data=headscan_full, aes(x= age, fill=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   scale_fill_grey(na.value="gray90")+
@@ -295,7 +296,7 @@ ggplot(data=headscan_full, aes(x= age, fill=gender))+
   
 ```
 
-```{r}
+```{r demograhic ggplot histogram}
 ggplot(data=headscan_full)+
   geom_histogram(binwidth=4, aes(x=age, fill=race_eth))+
   scale_fill_grey()+
@@ -306,7 +307,8 @@ ggplot(data=headscan_full)+
        y="Count",
        x="Age")
 ```
-```{r}
+
+```{r demographic boxplot}
 ggplot(data=headscan_full)+
   geom_boxplot(aes(x=race_eth, y=age, fill=gender))+
   scale_fill_grey()+

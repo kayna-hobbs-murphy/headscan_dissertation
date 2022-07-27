@@ -6,7 +6,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-```{r}
+
+```{r packages}
 library(readr)
 library(readxl)
 library(tidyverse)
@@ -15,7 +16,7 @@ library(kableExtra)
 library(writexl)
 ```
 
-```{r}
+```{r loading individual data}
 kayna_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Data Collection Team Files\\Measurement data\\Collection data\\Kayna data.xlsx")
 jared_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Data Collection Team Files\\Measurement data\\Collection data\\Jared data.xlsx")
 bell_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Data Collection Team Files\\Measurement data\\Collection data\\Isabel data.xlsx")
@@ -23,7 +24,7 @@ chan_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Data Collection
 ```
 
 
-```{r}
+```{r deleting unnecessary rows}
 #deleting row "Measurement IDs" & columns "Dummy(cm)", "Any issues?"
 kayna_data <- kayna_data[-1,-c(7,30)]
 jared_data <- jared_data[-1,-c(7,30)]
@@ -31,7 +32,7 @@ bell_data <- bell_data[-1,-c(7,30)]
 chan_data <- chan_data[-1,-c(7,30)]
 ```
 
-```{r}
+```{r adding coder columns}
 #adding columns to each to indicate coder
 kayna_data$coder <- "Kayna"
 jared_data$coder <- "Jared"
@@ -40,10 +41,11 @@ chan_data$coder <- "Chandler"
 
 ```
 
-```{r}
+```{r binding all coder data}
 all_data <- rbind(kayna_data, jared_data, bell_data, chan_data)
 ```
-```{r}
+
+```{r renaming measure columns}
 #Renaming columns to names found in Appendix B of Proposal
 all_data <- all_data %>% 
   rename(ID = "Measurement Names",
@@ -77,19 +79,19 @@ all_data <- all_data %>%
 ```
 
 
-```{r}
+```{r can't round values}
 #Rounding all numbers to one decimal place. Not sure why it is any different... only one decimal place in excel!
 #kayna_data <- round(kayna_data$AA_C, 1)
 #Does not work with NA values... Maybe do this before data analysis in each step?
 ```
 
-```{r}
+```{r loading demographic data}
 #importing demographic data
 demographic <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\abbrv_headscan_demo.xlsx")
 ```
 
-```{r}
-#renaming ethnicity factors to match Table 3.1
+```{r renaming race/eth}
+#renaming race/ethnicity factors to match Table 3.1
 demographic$Ethnicity <- 
   recode_factor(demographic$Ethnicity, 'American Indian or Alaska Native'= "AIAN",
                 'Asian/Asian American' = "Asian",
@@ -101,14 +103,14 @@ demographic$Ethnicity <-
                 'White/Caucasian' = "white")
 ```
 
-```{r}
+```{r making age groups}
 #putting age in bins seen in Table 3.3
 demographic$Age <- as.numeric(demographic$Age)
 demographic$age_group <-
   cut(demographic$Age, c(18, 36, 54, 72), c("18-36", "37-54", "55-72"), include.lowest=TRUE)
 ```
 
-```{r}
+```{r tidy rename demo columns}
 #renaming columns tidy, deleting numeric age column
 demographic <- demographic %>% 
   rename(race_eth = "Ethnicity",
@@ -116,13 +118,13 @@ demographic <- demographic %>%
          age = "Age")
 ```
 
-```{r}
+```{r joining measure and demo datasets}
 #joining datasets and checking properties
 headscan_full <- inner_join(all_data, demographic, by="ID")
 str(headscan_full)
 ```
 
-```{r}
+```{r correct data types}
 #assigning correct data types
 headscan_full$AA_C <- as.numeric(headscan_full$AA_C)
 headscan_full$BGl_C <- as.numeric(headscan_full$BGl_C)
@@ -155,17 +157,17 @@ headscan_full$TrTr_L <- as.numeric(headscan_full$TrTr_L)
 headscan_full$coder <- as.factor(headscan_full$coder)
 headscan_full$gender <- as.factor(headscan_full$gender)
 ```
-```{r}
+```{r looking at dataset}
 str(headscan_full)
 ```
 
-```{r}
+```{r checking factor levels}
 levels(headscan_full$race_eth)
 levels(headscan_full$gender)
 levels(headscan_full$age_group)
 ```
 
-```{r}
+```{r writing headscan_full excel}
 write_xlsx(headscan_full, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
 ```
 
