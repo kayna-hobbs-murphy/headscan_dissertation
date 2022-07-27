@@ -6025,6 +6025,17 @@ ggplot(data=TrSnas_C_no_out, aes(y=TrSnas_C, x=age_group))+
 TrTr_C  
 
 ```{r}
+#histogram of all TrTr_C  values
+ggplot(data=headscan_full, aes(x=TrTr_C ))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Tragion to Tragion Contour Measurement Distribution",
+       y="Frequency",
+       x="Tragion to Tragion Contour (cm)")
+```
+
+
+```{r}
 #TrTr_C race/eth sumstats
 TrTr_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -6032,6 +6043,7 @@ TrTr_Crace_sumstats <- headscan_full %>%
             min = min(TrTr_C, na.rm = TRUE),
             max = max(TrTr_C, na.rm = TRUE),
             mean = mean(TrTr_C, na.rm = TRUE),
+            mdn = median(TrTr_C, na.rm = TRUE),
             sd = sd(TrTr_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrTr_C, 0.05, na.rm=TRUE),
@@ -6059,6 +6071,28 @@ flextable(TrTr_Crace_sumstats) %>%
   set_caption("Tragion to Tragion Contour SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrTr_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrTr_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrTr_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Contour values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
 ```
 
 ```{r}
@@ -6069,6 +6103,7 @@ TrTr_Cgender_sumstats <- headscan_full %>%
             min = min(TrTr_C, na.rm = TRUE),
             max = max(TrTr_C, na.rm = TRUE),
             mean = mean(TrTr_C, na.rm = TRUE),
+            mdn = median(TrTr_C, na.rm = TRUE),
             sd = sd(TrTr_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrTr_C, 0.05, na.rm=TRUE),
@@ -6095,6 +6130,28 @@ flextable(TrTr_Cgender_sumstats) %>%
   set_caption("Tragion to Tragion Contour SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrTr_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrTr_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrTr_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Contour values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
 ```
 
 ```{r}
@@ -6105,6 +6162,7 @@ TrTr_Cage_sumstats <- headscan_full %>%
             min = min(TrTr_C, na.rm = TRUE),
             max = max(TrTr_C, na.rm = TRUE),
             mean = mean(TrTr_C, na.rm = TRUE),
+            mdn = median(TrTr_C, na.rm = TRUE),
             sd = sd(TrTr_C, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrTr_C, 0.05, na.rm=TRUE),
@@ -6122,21 +6180,52 @@ TrTr_Cage_sumstats <- TrTr_Cage_sumstats %>%
 flextable(TrTr_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Contour SumStats by Gender") 
+  set_caption("Tragion to Tragion Contour SumStats by Age Group") 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Contour SumStats by Gender") %>% 
+  set_caption("Tragion to Tragion Contour SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrTr_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrTr_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrTr_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Contour values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
 ```
 
 
 
 TrTr_L  
+
+```{r}
+#histogram of all TrTr_L  values
+ggplot(data=headscan_full, aes(x=TrTr_L))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Tragion to Tragion Linear Measurement Distribution",
+       y="Frequency",
+       x="Tragion to Tragion Linear (cm)")
+```
 
 ```{r}
 #TrTr_L race/eth sumstats
@@ -6146,6 +6235,7 @@ TrTr_Lrace_sumstats <- headscan_full %>%
             min = min(TrTr_L, na.rm = TRUE),
             max = max(TrTr_L, na.rm = TRUE),
             mean = mean(TrTr_L, na.rm = TRUE),
+            mdn = median(TrTr_L, na.rm = TRUE),
             sd = sd(TrTr_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrTr_L, 0.05, na.rm=TRUE),
@@ -6173,6 +6263,27 @@ flextable(TrTr_Lrace_sumstats) %>%
   set_caption("Tragion to Tragion Linear SumStats by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, TrTr_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrTr_L, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Linear values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrTr_L, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Linear values by Race/Ethnicity",
+       y="Measurement (cm)",
+       x="Race/Ethnicity")
 ```
 
 ```{r}
@@ -6183,6 +6294,7 @@ TrTr_Lgender_sumstats <- headscan_full %>%
             min = min(TrTr_L, na.rm = TRUE),
             max = max(TrTr_L, na.rm = TRUE),
             mean = mean(TrTr_L, na.rm = TRUE),
+            mdn = median(TrTr_L, na.rm = TRUE),
             sd = sd(TrTr_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrTr_L, 0.05, na.rm=TRUE),
@@ -6209,6 +6321,27 @@ flextable(TrTr_Lgender_sumstats) %>%
   set_caption("Tragion to Tragion Linear SumStats by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, TrTr_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrTr_L, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Linear values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrTr_L, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Linear values by Gender",
+       y="Measurement (cm)",
+       x="Gender")
 ```
 
 ```{r}
@@ -6219,6 +6352,7 @@ TrTr_Lage_sumstats <- headscan_full %>%
             min = min(TrTr_L, na.rm = TRUE),
             max = max(TrTr_L, na.rm = TRUE),
             mean = mean(TrTr_L, na.rm = TRUE),
+            mdn = median(TrTr_L, na.rm = TRUE),
             sd = sd(TrTr_L, na.rm = TRUE),
             se = sd/sqrt(n),
             percent5th = quantile(TrTr_L, 0.05, na.rm=TRUE),
@@ -6236,16 +6370,37 @@ TrTr_Lage_sumstats <- TrTr_Lage_sumstats %>%
 flextable(TrTr_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Linear SumStats by Gender") 
+  set_caption("Tragion to Tragion Linear SumStats by Age Group") 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Linear SumStats by Gender") %>% 
+  set_caption("Tragion to Tragion Linear SumStats by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, TrTr_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=TrTr_L, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=TrTr_L, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Tragion to Tragion Length values by Age Group",
+       y="Measurement (cm)",
+       x="Age Group")
 ```
 
 
