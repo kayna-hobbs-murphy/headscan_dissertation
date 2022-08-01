@@ -8,22 +8,169 @@ date: "2022-08-01"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r packages}
+library(tidyverse)
+library(readxl)
+library(officer)
+library(flextable)
+library(extrafont)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r loading data}
+headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
+headscan_full1$coder <- as.factor(headscan_full1$coder)
+headscan_full1$gender <- as.factor(headscan_full1$gender)
+headscan_full1$race_eth <- as.factor(headscan_full1$race_eth)
+headscan_full1$age_group <- as.factor(headscan_full1$age_group)
+str(headscan_full1)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r cm to mm}
+headscan_fullmm <- headscan_full1
+
+headscan_fullmm$AA_C <- headscan_fullmm$AA_C *10
+headscan_fullmm$BGl_C <- headscan_fullmm$BGl_C * 10
+headscan_fullmm$BiW_C <- headscan_fullmm$BiW_C *10
+headscan_fullmm$BiW_L <- headscan_fullmm$BiW_L *10
+headscan_fullmm$ChCh_C <- headscan_fullmm$ChCh_C *10
+headscan_fullmm$GoSub_C <- headscan_fullmm$GoSub_C *10
+headscan_fullmm$NRB_L <- headscan_fullmm$NRB_L *10
+headscan_fullmm$ProA_L <- headscan_fullmm$ProA_L *10
+headscan_fullmm$ProA_C <- headscan_fullmm$ProA_C *10
+headscan_fullmm$ProS_C <- headscan_fullmm$ProS_C *10
+headscan_fullmm$ProS_L <- headscan_fullmm$ProS_L *10
+headscan_fullmm$SelP_C <- headscan_fullmm$SelP_C *10
+headscan_fullmm$SelP_L <- headscan_fullmm$SelP_L *10
+headscan_fullmm$SelDH_C <- headscan_fullmm$SelDH_C *10
+headscan_fullmm$SelM_L <- headscan_fullmm$SelM_L *10
+headscan_fullmm$SnasM_C <- headscan_fullmm$SnasM_C *10
+headscan_fullmm$SmanM_C <- headscan_fullmm$SmanM_C *10
+headscan_fullmm$SmanM_L <- headscan_fullmm$SmanM_L *10
+headscan_fullmm$SnasM_L <- headscan_fullmm$SnasM_L *10
+headscan_fullmm$TrHO_C <- headscan_fullmm$TrHO_C *10
+headscan_fullmm$TrEJ_C <- headscan_fullmm$TrEJ_C *10
+headscan_fullmm$TrGo_C <- headscan_fullmm$TrGo_C *10
+headscan_fullmm$TrSel_C <- headscan_fullmm$TrSel_C *10
+headscan_fullmm$TrSman_C <- headscan_fullmm$TrSman_C *10
+headscan_fullmm$TrSnas_C <- headscan_fullmm$TrSnas_C *10
+headscan_fullmm$TrTr_C <- headscan_fullmm$TrTr_C *10
+headscan_fullmm$TrTr_L <- headscan_fullmm$TrTr_L *10
+
+str(headscan_fullmm)
+```
+
+
+
+
+
+```{r}
+panel_numbers <- data.frame(cell_num = c("#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9", "#10"),
+                            SelM_L = c(103.5, 103.5, 113.5, 113.5, 108.5, 128.5, 123.5, 123.5, 133.5, 133.5),
+                            BiW_L = c(126.5, 138.5, 126.5, 138.5, 151.5, 127.5, 140.5, 152.5, 140.5, 152.5),
+                            gender = NA,
+                            age_group = NA,
+                            race_eth = NA)
+
+str(panel_numbers)
+```
+
+
+From Zhaung 2007: menton-nasal root depression length is face length, bizygomatic breath is face width
+
+```{r bivariate overall}
+biv1 <- headscan_fullmm %>% 
+  ggplot(aes(x=BiW_L, y=SelM_L))+
+  geom_point()+
+  theme(text=element_text(family= "Times New Roman"))+
+  xlim(80,160)+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=144.5, xmax=158.5, ymin=98.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=134.5, ymin=118.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
+       subtitle = "226 missing values omitted",
+       y="Face Length",
+       x="Face Width")
+
+biv1 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
+```
+
+```{r bivariate gender}
+biv2 <- headscan_fullmm %>% 
+  ggplot(aes(x=BiW_L, y=SelM_L, color=gender))+
+  geom_point()+
+  theme(text=element_text(family= "Times New Roman"))+
+  xlim(80,160)+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=144.5, xmax=158.5, ymin=98.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=134.5, ymin=118.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
+       subtitle = "226 missing values omitted",
+       y="Face Length",
+       x="Face Width")
+
+biv2 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
+```
+
+
+```{r bivariate age group}
+biv3<- headscan_fullmm %>% 
+  ggplot(aes(x=BiW_L, y=SelM_L, color=age_group))+
+  geom_point()+
+  theme(text=element_text(family= "Times New Roman"))+
+  xlim(80,160)+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=144.5, xmax=158.5, ymin=98.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=134.5, ymin=118.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
+       subtitle = "226 missing values omitted",
+       y="Face Length",
+       x="Face Width")
+
+biv3 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
+```
+
+
+```{r bivariate race/eth}
+biv4 <- headscan_fullmm %>% 
+  ggplot(aes(x=BiW_L, y=SelM_L, color=race_eth))+
+  geom_point()+
+  theme(text=element_text(family= "Times New Roman"))+
+  xlim(80,160)+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=144.5, xmax=158.5, ymin=98.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=134.5, ymin=118.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
+       subtitle = "226 missing values omitted",
+       y="Face Length",
+       x="Face Width")
+
+biv4 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
+```
