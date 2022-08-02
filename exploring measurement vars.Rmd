@@ -18,6 +18,19 @@ library(corrr)
 library(ggcorrplot)
 ```
 
+```{r table function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
 ```{r loading data}
 headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
 
@@ -31,15 +44,15 @@ str(headscan_num)
 correlation_data <- correlate(headscan_num)
 
 
-correlation_data1 <- correlation_data %>% 
+correlation_data_wide <- correlation_data %>% 
   column_to_rownames(var="term")
 
-str(correlation_data1)
+str(correlation_data_wide)
 ```
 
 
 ```{r, fig.height=8, fig.width=8}
-correlation_data_round <- round(correlation_data1, digits=1)
+correlation_data_round <- round(correlation_data_wide, digits=1)
 
 ggcorrplot(correlation_data_round, hc.order=FALSE,
              type= "lower",
@@ -54,6 +67,87 @@ ggcorrplot(correlation_data_round, hc.order=FALSE,
 
 
 ```{r}
-pivot_longer(correlation_data, AA_C:TrTr_L, names_to = "second_measure")
+correlation_data <- pivot_longer(correlation_data, AA_C:TrTr_L, names_to = "second_measure", values_to = "correlation")
+
+correlation_data <- correlation_data %>% 
+  rename(first_measure = "term")
+
+correlation_data$both_measures <- paste(correlation_data$first_measure, sep= " & ", correlation_data$second_measure)
+
+str(correlation_data)
+```
+```{r}
+correlation_data1 <- correlation_data[-c(1,2)]
+
+correlation_data1 <- correlation_data1[, c(2,1)]
+
+correlation_data1$correlation <- round(correlation_data1$correlation, digits=4)
+
+correlation_data1 <- na.omit(correlation_data1)
+```
+
+
+```{r}
+#Size 12 Table TNR
+flextable(correlation_data1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Correlations") %>% 
+  set_header_labels(values = list(both_measures = "Correlated Measurements",
+                                  correlation = "Correlation")) %>% 
+  autofit()
+```
+```{r, fig.height=90, fig.width=5}
+correlation_data1 %>%
+  mutate(both_measures=fct_reorder(both_measures, correlation)) %>% 
+  ggplot(aes(x=correlation, y=both_measures))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Correlations",
+       y="Correlated Measures Abbreviation (see Appendix B)",
+       x="Correlation value")
+```
+
+
+```{r}
+high_cor <- filter(correlation_data1, correlation > 0.7)
+str(high_cor)
+```
+
+
+```{r}
+#Size 12 Table TNR
+#Size 12 Table TNR
+flextable(high_cor) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Correlations over 0.7") %>% 
+  set_header_labels(values = list(both_measures = "Correlated Measurements",
+                                  correlation = "Correlation")) %>% 
+  autofit()
+```
+
+```{r}
+#boxplot
+#ggplot(data=measureNAs, aes(y=measureNAsums, x=measure_name))+
+  #geom_boxplot(color= "black", fill = "white")+
+  #theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  #labs(title="Missing Values by Measurement Location",
+       #y="Count of Missing Values",
+       #x="Measure Abbreviation")
+```
+
+```{r, fig.height=8, fig.width=5}
+high_cor %>%
+  mutate(both_measures=fct_reorder(both_measures, correlation)) %>% 
+  ggplot(aes(x=correlation, y=both_measures))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Correlations over 0.7",
+       y="Correlated Measures Abbreviation (see Appendix B)",
+       x="Correlation value")
 ```
 

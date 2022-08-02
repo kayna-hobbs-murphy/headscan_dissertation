@@ -64,6 +64,8 @@ measureNAsums1 <- measureNAsums1 %>% slice(-c(1, 29:33))
 
 measureNAs <- inner_join(measureNAprops1, measureNAsums1, by = "measure_name", desc)
 
+measureNAs$measureNAprops<- round(measureNAs$measureNAprops, digits=4)
+
 measureNAs$measure_name <- fct_reorder(measureNAs$measure_name, measureNAs$measureNAsums, .desc=TRUE)
 
 str(measureNAs$measure_name)
