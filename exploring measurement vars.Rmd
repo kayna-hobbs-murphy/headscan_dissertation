@@ -148,8 +148,7 @@ headscan_full1 %>%
               size = 3)+
     theme(text=element_text(family= "Times New Roman"))+
     labs(title="Data Collection Count per Coder",
-         subtitle = "n=2017",
-         y="Count",
+         y="# of Scans Digitized",
          x="Coder")
 ```
 
