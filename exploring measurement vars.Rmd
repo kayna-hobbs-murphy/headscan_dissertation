@@ -1,0 +1,59 @@
+---
+title: "exploring measurement variables"
+output: html_document
+date: "2022-08-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+library(readxl)
+library(officer)
+library(flextable)
+library(extrafont)
+library(corrr)
+library(ggcorrplot)
+```
+
+```{r loading data}
+headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
+
+headscan_num <- select_if(headscan_full1, is.numeric)
+headscan_num <- subset(headscan_num, select= -age)
+
+str(headscan_num)
+```
+
+```{r}
+correlation_data <- correlate(headscan_num)
+
+
+correlation_data1 <- correlation_data %>% 
+  column_to_rownames(var="term")
+
+str(correlation_data1)
+```
+
+
+```{r, fig.height=8, fig.width=8}
+correlation_data_round <- round(correlation_data1, digits=1)
+
+ggcorrplot(correlation_data_round, hc.order=FALSE,
+             type= "lower",
+             lab= TRUE,
+             lab_size= 3,
+             method= "circle",
+             colors = c("tomato2", "white", "springgreen3"))+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x =  element_text(angle=90))+
+  labs(title="Correlation of facial dimension measurement variables")             
+```
+
+
+```{r}
+pivot_longer(correlation_data, AA_C:TrTr_L, names_to = "second_measure")
+```
+

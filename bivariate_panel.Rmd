@@ -95,8 +95,8 @@ biv1 <- headscan_fullmm %>%
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
   labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
        subtitle = "226 missing values omitted",
-       y="Face Length",
-       x="Face Width")
+       y="Face Length (mm)",
+       x="Face Width (mm)")
 
 biv1 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
@@ -119,8 +119,8 @@ biv2 <- headscan_fullmm %>%
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
   labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
        subtitle = "226 missing values omitted",
-       y="Face Length",
-       x="Face Width")
+       y="Face Length (mm)",
+       x="Face Width (mm)")
 
 biv2 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
@@ -144,8 +144,8 @@ biv3<- headscan_fullmm %>%
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
   labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
        subtitle = "226 missing values omitted",
-       y="Face Length",
-       x="Face Width")
+       y="Face Length (mm)",
+       x="Face Width (mm)")
 
 biv3 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
@@ -169,8 +169,8 @@ biv4 <- headscan_fullmm %>%
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
   labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
        subtitle = "226 missing values omitted",
-       y="Face Length",
-       x="Face Width")
+       y="Face Length (mm)",
+       x="Face Width (mm)")
 
 biv4 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
