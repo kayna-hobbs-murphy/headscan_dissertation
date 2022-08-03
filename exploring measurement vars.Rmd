@@ -218,9 +218,6 @@ coders %>%
 intraRR<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\intraRR_iccs.xlsx")
 ```
 
-```{r}
-interRR<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\interRR_iccs.xlsx")
-```
 
 
 ```{r}
@@ -312,6 +309,7 @@ low_intraRR %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 90))+ 
   labs(title="Low ICC values for all Coders",
+       subtitle = "Percent of Data Collected per Coder: A=29%, B=43%, C=14%, D=14%",
        y="ICC Value",
        x="Measurement Location")
 ```
@@ -352,7 +350,8 @@ str(low_intraRR)
 #join lower intra and high cor full, retain lower intra dataset
 questionable_measures <- full_join(low_intraRR, high_cor_full, by="measure", all=TRUE)
 questionable_measures <- questionable_measures %>% 
-  rename(correlated_measure = "second_measure")
+  rename(correlated_measure = "second_measure",
+         intra_icc = "icc_value")
 
 questionable_measures <- questionable_measures[, c(1,4,2,5,3,6,7)]
 
@@ -390,14 +389,100 @@ quest_meas_nona <- na.omit(questionable_measures)
 
 ```{r, fig.height=5, fig.width=8}
 quest_meas_nona %>% 
-  ggplot(aes(x=icc_value, y=correlation))+
-  geom_point(aes(shape=both_measures, color=both_measures, fill=both_measures), size=5)+
+  ggplot(aes(x=intra_icc, y=correlation))+
+  geom_point(aes(shape=both_measures, color=coder, fill=both_measures), size=5)+
   scale_shape_manual(values=seq(0,12))+
+  geom_rect(aes(xmin=0.4, xmax=0.75, ymin=0.85, ymax=1), fill= NA, alpha=0.4, colour="black")+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 90))+ 
   labs(title="Correlation by IntraRR ICC values",
-        #subtitle = "completed 13.88% of data collection",
+        subtitle = "Percent of Data Collected per Coder: A=29%, B=43%, C=14%, D=14%",
         y="Correlation",
         x="IntraRR ICC Value")
+```
+
+
+```{r}
+interRR<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\interRR_iccs.xlsx")
+interRR <- interRR[-1]
+interRR <- interRR %>% 
+  rename(inter_icc = "icc_value")
+low_interRR <- filter(interRR, inter_icc < 0.9)
+```
+
+
+```{r}
+interRR %>%
+  mutate(measure=fct_reorder(measure, inter_icc, .desc=TRUE)) %>% 
+  ggplot(aes(x=inter_icc, y=measure))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="InterRR Values",
+         y="Measurement Location",
+         x="ICC Value")
+```
+```{r}
+low_interRR %>%
+  mutate(measure=fct_reorder(measure, inter_icc, .desc=TRUE)) %>% 
+  ggplot(aes(x=inter_icc, y=measure))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Low InterRR Values",
+         y="Measurement Location",
+         x="ICC Value")
+```
+
+
+
+```{r}
+questionable_measures <- full_join(questionable_measures, low_interRR, by = "measure", all= TRUE)
+
+questionable_measures <- questionable_measures[, c(1,2,3,4,5,8,6,7)]
+
+str(questionable_measures)
+```
+
+```{r}
+quest_meas_nona1 <- questionable_measures %>%  
+  drop_na(inter_icc) %>% 
+  drop_na(correlation)
+```
+
+
+```{r, fig.height=5, fig.width=8}
+quest_meas_nona1 %>% 
+  ggplot(aes(x=inter_icc, y=correlation, na.rm=TRUE))+
+  geom_point(aes(shape=both_measures, color=both_measures, fill=both_measures), size=5, na.rm = TRUE)+
+  scale_shape_manual(values=seq(0,12))+
+  geom_rect(aes(xmin=0.25, xmax=0.75, ymin=0.85, ymax=1), fill= NA, alpha=0.4, colour="black")+
+  xlim(0.25, 0.9)+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 90))+ 
+  labs(title="Correlation by InterRR ICC values",
+        y="Correlation",
+        x="InterRR ICC Value")
+```
+```{r}
+quest_meas_nona2 <- questionable_measures %>%  
+  drop_na(inter_icc) %>% 
+  drop_na(intra_icc)
+```
+
+
+```{r}
+quest_meas_nona2 %>% 
+  ggplot(aes(x=inter_icc, y=intra_icc, na.rm=TRUE))+
+  geom_point(aes(shape=measure, color=measure, fill=measure), size=5, na.rm = TRUE)+
+  scale_shape_manual(values=seq(0,18))+
+  geom_rect(aes(xmin=0, xmax=0.75, ymin=0.25, ymax=0.75), fill= NA, alpha=0.4, colour="black")+
+  facet_wrap(coder~.)+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 90))+ 
+  labs(title="Correlation by InterRR ICC values",
+       subtitle = "Percent of Data Collected per Coder: A=29%, B=43%, C=14%, D=14%",
+        y="IntraRR ICC Value",
+        x="InterRR ICC Value")
 ```
 
