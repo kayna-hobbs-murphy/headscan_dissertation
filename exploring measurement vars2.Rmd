@@ -9,7 +9,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-MUST RESTART R AFTER RUNNING PART 1 OF EXPLORE MEASUREMENT VARS
 
 ```{r packages}
 library(tidyverse)
@@ -170,7 +169,7 @@ jared_intra <- intraRR[intraRR$coder == "D",]
 ```
 
 
-```{r}
+```{r, fig.height=6, fig.width=5}
 isabel_intra %>%
   mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
   ggplot(aes(x=icc_value, y=measure))+
@@ -183,7 +182,7 @@ isabel_intra %>%
          x="ICC Value")
 ```
 
-```{r}
+```{r, fig.height=6, fig.width=5}
 kayna_intra %>%
   mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
   ggplot(aes(x=icc_value, y=measure))+
@@ -196,7 +195,7 @@ kayna_intra %>%
          x="ICC Value")
 ```
 
-```{r}
+```{r, fig.height=6, fig.width=5}
 chandler_intra %>%
   mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
   ggplot(aes(x=icc_value, y=measure))+
@@ -209,7 +208,7 @@ chandler_intra %>%
          x="ICC Value")
 ```
 
-```{r}
+```{r, fig.height=6, fig.width=5}
 jared_intra %>%
   mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
   ggplot(aes(x=icc_value, y=measure))+
@@ -238,8 +237,39 @@ str(low_intraRR)
 
 
 
+
+```{r making dataset long}
+correlation_datafl <- pivot_longer(correlation_data_full, AA_C:TrTr_L, names_to = "second_measure", values_to = "correlation")
+
+correlation_datafl <- correlation_datafl %>% 
+  rename(first_measure = "term")
+
+correlation_datafl$both_measures <- paste(correlation_datafl$first_measure, sep= " & ", correlation_datafl$second_measure)
+
+str(correlation_data)
+```
+
+```{r reorganizing dataset for table}
+
+correlation_datafl$correlation <- round(correlation_datafl$correlation, digits=4)
+
+correlation_datafl <- na.omit(correlation_datafl)
+```
+
+
 ```{r}
-high_cor1 <- filter(correlation_data, correlation > 0.7)
-str(high_cor1)
+high_cor_full <- filter(correlation_datafl, correlation > 0.7)\
+high_cor_full <- high_cor_full %>% 
+  rename(measure = "first_measure")
+str(high_cor_full)
+```
+
+
+```{r}
+#join lower intra and high cor full, retain lower intra dataset
+questionable_measures <- inner_join(low_intraRR, high_cor_full, by="measure")
+high_cor_full <- high_cor_full %>% 
+  rename(correlated_measure = "second_measure")
+str(questionable_measures)
 ```
 

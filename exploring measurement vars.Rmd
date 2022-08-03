@@ -30,11 +30,13 @@ str(headscan_num)
 ```
 
 ```{r making and writing correlation_data set}
-correlation_data <- correlate(headscan_num)
+correlation_data_full <- correlate(headscan_num)
 
 #write_xlsx(correlation_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\correlation_data.xlsx")
 
 #do not run above as NA values on upper half were removed in excel
+
+
 ```
 
 
@@ -42,7 +44,7 @@ correlation_data <- correlate(headscan_num)
 ```{r making correlation dataset (wide)}
 
 
-correlation_data_wide <- correlation_data %>% 
+correlation_data_wide <- correlation_data_full %>% 
   column_to_rownames(var="term")
 
 str(correlation_data_wide)
@@ -61,6 +63,284 @@ ggcorrplot(correlation_data_round, hc.order=FALSE,
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x =  element_text(angle=90))+
   labs(title="Correlation of facial dimension measurement variables")             
+```
+
+---
+title: "exploring measurement vars2"
+output: html_document
+date: "2022-08-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r packages}
+library(tidyverse)
+library(readxl)
+library(officer)
+library(flextable)
+library(extrafont)
+```
+
+
+
+```{r table function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
+
+```{r}
+correlation_data<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\correlation_data.xlsx")
+```
+
+
+```{r making dataset long}
+correlation_data <- pivot_longer(correlation_data, AA_C:TrTr_L, names_to = "second_measure", values_to = "correlation")
+
+correlation_data <- correlation_data %>% 
+  rename(first_measure = "term")
+
+correlation_data$both_measures <- paste(correlation_data$first_measure, sep= " & ", correlation_data$second_measure)
+
+str(correlation_data)
+```
+```{r reorganizing dataset for table}
+correlation_data1 <- correlation_data[-c(1,2)]
+
+correlation_data1 <- correlation_data1[, c(2,1)]
+
+correlation_data1$correlation <- round(correlation_data1$correlation, digits=4)
+
+correlation_data1 <- na.omit(correlation_data1)
+```
+
+
+
+```{r all correlations table}
+#Size 12 Table TNR
+flextable(correlation_data1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Correlations") %>% 
+  set_header_labels(values = list(both_measures = "Correlated Measurements",
+                                  correlation = "Correlation")) %>% 
+  autofit()
+```
+```{r all correlations plot, fig.height=45, fig.width=5}
+correlation_data1 %>%
+  mutate(both_measures=fct_reorder(both_measures, correlation)) %>% 
+  ggplot(aes(x=correlation, y=both_measures))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Correlations",
+       y="Correlated Measures Abbreviation (see Appendix B)",
+       x="Correlation value")
+```
+
+
+```{r making high_cor dataset}
+high_cor <- filter(correlation_data1, correlation > 0.7)
+str(high_cor)
+```
+
+
+```{r high_cor table}
+flextable(high_cor) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Correlations over 0.7") %>% 
+  set_header_labels(values = list(both_measures = "Correlated Measurements",
+                                  correlation = "Correlation")) %>% 
+  autofit()
+```
+
+```{r high cor plot, fig.width=5, fig.height=5}
+high_cor %>%
+  mutate(both_measures=fct_reorder(both_measures, correlation)) %>% 
+  ggplot(aes(x=correlation, y=both_measures))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Correlations over 0.7",
+       y="Correlated Measures Abbreviation (see Appendix B)",
+       x="Correlation value")
+```
+```{r}
+headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
+
+coders <- headscan_full1[-c(2:28, 30:33)]
+
+coders <- coders %>% 
+  rename(coder_name = "coder")
+
+coders <- coders %>% 
+  mutate(coder= case_when(
+    coder_name == "Isabel" ~ "A",
+    coder_name == "Kayna" ~ "B",
+    coder_name == "Chandler" ~ "C",
+    coder_name == "Jared" ~ "D"
+  ))
+
+str(coders)
+```
+
+
+
+```{r collection numbers per coder}
+coders %>% 
+  ggplot(aes(x=fct_infreq(coder), label=scales::percent(prop.table(stat(count)))))+
+    geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
+    geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+    theme(text=element_text(family= "Times New Roman"))+
+    labs(title="Data Collection Count per Coder",
+         y="# of Scans Digitized",
+         x="Coder")
+```
+
+
+```{r}
+intraRR<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\intraRR_iccs.xlsx")
+```
+
+```{r}
+interRR<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\interRR_iccs.xlsx")
+```
+
+
+```{r}
+intraRR <- intraRR[-1]
+str(intraRR)
+```
+
+```{r}
+isabel_intra <- intraRR[intraRR$coder=="A",]
+kayna_intra <- intraRR[intraRR$coder == "B",]
+chandler_intra <- intraRR[intraRR$coder == "C",]
+jared_intra <- intraRR[intraRR$coder == "D",]
+```
+
+
+```{r, fig.height=6, fig.width=5}
+isabel_intra %>%
+  mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
+  ggplot(aes(x=icc_value, y=measure))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Coder A ICC Values",
+         subtitle = "completed 28.61% of data collection",
+         y="Measurement Location",
+         x="ICC Value")
+```
+
+```{r, fig.height=6, fig.width=5}
+kayna_intra %>%
+  mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
+  ggplot(aes(x=icc_value, y=measure))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Coder B ICC Values",
+         subtitle = "completed 42.98% of data collection",
+         y="Measurement Location",
+         x="ICC Value")
+```
+
+```{r, fig.height=6, fig.width=5}
+chandler_intra %>%
+  mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
+  ggplot(aes(x=icc_value, y=measure))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Coder C ICC Values",
+         subtitle = "completed 14.53% of data collection",
+         y="Measurement Location",
+         x="ICC Value")
+```
+
+```{r, fig.height=6, fig.width=5}
+jared_intra %>%
+  mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
+  ggplot(aes(x=icc_value, y=measure))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Coder D ICC Values",
+         subtitle = "completed 13.88% of data collection",
+         y="Measurement Location",
+         x="ICC Value")
+```
+
+```{r}
+low_intraRR <- filter(intraRR, icc_value < 0.9)
+
+low_intraRR <- low_intraRR %>% 
+  mutate(percent_coded= case_when(
+    coder == "A" ~ "28.61%",
+    coder ==  "B" ~ "42.98%",
+    coder ==  "C" ~ "14.53%",
+    coder == "D" ~ "13.88%"
+  ))
+
+str(low_intraRR)
+```
+
+
+
+
+```{r making dataset long}
+correlation_datafl <- pivot_longer(correlation_data_full, AA_C:TrTr_L, names_to = "second_measure", values_to = "correlation")
+
+correlation_datafl <- correlation_datafl %>% 
+  rename(first_measure = "term")
+
+correlation_datafl$both_measures <- paste(correlation_datafl$first_measure, sep= " & ", correlation_datafl$second_measure)
+
+str(correlation_data)
+```
+
+```{r reorganizing dataset for table}
+
+correlation_datafl$correlation <- round(correlation_datafl$correlation, digits=4)
+
+correlation_datafl <- na.omit(correlation_datafl)
+```
+
+
+```{r}
+high_cor_full <- filter(correlation_datafl, correlation > 0.7)
+high_cor_full <- high_cor_full %>% 
+  rename(measure = "first_measure")
+str(high_cor_full)
+```
+
+
+```{r}
+#join lower intra and high cor full, retain lower intra dataset
+questionable_measures <- inner_join(low_intraRR, high_cor_full, by="measure")
+questionable_measures <- questionable_measures %>% 
+  rename(correlated_measure = "second_measure")
+
+questionable_measures <- questionable_measures[, c(1,4,2,5,3,6,7)]
+
+str(questionable_measures)
 ```
 
 
