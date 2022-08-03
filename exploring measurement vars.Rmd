@@ -288,6 +288,9 @@ jared_intra %>%
          x="ICC Value")
 ```
 
+
+
+
 ```{r}
 low_intraRR <- filter(intraRR, icc_value < 0.9)
 
@@ -302,6 +305,16 @@ low_intraRR <- low_intraRR %>%
 str(low_intraRR)
 ```
 
+```{r}
+low_intraRR %>% 
+  ggplot(aes(x=measure, y=icc_value, fill=coder))+
+  geom_bar(position = "dodge", stat = "identity")+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 90))+ 
+  labs(title="Low ICC values for all Coders",
+       y="ICC Value",
+       x="Measurement Location")
+```
 
 
 
@@ -382,24 +395,9 @@ quest_meas_nona %>%
   scale_shape_manual(values=seq(0,12))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 90))+ 
-  labs(title="Correlation by ICC values",
+  labs(title="Correlation by IntraRR ICC values",
         #subtitle = "completed 13.88% of data collection",
         y="Correlation",
-        x="ICC Value")
+        x="IntraRR ICC Value")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
