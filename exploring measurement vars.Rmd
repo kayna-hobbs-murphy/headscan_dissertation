@@ -330,11 +330,14 @@ high_cor_full <- high_cor_full %>%
   rename(measure = "first_measure")
 str(high_cor_full)
 ```
+```{r}
+str(low_intraRR)
+```
 
 
 ```{r}
 #join lower intra and high cor full, retain lower intra dataset
-questionable_measures <- inner_join(low_intraRR, high_cor_full, by="measure")
+questionable_measures <- full_join(low_intraRR, high_cor_full, by="measure", all=TRUE)
 questionable_measures <- questionable_measures %>% 
   rename(correlated_measure = "second_measure")
 
@@ -343,6 +346,47 @@ questionable_measures <- questionable_measures[, c(1,4,2,5,3,6,7)]
 str(questionable_measures)
 ```
 
+```{r}
+questionable_measures$both_measures <-
+  recode_factor(questionable_measures$both_measures, 'SmanM_C & SmanM_L' = "SmanM_L & SmanM_C",
+                'BiW_C & BiW_L' = "BiW_L & BiW_C",
+                'TrSnas_C & TrSel_C' = "TrSel_C & TrSnas_C",
+                'ProA_L & AA_C' = "AA_C & ProA_L",
+                'ProA_C & AA_C' = "AA_C & ProA_C",
+                'TrSman_C & GoSub_C' = "GoSub_C & TrSman_C",
+                'ProA_C & ProA_L' = "ProA_L & ProA_C",
+                'ProS_C & ProS_L' = "ProS_L & ProS_C",
+                'SelP_C & SelP_L' = "SelP_L & SelP_C",
+                'SnasM_C & SelM_L' = "SelM_L & SnasM_C",
+                'SnasM_C & SnasM_L' = "SnasM_L & SnasM_C",
+                'TrSnas_C & TrSman_C' = "TrSman_C & TrSnas_C",
+                'TrTr_C & TrTr_L' = "TrTr_L & TrTr_C",
+                'TrSnas_C & TrTr_L' = "TrTr_L & TrSnas_C",
+                'TrSel_C & TrTr_L' = "TrTr_L & TrSel_C",
+                'SelM_L & SnasM_L' = "SnasM_L & SelM_L",
+                'TrSnas_C & TrTr_C' = "TrTr_C & TrSnas_C",
+                'TrSel_C & TrTr_C' = "TrTr_C & TrSel_C")
+
+str(questionable_measures$both_measures)
+```
+
+```{r}
+quest_meas_nona <- na.omit(questionable_measures)
+```
+
+
+```{r, fig.height=5, fig.width=8}
+quest_meas_nona %>% 
+  ggplot(aes(x=icc_value, y=correlation))+
+  geom_point(aes(shape=both_measures, color=both_measures, fill=both_measures), size=5)+
+  scale_shape_manual(values=seq(0,12))+
+  theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 90))+ 
+  labs(title="Correlation by ICC values",
+        #subtitle = "completed 13.88% of data collection",
+        y="Correlation",
+        x="ICC Value")
+```
 
 
 
