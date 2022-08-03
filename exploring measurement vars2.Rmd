@@ -162,17 +162,84 @@ intraRR <- intraRR[-1]
 str(intraRR)
 ```
 
+```{r}
+isabel_intra <- intraRR[intraRR$coder=="A",]
+kayna_intra <- intraRR[intraRR$coder == "B",]
+chandler_intra <- intraRR[intraRR$coder == "C",]
+jared_intra <- intraRR[intraRR$coder == "D",]
+```
 
 
 ```{r}
-intraRR %>%
-  mutate(both_measures=fct_reorder(both_measures, correlation)) %>% 
-  ggplot(aes(x=correlation, y=both_measures))+
+isabel_intra %>%
+  mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
+  ggplot(aes(x=icc_value, y=measure))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
     theme(text=element_text(family= "Times New Roman"))+
     #theme(axis.text.x = element_text(angle = 90))+ 
-    labs(title="Correlations over 0.7",
-       y="Correlated Measures Abbreviation (see Appendix B)",
-       x="Correlation value")
+    labs(title="Coder A ICC Values",
+         subtitle = "completed 28.61% of data collection",
+         y="Measurement Location",
+         x="ICC Value")
+```
+
+```{r}
+kayna_intra %>%
+  mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
+  ggplot(aes(x=icc_value, y=measure))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Coder B ICC Values",
+         subtitle = "completed 42.98% of data collection",
+         y="Measurement Location",
+         x="ICC Value")
+```
+
+```{r}
+chandler_intra %>%
+  mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
+  ggplot(aes(x=icc_value, y=measure))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Coder C ICC Values",
+         subtitle = "completed 14.53% of data collection",
+         y="Measurement Location",
+         x="ICC Value")
+```
+
+```{r}
+jared_intra %>%
+  mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
+  ggplot(aes(x=icc_value, y=measure))+
+    geom_bar(stat= "identity", color= "black", fill = "white")+
+    theme(text=element_text(family= "Times New Roman"))+
+    #theme(axis.text.x = element_text(angle = 90))+ 
+    labs(title="Coder D ICC Values",
+         subtitle = "completed 13.88% of data collection",
+         y="Measurement Location",
+         x="ICC Value")
+```
+
+```{r}
+low_intraRR <- filter(intraRR, icc_value < 0.9)
+
+low_intraRR <- low_intraRR %>% 
+  mutate(percent_coded= case_when(
+    coder == "A" ~ "28.61%",
+    coder ==  "B" ~ "42.98%",
+    coder ==  "C" ~ "14.53%",
+    coder == "D" ~ "13.88%"
+  ))
+
+str(low_intraRR)
+```
+
+
+
+```{r}
+high_cor1 <- filter(correlation_data, correlation > 0.7)
+str(high_cor1)
 ```
 
