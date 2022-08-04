@@ -505,6 +505,7 @@ quest_meas_nona2 %>%
 ```
 
 ```{r bar plot of measure names that are questionable}
+#it might be a good idea to show this plot several times and color code specific correlations as they are discussed
 questionable_measures %>% 
   ggplot(aes(x=fct_infreq(measure), label=scales::percent(prop.table(stat(count)))))+
     geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
