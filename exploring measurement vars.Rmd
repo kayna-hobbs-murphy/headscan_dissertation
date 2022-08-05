@@ -32,7 +32,7 @@ str(headscan_num)
 ```{r making and writing correlation_data set}
 correlation_data_full <- correlate(headscan_num)
 
-#write_xlsx(correlation_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\correlation_data.xlsx")
+write_xlsx(correlation_data_full, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\correlation_data_full.xlsx")
 
 #do not run above as NA values on upper half were removed in excel
 
@@ -224,6 +224,11 @@ isabel_intra <- intraRR[intraRR$coder=="A",]
 kayna_intra <- intraRR[intraRR$coder == "B",]
 chandler_intra <- intraRR[intraRR$coder == "C",]
 jared_intra <- intraRR[intraRR$coder == "D",]
+
+write_xlsx(isabel_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\isabel_intra.xlsx")
+write_xlsx(kayna_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\kayna_intra.xlsx")
+write_xlsx(chandler_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chandler_intra.xlsx")
+write_xlsx(jared_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\jared_intra.xlsx")
 ```
 
 
@@ -427,6 +432,10 @@ interRR<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertati
 interRR <- interRR[-1]
 interRR <- interRR %>% 
   rename(inter_icc = "icc_value")
+
+
+write_xlsx(interRR, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\interRR.xlsx")
+
 low_interRR <- filter(interRR, inter_icc < 0.9)
 ```
 

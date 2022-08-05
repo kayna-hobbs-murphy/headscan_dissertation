@@ -19,9 +19,19 @@ library(ggcorrplot)
 library(writexl)
 ```
 
-```{r}
-correlation_data<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\correlation_data.xlsx")
+```{r loading data}
+correlation_data_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\correlation_data_full.xlsx")
 
-measureNAs <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
+measureNAs<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
+
+questionable_measures<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\questionable_measures.xlsx")
+```
+
+
+```{r}
+correlation_data_full <- correlation_data_full %>% 
+  rename(measure_name = "term")
+
+corr_nas <- full_join(correlation_data_full, measureNAs, by = "measure_name")
 ```
 
