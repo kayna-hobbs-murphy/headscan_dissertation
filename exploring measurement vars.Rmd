@@ -94,6 +94,8 @@ correlation_data <- correlation_data %>%
 correlation_data$both_measures <- paste(correlation_data$first_measure, sep= " & ", correlation_data$second_measure)
 
 str(correlation_data)
+
+
 ```
 ```{r reorganizing dataset for table}
 correlation_data1 <- correlation_data[-c(1,2)]

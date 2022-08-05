@@ -15,6 +15,7 @@ library(flextable)
 library(readxl)
 library(extrafont)
 library(forcats)
+library(writexl)
 ```
 
 ```{r table function}
@@ -105,6 +106,8 @@ ggplot(data=measureNAs, aes(x=measure_name, y=measureNAprops))+
   labs(title="Missing Values by Measurement Location (Proportion)",
        y="Proportion of Missing Values",
        x="Measure Abbreviation (see Appendix B)")
+
+write_xlsx(measureNAs, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
 ```
 
 AA_C race/eth, gender, age group sumstats
