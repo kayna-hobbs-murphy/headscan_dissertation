@@ -159,3 +159,30 @@ flextable(cor_icc_nas) %>%
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 ```
 
+choose between AA_C, ProA_L, and ProA_C
+
+```{r}
+first_set_compare <- slice(.data = cor_icc_nas, c(1, 8, 9))
+first_set_compare <- select(.data = first_set_compare, c(1,8,9,29,30,31,32,33,34))
+
+#Size 12 Table TNR
+flextable(first_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("AA_C, ProA_L, and ProA_C Comparison") #%>% 
+  #set_header_labels(values = list(measure_name = "Measurement Location",
+                                  #measureNAprops = "Proportion of NA values",
+                                  #measureNAsums = "Count of NA values"))
+
+#Autofit Width Table TNR
+flextable(first_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("AA_C, ProA_L, and ProA_C Comparison") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+
+
+
+```
+
