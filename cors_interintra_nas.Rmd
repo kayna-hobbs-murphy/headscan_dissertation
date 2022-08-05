@@ -19,19 +19,143 @@ library(ggcorrplot)
 library(writexl)
 ```
 
+
+```{r table function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
+
+
 ```{r loading data}
 correlation_data_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\correlation_data_full.xlsx")
 
 measureNAs<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
 
 questionable_measures<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\questionable_measures.xlsx")
+
+isabel_intra<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\isabel_intra.xlsx")
+
+kayna_intra<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\kayna_intra.xlsx")
+
+chandler_intra<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chandler_intra.xlsx")
+
+jared_intra<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\jared_intra.xlsx")
+
+interRR<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\interRR.xlsx")
+```
+
+
+
+```{r}
+measureNAs<-measureNAs[-3]
+
+correlation_data_full <- correlation_data_full %>% 
+  rename(measure_name = "term")
+
+isabel_intra <- isabel_intra %>% 
+  rename(measure_name = "measure",
+         coderA_intra_icc = "icc_value")
+
+isabel_intra<-isabel_intra[-1]
+
+
+kayna_intra <- kayna_intra %>% 
+  rename(measure_name = "measure",
+         coderB_intra_icc = "icc_value")
+
+kayna_intra<-kayna_intra[-1]
+
+
+chandler_intra <- chandler_intra %>% 
+  rename(measure_name = "measure",
+         coderC_intra_icc = "icc_value")
+
+chandler_intra<-chandler_intra[-1]
+
+
+jared_intra <- jared_intra %>% 
+  rename(measure_name = "measure",
+         coderD_intra_icc = "icc_value")
+
+jared_intra<-jared_intra[-1]
+
+
+interRR <- interRR %>% 
+  rename(measure_name = "measure")
 ```
 
 
 ```{r}
-correlation_data_full <- correlation_data_full %>% 
-  rename(measure_name = "term")
+cor_icc_nas <- full_join(correlation_data_full, measureNAs, by = "measure_name")
+cor_icc_nas <- full_join(cor_icc_nas, isabel_intra, by = "measure_name")
+cor_icc_nas <- full_join(cor_icc_nas, kayna_intra, by = "measure_name")
+cor_icc_nas <- full_join(cor_icc_nas, chandler_intra, by = "measure_name")
+cor_icc_nas <- full_join(cor_icc_nas, jared_intra, by = "measure_name")
+cor_icc_nas <- full_join(cor_icc_nas, interRR, by = "measure_name")
+```
 
-corr_nas <- full_join(correlation_data_full, measureNAs, by = "measure_name")
+
+```{r}
+cor_icc_nas <- cor_icc_nas %>% 
+  rename(cor_AA_C = "AA_C",
+         cor_BGl_C = "BGl_C",
+         cor_BiW_L = "BiW_L",
+         cor_BiW_C = "BiW_C",
+         cor_ChCh_C = "ChCh_C",
+         cor_GoSub_C = "GoSub_C",
+         cor_NRB_L = "NRB_L",
+         cor_ProA_L = "ProA_L",
+         cor_ProA_C = "ProA_C",
+         cor_ProS_L = "ProS_L",
+         cor_ProS_C = "ProS_C",
+         cor_SelP_L = "SelP_L",
+         cor_SelP_C = "SelP_C",
+         cor_SelDH_C = "SelDH_C",
+         cor_SelM_L = "SelM_L",
+         cor_SnasM_L = "SnasM_L",
+         cor_SnasM_C = "SnasM_C",
+         cor_SmanM_L = "SmanM_L",
+         cor_SmanM_C = "SmanM_C",
+         cor_TrHO_C = "TrHO_C",
+         cor_TrEJ_C = "TrEJ_C",
+         cor_TrGo_C = "TrGo_C",
+         cor_TrSel_C = "TrSel_C",
+         cor_TrSman_C = "TrSman_C",
+         cor_TrSnas_C = "TrSnas_C",
+         cor_TrTr_C = "TrTr_C",
+         cor_TrTr_L = "TrTr_L")
+```
+
+```{r}
+cor_icc_nas <- cor_icc_nas %>% mutate(across(where(is.numeric), round, digits=4))
+```
+
+
+```{r}
+#Size 12 Table TNR
+flextable(cor_icc_nas) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Values for each Measurement Location") #%>% 
+  #set_header_labels(values = list(measure_name = "Measurement Location",
+                                  #measureNAprops = "Proportion of NA values",
+                                  #measureNAsums = "Count of NA values"))
+
+#Autofit Width Table TNR
+#flextable(cor_icc_nas) %>%
+  #my_ft_theme()%>% 
+  #bold(part = "header") %>% 
+  #set_caption("Values for each Measurement Location") %>% 
+  #fit_to_width(10) 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 ```
 
