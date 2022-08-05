@@ -516,3 +516,7 @@ questionable_measures %>%
          x="Measure Abbreviation")
 ```
 
+```{r writing questionable measures}
+write_xlsx(questionable_measures, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\questionable_measures.xlsx")
+```
+
