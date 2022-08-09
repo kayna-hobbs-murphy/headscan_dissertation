@@ -159,30 +159,335 @@ flextable(cor_icc_nas) %>%
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 ```
 
-choose between AA_C, ProA_L, and ProA_C
+comparing AA_C, ProA_L, and ProA_C
 
 ```{r}
 first_set_compare <- slice(.data = cor_icc_nas, c(1, 8, 9))
-first_set_compare <- select(.data = first_set_compare, c(1,8,9,29,30,31,32,33,34))
+first_set_compare <- select(.data = first_set_compare, c(1,2,9,10,29,30,31,32,33,34))
 
 #Size 12 Table TNR
 flextable(first_set_compare) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("AA_C, ProA_L, and ProA_C Comparison") #%>% 
-  #set_header_labels(values = list(measure_name = "Measurement Location",
-                                  #measureNAprops = "Proportion of NA values",
-                                  #measureNAsums = "Count of NA values"))
+  set_caption("AA_C, ProA_L, & ProA_C Comparison") %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_AA_C = "Correlation w/ AA_C",
+                                  cor_ProA_L = "Correlation w/ ProA_L",
+                                  cor_ProA_C = "Correlation w/ ProA_C",
+                                  measureNAprops = "Proportion of NA values",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
 
 #Autofit Width Table TNR
 flextable(first_set_compare) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("AA_C, ProA_L, and ProA_C Comparison") %>% 
-  fit_to_width(7.5) 
-#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+  set_caption("AA_C, ProA_L, & ProA_C Comparison") %>% 
+  fit_to_width(7.5) %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_AA_C = "Correlation w/ AA_C",
+                                  cor_ProA_L = "Correlation w/ ProA_L",
+                                  cor_ProA_C = "Correlation w/ ProA_C",
+                                  measureNAprops = "Proportion of NA values",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
 
 
 
 ```
 
+comparing BiW_L and BiW_C
+
+```{r}
+second_set_compare <- slice(.data = cor_icc_nas, c(3, 4))
+second_set_compare <- select(.data = second_set_compare, c(1,4,5,29,30,31,32,33,34))
+
+#Size 12 Table TNR
+flextable(second_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("BiW_C & BiW_L Comparison") %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_BiW_C = "Correlation with BiW_C",
+                                  cor_BiW_L = "Correlation with BiW_L",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+#Autofit Width Table TNR
+flextable(second_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("BiW_C & BiW_L Comparison") %>% 
+  fit_to_width(7.5) %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_BiW_C = "Correlation with BiW_C",
+                                  cor_BiW_L = "Correlation with BiW_L",
+                                  measureNAprops = "Proportion of NA values",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+
+
+```
+
+comparing SnasM_L, SnasM_C, SelM_L
+
+```{r}
+third_set_compare <- slice(.data = cor_icc_nas, c(15, 16, 19))
+third_set_compare <- select(.data = third_set_compare, c(1,16,17,20,29, 30,31,32,33,34))
+
+#Size 12 Table TNR
+flextable(third_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SnasM_L, SnasM_C, & SelM_L Comparison") %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_SnasM_L = "Correlation w/ SnasM_L",
+                                  cor_SnasM_C = "Correlation w/ SnasM_C",
+                                  cor_SelM_L = "Correlation w/ SelM_L",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+#Autofit Width Table TNR
+flextable(third_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SnasM_L, SnasM_C, & SelM_L Comparison") %>% 
+  fit_to_width(7.5) %>% 
+  autofit() %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_SnasM_L = "Correlation w/ SnasM_L",
+                                  cor_SnasM_C = "Correlation w/ SnasM_C",
+                                  cor_SelM_L = "Correlation w/ SelM_L",
+                                  measureNAprops = "Proportion of NA values",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+
+
+```
+
+
+TrSel_C, TrTr_C, TrTr_L, TrSnas_C
+
+```{r}
+fourth_set_compare <- slice(.data = cor_icc_nas, c(23, 25, 26, 27))
+fourth_set_compare <- select(.data = fourth_set_compare, c(1,24,26,27,28,29,30,31,32,33,34))
+
+#Size 12 Table TNR
+flextable(fourth_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrSel_C, TrSnas_C, TrTr_C, & TrTr_L Comparison") %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_TrSel_C = "Correlation w/ TrSel_C",
+                                  cor_TrTr_C = "Correlation w/ TrTr_C",
+                                  cor_TrTr_L = "Correlation w/ TrTr_L",
+                                  cor_TrSnas_C = "Correlation w/ TrSnas_C",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+#Autofit Width Table TNR
+flextable(fourth_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrSel_C, TrSnas_C, TrTr_C, & TrTr_L Comparison") %>% 
+  fit_to_width(7.5) %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_TrSel_C = "Correlation w/ TrSel_C",
+                                  cor_TrTr_C = "Correlation w/ TrTr_C",
+                                  cor_TrTr_L = "Correlation w/ TrTr_L",
+                                  cor_TrSnas_C = "Correlation w/ TrSnas_C",
+                                  measureNAprops = "Proportion of NA values",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+
+
+```
+
+GoSub_C and TrSman_C
+```{r}
+fifth_set_compare <- slice(.data = cor_icc_nas, c(6,24))
+fifth_set_compare <- select(.data = fifth_set_compare, c(1,7,25,29,30,31,32,33,34))
+
+#Size 12 Table TNR
+flextable(fifth_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrSel_C, TrSnas_C, TrTr_C, & TrTr_L Comparison") %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_GoSub_C = "Correlation w/ GoSub_C",
+                                  cor_TrSman_C = "Correlation w/ TrSman_C",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+#Autofit Width Table TNR
+flextable(fifth_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrSel_C, TrSnas_C, TrTr_C, & TrTr_L Comparison") %>% 
+  fit_to_width(7.5) %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_GoSub_C = "Correlation w/ GoSub_C",
+                                  cor_TrSman_C = "Correlation w/ TrSman_C",
+                                  measureNAprops = "Proportion of NA values",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+
+
+```
+
+
+
+SelP_L and SelP_C
+```{r}
+sixth_set_compare <- slice(.data = cor_icc_nas, c(12,13))
+sixth_set_compare <- select(.data = sixth_set_compare, c(1,13,14,29,30,31,32,33,34))
+
+#Size 12 Table TNR
+flextable(sixth_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SelP_L & SelP_C Comparison") %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_SelP_L = "Correlation w/ SelP_L",
+                                  cor_SelP_C = "Correlation w/ SelP_C",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+#Autofit Width Table TNR
+flextable(sixth_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SelP_L & SelP_C Comparison") %>% 
+  fit_to_width(7.5) %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_SelP_L = "Correlation w/ SelP_L",
+                                  cor_SelP_C = "Correlation w/ SelP_C",
+                                  measureNAprops = "Proportion of NA values",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+
+
+```
+
+
+
+
+ProS_C and ProS_L
+
+```{r}
+seventh_set_compare <- slice(.data = cor_icc_nas, c(10,11))
+seventh_set_compare <- select(.data = seventh_set_compare, c(1,11,12,29,30,31,32,33,34))
+
+#Size 12 Table TNR
+flextable(seventh_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("ProS_C & ProS_L Comparison") %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_ProS_C = "Correlation w/ ProS_C",
+                                  cor_ProS_L = "Correlation w/ ProS_L",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+#Autofit Width Table TNR
+flextable(seventh_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("ProS_C & ProS_L Comparison") %>% 
+  fit_to_width(7.5) %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_ProS_C = "Correlation w/ ProS_C",
+                                  cor_ProS_L = "Correlation w/ ProS_L",
+                                  measureNAprops = "Proportion of NA values",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+
+```
+
+SmanM_C and SmanM_L
+
+
+```{r}
+eighth_set_compare <- slice(.data = cor_icc_nas, c(17,18))
+eighth_set_compare <- select(.data = eighth_set_compare, c(1,18,19,29,30,31,32,33,34))
+
+#Size 12 Table TNR
+flextable(eighth_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SmanM_C & SmanM_L Comparison") %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_SmanM_C = "Correlation w/ SmanM_C",
+                                  cor_SmanM_L = "Correlation w/ SmanM_L",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+#Autofit Width Table TNR
+flextable(eighth_set_compare) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SmanM_C & SmanM_L Comparison") %>% 
+  fit_to_width(7.5) %>% 
+  set_header_labels(values = list(measure_name = "Measurement",
+                                  cor_SmanM_C = "Correlation w/ SmanM_C",
+                                  cor_SmanM_L = "Correlation w/ SmanM_L",
+                                  measureNAprops = "Proportion of NA values",
+                                  coderA_intra_icc = "IntraRR ICC for Coder A",
+                                  coderB_intra_icc = "IntraRR ICC for Coder B",
+                                  coderC_intra_icc = "IntraRR ICC for Coder C",
+                                  coderD_intra_icc = "IntraRR ICC for Coder D",
+                                  inter_icc = "InterRR for all coders"))
+
+
+```
