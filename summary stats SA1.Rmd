@@ -44,7 +44,7 @@ headscan_full$race_eth <- factor(headscan_full$race_eth, levels = c("white", "Bl
 str(headscan_full)
 ```
 
-```{r HTML-table-format}
+```{r}
 #HTML Table format    
 #AACrace_sumstats %>% 
   #kbl(caption = "Alare to Alare Contour SumStats by Race/Ethnicity") %>% 
@@ -78,6 +78,7 @@ flextable(measureNAs) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("NA values for each Measurement Location") %>% 
+  autofit() %>% 
   set_header_labels(values = list(measure_name = "Measurement Location",
                                   measureNAprops = "Proportion of NA values",
                                   measureNAsums = "Count of NA values"))
@@ -90,7 +91,9 @@ flextable(measureNAs) %>%
   #labs(title="Missing Values by Measurement Location",
        #y="Count of Missing Values",
        #x="Measure Abbreviation")
+```
 
+```{r na-measure-count, fig.height=6, fig.width=8}
 #bar chart with counts
 ggplot(data=measureNAs, aes(x=measure_name, y=measureNAsums))+
   geom_bar(stat= "identity", color= "black", fill = "white")+
@@ -99,7 +102,9 @@ ggplot(data=measureNAs, aes(x=measure_name, y=measureNAsums))+
   labs(title="Missing Values by Measurement Location (Count)",
        y="Count of Missing Values",
        x="Measure Abbreviation (see Appendix B)")
+```
 
+```{r na-measure-prop, fig.height=6, fig.width=8}
 #bar chart with proportions
 ggplot(data=measureNAs, aes(x=measure_name, y=measureNAprops))+
   geom_bar(stat= "identity", color= "black", fill = "white")+
