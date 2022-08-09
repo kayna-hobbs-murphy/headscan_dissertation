@@ -7,6 +7,8 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir= normalizePath('..'))
+knitr::opts_chunk$set(error = FALSE)
 ```
 
 ```{r packages}
@@ -42,14 +44,14 @@ headscan_full$race_eth <- factor(headscan_full$race_eth, levels = c("white", "Bl
 str(headscan_full)
 ```
 
-```{r HTML table format}
+```{r HTML-table-format}
 #HTML Table format    
 #AACrace_sumstats %>% 
   #kbl(caption = "Alare to Alare Contour SumStats by Race/Ethnicity") %>% 
   #kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 ```
 
-```{r exploring NA values}
+```{r exploring-missing-values}
 #exploring NA values for measurements
 measureNAsums <- colSums(is.na(headscan_full))
 
@@ -112,7 +114,7 @@ write_xlsx(measureNAs, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissert
 
 AA_C race/eth, gender, age group sumstats
 
-```{r AA_C histogram}
+```{r AA_C-histogram}
 #histogram of all AA_C values
 ggplot(data=headscan_full, aes(x=AA_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -123,7 +125,7 @@ ggplot(data=headscan_full, aes(x=AA_C))+
 ```
 
 
-```{r AA_C race_eth}
+```{r AA_C-race_eth}
 #AA_C race_eth sumstats
 AA_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -182,7 +184,7 @@ ggplot(data=headscan_full, aes(y=AA_C, x=race_eth))+
        x="Race/Ethnicity")
 ```
 
-```{r AA_C gender}
+```{r AA_C-gender}
 #AA_C gender sumstats
 AA_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -240,7 +242,7 @@ ggplot(data=headscan_full, aes(y=AA_C, x=gender))+
        x="Gender")
 ```
 
-```{r AA_C age group}
+```{r AA_C-agegroup}
 #AA_C age group sumstats
 AA_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -302,7 +304,7 @@ ggplot(data=headscan_full, aes(y=AA_C, x=age_group))+
 
 BGl_C  race/eth, gender, age group sumstats
 
-```{r BGl_C histogram}
+```{r BGl_C-histogram}
 #histogram of all BGl_C values
 ggplot(data=headscan_full, aes(x=BGl_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -313,7 +315,7 @@ ggplot(data=headscan_full, aes(x=BGl_C))+
 ```
 
 
-```{r BGl_C race/eth}
+```{r BGl_C-race/eth}
 #BGl_C race/eth sumstats
 BGl_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -372,7 +374,7 @@ ggplot(data=headscan_full, aes(y=BGl_C, x=race_eth))+
        x="Race/Ethnicity")
 ```
 
-```{r BGl_C gender}
+```{r BGl_C-gender}
 #BGl_C gender sumstats
 BGl_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -431,7 +433,7 @@ ggplot(data=headscan_full, aes(y=BGl_C, x=gender))+
 
 ```
 
-```{r BGl_C age group}
+```{r BGl_C-agegroup}
 #BGl_C age group sumstats
 BGl_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -495,7 +497,7 @@ ggplot(data=headscan_full, aes(y=BGl_C, x=age_group))+
 
 BiW_L  
 
-```{r BiW_L histogram}
+```{r BiW_L-histogram}
 #histogram of all BiW_L values
 ggplot(data=headscan_full, aes(x=BiW_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -506,7 +508,7 @@ ggplot(data=headscan_full, aes(x=BiW_L))+
 ```
 
 
-```{r BiW_L race/eth}
+```{r BiW_L-race/eth}
 #BiW_L race/eth sumstats
 BiW_Lrace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
