@@ -568,7 +568,7 @@ ggplot(data=headscan_full, aes(y=BiW_L, x=race_eth))+
 
 ```
 
-```{r BiW_L gender}
+```{r BiW_L-gender}
 #BiW_L gender sumstats
 BiW_Lgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -627,7 +627,7 @@ ggplot(data=headscan_full, aes(y=BiW_L, x=gender))+
 
 ```
 
-```{r BiW_L age group}
+```{r BiW_L-agegroup}
 #BiW_L age group sumstats
 BiW_Lage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -691,7 +691,7 @@ ggplot(data=headscan_full, aes(y=BiW_L, x=age_group))+
 
 BiW_C  
 
-```{r BiW_C histogram}
+```{r BiW_C-histogram}
 #histogram of all BiW_C values
 ggplot(data=headscan_full, aes(x=BiW_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -703,7 +703,7 @@ ggplot(data=headscan_full, aes(x=BiW_C))+
 ```
 
 
-```{r BiW_C race/eth}
+```{r BiW_C-race/eth}
 #BiW_C race/eth sumstats
 BiW_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -763,7 +763,7 @@ ggplot(data=headscan_full, aes(y=BiW_C, x=race_eth))+
 
 ```
 
-```{r BiW_C gender}
+```{r BiW_C-gender}
 #BiW_C gender sumstats
 BiW_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -822,7 +822,7 @@ ggplot(data=headscan_full, aes(y=BiW_C, x=gender))+
 
 ```
 
-```{r BiW_C age group}
+```{r BiW_C-agegroup}
 #BiW_C age group sumstats
 BiW_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -885,7 +885,7 @@ ggplot(data=headscan_full, aes(y=BiW_C, x=age_group))+
 
 ChCh_C  
 
-```{r ChCh_C histogram}
+```{r ChCh_C-histogram}
 #histogram of all ChCh_C values
 ggplot(data=headscan_full, aes(x=ChCh_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -896,7 +896,7 @@ ggplot(data=headscan_full, aes(x=ChCh_C))+
 ```
 
 
-```{r ChCh_C race/eth}
+```{r ChCh_C-race/eth}
 #ChCh_C race/eth sumstats
 ChCh_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -956,7 +956,7 @@ ggplot(data=headscan_full, aes(y=ChCh_C, x=race_eth))+
 
 ```
 
-```{r ChCh_C gender}
+```{r ChCh_C-gender}
 #ChCh_C gender sumstats
 ChCh_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -1015,7 +1015,7 @@ ggplot(data=headscan_full, aes(y=ChCh_C, x=gender))+
 
 ```
 
-```{r ChCh_C age group}
+```{r ChCh_C-agegroup}
 #ChCh_C age group sumstats
 ChCh_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -1078,7 +1078,7 @@ ggplot(data=headscan_full, aes(y=ChCh_C, x=age_group))+
 
 GoSub_C WITHOUT Outlier Removed!!!!
 
-```{r GoSub_C histogram w/ outlier}
+```{r GoSub_C-histogram-w/-outlier}
 #histogram of all GoSub_C values
 ggplot(data=headscan_full, aes(x=GoSub_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -1152,7 +1152,7 @@ ggplot(data=headscan_full, aes(y=GoSub_C, x=race_eth))+
 
 ```
 
-```{r GoSub_C gender w/ outlier}
+```{r GoSub_C-gender-w/-outlier}
 #GoSub_C gender sumstats
 GoSub_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -1213,7 +1213,7 @@ ggplot(data=headscan_full, aes(y=GoSub_C, x=gender))+
 
 ```
 
-```{r GoSub_C age group w/ outlier}
+```{r GoSub_C-age-group-w/-outlier}
 #GoSub_C age group sumstats
 GoSub_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -1280,7 +1280,7 @@ ggplot(data=headscan_full, aes(y=GoSub_C, x=age_group))+
 
 GoSub_C WITH Outlier Removed!!!!
 
-```{r remove GoSub_C outlier}
+```{r remove-GoSub_C-outlier}
 #REMOVING OUTLIER GoSubC
 
 max(headscan_full$GoSub_C, na.rm = TRUE)
@@ -1293,7 +1293,7 @@ GoSub_no_out <- headscan_full %>% mutate(GoSub_C = replace(GoSub_C, GoSub_C>40, 
 ```
 
 
-```{r GoSub_C histogram}
+```{r GoSub_C-histogram}
 #histogram of all GoSub_C values
 ggplot(data=GoSub_no_out, aes(x=GoSub_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -1304,7 +1304,7 @@ ggplot(data=GoSub_no_out, aes(x=GoSub_C))+
 ```
 
 
-```{r GoSub_C race/eth}
+```{r GoSub_C-race/eth}
 #GoSub_C race/eth sumstats
 GoSub_Crace_sumstats1 <- GoSub_no_out %>% 
   group_by(race_eth) %>% 
@@ -1364,7 +1364,7 @@ ggplot(data=GoSub_no_out, aes(y=GoSub_C, x=race_eth))+
 
 ```
 
-```{r GoSub_C gender}
+```{r GoSub_C-gender}
 #GoSub_C gender sumstats
 GoSub_Cgender_sumstats1 <- GoSub_no_out %>% 
   group_by(gender) %>% 
@@ -1423,7 +1423,7 @@ ggplot(data=GoSub_no_out, aes(y=GoSub_C, x=gender))+
 
 ```
 
-```{r GoSub_C age group}
+```{r GoSub_C-agegroup}
 #GoSub_C age group sumstats
 GoSub_Cage_sumstats1 <- GoSub_no_out %>% 
   group_by(age_group) %>% 
@@ -1490,7 +1490,7 @@ NRB_L WIHTOUT outlier removed
 
 
 
-```{r NRB_L histogram w/ outlier}
+```{r NRB_L-histogram-w/-outlier}
 #histogram of all NRB_L values
 ggplot(data=headscan_full, aes(x=NRB_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -1502,7 +1502,7 @@ ggplot(data=headscan_full, aes(x=NRB_L))+
 ```
 
 
-```{r NRB_L race/eth w/ outlier}
+```{r NRB_L-race/eth-w/-outlier}
 #NRB_L race/eth sumstats
 NRB_Lrace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -1564,7 +1564,7 @@ ggplot(data=headscan_full, aes(y=NRB_L, x=race_eth))+
 
 ```
 
-```{r NRB_L gender w/ outlier}
+```{r NRB_L-gender-w/-outlier}
 #NRB_L gender sumstats
 NRB_Lgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -1625,7 +1625,7 @@ ggplot(data=headscan_full, aes(y=NRB_L, x=gender))+
 
 ```
 
-```{r NRB_L age group w/ outlier}
+```{r NRB_L-agegroup-w/-outlier}
 #NRB_L age group sumstats
 NRB_Lage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -1691,7 +1691,7 @@ ggplot(data=headscan_full, aes(y=NRB_L, x=age_group))+
 
 NRB_L WITH Outlier removed
 
-```{r NRB_L removing outlier}
+```{r NRB_L-removing-outlier}
 #REMOVING OUTLIER NRB_L
 
 max(headscan_full$NRB_L, na.rm = TRUE)
@@ -1701,7 +1701,7 @@ max(headscan_full$NRB_L, na.rm = TRUE)
 NRB_L_no_out <- headscan_full %>% mutate(NRB_L = replace(NRB_L, NRB_L>7, NA))
 ```
 
-```{r NRB_L histogram}
+```{r NRB_L-histogram}
 #histogram of all NRB_L values
 ggplot(data=NRB_L_no_out, aes(x=NRB_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -1712,7 +1712,7 @@ ggplot(data=NRB_L_no_out, aes(x=NRB_L))+
 ```
 
 
-```{r NRB_L race/eth}
+```{r NRB_L-race/eth}
 #NRB_L race/eth sumstats
 NRB_Lrace_sumstats1 <- NRB_L_no_out %>% 
   group_by(race_eth) %>% 
@@ -1772,7 +1772,7 @@ ggplot(data=NRB_L_no_out, aes(y=NRB_L, x=race_eth))+
 
 ```
 
-```{r NRB_L gender}
+```{r NRB_L-gender}
 #NRB_L gender sumstats
 NRB_Lgender_sumstats1 <- NRB_L_no_out %>% 
   group_by(gender) %>% 
@@ -1831,7 +1831,7 @@ ggplot(data=NRB_L_no_out, aes(y=NRB_L, x=gender))+
 
 ```
 
-```{r NRB_L age group}
+```{r NRB_L-agegroup}
 #NRB_L age group sumstats
 NRB_Lage_sumstats1 <- NRB_L_no_out %>% 
   group_by(age_group) %>% 
@@ -1895,7 +1895,7 @@ ggplot(data=NRB_L_no_out, aes(y=NRB_L, x=age_group))+
 
 ProA_L  
 
-```{r ProA_L histogram}
+```{r ProA_L-histogram}
 #histogram of all ProA_L values
 ggplot(data=headscan_full, aes(x=ProA_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -1906,7 +1906,7 @@ ggplot(data=headscan_full, aes(x=ProA_L))+
 ```
 
 
-```{r ProA_L race/eth}
+```{r ProA_L-race/eth}
 #ProA_L race/eth sumstats
 ProA_Lrace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -1966,7 +1966,7 @@ ggplot(data=headscan_full, aes(y=ProA_L, x=race_eth))+
 
 ```
 
-```{r ProA_L gender}
+```{r ProA_L-gender}
 #ProA_L gender sumstats
 ProA_Lgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -2025,7 +2025,7 @@ ggplot(data=headscan_full, aes(y=ProA_L, x=gender))+
 
 ```
 
-```{r ProA_L age group}
+```{r ProA_L-agegroup}
 #ProA_L age group sumstats
 ProA_Lage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -2090,7 +2090,7 @@ ggplot(data=headscan_full, aes(y=ProA_L, x=age_group))+
 
 ProA_C  
 
-```{r ProA_C histogram}
+```{r ProA_C-histogram}
 #histogram of all ProA_C values
 ggplot(data=headscan_full, aes(x=ProA_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -2101,7 +2101,7 @@ ggplot(data=headscan_full, aes(x=ProA_C))+
 ```
 
 
-```{r ProA_C race/eth}
+```{r ProA_C-race/eth}
 #ProA_C race/eth sumstats
 ProA_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -2161,7 +2161,7 @@ ggplot(data=headscan_full, aes(y=ProA_C, x=race_eth))+
 
 ```
 
-```{r ProA_C gender}
+```{r ProA_C-gender}
 #ProA_C gender sumstats
 ProA_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -2220,7 +2220,7 @@ ggplot(data=headscan_full, aes(y=ProA_C, x=gender))+
 
 ```
 
-```{r ProA_C age group}
+```{r ProA_C-agegroup}
 #ProA_C age group sumstats
 ProA_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -2284,7 +2284,7 @@ ggplot(data=headscan_full, aes(y=ProA_C, x=age_group))+
 
 ProS_L  
 
-```{r ProS_L histogram}
+```{r ProS_L-histogram}
 #histogram of all ProS_L values
 ggplot(data=headscan_full, aes(x=ProS_L))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
@@ -2295,7 +2295,7 @@ ggplot(data=headscan_full, aes(x=ProS_L))+
 ```
 
 
-```{r ProS_L race/eth}
+```{r ProS_L-race/eth}
 #ProS_L race/eth sumstats
 ProS_Lrace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -2355,7 +2355,7 @@ ggplot(data=headscan_full, aes(y=ProS_L, x=race_eth))+
 
 ```
 
-```{r ProS_L gender}
+```{r ProS_L-gender}
 #ProS_L gender sumstats
 ProS_Lgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -2414,7 +2414,7 @@ ggplot(data=headscan_full, aes(y=ProS_L, x=gender))+
 
 ```
 
-```{r ProS_L age group}
+```{r ProS_L-agegroup}
 #ProS_L age group sumstats
 ProS_Lage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -2478,7 +2478,7 @@ ggplot(data=headscan_full, aes(y=ProS_L, x=age_group))+
 
 ProS_C  
 
-```{r ProS_C histogram}
+```{r ProS_C-histogram}
 #histogram of all ProS_C values
 ggplot(data=headscan_full, aes(x=ProS_C))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
@@ -2488,7 +2488,7 @@ ggplot(data=headscan_full, aes(x=ProS_C))+
        x="Pronasale to Subnasale Contour (cm)")
 ```
 
-```{r ProS_C race/eth}
+```{r ProS_C-race/eth}
 #ProS_C race/eth sumstats
 ProS_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -2548,7 +2548,7 @@ ggplot(data=headscan_full, aes(y=ProS_C, x=race_eth))+
 
 ```
 
-```{r ProS_C gender}
+```{r ProS_C-gender}
 #ProS_C gender sumstats
 ProS_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -2607,7 +2607,7 @@ ggplot(data=headscan_full, aes(y=ProS_C, x=gender))+
 
 ```
 
-```{r ProS_C age group}
+```{r ProS_C-agegroup}
 #ProS_C age group sumstats
 ProS_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -2671,7 +2671,7 @@ ggplot(data=headscan_full, aes(y=ProS_C, x=age_group))+
 
 SelP_L  
 
-```{r SelP_L histogram}
+```{r SelP_L-histogram}
 #histogram of all SelP_L values
 ggplot(data=headscan_full, aes(x=SelP_L))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
@@ -2681,7 +2681,7 @@ ggplot(data=headscan_full, aes(x=SelP_L))+
        x="Sellion to Pronasale Length (cm)")
 ```
 
-```{r SelP_L race/eth}
+```{r SelP_L-race/eth}
 #SelP_L race/eth sumstats
 SelP_Lrace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -2740,7 +2740,7 @@ ggplot(data=headscan_full, aes(y=SelP_L, x=race_eth))+
        x="Race/Ethnicity")
 ```
 
-```{r SelP_L gender}
+```{r SelP_L-gender}
 #SelP_L gender sumstats
 SelP_Lgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -2799,7 +2799,7 @@ ggplot(data=headscan_full, aes(y=SelP_L, x=gender))+
 
 ```
 
-```{r SelP_L age group}
+```{r SelP_L-agegroup}
 #SelP_L age group sumstats
 SelP_Lage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -2863,7 +2863,7 @@ ggplot(data=headscan_full, aes(y=SelP_L, x=age_group))+
 
 SelP_C  
 
-```{r SelP_C histogram}
+```{r SelP_C-histogram}
 #histogram of all SelP_C  values
 ggplot(data=headscan_full, aes(x=SelP_C ))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
@@ -2873,7 +2873,7 @@ ggplot(data=headscan_full, aes(x=SelP_C ))+
        x="Sellion to Pronasale Contour (cm)")
 ```
 
-```{r SelP_C race/eth}
+```{r SelP_C-race/eth}
 #SelP_C race/eth sumstats
 SelP_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -2932,7 +2932,7 @@ ggplot(data=headscan_full, aes(y=SelP_C, x=race_eth))+
        x="Race/Ethnicity")
 ```
 
-```{r SelP_C gender}
+```{r SelP_C-gender}
 #SelP_C gender sumstats
 SelP_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -2990,7 +2990,7 @@ ggplot(data=headscan_full, aes(y=SelP_C, x=gender))+
        x="Gender")
 ```
 
-```{r SelP_C age group}
+```{r SelP_C-agegroup}
 #SelP_C age group sumstats
 SelP_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -3054,7 +3054,7 @@ ggplot(data=headscan_full, aes(y=SelP_C, x=age_group))+
 
 SelDH_C with outliers
 
-```{r SelDH_C histogram w/ outlier}
+```{r SelDH_C-histogram-w/-outlier}
 #histogram of all SelDH_C  values
 ggplot(data=headscan_full, aes(x=SelDH_C ))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
@@ -3065,7 +3065,7 @@ ggplot(data=headscan_full, aes(x=SelDH_C ))+
        x="Sellion to Dorsal Hump Contour (cm)")
 ```
 
-```{r SelDH_C race/eth w/ outlier}
+```{r SelDH_C-race/eth-w/-outlier}
 #SelDH_C race/eth sumstats
 SelDH_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -3126,7 +3126,7 @@ ggplot(data=headscan_full, aes(y=SelDH_C, x=race_eth))+
        x="Race/Ethnicity")
 ```
 
-```{r SelDH_C gender w/ outlier}
+```{r SelDH_C-gender-w/-outlier}
 #SelDH_C gender sumstats
 SelDH_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -3186,7 +3186,7 @@ ggplot(data=headscan_full, aes(y=SelDH_C, x=gender))+
        x="Gender")
 ```
 
-```{r SelDH_C age group w/ outlier}
+```{r SelDH_C-agegroup-w/-outlier}
 #SelDH_C age group sumstats
 SelDH_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -3249,7 +3249,7 @@ ggplot(data=headscan_full, aes(y=SelDH_C, x=age_group))+
 
 
 SelDH_C without outliers
-```{r SelDH_C removing outlier}
+```{r SelDH_C-removing-outlier}
 max(headscan_full$SelDH_C, na.rm = TRUE)
 
 	
@@ -3258,7 +3258,7 @@ max(headscan_full$SelDH_C, na.rm = TRUE)
 SelDH_C_no_out <- headscan_full %>% mutate(SelDH_C = replace(SelDH_C, SelDH_C>4, NA))
 ```
 
-```{r SelDH_C histogram}
+```{r SelDH_C-histogram}
 #histogram of all SelDH_C  values
 ggplot(data=SelDH_C_no_out, aes(x=SelDH_C))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
@@ -3268,7 +3268,7 @@ ggplot(data=SelDH_C_no_out, aes(x=SelDH_C))+
        x="Sellion to Dorsal Hump Contour (cm)")
 ```
 
-```{r SelDH_C race/eth}
+```{r SelDH_C-race/eth}
 #SelDH_C race/eth sumstats
 SelDH_Crace_sumstats1 <- SelDH_C_no_out %>% 
   group_by(race_eth) %>% 
@@ -3327,7 +3327,7 @@ ggplot(data=SelDH_C_no_out, aes(y=SelDH_C, x=race_eth))+
        x="Race/Ethnicity")
 ```
 
-```{r SelDH_C gender}
+```{r SelDH_C-gender}
 #SelDH_C gender sumstats
 SelDH_Cgender_sumstats1 <- SelDH_C_no_out %>% 
   group_by(gender) %>% 
@@ -3385,7 +3385,7 @@ ggplot(data=SelDH_C_no_out, aes(y=SelDH_C, x=gender))+
        x="Gender")
 ```
 
-```{r SelDH_C age group}
+```{r SelDH_C-agegroup}
 #SelDH_C age group sumstats
 SelDH_Cage_sumstats1 <- SelDH_C_no_out %>% 
   group_by(age_group) %>% 
@@ -3448,7 +3448,7 @@ ggplot(data=SelDH_C_no_out, aes(y=SelDH_C, x=age_group))+
 
 SelM_L  
 
-```{r SelM_L histogram}
+```{r SelM_L-histogram}
 #histogram of all SelM_L  values
 ggplot(data=headscan_full, aes(x=SelM_L))+
   geom_bar(stat="bin", bins=22, color= "black", fill = "white")+
@@ -3458,7 +3458,7 @@ ggplot(data=headscan_full, aes(x=SelM_L))+
        x="Sellion to Menton Linear (cm)")
 ```
 
-```{r SelM_L race/eth}
+```{r SelM_L-race/eth}
 #SelM_L race/eth sumstats
 SelM_Lrace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -3517,7 +3517,7 @@ ggplot(data=headscan_full, aes(y=SelM_L, x=race_eth))+
        x="Race/Ethnicity")
 ```
 
-```{r SelM_L gender}
+```{r SelM_L-gender}
 #SelM_L gender sumstats
 SelM_Lgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -3576,7 +3576,7 @@ ggplot(data=headscan_full, aes(y=SelM_L, x=gender))+
 
 ```
 
-```{r SelM_L age group}
+```{r SelM_L-agegroup}
 #SelM_L age group sumstats
 SelM_Lage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -3640,7 +3640,7 @@ ggplot(data=headscan_full, aes(y=SelM_L, x=age_group))+
 
 SnasM_L  
 
-```{r SnasM_L histogram}
+```{r SnasM_L-histogram}
 #histogram of all SnasM_L values
 ggplot(data=headscan_full, aes(x=SnasM_L))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
@@ -3651,7 +3651,7 @@ ggplot(data=headscan_full, aes(x=SnasM_L))+
 ```
 
 
-```{r SnasM_L race/eth}
+```{r SnasM_L-race/eth}
 #SnasM_L race/eth sumstats
 SnasM_Lrace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -3711,7 +3711,7 @@ ggplot(data=headscan_full, aes(y=SnasM_L, x=race_eth))+
 
 ```
 
-```{r SnasM_L gender}
+```{r SnasM_L-gender}
 #SnasM_L gender sumstats
 SnasM_Lgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -3769,7 +3769,7 @@ ggplot(data=headscan_full, aes(y=SnasM_L, x=gender))+
        x="Gender")
 ```
 
-```{r SnasM_L age group}
+```{r SnasM_L-agegroup}
 #SnasM_L age group sumstats
 SnasM_Lage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -3832,7 +3832,7 @@ ggplot(data=headscan_full, aes(y=SnasM_L, x=age_group))+
 
 SnasM_C  without outliers removed
 
-```{r SnasM_C histogram w/ outliers}
+```{r SnasM_C-histogram-w/-outliers}
 #histogram of all SnasM_C values
 ggplot(data=headscan_full, aes(x=SnasM_C))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
@@ -3843,7 +3843,7 @@ ggplot(data=headscan_full, aes(x=SnasM_C))+
        x="Subnasale to Menton Contour (cm)")
 ```
 
-```{r SnasM_C race/eth w/ outliers}
+```{r SnasM_C-race/eth-w/-outliers}
 #SnasM_C race/eth sumstats
 SnasM_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -3905,7 +3905,7 @@ ggplot(data=headscan_full, aes(y=SnasM_C, x=race_eth))+
 
 ```
 
-```{r SnasM_C gender w/ outliers}
+```{r SnasM_C-gender-w/-outliers}
 #SnasM_C gender sumstats
 SnasM_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -3965,7 +3965,7 @@ ggplot(data=headscan_full, aes(y=SnasM_C, x=gender))+
        x="Gender")
 ```
 
-```{r SnasM_C age group w/ outliers}
+```{r SnasM_C-agegroup-w/-outliers}
 #SnasM_C age group sumstats
 SnasM_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -4027,7 +4027,7 @@ ggplot(data=headscan_full, aes(y=SnasM_C, x=age_group))+
 
 SnasM_C  with outlier removed
 
-```{r SnasM_C removing outlier}
+```{r SnasM_C-removing-outlier}
 #REMOVING OUTLIER SnasM_C
 
 max(headscan_full$SnasM_C, na.rm = TRUE)
@@ -4037,7 +4037,7 @@ max(headscan_full$SnasM_C, na.rm = TRUE)
 SnasM_C_no_out <- headscan_full %>% mutate(SnasM_C = replace(SnasM_C, SnasM_C>16, NA))
 ```
 
-```{r SnasM_C histogram}
+```{r SnasM_C-histogram}
 #histogram of all SnasM_C values
 ggplot(data=SnasM_C_no_out, aes(x=SnasM_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -4047,7 +4047,7 @@ ggplot(data=SnasM_C_no_out, aes(x=SnasM_C))+
        x="Subnasale to Menton Contour (cm)")
 ```
 
-```{r SnasM_C race/eth}
+```{r SnasM_C-race/eth}
 #SnasM_C race/eth sumstats
 SnasM_Crace_sumstats1 <- SnasM_C_no_out %>% 
   group_by(race_eth) %>% 
@@ -4107,7 +4107,7 @@ ggplot(data=SnasM_C_no_out, aes(y=SnasM_C, x=race_eth))+
 
 ```
 
-```{r SnasM_C gender}
+```{r SnasM_C-gender}
 #SnasM_C gender sumstats
 SnasM_Cgender_sumstats1 <- SnasM_C_no_out %>% 
   group_by(gender) %>% 
@@ -4165,7 +4165,7 @@ ggplot(data=SnasM_C_no_out, aes(y=SnasM_C, x=gender))+
        x="Gender")
 ```
 
-```{r SnasM_C age group}
+```{r SnasM_C-agegroup}
 #SnasM_C age group sumstats
 SnasM_Cage_sumstats1 <- SnasM_C_no_out %>% 
   group_by(age_group) %>% 
@@ -4225,7 +4225,7 @@ ggplot(data=SnasM_C_no_out, aes(y=SnasM_C, x=age_group))+
 
 TrHO_C  
 
-```{r TrHO_C histogram}
+```{r TrHO_C-histogram}
 #histogram of all TrHO_C values
 ggplot(data=headscan_full, aes(x=TrHO_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -4236,7 +4236,7 @@ ggplot(data=headscan_full, aes(x=TrHO_C))+
 ```
 
 
-```{r TrHO_C race/eth}
+```{r TrHO_C-race/eth}
 #TrHO_C race/eth sumstats
 TrHO_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -4296,7 +4296,7 @@ ggplot(data=headscan_full, aes(y=TrHO_C, x=race_eth))+
 
 ```
 
-```{r TrHO_C gender}
+```{r TrHO_C-gender}
 #TrHO_C gender sumstats
 TrHO_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -4355,7 +4355,7 @@ ggplot(data=headscan_full, aes(y=TrHO_C, x=gender))+
 
 ```
 
-```{r TrHO_C age group}
+```{r TrHO_C-agegroup}
 #TrHO_C age group sumstats
 TrHO_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -4419,7 +4419,7 @@ ggplot(data=headscan_full, aes(y=TrHO_C, x=age_group))+
 
 TrEJ_C  
 
-```{r TrEJ_C histogram}
+```{r TrEJ_C-histogram}
 #histogram of all TrEJ_C values
 ggplot(data=headscan_full, aes(x=TrEJ_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -4430,7 +4430,7 @@ ggplot(data=headscan_full, aes(x=TrEJ_C))+
 ```
 
 
-```{r TrEJ_C race/eth}
+```{r TrEJ_C-race/eth}
 #TrEJ_C race/eth sumstats
 TrEJ_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -4490,7 +4490,7 @@ ggplot(data=headscan_full, aes(y=TrEJ_C, x=race_eth))+
 
 ```
 
-```{r TrEJ_C gender}
+```{r TrEJ_C-gender}
 #TrEJ_C gender sumstats
 TrEJ_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -4549,7 +4549,7 @@ ggplot(data=headscan_full, aes(y=TrEJ_C, x=gender))+
 
 ```
 
-```{r TrEJ_C age group}
+```{r TrEJ_C-agegroup}
 #TrEJ_C age group sumstats
 TrEJ_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -4612,7 +4612,7 @@ ggplot(data=headscan_full, aes(y=TrEJ_C, x=age_group))+
 
 TrGo_C  without outliers removed
 
-```{r TrGo_C histogram w/ outliers}
+```{r TrGo_C-histogram-w/-outliers}
 #histogram of all TrGo_C values
 ggplot(data=headscan_full, aes(x=TrGo_C))+
   geom_bar(stat="bin", bins=30, color= "black", fill = "white")+
@@ -4624,7 +4624,7 @@ ggplot(data=headscan_full, aes(x=TrGo_C))+
 ```
 
 
-```{r TrGo_C race/eth w/ outliers}
+```{r TrGo_C-race/eth-w/-outliers}
 #TrGo_C race/eth sumstats
 TrGo_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -4686,7 +4686,7 @@ ggplot(data=headscan_full, aes(y=TrGo_C, x=race_eth))+
 
 ```
 
-```{r TrGo_C gender w/ outliers}
+```{r TrGo_C-gender-w/-outliers}
 #TrGo_C gender sumstats
 TrGo_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -4747,7 +4747,7 @@ ggplot(data=headscan_full, aes(y=TrGo_C, x=gender))+
 
 ```
 
-```{r TrGo_C age group w/ outliers}
+```{r TrGo_C-agegroup-w/-outliers}
 #TrGo_C age group sumstats
 TrGo_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -4812,7 +4812,7 @@ ggplot(data=headscan_full, aes(y=TrGo_C, x=age_group))+
 
 TrGo_C  with outliers removed
 
-```{r TrGo_C removing outliers}
+```{r TrGo_C-removing-outliers}
 
 max(headscan_full$TrGo_C, na.rm = TRUE)
 
@@ -4821,7 +4821,7 @@ max(headscan_full$TrGo_C, na.rm = TRUE)
 TrGo_C_no_out <- headscan_full %>% mutate(TrGo_C = replace(TrGo_C, TrGo_C>17, NA))
 ```
 
-```{r TrGo_C histogram}
+```{r TrGo_C-histogram}
 #histogram of all TrGo_C values
 ggplot(data=TrGo_C_no_out, aes(x=TrGo_C))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
@@ -4832,7 +4832,7 @@ ggplot(data=TrGo_C_no_out, aes(x=TrGo_C))+
 ```
 
 
-```{r TrGo_C race/eth}
+```{r TrGo_C-race/eth}
 #TrGo_C race/eth sumstats
 TrGo_Crace_sumstats1 <- TrGo_C_no_out %>% 
   group_by(race_eth) %>% 
@@ -4892,7 +4892,7 @@ ggplot(data=TrGo_C_no_out, aes(y=TrGo_C, x=race_eth))+
 
 ```
 
-```{r TrGo_C gender}
+```{r TrGo_C-gender}
 #TrGo_C gender sumstats
 TrGo_Cgender_sumstats1 <- TrGo_C_no_out %>% 
   group_by(gender) %>% 
@@ -4951,7 +4951,7 @@ ggplot(data=TrGo_C_no_out, aes(y=TrGo_C, x=gender))+
 
 ```
 
-```{r TrGo_C age group}
+```{r TrGo_C-agegroup}
 #TrGo_C age group sumstats
 TrGo_Cage_sumstats1 <- TrGo_C_no_out %>% 
   group_by(age_group) %>% 
@@ -5015,7 +5015,7 @@ ggplot(data=TrGo_C_no_out, aes(y=TrGo_C, x=age_group))+
 
 TrSel_C  
 
-```{r TrSel_C histogram}
+```{r TrSel_C-histogram}
 #histogram of all TrSel_C values
 ggplot(data=headscan_full, aes(x=TrSel_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -5026,7 +5026,7 @@ ggplot(data=headscan_full, aes(x=TrSel_C))+
 ```
 
 
-```{r TrSel_C race/eth}
+```{r TrSel_C-race/eth}
 #TrSel_C race/eth sumstats
 TrSel_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -5086,7 +5086,7 @@ ggplot(data=headscan_full, aes(y=TrSel_C, x=race_eth))+
 
 ```
 
-```{r TrSel_C gender}
+```{r TrSel_C-gender}
 #TrSel_C gender sumstats
 TrSel_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -5145,7 +5145,7 @@ ggplot(data=headscan_full, aes(y=TrSel_C, x=gender))+
 
 ```
 
-```{r TrSel_C age group}
+```{r TrSel_C-agegroup}
 #TrSel_C age group sumstats
 TrSel_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -5210,7 +5210,7 @@ ggplot(data=headscan_full, aes(y=TrSel_C, x=age_group))+
 TrSman_C  without outlier removed
 
 
-```{r TrSman_C histogram w/ outlier}
+```{r TrSman_C-histogram-w/-outlier}
 #histogram of all TrSman_C values
 ggplot(data=headscan_full, aes(x=TrSman_C))+
   geom_bar(stat="bin", bins=35, color= "black", fill = "white")+
@@ -5221,7 +5221,7 @@ ggplot(data=headscan_full, aes(x=TrSman_C))+
        x="Tragion to Submandibular Contour (cm)")
 ```
 
-```{r TrSman_C race/eth w/ outlier}
+```{r TrSman_C-race/eth-w/-outlier}
 #TrSman_C race/eth sumstats
 TrSman_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -5283,7 +5283,7 @@ ggplot(data=headscan_full, aes(y=TrSman_C, x=race_eth))+
 
 ```
 
-```{r TrSman_C gender w/ outlier}
+```{r TrSman_C-gender-w/-outlier}
 #TrSman_C gender sumstats
 TrSman_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -5344,7 +5344,7 @@ ggplot(data=headscan_full, aes(y=TrSman_C, x=gender))+
 
 ```
 
-```{r TrSman_C age group w/ outlier}
+```{r TrSman_C-agegroup-w/-outlier}
 #TrSman_C age group sumstats
 TrSman_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -5407,7 +5407,7 @@ ggplot(data=headscan_full, aes(y=TrSman_C, x=age_group))+
 
 TrSman_C  with outlier removed
 
-```{r TrSman_C removing outlier}
+```{r TrSman_C-removing-outlier}
 
 max(headscan_full$TrSman_C, na.rm = TRUE)
 
@@ -5416,7 +5416,7 @@ max(headscan_full$TrSman_C, na.rm = TRUE)
 TrSman_C_no_out <- headscan_full %>% mutate(TrSman_C = replace(TrSman_C, TrSman_C>29, NA))
 ```
 
-```{r TrSman_C histogram}
+```{r TrSman_C-histogram}
 #histogram of all TrSman_C values
 ggplot(data=TrSman_C_no_out, aes(x=TrSman_C))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
@@ -5426,7 +5426,7 @@ ggplot(data=TrSman_C_no_out, aes(x=TrSman_C))+
        x="Tragion to Submandibular Contour (cm)")
 ```
 
-```{r TrSman_C race/eth}
+```{r TrSman_C-race/eth}
 #TrSman_C race/eth sumstats
 TrSman_Crace_sumstats1 <- TrSman_C_no_out %>% 
   group_by(race_eth) %>% 
@@ -5486,7 +5486,7 @@ ggplot(data=TrSman_C_no_out, aes(y=TrSman_C, x=race_eth))+
 
 ```
 
-```{r TrSman_C gender}
+```{r TrSman_C-gender}
 #TrSman_C gender sumstats
 TrSman_Cgender_sumstats1 <- TrSman_C_no_out %>% 
   group_by(gender) %>% 
@@ -5545,7 +5545,7 @@ ggplot(data=TrSman_C_no_out, aes(y=TrSman_C, x=gender))+
 
 ```
 
-```{r TrSman_C age group}
+```{r TrSman_C-agegroup}
 #TrSman_C age group sumstats
 TrSman_Cage_sumstats1 <- TrSman_C_no_out %>% 
   group_by(age_group) %>% 
@@ -5606,7 +5606,7 @@ ggplot(data=TrSman_C_no_out, aes(y=TrSman_C, x=age_group))+
 
 TrSnas_C without outliers removed
 
-```{r TrSnas_C histogram w/ outliers}
+```{r TrSnas_C-histogram-w/-outliers}
 #histogram of all TrSnas_C  values
 ggplot(data=headscan_full, aes(x=TrSnas_C))+
   geom_bar(stat="bin", bins=35, color= "black", fill = "white")+
@@ -5618,7 +5618,7 @@ ggplot(data=headscan_full, aes(x=TrSnas_C))+
 ```
 
 
-```{r TrSnas_C race/eth w/ outliers}
+```{r TrSnas_C-race/eth-w/-outliers}
 #TrSnas_C race/eth sumstats
 TrSnas_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -5680,7 +5680,7 @@ ggplot(data=headscan_full, aes(y=TrSnas_C, x=race_eth))+
 
 ```
 
-```{r TrSnas_C gender w/ outliers}
+```{r TrSnas_C-gender-w/-outliers}
 #TrSnas_C gender sumstats
 TrSnas_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -5741,7 +5741,7 @@ ggplot(data=headscan_full, aes(y=TrSnas_C, x=gender))+
 
 ```
 
-```{r TrSnas_C age group w/ outliers}
+```{r TrSnas_C-agegroup-w/-outliers}
 #TrSnas_C age group sumstats
 TrSnas_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -5804,7 +5804,7 @@ ggplot(data=headscan_full, aes(y=TrSnas_C, x=age_group))+
 ```
 TrSnas_C  with outliers removed
 
-```{r TrSnas_C removing outliers}
+```{r TrSnas_C-removing-outliers}
 
 max(headscan_full$TrSnas_C, na.rm = TRUE)
 
@@ -5814,7 +5814,7 @@ max(headscan_full$TrSnas_C, na.rm = TRUE)
 TrSnas_C_no_out <- headscan_full %>% mutate(TrSnas_C = replace(TrSnas_C, TrSnas_C>30, NA))
 ```
 
-```{r TrSnas_C histogram}
+```{r TrSnas_C-histogram}
 #histogram of all TrSnas_C  values
 ggplot(data=TrSnas_C_no_out, aes(x=TrSnas_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -5825,7 +5825,7 @@ ggplot(data=TrSnas_C_no_out, aes(x=TrSnas_C))+
 ```
 
 
-```{r TrSnas_C race/eth}
+```{r TrSnas_C-race/eth}
 #TrSnas_C race/eth sumstats
 TrSnas_Crace_sumstats1 <- TrSnas_C_no_out %>% 
   group_by(race_eth) %>% 
@@ -5885,7 +5885,7 @@ ggplot(data=TrSnas_C_no_out, aes(y=TrSnas_C, x=race_eth))+
 
 ```
 
-```{r TrSnas_C gender}
+```{r TrSnas_C-gender}
 #TrSnas_C gender sumstats
 TrSnas_Cgender_sumstats1 <- TrSnas_C_no_out %>% 
   group_by(gender) %>% 
@@ -5944,7 +5944,7 @@ ggplot(data=TrSnas_C_no_out, aes(y=TrSnas_C, x=gender))+
 
 ```
 
-```{r TrSnas_C age group}
+```{r TrSnas_C-agegroup}
 #TrSnas_C age group sumstats
 TrSnas_Cage_sumstats1 <- TrSnas_C_no_out %>% 
   group_by(age_group) %>% 
@@ -6009,7 +6009,7 @@ ggplot(data=TrSnas_C_no_out, aes(y=TrSnas_C, x=age_group))+
 
 TrTr_C  
 
-```{r TrTr_C histogram}
+```{r TrTr_C-histogram}
 #histogram of all TrTr_C values
 ggplot(data=headscan_full, aes(x=TrTr_C ))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -6020,7 +6020,7 @@ ggplot(data=headscan_full, aes(x=TrTr_C ))+
 ```
 
 
-```{r TrTr_C race/eth}
+```{r TrTr_C-race/eth}
 #TrTr_C race/eth sumstats
 TrTr_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -6080,7 +6080,7 @@ ggplot(data=headscan_full, aes(y=TrTr_C, x=race_eth))+
 
 ```
 
-```{r TrTr_C gender}
+```{r TrTr_C-gender}
 #TrTr_C gender sumstats
 TrTr_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -6139,7 +6139,7 @@ ggplot(data=headscan_full, aes(y=TrTr_C, x=gender))+
 
 ```
 
-```{r TrTr_C age group}
+```{r TrTr_C-agegroup}
 #TrTr_C age group sumstats
 TrTr_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
@@ -6202,7 +6202,7 @@ ggplot(data=headscan_full, aes(y=TrTr_C, x=age_group))+
 
 TrTr_L  
 
-```{r TrTr_L histogram}
+```{r TrTr_L-histogram}
 #histogram of all TrTr_L  values
 ggplot(data=headscan_full, aes(x=TrTr_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
@@ -6212,7 +6212,7 @@ ggplot(data=headscan_full, aes(x=TrTr_L))+
        x="Tragion to Tragion Linear (cm)")
 ```
 
-```{r TrTr_L race/eth}
+```{r TrTr_L-race/eth}
 #TrTr_L race/eth sumstats
 TrTr_Lrace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
@@ -6271,7 +6271,7 @@ ggplot(data=headscan_full, aes(y=TrTr_L, x=race_eth))+
        x="Race/Ethnicity")
 ```
 
-```{r TrTr_L gender}
+```{r TrTr_L-gender}
 #TrTr_L gender sumstats
 TrTr_Lgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
@@ -6329,7 +6329,7 @@ ggplot(data=headscan_full, aes(y=TrTr_L, x=gender))+
        x="Gender")
 ```
 
-```{r TrTr_L age group}
+```{r TrTr_L-agegroup}
 #TrTr_L age group sumstats
 TrTr_Lage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
