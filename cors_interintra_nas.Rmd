@@ -288,11 +288,11 @@ flextable(third_set_compare) %>%
 ```
 
 
-TrSel_C, TrTr_C, TrTr_L, TrSnas_C
+TrSel_C, TrTr_C, TrTr_L, TrSnas_C, TrSman_C
 
 ```{r}
-fourth_set_compare <- slice(.data = cor_icc_nas, c(23, 25, 26, 27))
-fourth_set_compare <- select(.data = fourth_set_compare, c(1,24,26,27,28,29,30,31,32,33,34))
+fourth_set_compare <- slice(.data = cor_icc_nas, c(23, 24, 25, 26, 27))
+fourth_set_compare <- select(.data = fourth_set_compare, c(1,24,25,26,27,28,29,30,31,32,33,34))
 
 #Size 12 Table TNR
 flextable(fourth_set_compare) %>%
@@ -304,6 +304,7 @@ flextable(fourth_set_compare) %>%
                                   cor_TrTr_C = "Correlation w/ TrTr_C",
                                   cor_TrTr_L = "Correlation w/ TrTr_L",
                                   cor_TrSnas_C = "Correlation w/ TrSnas_C",
+                                  cor_TrSman_C = "Correlation w/ TrSman_C",
                                   coderA_intra_icc = "IntraRR ICC for Coder A",
                                   coderB_intra_icc = "IntraRR ICC for Coder B",
                                   coderC_intra_icc = "IntraRR ICC for Coder C",
@@ -321,6 +322,7 @@ flextable(fourth_set_compare) %>%
                                   cor_TrTr_C = "Correlation w/ TrTr_C",
                                   cor_TrTr_L = "Correlation w/ TrTr_L",
                                   cor_TrSnas_C = "Correlation w/ TrSnas_C",
+                                  cor_TrSman_C = "Correlation w/ TrSman_C",
                                   measureNAprops = "Proportion of NA values",
                                   coderA_intra_icc = "IntraRR ICC for Coder A",
                                   coderB_intra_icc = "IntraRR ICC for Coder B",
