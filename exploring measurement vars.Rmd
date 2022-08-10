@@ -68,6 +68,13 @@ ggcorrplot(correlation_data_round, hc.order=FALSE,
 ```
 
 
+```{r, fig.width=11, fig.height=11}
+library(PerformanceAnalytics)
+
+chart.Correlation(headscan_num, histogram=FALSE, method="pearson")
+```
+
+
 ```{r table-function}
 #times new roman tables
 my_ft_theme <- function(ft, ...) {
@@ -121,6 +128,8 @@ flextable(correlation_data1) %>%
                                   correlation = "Correlation")) %>% 
   autofit()
 ```
+
+
 ```{r all-correlations-plot, fig.height=45, fig.width=5}
 correlation_data1 %>%
   mutate(both_measures=fct_reorder(both_measures, correlation)) %>% 

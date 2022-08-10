@@ -153,11 +153,11 @@ flextable(cor_icc_nas) %>%
                                   #measureNAsums = "Count of NA values"))
 
 #Autofit Width Table TNR
-#flextable(cor_icc_nas) %>%
-  #my_ft_theme()%>% 
-  #bold(part = "header") %>% 
-  #set_caption("Values for each Measurement Location") %>% 
-  #fit_to_width(10) 
+flextable(cor_icc_nas) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Values for each Measurement Location") %>% 
+  fit_to_width(10)
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 ```
 
