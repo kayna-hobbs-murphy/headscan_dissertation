@@ -8,8 +8,22 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(tidyverse)
+library(flextable)
+library(readxl)
+library(extrafont)
+library(forcats)
+library(writexl)
+```
+
+
+```{r}
 #remove identifiers and demographic data
-PCAdata <- headscan[-c(1, 29, 30, 31)]
+
+headscan_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
+str(headscan_full)
+
+PCAdata <- headscan_full[-c(1, 29, 30, 31)]
 
 
 str(PCAdata)

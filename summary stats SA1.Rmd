@@ -161,6 +161,36 @@ ggplot(data=headscan_full, aes(x=AA_C))+
   labs(title="Alare to Alare Contour Measurement Distribution",
        y="Frequency",
        x="Alare to Alare Contour (mm)")
+
+AA_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(AA_C, na.rm = TRUE),
+            max = max(AA_C, na.rm = TRUE),
+            mean = mean(AA_C, na.rm = TRUE),
+            mdn = median(AA_C, na.rm = TRUE),
+            sd = sd(AA_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(AA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(AA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(AA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(AA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(AA_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(AA_C))) 
+
+#Size 12 Table TNR
+flextable(AA_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Alare to Alare Contour SumStats") 
+#%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(AA_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Alare to Alare Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 ```
 
 
