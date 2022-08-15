@@ -381,6 +381,36 @@ ggplot(data=headscan_full, aes(x=BGl_C))+
   labs(title="Back of Head to Glabella Contour Measurement Distribution",
        y="Frequency",
        x="Back of Head to Glabella Contour (mm)")
+
+BGl_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(BGl_C, na.rm = TRUE),
+            max = max(BGl_C, na.rm = TRUE),
+            mean = mean(BGl_C, na.rm = TRUE),
+            mdn = median(BGl_C, na.rm = TRUE),
+            sd = sd(BGl_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(BGl_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BGl_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BGl_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BGl_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BGl_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(BGl_C))) 
+
+#Size 12 Table TNR
+flextable(BGl_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Back of Head to Glabella Contour SumStats") 
+#%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(BGl_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Back of Head to Glabella Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 ```
 
 
@@ -574,6 +604,36 @@ ggplot(data=headscan_full, aes(x=BiW_L))+
   labs(title="Bizygomatic Width Linear Measurement Distribution",
        y="Frequency",
        x="Bizygomatic Width Linear (mm)")
+
+BiW_Lsumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(BiW_L, na.rm = TRUE),
+            max = max(BiW_L, na.rm = TRUE),
+            mean = mean(BiW_L, na.rm = TRUE),
+            mdn = median(BiW_L, na.rm = TRUE),
+            sd = sd(BiW_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(BiW_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(BiW_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(BiW_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(BiW_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(BiW_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(BiW_L))) 
+
+#Size 12 Table TNR
+flextable(BiW_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Bizygomatic Width Linear SumStats") 
+#%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(BiW_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Bizygomatic Width Linear SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 ```
 
 
@@ -769,6 +829,39 @@ ggplot(data=headscan_full, aes(x=BiW_C))+
        y="Frequency",
        x="Bizygomatic Width Contour (mm)")
 
+BiW_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(BiW_C, na.rm = TRUE),
+            max = max(BiW_C, na.rm = TRUE),
+            mean = mean(BiW_C, na.rm = TRUE),
+            mdn = median(BiW_C, na.rm = TRUE),
+            sd = sd(BiW_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(BiW_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BiW_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BiW_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BiW_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(BiW_C))) 
+
+BiW_Csumstats <- BiW_Csumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(BiW_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Bizygomatic Width Contour SumStats") 
+#%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(BiW_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Bizygomatic Width Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 ```
 
 
@@ -962,6 +1055,39 @@ ggplot(data=headscan_full, aes(x=ChCh_C))+
   labs(title="Chellion to Chellion Contour Measurement Distribution",
        y="Frequency",
        x="Chellion to Chellion Contour (mm)")
+
+ChCh_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(ChCh_C, na.rm = TRUE),
+            max = max(ChCh_C, na.rm = TRUE),
+            mean = mean(ChCh_C, na.rm = TRUE),
+            mdn = median(ChCh_C, na.rm = TRUE),
+            sd = sd(ChCh_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(ChCh_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(ChCh_C))) 
+
+
+
+#Size 12 Table TNR
+flextable(ChCh_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Chellion Chellion Contour SumStats") 
+#%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(ChCh_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Chellion Chellion Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
+
 ```
 
 
@@ -1156,6 +1282,38 @@ ggplot(data=headscan_full, aes(x=GoSub_C))+
        subtitle= "without outlier removed",
        y="Frequency",
        x="Gonion to Submandibular Contour (mm)")
+
+GoSub_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(GoSub_C, na.rm = TRUE),
+            max = max(GoSub_C, na.rm = TRUE),
+            mean = mean(GoSub_C, na.rm = TRUE),
+            mdn = median(GoSub_C, na.rm = TRUE),
+            sd = sd(GoSub_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(GoSub_C))) 
+
+
+
+#Size 12 Table TNR
+flextable(GoSub_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats w/o outlier removed") 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(GoSub_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats w/o outlier removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 ```
 
 
@@ -1370,6 +1528,37 @@ ggplot(data=GoSub_no_out, aes(x=GoSub_C))+
   labs(title="Gonion to Submandibular Contour Measurement Distribution",
        y="Frequency",
        x="Gonion to Submandibular Contour (mm)")
+
+GoSub_Crace_sumstats1 <- GoSub_no_out %>% 
+  summarise(n = n(),
+            min = min(GoSub_C, na.rm = TRUE),
+            max = max(GoSub_C, na.rm = TRUE),
+            mean = mean(GoSub_C, na.rm = TRUE),
+            mdn = median(GoSub_C, na.rm = TRUE),
+            sd = sd(GoSub_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(GoSub_C))) 
+
+
+#Size 12 Table TNR
+flextable(GoSub_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats") 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(GoSub_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 ```
 
 
@@ -1568,6 +1757,37 @@ ggplot(data=headscan_full, aes(x=NRB_L))+
        subtitle= "without outlier removed",
        y="Frequency",
        x="Nasal Root Breadth (mm)")
+
+NRB_Lsumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(NRB_L, na.rm = TRUE),
+            max = max(NRB_L, na.rm = TRUE),
+            mean = mean(NRB_L, na.rm = TRUE),
+            mdn = median(NRB_L, na.rm = TRUE),
+            sd = sd(NRB_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(NRB_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(NRB_L))) 
+
+
+#Size 12 Table TNR
+flextable(NRB_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Nasal Root Breadth SumStats w/o outlier removed") 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(NRB_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Nasal Root Breadth SumStats w/o outlier removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 ```
 
 
@@ -1778,6 +1998,37 @@ ggplot(data=NRB_L_no_out, aes(x=NRB_L))+
   labs(title="Nasal Root Breadth Measurement Distribution",
        y="Frequency",
        x="Nasal Root Breadth (mm)")
+
+NRB_Lsumstats1 <- NRB_L_no_out %>% 
+  summarise(n = n(),
+            min = min(NRB_L, na.rm = TRUE),
+            max = max(NRB_L, na.rm = TRUE),
+            mean = mean(NRB_L, na.rm = TRUE),
+            mdn = median(NRB_L, na.rm = TRUE),
+            sd = sd(NRB_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(NRB_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(NRB_L))) 
+
+
+#Size 12 Table TNR
+flextable(NRB_Lsumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Nasal Root Breadth SumStats") 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(NRB_Lsumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Nasal Root Breadth SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 ```
 
 
@@ -1972,6 +2223,37 @@ ggplot(data=headscan_full, aes(x=ProA_L))+
   labs(title="Pronasale to Alare Length Measurement Distribution",
        y="Frequency",
        x="Pronasale Alare Length (mm)")
+
+ProA_Lsumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(ProA_L, na.rm = TRUE),
+            max = max(ProA_L, na.rm = TRUE),
+            mean = mean(ProA_L, na.rm = TRUE),
+            mdn = median(ProA_L, na.rm = TRUE),
+            sd = sd(ProA_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(ProA_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProA_L))) 
+
+
+#Size 12 Table TNR
+flextable(ProA_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale to Alare Length SumStats") 
+#%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(ProA_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale to Alare Length SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 ```
 
 
@@ -2167,6 +2449,38 @@ ggplot(data=headscan_full, aes(x=ProA_C))+
   labs(title="Pronasale to Alare Contour Measurement Distribution",
        y="Frequency",
        x="Pronasale to Alare Contour (mm)")
+
+ProA_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(ProA_C, na.rm = TRUE),
+            max = max(ProA_C, na.rm = TRUE),
+            mean = mean(ProA_C, na.rm = TRUE),
+            mdn = median(ProA_C, na.rm = TRUE),
+            sd = sd(ProA_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(ProA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProA_C))) 
+
+
+
+#Size 12 Table TNR
+flextable(ProA_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale to Alare Contour SumStats") 
+#%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(ProA_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale to Alare Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
 ```
 
 
@@ -2361,6 +2675,37 @@ ggplot(data=headscan_full, aes(x=ProS_L))+
   labs(title="Pronasale to Subnasale Length Measurement Distribution",
        y="Frequency",
        x="Pronasale to Subnasale Length (mm)")
+
+ProS_Lsumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(ProS_L, na.rm = TRUE),
+            max = max(ProS_L, na.rm = TRUE),
+            mean = mean(ProS_L, na.rm = TRUE),
+            mdn = median(AA_C, na.rm = TRUE),
+            sd = sd(ProS_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(ProS_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProS_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProS_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProS_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProS_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProS_L))) 
+
+
+#Size 12 Table TNR
+flextable(ProS_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale to Subnasale Length SumStats") 
+#%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(ProS_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale to Subnasale Length SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 ```
 
 
@@ -2555,6 +2900,37 @@ ggplot(data=headscan_full, aes(x=ProS_C))+
   labs(title="Pronasale to Subnasale Contour Measurement Distribution",
        y="Frequency",
        x="Pronasale to Subnasale Contour (mm)")
+
+ProS_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(ProS_C, na.rm = TRUE),
+            max = max(ProS_C, na.rm = TRUE),
+            mean = mean(ProS_C, na.rm = TRUE),
+            mdn = median(ProS_C, na.rm = TRUE),
+            sd = sd(ProS_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(ProS_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProS_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProS_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProS_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProS_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(ProS_C))) 
+
+
+#Size 12 Table TNR
+flextable(ProS_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale to Subnasale Contour SumStats") 
+#%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(ProS_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Pronasale to Subnasale Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 ```
 
 ```{r ProS_C-raceeth}
@@ -2748,6 +3124,37 @@ ggplot(data=headscan_full, aes(x=SelP_L))+
   labs(title="Sellion to Pronasale Length Measurement Distribution",
        y="Frequency",
        x="Sellion to Pronasale Length (mm)")
+
+SelP_Lsumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(SelP_L, na.rm = TRUE),
+            max = max(SelP_L, na.rm = TRUE),
+            mean = mean(SelP_L, na.rm = TRUE),
+            mdn = median(SelP_L, na.rm = TRUE),
+            sd = sd(SelP_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SelP_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelP_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelP_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelP_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelP_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelP_L))) 
+
+
+#Size 12 Table TNR
+flextable(SelP_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Length SumStats") 
+#%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelP_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Length SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 ```
 
 ```{r SelP_L-raceeth}
@@ -2940,6 +3347,38 @@ ggplot(data=headscan_full, aes(x=SelP_C ))+
   labs(title="Sellion to Pronasale Contour Measurement Distribution",
        y="Frequency",
        x="Sellion to Pronasale Contour (mm)")
+
+#SelP_C race/eth sumstats
+SelP_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(SelP_C, na.rm = TRUE),
+            max = max(SelP_C, na.rm = TRUE),
+            mean = mean(SelP_C, na.rm = TRUE),
+            mdn = median(SelP_C, na.rm = TRUE),
+            sd = sd(SelP_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SelP_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelP_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelP_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelP_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelP_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelP_C))) 
+
+
+#Size 12 Table TNR
+flextable(SelP_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats") 
+#%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelP_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 ```
 
 ```{r SelP_C-raceeth}
@@ -3132,6 +3571,38 @@ ggplot(data=headscan_full, aes(x=SelDH_C ))+
        subtitle = "without outliers removed",
        y="Frequency",
        x="Sellion to Dorsal Hump Contour (mm)")
+
+SelDH_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(SelDH_C, na.rm = TRUE),
+            max = max(SelDH_C, na.rm = TRUE),
+            mean = mean(SelDH_C, na.rm = TRUE),
+            mdn = median(SelDH_C, na.rm = TRUE),
+            sd = sd(SelDH_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SelDH_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelDH_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelDH_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelDH_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelDH_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelDH_C))) 
+
+
+#Size 12 Table TNR
+flextable(SelDH_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats w/o outlier removed") 
+#%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelDH_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats w/o outlier removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+
 ```
 
 ```{r SelDH_C-raceeth-w-outlier}
@@ -3335,6 +3806,37 @@ ggplot(data=SelDH_C_no_out, aes(x=SelDH_C))+
   labs(title="Sellion to Dorsal Hump Contour Measurement Distribution",
        y="Frequency",
        x="Sellion to Dorsal Hump Contour (mm)")
+
+SelDH_Csumstats1 <- SelDH_C_no_out %>% 
+  summarise(n = n(),
+            min = min(SelDH_C, na.rm = TRUE),
+            max = max(SelDH_C, na.rm = TRUE),
+            mean = mean(SelDH_C, na.rm = TRUE),
+            mdn = median(SelDH_C, na.rm = TRUE),
+            sd = sd(SelDH_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SelDH_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelDH_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelDH_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelDH_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelDH_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelDH_C))) 
+
+
+#Size 12 Table TNR
+flextable(SelDH_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats") 
+#%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelDH_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 ```
 
 ```{r SelDH_C-raceeth}
@@ -3525,6 +4027,37 @@ ggplot(data=headscan_full, aes(x=SelM_L))+
   labs(title="Sellion to Menton Linear Measurement Distribution",
        y="Frequency",
        x="Sellion to Menton Linear (mm)")
+
+SelM_Lsumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(SelM_L, na.rm = TRUE),
+            max = max(SelM_L, na.rm = TRUE),
+            mean = mean(SelM_L, na.rm = TRUE),
+            mdn = median(SelM_L, na.rm = TRUE),
+            sd = sd(SelM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SelM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelM_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(SelM_L))) 
+
+
+#Size 12 Table TNR
+flextable(SelM_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Menton Length SumStats") 
+#%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
+
+#Autofit Width Table TNR
+flextable(SelM_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Sellion to Menton Length SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 ```
 
 ```{r SelM_L-raceeth}
@@ -3717,6 +4250,37 @@ ggplot(data=headscan_full, aes(x=SnasM_L))+
   labs(title="Subnasale to Menton Length Measurement Distribution",
        y="Frequency",
        x="Subnasale to Menton Length (mm)")
+
+SnasM_Lsumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(SnasM_L, na.rm = TRUE),
+            max = max(SnasM_L, na.rm = TRUE),
+            mean = mean(SnasM_L, na.rm = TRUE),
+            mdn = median(SnasM_L, na.rm = TRUE),
+            sd = sd(SnasM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SnasM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(SnasM_L))) 
+
+
+#Size 12 Table TNR
+flextable(SnasM_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Length SumStats") 
+#%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SnasM_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Length SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 ```
 
 
@@ -3910,6 +4474,38 @@ ggplot(data=headscan_full, aes(x=SnasM_C))+
        subtitle = "without outlier removed",
        y="Frequency",
        x="Subnasale to Menton Contour (mm)")
+
+SnasM_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(SnasM_C, na.rm = TRUE),
+            max = max(SnasM_C, na.rm = TRUE),
+            mean = mean(SnasM_C, na.rm = TRUE),
+            mdn = median(SnasM_C, na.rm = TRUE),
+            sd = sd(SnasM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SnasM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SnasM_C))) 
+
+
+#Size 12 Table TNR
+flextable(SnasM_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Contour SumStats w/o outlier removed") 
+#%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SnasM_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Contour SumStats w/o outlier removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
+
 ```
 
 ```{r SnasM_C-raceeth-w-outliers}
@@ -4114,6 +4710,37 @@ ggplot(data=SnasM_C_no_out, aes(x=SnasM_C))+
   labs(title="Subnasale to Menton Contour Measurement Distribution",
        y="Frequency",
        x="Subnasale to Menton Contour (mm)")
+
+SnasM_Csumstats1 <- SnasM_C_no_out %>% 
+  summarise(n = n(),
+            min = min(SnasM_C, na.rm = TRUE),
+            max = max(SnasM_C, na.rm = TRUE),
+            mean = mean(SnasM_C, na.rm = TRUE),
+            mdn = median(SnasM_C, na.rm = TRUE),
+            sd = sd(SnasM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SnasM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(SnasM_C))) 
+
+
+#Size 12 Table TNR
+flextable(SnasM_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Contour SumStats") 
+#%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SnasM_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Subnasale to Menton Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 ```
 
 ```{r SnasM_C-raceeth}
@@ -4302,6 +4929,40 @@ ggplot(data=headscan_full, aes(x=TrHO_C))+
   labs(title="Top of Head to Otobasion Contour Measurement Distribution",
        y="Frequency",
        x="Top of Head to Otobasion Contour (mm)")
+
+TrHO_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(TrHO_C, na.rm = TRUE),
+            max = max(TrHO_C, na.rm = TRUE),
+            mean = mean(TrHO_C, na.rm = TRUE),
+            mdn = median(TrHO_C, na.rm = TRUE),
+            sd = sd(TrHO_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrHO_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrHO_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrHO_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrHO_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrHO_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrHO_C))) 
+
+TrHO_Csumstats <- TrHO_Csumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrHO_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Top of Head to Otobasion Contour SumStats") 
+#%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrHO_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Top of Head to Otobasion Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
 ```
 
 
@@ -4496,6 +5157,38 @@ ggplot(data=headscan_full, aes(x=TrEJ_C))+
   labs(title="Tragion to Earlobe Juncture Contour Measurement Distribution",
        y="Frequency",
        x="Tragion to Earlobe Juncture Contour (mm)")
+
+TrEJ_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(TrEJ_C, na.rm = TRUE),
+            max = max(TrEJ_C, na.rm = TRUE),
+            mean = mean(TrEJ_C, na.rm = TRUE),
+            mdn = median(TrEJ_C, na.rm = TRUE),
+            sd = sd(TrEJ_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrEJ_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrEJ_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrEJ_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrEJ_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrEJ_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrEJ_C))) 
+
+
+
+#Size 12 Table TNR
+flextable(TrEJ_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats") 
+#%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrEJ_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 ```
 
 
@@ -4690,6 +5383,40 @@ ggplot(data=headscan_full, aes(x=TrGo_C))+
        subtitle = "without outliers removed",
        y="Frequency",
        x="Tragion to Gonion Contour (mm)")
+
+TrGo_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(TrGo_C, na.rm = TRUE),
+            max = max(TrGo_C, na.rm = TRUE),
+            mean = mean(TrGo_C, na.rm = TRUE),
+            mdn = median(TrGo_C, na.rm = TRUE),
+            sd = sd(TrGo_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrGo_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrGo_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrGo_C))) 
+
+TrGo_Crace_sumstats <- TrGo_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(TrGo_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats w/o outlier removed") 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrGo_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats w/o outlier removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 ```
 
 
@@ -4898,6 +5625,38 @@ ggplot(data=TrGo_C_no_out, aes(x=TrGo_C))+
   labs(title="Tragion to Gonion Contour Measurement Distribution",
        y="Frequency",
        x="Tragion to Gonion Contour (mm)")
+
+
+TrGo_Csumstats1 <- TrGo_C_no_out %>% 
+  summarise(n = n(),
+            min = min(TrGo_C, na.rm = TRUE),
+            max = max(TrGo_C, na.rm = TRUE),
+            mean = mean(TrGo_C, na.rm = TRUE),
+            mdn = median(TrGo_C, na.rm = TRUE),
+            sd = sd(TrGo_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrGo_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrGo_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrGo_C))) 
+
+
+#Size 12 Table TNR
+flextable(TrGo_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats") 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrGo_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Gonion Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 ```
 
 
@@ -5092,6 +5851,38 @@ ggplot(data=headscan_full, aes(x=TrSel_C))+
   labs(title="Tragion to Sellion Contour Measurement Distribution",
        y="Frequency",
        x="Tragion to Sellion Contour (mm)")
+
+
+TrSel_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(TrSel_C, na.rm = TRUE),
+            max = max(TrSel_C, na.rm = TRUE),
+            mean = mean(TrSel_C, na.rm = TRUE),
+            mdn = median(TrSel_C, na.rm = TRUE),
+            sd = sd(TrSel_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSel_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSel_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSel_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSel_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSel_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSel_C))) 
+
+
+#Size 12 Table TNR
+flextable(TrSel_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Sellion Contour SumStats") 
+#%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSel_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Sellion Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
 ```
 
 
@@ -5288,6 +6079,37 @@ ggplot(data=headscan_full, aes(x=TrSman_C))+
        subtitle = "without outliers removed",
        y="Frequency",
        x="Tragion to Submandibular Contour (mm)")
+
+TrSman_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(TrSman_C, na.rm = TRUE),
+            max = max(TrSman_C, na.rm = TRUE),
+            mean = mean(TrSman_C, na.rm = TRUE),
+            mdn = median(TrSman_C, na.rm = TRUE),
+            sd = sd(TrSman_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSman_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSman_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSman_C))) 
+
+
+#Size 12 Table TNR
+flextable(TrSman_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats w/o outlier removed") 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSman_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats w/o outlier removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 ```
 
 ```{r TrSman_C-raceeth-w-outlier}
@@ -5493,6 +6315,37 @@ ggplot(data=TrSman_C_no_out, aes(x=TrSman_C))+
   labs(title="Tragion to Submandibular Contour Measurement Distribution",
        y="Frequency",
        x="Tragion to Submandibular Contour (mm)")
+
+TrSman_Csumstats1 <- TrSman_C_no_out %>% 
+  summarise(n = n(),
+            min = min(TrSman_C, na.rm = TRUE),
+            max = max(TrSman_C, na.rm = TRUE),
+            mean = mean(TrSman_C, na.rm = TRUE),
+            mdn = median(TrSman_C, na.rm = TRUE),
+            sd = sd(TrSman_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSman_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSman_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSman_C))) 
+
+
+#Size 12 Table TNR
+flextable(TrSman_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats") 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSman_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 ```
 
 ```{r TrSman_C-raceeth}
@@ -5684,6 +6537,37 @@ ggplot(data=headscan_full, aes(x=TrSnas_C))+
        subtitle = "without outliers removed",
        y="Frequency",
        x="Tragion to Subnasale Contour (mm)")
+
+TrSnas_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(TrSnas_C, na.rm = TRUE),
+            max = max(TrSnas_C, na.rm = TRUE),
+            mean = mean(TrSnas_C, na.rm = TRUE),
+            mdn = median(TrSnas_C, na.rm = TRUE),
+            sd = sd(TrSnas_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSnas_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSnas_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSnas_C))) 
+
+
+#Size 12 Table TNR
+flextable(TrSnas_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats w/o outliers removed") 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSnas_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats w/o outliers removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 ```
 
 
@@ -5891,6 +6775,38 @@ ggplot(data=TrSnas_C_no_out, aes(x=TrSnas_C))+
   labs(title="Tragion to Subnasale Contour Measurement Distribution",
        y="Frequency",
        x="Tragion to Subnasale Contour (mm)")
+
+TrSnas_Csumstats1 <- TrSnas_C_no_out %>% 
+  summarise(n = n(),
+            min = min(TrSnas_C, na.rm = TRUE),
+            max = max(TrSnas_C, na.rm = TRUE),
+            mean = mean(TrSnas_C, na.rm = TRUE),
+            mdn = median(TrSnas_C, na.rm = TRUE),
+            sd = sd(TrSnas_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSnas_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSnas_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrSnas_C))) 
+
+
+
+#Size 12 Table TNR
+flextable(TrSnas_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats") 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(TrSnas_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 ```
 
 
@@ -6080,12 +6996,43 @@ TrTr_C
 
 ```{r TrTr_C-histogram}
 #histogram of all TrTr_C values
-ggplot(data=headscan_full, aes(x=TrTr_C ))+
+ggplot(data=headscan_full, aes(x=TrTr_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Tragion Contour Measurement Distribution",
        y="Frequency",
        x="Tragion to Tragion Contour (mm)")
+
+TrTr_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(TrTr_C, na.rm = TRUE),
+            max = max(TrTr_C, na.rm = TRUE),
+            mean = mean(TrTr_C, na.rm = TRUE),
+            mdn = median(TrTr_C, na.rm = TRUE),
+            sd = sd(TrTr_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrTr_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrTr_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrTr_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrTr_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrTr_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrTr_C))) 
+
+
+#Size 12 Table TNR
+flextable(TrTr_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Tragion Contour SumStats") 
+#%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
+
+#Autofit Width Table TNR
+flextable(TrTr_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Tragion Contour SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
 ```
 
 
@@ -6279,6 +7226,37 @@ ggplot(data=headscan_full, aes(x=TrTr_L))+
   labs(title="Tragion to Tragion Linear Measurement Distribution",
        y="Frequency",
        x="Tragion to Tragion Linear (mm)")
+
+TrTr_Lrace_sumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(TrTr_L, na.rm = TRUE),
+            max = max(TrTr_L, na.rm = TRUE),
+            mean = mean(TrTr_L, na.rm = TRUE),
+            mdn = median(TrTr_L, na.rm = TRUE),
+            sd = sd(TrTr_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(TrTr_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrTr_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrTr_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrTr_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrTr_L, 0.95, na.rm=TRUE),
+            na = sum(is.na(TrTr_L))) 
+
+
+#Size 12 Table TNR
+flextable(TrTr_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Tragion Linear SumStats") 
+#%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
+
+#Autofit Width Table TNR
+flextable(TrTr_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tragion to Tragion Linear SumStats") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 ```
 
 ```{r TrTr_L-raceeth}
