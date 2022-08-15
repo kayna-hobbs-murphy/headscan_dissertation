@@ -43,6 +43,40 @@ headscan_full$age_group <- as.factor(headscan_full$age_group)
 headscan_full$race_eth <- factor(headscan_full$race_eth, levels = c("white", "Black", "LatinX", "Asian", "Other", "AIAN", "PTNS", "NHOPI"))
 str(headscan_full)
 ```
+```{r mm-to-mm}
+
+
+headscan_full$AA_C <- headscan_full$AA_C *10
+headscan_full$BGl_C <- headscan_full$BGl_C * 10
+headscan_full$BiW_C <- headscan_full$BiW_C *10
+headscan_full$BiW_L <- headscan_full$BiW_L *10
+headscan_full$ChCh_C <- headscan_full$ChCh_C *10
+headscan_full$GoSub_C <- headscan_full$GoSub_C *10
+headscan_full$NRB_L <- headscan_full$NRB_L *10
+headscan_full$ProA_L <- headscan_full$ProA_L *10
+headscan_full$ProA_C <- headscan_full$ProA_C *10
+headscan_full$ProS_C <- headscan_full$ProS_C *10
+headscan_full$ProS_L <- headscan_full$ProS_L *10
+headscan_full$SelP_C <- headscan_full$SelP_C *10
+headscan_full$SelP_L <- headscan_full$SelP_L *10
+headscan_full$SelDH_C <- headscan_full$SelDH_C *10
+headscan_full$SelM_L <- headscan_full$SelM_L *10
+headscan_full$SnasM_C <- headscan_full$SnasM_C *10
+headscan_full$SmanM_C <- headscan_full$SmanM_C *10
+headscan_full$SmanM_L <- headscan_full$SmanM_L *10
+headscan_full$SnasM_L <- headscan_full$SnasM_L *10
+headscan_full$TrHO_C <- headscan_full$TrHO_C *10
+headscan_full$TrEJ_C <- headscan_full$TrEJ_C *10
+headscan_full$TrGo_C <- headscan_full$TrGo_C *10
+headscan_full$TrSel_C <- headscan_full$TrSel_C *10
+headscan_full$TrSman_C <- headscan_full$TrSman_C *10
+headscan_full$TrSnas_C <- headscan_full$TrSnas_C *10
+headscan_full$TrTr_C <- headscan_full$TrTr_C *10
+headscan_full$TrTr_L <- headscan_full$TrTr_L *10
+
+str(headscan_full)
+```
+
 
 ```{r}
 #HTML Table format    
@@ -126,7 +160,7 @@ ggplot(data=headscan_full, aes(x=AA_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Alare to Alare Contour Measurement Distribution",
        y="Frequency",
-       x="Alare to Alare Contour (cm)")
+       x="Alare to Alare Contour (mm)")
 ```
 
 
@@ -176,7 +210,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Alare to Alare Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -185,7 +219,7 @@ ggplot(data=headscan_full, aes(y=AA_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Alare to Alare Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 ```
 
@@ -234,7 +268,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Alare to Alare Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -243,7 +277,7 @@ ggplot(data=headscan_full, aes(y=AA_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Alare to Alare Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 ```
 
@@ -293,7 +327,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Alare to Alare Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -302,7 +336,7 @@ ggplot(data=headscan_full, aes(y=AA_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Alare to Alare Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -316,7 +350,7 @@ ggplot(data=headscan_full, aes(x=BGl_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Back of Head to Glabella Contour Measurement Distribution",
        y="Frequency",
-       x="Back of Head to Glabella Contour (cm)")
+       x="Back of Head to Glabella Contour (mm)")
 ```
 
 
@@ -366,7 +400,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Back of Head to Glabella Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -375,7 +409,7 @@ ggplot(data=headscan_full, aes(y=BGl_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Back of Head to Glabella Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 ```
 
@@ -424,7 +458,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Back of Head to Glabella Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -433,7 +467,7 @@ ggplot(data=headscan_full, aes(y=BGl_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Back of Head to Glabella Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -485,7 +519,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Back of Head to Glabella Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -494,7 +528,7 @@ ggplot(data=headscan_full, aes(y=BGl_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Back of Head to Glabella Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -509,7 +543,7 @@ ggplot(data=headscan_full, aes(x=BiW_L))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Bizygomatic Width Linear Measurement Distribution",
        y="Frequency",
-       x="Bizygomatic Width Linear (cm)")
+       x="Bizygomatic Width Linear (mm)")
 ```
 
 
@@ -559,7 +593,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Linear values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -568,7 +602,7 @@ ggplot(data=headscan_full, aes(y=BiW_L, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Linear values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -618,7 +652,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Linear values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -627,7 +661,7 @@ ggplot(data=headscan_full, aes(y=BiW_L, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Linear values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -678,7 +712,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Linear values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -687,7 +721,7 @@ ggplot(data=headscan_full, aes(y=BiW_L, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Linear values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -703,7 +737,7 @@ ggplot(data=headscan_full, aes(x=BiW_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Bizygomatic Width Contour Measurement Distribution",
        y="Frequency",
-       x="Bizygomatic Width Contour (cm)")
+       x="Bizygomatic Width Contour (mm)")
 
 ```
 
@@ -754,7 +788,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -763,7 +797,7 @@ ggplot(data=headscan_full, aes(y=BiW_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -813,7 +847,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -822,7 +856,7 @@ ggplot(data=headscan_full, aes(y=BiW_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -873,7 +907,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -882,7 +916,7 @@ ggplot(data=headscan_full, aes(y=BiW_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Bizygomatic Width Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -897,7 +931,7 @@ ggplot(data=headscan_full, aes(x=ChCh_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Chellion to Chellion Contour Measurement Distribution",
        y="Frequency",
-       x="Chellion to Chellion Contour (cm)")
+       x="Chellion to Chellion Contour (mm)")
 ```
 
 
@@ -947,7 +981,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Chellion to Chellion Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -956,7 +990,7 @@ ggplot(data=headscan_full, aes(y=ChCh_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Chellion to Chellion Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -1006,7 +1040,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Chellion to Chellion Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -1015,7 +1049,7 @@ ggplot(data=headscan_full, aes(y=ChCh_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Chellion to Chellion Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -1066,7 +1100,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Chellion to Chellion Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -1075,7 +1109,7 @@ ggplot(data=headscan_full, aes(y=ChCh_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Chellion to Chellion Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -1091,7 +1125,7 @@ ggplot(data=headscan_full, aes(x=GoSub_C))+
   labs(title="Gonion to Submandibular Contour Measurement Distribution",
        subtitle= "without outlier removed",
        y="Frequency",
-       x="Gonion to Submandibular Contour (cm)")
+       x="Gonion to Submandibular Contour (mm)")
 ```
 
 
@@ -1142,7 +1176,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Race/Ethnicity",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -1152,7 +1186,7 @@ ggplot(data=headscan_full, aes(y=GoSub_C, x=race_eth))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Race/Ethnicity",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -1203,7 +1237,7 @@ headscan_full %>%
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Gender",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -1213,7 +1247,7 @@ ggplot(data=headscan_full, aes(y=GoSub_C, x=gender))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Gender",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -1265,7 +1299,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Age Group",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -1275,7 +1309,7 @@ ggplot(data=headscan_full, aes(y=GoSub_C, x=age_group))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Age Group",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -1305,7 +1339,7 @@ ggplot(data=GoSub_no_out, aes(x=GoSub_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Gonion to Submandibular Contour Measurement Distribution",
        y="Frequency",
-       x="Gonion to Submandibular Contour (cm)")
+       x="Gonion to Submandibular Contour (mm)")
 ```
 
 
@@ -1355,7 +1389,7 @@ GoSub_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -1364,7 +1398,7 @@ ggplot(data=GoSub_no_out, aes(y=GoSub_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -1414,7 +1448,7 @@ GoSub_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -1423,7 +1457,7 @@ ggplot(data=GoSub_no_out, aes(y=GoSub_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -1474,7 +1508,7 @@ GoSub_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -1483,7 +1517,7 @@ ggplot(data=GoSub_no_out, aes(y=GoSub_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gonion to Submandibular Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -1503,7 +1537,7 @@ ggplot(data=headscan_full, aes(x=NRB_L))+
   labs(title="Nasal Root Breadth Measurement Distribution",
        subtitle= "without outlier removed",
        y="Frequency",
-       x="Nasal Root Breadth (cm)")
+       x="Nasal Root Breadth (mm)")
 ```
 
 
@@ -1554,7 +1588,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Race/Ethncity",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -1564,7 +1598,7 @@ ggplot(data=headscan_full, aes(y=NRB_L, x=race_eth))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Race/Ethncity",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethncity")
 
 ```
@@ -1615,7 +1649,7 @@ headscan_full %>%
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Gender",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -1625,7 +1659,7 @@ ggplot(data=headscan_full, aes(y=NRB_L, x=gender))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Gender",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -1677,7 +1711,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Age Group",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -1687,7 +1721,7 @@ ggplot(data=headscan_full, aes(y=NRB_L, x=age_group))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Age Group",
        subtitle= "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -1713,7 +1747,7 @@ ggplot(data=NRB_L_no_out, aes(x=NRB_L))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Nasal Root Breadth Measurement Distribution",
        y="Frequency",
-       x="Nasal Root Breadth (cm)")
+       x="Nasal Root Breadth (mm)")
 ```
 
 
@@ -1763,7 +1797,7 @@ NRB_L_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Race/Ethncity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -1772,7 +1806,7 @@ ggplot(data=NRB_L_no_out, aes(y=NRB_L, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Race/Ethncity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethncity")
 
 ```
@@ -1822,7 +1856,7 @@ NRB_L_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -1831,7 +1865,7 @@ ggplot(data=NRB_L_no_out, aes(y=NRB_L, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -1882,7 +1916,7 @@ NRB_L_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -1891,7 +1925,7 @@ ggplot(data=NRB_L_no_out, aes(y=NRB_L, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Nasal Root Breadth values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -1907,7 +1941,7 @@ ggplot(data=headscan_full, aes(x=ProA_L))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Pronasale to Alare Length Measurement Distribution",
        y="Frequency",
-       x="Pronasale Alare Length (cm)")
+       x="Pronasale Alare Length (mm)")
 ```
 
 
@@ -1957,7 +1991,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Length values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -1966,7 +2000,7 @@ ggplot(data=headscan_full, aes(y=ProA_L, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Length values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -2016,7 +2050,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Length values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -2025,7 +2059,7 @@ ggplot(data=headscan_full, aes(y=ProA_L, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Length values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -2076,7 +2110,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -2085,7 +2119,7 @@ ggplot(data=headscan_full, aes(y=ProA_L, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -2102,7 +2136,7 @@ ggplot(data=headscan_full, aes(x=ProA_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Pronasale to Alare Contour Measurement Distribution",
        y="Frequency",
-       x="Pronasale to Alare Contour (cm)")
+       x="Pronasale to Alare Contour (mm)")
 ```
 
 
@@ -2152,7 +2186,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -2161,7 +2195,7 @@ ggplot(data=headscan_full, aes(y=ProA_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -2211,7 +2245,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -2220,7 +2254,7 @@ ggplot(data=headscan_full, aes(y=ProA_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -2271,7 +2305,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -2280,7 +2314,7 @@ ggplot(data=headscan_full, aes(y=ProA_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Alare Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -2296,7 +2330,7 @@ ggplot(data=headscan_full, aes(x=ProS_L))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Pronasale to Subnasale Length Measurement Distribution",
        y="Frequency",
-       x="Pronasale to Subnasale Length (cm)")
+       x="Pronasale to Subnasale Length (mm)")
 ```
 
 
@@ -2346,7 +2380,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Length values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -2355,7 +2389,7 @@ ggplot(data=headscan_full, aes(y=ProS_L, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Length values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -2405,7 +2439,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Length values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -2414,7 +2448,7 @@ ggplot(data=headscan_full, aes(y=ProS_L, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Length values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -2465,7 +2499,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -2474,7 +2508,7 @@ ggplot(data=headscan_full, aes(y=ProS_L, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -2490,7 +2524,7 @@ ggplot(data=headscan_full, aes(x=ProS_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Pronasale to Subnasale Contour Measurement Distribution",
        y="Frequency",
-       x="Pronasale to Subnasale Contour (cm)")
+       x="Pronasale to Subnasale Contour (mm)")
 ```
 
 ```{r ProS_C-raceeth}
@@ -2539,7 +2573,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -2548,7 +2582,7 @@ ggplot(data=headscan_full, aes(y=ProS_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -2598,7 +2632,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -2607,7 +2641,7 @@ ggplot(data=headscan_full, aes(y=ProS_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -2658,7 +2692,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -2667,7 +2701,7 @@ ggplot(data=headscan_full, aes(y=ProS_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Pronasale to Subnasale Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -2683,7 +2717,7 @@ ggplot(data=headscan_full, aes(x=SelP_L))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Sellion to Pronasale Length Measurement Distribution",
        y="Frequency",
-       x="Sellion to Pronasale Length (cm)")
+       x="Sellion to Pronasale Length (mm)")
 ```
 
 ```{r SelP_L-raceeth}
@@ -2732,7 +2766,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Length values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -2741,7 +2775,7 @@ ggplot(data=headscan_full, aes(y=SelP_L, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Length values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 ```
 
@@ -2790,7 +2824,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Length values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -2799,7 +2833,7 @@ ggplot(data=headscan_full, aes(y=SelP_L, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Length values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -2850,7 +2884,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -2859,7 +2893,7 @@ ggplot(data=headscan_full, aes(y=SelP_L, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -2875,7 +2909,7 @@ ggplot(data=headscan_full, aes(x=SelP_C ))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Sellion to Pronasale Contour Measurement Distribution",
        y="Frequency",
-       x="Sellion to Pronasale Contour (cm)")
+       x="Sellion to Pronasale Contour (mm)")
 ```
 
 ```{r SelP_C-raceeth}
@@ -2924,7 +2958,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -2933,7 +2967,7 @@ ggplot(data=headscan_full, aes(y=SelP_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 ```
 
@@ -2982,7 +3016,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -2991,7 +3025,7 @@ ggplot(data=headscan_full, aes(y=SelP_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 ```
 
@@ -3041,7 +3075,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -3050,7 +3084,7 @@ ggplot(data=headscan_full, aes(y=SelP_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Pronasale Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -3067,7 +3101,7 @@ ggplot(data=headscan_full, aes(x=SelDH_C ))+
   labs(title="Sellion to Dorsal Hump Contour Measurement Distribution",
        subtitle = "without outliers removed",
        y="Frequency",
-       x="Sellion to Dorsal Hump Contour (cm)")
+       x="Sellion to Dorsal Hump Contour (mm)")
 ```
 
 ```{r SelDH_C-raceeth-w-outlier}
@@ -3117,7 +3151,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Contour values by Race/Ethnicity",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -3127,7 +3161,7 @@ ggplot(data=headscan_full, aes(y=SelDH_C, x=race_eth))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Contour values by Race/Ethnicity",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 ```
 
@@ -3177,7 +3211,7 @@ headscan_full %>%
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Contour values by Gender",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -3187,7 +3221,7 @@ ggplot(data=headscan_full, aes(y=SelDH_C, x=gender))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Contour values by Gender",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 ```
 
@@ -3238,7 +3272,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Length values by Age Group",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -3248,7 +3282,7 @@ ggplot(data=headscan_full, aes(y=SelDH_C, x=age_group))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Length values by Age Group",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -3270,7 +3304,7 @@ ggplot(data=SelDH_C_no_out, aes(x=SelDH_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Sellion to Dorsal Hump Contour Measurement Distribution",
        y="Frequency",
-       x="Sellion to Dorsal Hump Contour (cm)")
+       x="Sellion to Dorsal Hump Contour (mm)")
 ```
 
 ```{r SelDH_C-raceeth}
@@ -3319,7 +3353,7 @@ SelDH_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -3328,7 +3362,7 @@ ggplot(data=SelDH_C_no_out, aes(y=SelDH_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 ```
 
@@ -3377,7 +3411,7 @@ SelDH_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -3386,7 +3420,7 @@ ggplot(data=SelDH_C_no_out, aes(y=SelDH_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 ```
 
@@ -3436,7 +3470,7 @@ SelDH_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -3445,7 +3479,7 @@ ggplot(data=SelDH_C_no_out, aes(y=SelDH_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Dorsal Hump Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -3460,7 +3494,7 @@ ggplot(data=headscan_full, aes(x=SelM_L))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Sellion to Menton Linear Measurement Distribution",
        y="Frequency",
-       x="Sellion to Menton Linear (cm)")
+       x="Sellion to Menton Linear (mm)")
 ```
 
 ```{r SelM_L-raceeth}
@@ -3509,7 +3543,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Menton Length values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -3518,7 +3552,7 @@ ggplot(data=headscan_full, aes(y=SelM_L, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Menton Length values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 ```
 
@@ -3567,7 +3601,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Menton Length values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -3576,7 +3610,7 @@ ggplot(data=headscan_full, aes(y=SelM_L, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Menton Length values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -3627,7 +3661,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Menton Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -3636,7 +3670,7 @@ ggplot(data=headscan_full, aes(y=SelM_L, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Sellion to Menton Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -3652,7 +3686,7 @@ ggplot(data=headscan_full, aes(x=SnasM_L))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Subnasale to Menton Length Measurement Distribution",
        y="Frequency",
-       x="Subnasale to Menton Length (cm)")
+       x="Subnasale to Menton Length (mm)")
 ```
 
 
@@ -3702,7 +3736,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Length values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -3711,7 +3745,7 @@ ggplot(data=headscan_full, aes(y=SnasM_L, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Length values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -3761,7 +3795,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Length values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -3770,7 +3804,7 @@ ggplot(data=headscan_full, aes(y=SnasM_L, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Length values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 ```
 
@@ -3820,7 +3854,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -3829,7 +3863,7 @@ ggplot(data=headscan_full, aes(y=SnasM_L, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -3845,7 +3879,7 @@ ggplot(data=headscan_full, aes(x=SnasM_C))+
   labs(title="Subnasale to Menton Contour Measurement Distribution",
        subtitle = "without outlier removed",
        y="Frequency",
-       x="Subnasale to Menton Contour (cm)")
+       x="Subnasale to Menton Contour (mm)")
 ```
 
 ```{r SnasM_C-raceeth-w-outliers}
@@ -3895,7 +3929,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Race/Ethnicity",
        subtitle = "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -3905,7 +3939,7 @@ ggplot(data=headscan_full, aes(y=SnasM_C, x=race_eth))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Race/Ethnicity",
        subtitle = "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -3956,7 +3990,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Gender",
        subtitle = "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -3966,7 +4000,7 @@ ggplot(data=headscan_full, aes(y=SnasM_C, x=gender))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Gender",
        subtitle = "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 ```
 
@@ -4016,7 +4050,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Age Group",
        subtitle = "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -4026,7 +4060,7 @@ ggplot(data=headscan_full, aes(y=SnasM_C, x=age_group))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Age Group",
        subtitle = "without outlier removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -4049,7 +4083,7 @@ ggplot(data=SnasM_C_no_out, aes(x=SnasM_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Subnasale to Menton Contour Measurement Distribution",
        y="Frequency",
-       x="Subnasale to Menton Contour (cm)")
+       x="Subnasale to Menton Contour (mm)")
 ```
 
 ```{r SnasM_C-raceeth}
@@ -4098,7 +4132,7 @@ SnasM_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -4107,7 +4141,7 @@ ggplot(data=SnasM_C_no_out, aes(y=SnasM_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -4157,7 +4191,7 @@ SnasM_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -4166,7 +4200,7 @@ ggplot(data=SnasM_C_no_out, aes(y=SnasM_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 ```
 
@@ -4215,7 +4249,7 @@ SnasM_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -4224,7 +4258,7 @@ ggplot(data=SnasM_C_no_out, aes(y=SnasM_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Subnasale to Menton Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -4237,7 +4271,7 @@ ggplot(data=headscan_full, aes(x=TrHO_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Top of Head to Otobasion Contour Measurement Distribution",
        y="Frequency",
-       x="Top of Head to Otobasion Contour (cm)")
+       x="Top of Head to Otobasion Contour (mm)")
 ```
 
 
@@ -4287,7 +4321,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Top of Head to Otobasion Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -4296,7 +4330,7 @@ ggplot(data=headscan_full, aes(y=TrHO_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Top of Head to Otobasion Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -4346,7 +4380,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Top of Head to Otobasion Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -4355,7 +4389,7 @@ ggplot(data=headscan_full, aes(y=TrHO_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Top of Head to Otobasion Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -4406,7 +4440,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Top of Head to Otobasion Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -4415,7 +4449,7 @@ ggplot(data=headscan_full, aes(y=TrHO_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Top of Head to Otobasion Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -4431,7 +4465,7 @@ ggplot(data=headscan_full, aes(x=TrEJ_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Earlobe Juncture Contour Measurement Distribution",
        y="Frequency",
-       x="Tragion to Earlobe Juncture Contour (cm)")
+       x="Tragion to Earlobe Juncture Contour (mm)")
 ```
 
 
@@ -4481,7 +4515,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Earlobe Juncture Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -4490,7 +4524,7 @@ ggplot(data=headscan_full, aes(y=TrEJ_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Earlobe Juncture Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -4540,7 +4574,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Earlobe Juncture Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -4549,7 +4583,7 @@ ggplot(data=headscan_full, aes(y=TrEJ_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Earlobe Juncture Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -4600,7 +4634,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Earlobe Juncture Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -4609,7 +4643,7 @@ ggplot(data=headscan_full, aes(y=TrEJ_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Earlobe Juncture Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -4625,7 +4659,7 @@ ggplot(data=headscan_full, aes(x=TrGo_C))+
   labs(title="Tragion to Gonion Contour Measurement Distribution",
        subtitle = "without outliers removed",
        y="Frequency",
-       x="Tragion to Gonion Contour (cm)")
+       x="Tragion to Gonion Contour (mm)")
 ```
 
 
@@ -4676,7 +4710,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Race/Ethnicity",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -4686,7 +4720,7 @@ ggplot(data=headscan_full, aes(y=TrGo_C, x=race_eth))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Race/Ethnicity",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -4737,7 +4771,7 @@ headscan_full %>%
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Gender",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -4747,7 +4781,7 @@ ggplot(data=headscan_full, aes(y=TrGo_C, x=gender))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Gender",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -4799,7 +4833,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Age Group",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -4809,7 +4843,7 @@ ggplot(data=headscan_full, aes(y=TrGo_C, x=age_group))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Age Group",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -4833,7 +4867,7 @@ ggplot(data=TrGo_C_no_out, aes(x=TrGo_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Gonion Contour Measurement Distribution",
        y="Frequency",
-       x="Tragion to Gonion Contour (cm)")
+       x="Tragion to Gonion Contour (mm)")
 ```
 
 
@@ -4883,7 +4917,7 @@ TrGo_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -4892,7 +4926,7 @@ ggplot(data=TrGo_C_no_out, aes(y=TrGo_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -4942,7 +4976,7 @@ TrGo_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -4951,7 +4985,7 @@ ggplot(data=TrGo_C_no_out, aes(y=TrGo_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -5002,7 +5036,7 @@ TrGo_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -5011,7 +5045,7 @@ ggplot(data=TrGo_C_no_out, aes(y=TrGo_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Gonion Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -5027,7 +5061,7 @@ ggplot(data=headscan_full, aes(x=TrSel_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Sellion Contour Measurement Distribution",
        y="Frequency",
-       x="Tragion to Sellion Contour (cm)")
+       x="Tragion to Sellion Contour (mm)")
 ```
 
 
@@ -5077,7 +5111,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Sellion Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -5086,7 +5120,7 @@ ggplot(data=headscan_full, aes(y=TrSel_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Sellion Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -5136,7 +5170,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Sellion Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -5145,7 +5179,7 @@ ggplot(data=headscan_full, aes(y=TrSel_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Sellion Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -5196,7 +5230,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Sellion Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -5205,7 +5239,7 @@ ggplot(data=headscan_full, aes(y=TrSel_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Sellion Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -5223,7 +5257,7 @@ ggplot(data=headscan_full, aes(x=TrSman_C))+
   labs(title="Tragion to Submandibular Contour Measurement Distribution",
        subtitle = "without outliers removed",
        y="Frequency",
-       x="Tragion to Submandibular Contour (cm)")
+       x="Tragion to Submandibular Contour (mm)")
 ```
 
 ```{r TrSman_C-raceeth-w-outlier}
@@ -5273,7 +5307,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Race/Ethnicity",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -5283,7 +5317,7 @@ ggplot(data=headscan_full, aes(y=TrSman_C, x=race_eth))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Race/Ethnicity",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -5334,7 +5368,7 @@ headscan_full %>%
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Gender",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -5344,7 +5378,7 @@ ggplot(data=headscan_full, aes(y=TrSman_C, x=gender))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Gender",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -5396,7 +5430,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Age Group",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -5406,7 +5440,7 @@ ggplot(data=headscan_full, aes(y=TrSman_C, x=age_group))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Age Group",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -5428,7 +5462,7 @@ ggplot(data=TrSman_C_no_out, aes(x=TrSman_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Submandibular Contour Measurement Distribution",
        y="Frequency",
-       x="Tragion to Submandibular Contour (cm)")
+       x="Tragion to Submandibular Contour (mm)")
 ```
 
 ```{r TrSman_C-raceeth}
@@ -5477,7 +5511,7 @@ TrSman_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -5486,7 +5520,7 @@ ggplot(data=TrSman_C_no_out, aes(y=TrSman_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -5536,7 +5570,7 @@ TrSman_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -5545,7 +5579,7 @@ ggplot(data=TrSman_C_no_out, aes(y=TrSman_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -5596,7 +5630,7 @@ TrSman_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -5605,7 +5639,7 @@ ggplot(data=TrSman_C_no_out, aes(y=TrSman_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Submandibular Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -5619,7 +5653,7 @@ ggplot(data=headscan_full, aes(x=TrSnas_C))+
   labs(title="Tragion to Subnasale Contour Measurement Distribution",
        subtitle = "without outliers removed",
        y="Frequency",
-       x="Tragion to Subnasale Contour (cm)")
+       x="Tragion to Subnasale Contour (mm)")
 ```
 
 
@@ -5670,7 +5704,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Contour values by Race/Ethnicity",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -5680,7 +5714,7 @@ ggplot(data=headscan_full, aes(y=TrSnas_C, x=race_eth))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Contour values by Race/Ethnicity",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -5731,7 +5765,7 @@ headscan_full %>%
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Contour values by Gender",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -5741,7 +5775,7 @@ ggplot(data=headscan_full, aes(y=TrSnas_C, x=gender))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Contour values by Gender",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -5793,7 +5827,7 @@ headscan_full %>%
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Contour values by Age Group",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -5803,7 +5837,7 @@ ggplot(data=headscan_full, aes(y=TrSnas_C, x=age_group))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Contour values by Age Group",
        subtitle = "without outliers removed",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -5826,7 +5860,7 @@ ggplot(data=TrSnas_C_no_out, aes(x=TrSnas_C))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Subnasale Contour Measurement Distribution",
        y="Frequency",
-       x="Tragion to Subnasale Contour (cm)")
+       x="Tragion to Subnasale Contour (mm)")
 ```
 
 
@@ -5876,7 +5910,7 @@ TrSnas_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -5885,7 +5919,7 @@ ggplot(data=TrSnas_C_no_out, aes(y=TrSnas_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -5935,7 +5969,7 @@ TrSnas_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -5944,7 +5978,7 @@ ggplot(data=TrSnas_C_no_out, aes(y=TrSnas_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -5995,7 +6029,7 @@ TrSnas_C_no_out %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -6004,7 +6038,7 @@ ggplot(data=TrSnas_C_no_out, aes(y=TrSnas_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Subnasale Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 ```
@@ -6021,7 +6055,7 @@ ggplot(data=headscan_full, aes(x=TrTr_C ))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Tragion Contour Measurement Distribution",
        y="Frequency",
-       x="Tragion to Tragion Contour (cm)")
+       x="Tragion to Tragion Contour (mm)")
 ```
 
 
@@ -6071,7 +6105,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -6080,7 +6114,7 @@ ggplot(data=headscan_full, aes(y=TrTr_C, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Contour values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 ```
@@ -6130,7 +6164,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -6139,7 +6173,7 @@ ggplot(data=headscan_full, aes(y=TrTr_C, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Contour values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 ```
@@ -6190,7 +6224,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -6199,7 +6233,7 @@ ggplot(data=headscan_full, aes(y=TrTr_C, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Contour values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
@@ -6214,7 +6248,7 @@ ggplot(data=headscan_full, aes(x=TrTr_L))+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Tragion Linear Measurement Distribution",
        y="Frequency",
-       x="Tragion to Tragion Linear (cm)")
+       x="Tragion to Tragion Linear (mm)")
 ```
 
 ```{r TrTr_L-raceeth}
@@ -6263,7 +6297,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Linear values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 
 #boxplot not reordered by median
@@ -6272,7 +6306,7 @@ ggplot(data=headscan_full, aes(y=TrTr_L, x=race_eth))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Linear values by Race/Ethnicity",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Race/Ethnicity")
 ```
 
@@ -6321,7 +6355,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Linear values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 
 #boxplot not reordered by median
@@ -6330,7 +6364,7 @@ ggplot(data=headscan_full, aes(y=TrTr_L, x=gender))+
   theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Linear values by Gender",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Gender")
 ```
 
@@ -6380,7 +6414,7 @@ headscan_full %>%
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 
 #boxplot not reordered by median
@@ -6389,7 +6423,7 @@ ggplot(data=headscan_full, aes(y=TrTr_L, x=age_group))+
   theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Tragion to Tragion Length values by Age Group",
-       y="Measurement (cm)",
+       y="Measurement (mm)",
        x="Age Group")
 ```
 
