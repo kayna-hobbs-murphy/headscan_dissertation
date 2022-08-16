@@ -23,6 +23,7 @@ library(extrafont)
 library(forcats)
 library(writexl)
 library(ggfortify)
+library(fauxnaif)
 ```
 
 
@@ -92,20 +93,30 @@ pca.vars.m <- melt(pca.vars, id.vars = "vars")
 #circ <- circleFun(c(0,0),2,npoints = 500)
 ```
 
+
+```{r}
+PCAdata_full1$race_eth <- as.factor(PCAdata_full1$race_eth)
+PCAdata_full1$gender <- as.factor(PCAdata_full1$gender)
+PCAdata_full1$age_group <- as.factor(PCAdata_full1$age_group)
+```
+
+
 ```{r}
 ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2)) +
   geom_point()+
-  labs(y="PC2(18.83%)",
-       x="PC1(38.4%)")
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)")
 ```
 
 ```{r}
+#checking to make sure this matches plot in PCA.Rmd
 ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = race_eth)) +
       geom_hline(yintercept = 0, lty = 2) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) +
-  labs(y="PC2(18.83%)",
-       x="PC1(38.4%)")
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title = "All Race/Ethnicities PCA plot")
 ```
 
 ```{r}
@@ -117,8 +128,116 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = race_eth)) +
                alpha = 0.2, 
                show.legend = FALSE,
                level = 0.95) +
-  theme_minimal() +
-  theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
-  labs(y="PC2(18.83%)",
-       x="PC1(38.4%)")
+  #theme_minimal() +
+  #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title = "All Race/Ethnicities PCA plot")
 ```
+Need a plot with just Asian, Black, LatinX, and white
+
+```{r}
+PCAdata_race_eth <- PCAdata_full1 %>% 
+  recode_factor(PCAdata_full1$race_eth, 'AIAN'= "Other",
+                'NHOPI' = "Other",
+                'PTNS' = "Other")
+
+PCAdata_race_eth1 <- PCAdata_race_eth %>% 
+  mutate(race_eth = na_if_in(race_eth, c("white", "LatinX")))
+
+str(PCAdata_race_eth$race_eth)
+```
+```{r}
+ggplot(data = PCAdata_race_eth, aes(x = pc1, y = pc2, color = race_eth)) +
+      geom_hline(yintercept = 0, lty = 2) +
+      geom_vline(xintercept = 0, lty = 2) +
+      geom_point(alpha = 0.8) + 
+  stat_ellipse(geom="polygon", aes(fill = race_eth, na.rm=TRUE), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95) +
+  #theme_minimal() +
+  #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title="Four Most Common Race/Ethnicities PCA plot")
+```
+Just Asian and Black?
+
+```{r}
+PCAdata_race_eth1 <- PCAdata_race_eth %>% 
+  mutate(race_eth = na_if_in(race_eth, c("white", "LatinX")))
+```
+```{r}
+ggplot(data = PCAdata_race_eth1, aes(x = pc1, y = pc2, color = race_eth)) +
+      geom_hline(yintercept = 0, lty = 2) +
+      geom_vline(xintercept = 0, lty = 2) +
+      geom_point(alpha = 0.8) + 
+  stat_ellipse(geom="polygon", aes(fill = race_eth, na.rm=TRUE), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95) +
+  #theme_minimal() +
+  #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title="Black and Asian Race/Ethnicities PCA plot")
+```
+
+
+```{r}
+#checking to make sure this matches plot in PCA.Rmd
+ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = gender)) +
+      geom_hline(yintercept = 0, lty = 2) +
+      geom_vline(xintercept = 0, lty = 2) +
+      geom_point(alpha = 0.8) +
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)")
+```
+
+
+```{r}
+ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = gender)) +
+      geom_hline(yintercept = 0, lty = 2) +
+      geom_vline(xintercept = 0, lty = 2) +
+      geom_point(alpha = 0.8) + 
+  stat_ellipse(geom="polygon", aes(fill = gender), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95) +
+  #theme_minimal() +
+  #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)")
+```
+Need plot with just Male and Female 
+
+
+
+
+```{r}
+#checking to make sure this matches plot in PCA.Rmd
+ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = age_group)) +
+      geom_hline(yintercept = 0, lty = 2) +
+      geom_vline(xintercept = 0, lty = 2) +
+      geom_point(alpha = 0.8) +
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)")
+```
+
+
+```{r}
+ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = age_group)) +
+      geom_hline(yintercept = 0, lty = 2) +
+      geom_vline(xintercept = 0, lty = 2) +
+      geom_point(alpha = 0.8) + 
+  stat_ellipse(geom="polygon", aes(fill = age_group), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95) +
+  #theme_minimal() +
+  #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)")
+```
+Need plot with just 18-36 and 37-54

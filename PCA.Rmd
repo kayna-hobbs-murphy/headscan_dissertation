@@ -175,6 +175,11 @@ pca_res$x
 #https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html
 
 ```{r}
+autoplot(pca_res, data=PCAdata_full)
+```
+
+
+```{r}
 autoplot(pca_res, data=PCAdata_full, colour="race_eth")
 ```
 ```{r}
