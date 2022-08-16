@@ -16,31 +16,85 @@ library(forcats)
 library(writexl)
 ```
 
+```{r table-function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
 
 ```{r}
 #remove identifiers and demographic data
 
-headscan_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
-str(headscan_full)
+headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
 
-PCAdata <- headscan_full[-c(1, 29, 30, 31)]
+headscan_full1$AA_C <- headscan_full1$AA_C *10
+headscan_full1$BGl_C <- headscan_full1$BGl_C * 10
+headscan_full1$BiW_C <- headscan_full1$BiW_C *10
+headscan_full1$BiW_L <- headscan_full1$BiW_L *10
+headscan_full1$ChCh_C <- headscan_full1$ChCh_C *10
+headscan_full1$GoSub_C <- headscan_full1$GoSub_C *10
+headscan_full1$NRB_L <- headscan_full1$NRB_L *10
+headscan_full1$ProA_L <- headscan_full1$ProA_L *10
+headscan_full1$ProA_C <- headscan_full1$ProA_C *10
+headscan_full1$ProS_C <- headscan_full1$ProS_C *10
+headscan_full1$ProS_L <- headscan_full1$ProS_L *10
+headscan_full1$SelP_C <- headscan_full1$SelP_C *10
+headscan_full1$SelP_L <- headscan_full1$SelP_L *10
+headscan_full1$SelDH_C <- headscan_full1$SelDH_C *10
+headscan_full1$SelM_L <- headscan_full1$SelM_L *10
+headscan_full1$SnasM_C <- headscan_full1$SnasM_C *10
+headscan_full1$SmanM_C <- headscan_full1$SmanM_C *10
+headscan_full1$SmanM_L <- headscan_full1$SmanM_L *10
+headscan_full1$SnasM_L <- headscan_full1$SnasM_L *10
+headscan_full1$TrHO_C <- headscan_full1$TrHO_C *10
+headscan_full1$TrEJ_C <- headscan_full1$TrEJ_C *10
+headscan_full1$TrGo_C <- headscan_full1$TrGo_C *10
+headscan_full1$TrSel_C <- headscan_full1$TrSel_C *10
+headscan_full1$TrSman_C <- headscan_full1$TrSman_C *10
+headscan_full1$TrSnas_C <- headscan_full1$TrSnas_C *10
+headscan_full1$TrTr_C <- headscan_full1$TrTr_C *10
+headscan_full1$TrTr_L <- headscan_full1$TrTr_L *10
 
+str(headscan_full1)
+```
+
+```{r}
+PCAdata <- headscan_full1[c(2,4,5,7,8,12,14,16,17,25,27,28)]
+```
+
+
+```{r}
+measureNAs <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
+
+PCA_NAs <- slice(measureNAs, c(1,3,4,6,7,11,13,15,16,24,26,27))
+
+#Size 12 Table TNR
+flextable(PCA_NAs) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("NA values for PCA Measurement Locations, total 891 NA values") %>% 
+  autofit() %>% 
+  set_header_labels(values = list(measure_name = "Measurement Location",
+                                  measureNAprops = "Proportion of NA values",
+                                  measureNAsums = "Count of NA values"))
+```
+
+
+
+```{r}
+PCAdata <- PCAdata %>% drop_na()
 
 str(PCAdata)
 ```
 
 
-```{r}
-#deleting rows with NA values (for example only)
-PCAdata <- PCAdata %>% drop_na()
-
-#numerical class
-#PCAdata <- PCAdata %>% mutate_if(is.character, as.numeric)
-PCAdata <- as.data.frame(sapply(PCAdata, as.numeric))
-
-#rounding
-PCAdata <- round(PCAdata, 1)
-```
 
 ```{r}
 #calculate principal components
@@ -60,13 +114,14 @@ library(ggplot2)
 ```
 
 
-```{r, fig.width=5, fig.height=6}
-qplot(c(1:27), var_explained) + 
+```{r, fig.width=5, fig.height=4}
+qplot(c(1:12), var_explained) + 
   geom_line() + 
   xlab("Principal Component") + 
-  ylab("Variance Explained") +
+  ylab("Variance Explained (proportion)") +
   ggtitle("Scree Plot") +
-  ylim(0, 1)
+  ylim(0, 1) +
+  scale_x_discrete(limits=c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9","PC10","PC11","PC12"))
 ```
 
 
