@@ -141,23 +141,27 @@ PCAdata_full2$age_group <- as.factor(PCAdata_full2$age_group)
 ```
 
 ```{r}
-PCAdata_race_eth <- PCAdata_full2 %>% 
+PCAdata_race_eth <- PCAdata_full2
+
+PCAdata_race_eth$race_eth <-  
   recode_factor(PCAdata_full1$race_eth, 'AIAN'= "Other",
                 'NHOPI' = "Other",
                 'PTNS' = "Other")
 
 PCAdata_race_eth_nas <- PCAdata_full1 %>% 
-  mutate(race_eth = na_if_in(race_eth, c("AIAN", "Other", "NHOPI", PTNS)))
+  mutate(race_eth = na_if_in(race_eth, c("AIAN", "Other", "NHOPI", "PTNS")))
 
 str(PCAdata_race_eth$race_eth)
 str(PCAdata_race_eth_nas$race_eth)
 ```
+
+
 ```{r}
 ggplot(data = PCAdata_race_eth, aes(x = pc1, y = pc2, color = race_eth)) +
       geom_hline(yintercept = 0, lty = 2) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) + 
-  stat_ellipse(geom="polygon", aes(fill = race_eth, na.rm=TRUE), 
+  stat_ellipse(geom="polygon", aes(fill = race_eth), 
                alpha = 0.2, 
                show.legend = FALSE,
                level = 0.95) +
@@ -174,7 +178,7 @@ PCAdata_race_eth_nas %>%
       geom_hline(yintercept = 0, lty = 2) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) + 
-  stat_ellipse(geom="polygon", aes(fill = race_eth, na.rm=TRUE), 
+  stat_ellipse(geom="polygon", aes(fill = race_eth), 
                alpha = 0.2, 
                show.legend = FALSE,
                level = 0.95) +
@@ -189,13 +193,14 @@ PCAdata_race_eth_nas %>%
 Just Asian and Black?
 
 ```{r}
-PCAdata_race_eth1 <- PCAdata_race_eth %>% 
-  recode_factor(PCAdata_full1$race_eth, 'AIAN'= "Other",
-                'NHOPI' = "Other",
-                'PTNS' = "Other")
+PCAdata_race_eth1 <- PCAdata_race_eth
 
-PCAdata_race_eth_nas1 <- PCAdata_race_eth_nas1 %>% 
-  mutate(race_eth = na_if_in(race_eth, c("AIAN", "Other", "NHOPI", PTNS)))
+PCAdata_race_eth1$race_eth <-
+  recode_factor(PCAdata_full1$race_eth, 'white'= "Other",
+                'LatinX' = "Other")
+
+PCAdata_race_eth_nas1 <- PCAdata_race_eth_nas %>% 
+  mutate(race_eth = na_if_in(race_eth, c("white", "LatinX")))
 
 str(PCAdata_race_eth1$race_eth)
 str(PCAdata_race_eth_nas1$race_eth)
