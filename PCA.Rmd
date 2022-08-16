@@ -14,6 +14,7 @@ library(readxl)
 library(extrafont)
 library(forcats)
 library(writexl)
+library(ggfortify)
 ```
 
 ```{r table-function}
@@ -66,7 +67,16 @@ str(headscan_full1)
 ```
 
 ```{r}
-PCAdata <- headscan_full1[c(2,4,5,7,8,12,14,16,17,25,27,28)]
+n_occur <- data.frame(table(headscan_full1$ID))
+n_occur[n_occur$Freq > 1,]
+headscan_full1[headscan_full1$ID %in% n_occur$Var1[n_occur$Freq > 1],]
+```
+
+
+```{r}
+PCAdata_num <- headscan_full1[c(1,2,4,5,7,8,12,14,16,17,25,27,28)]
+
+PCAdata_full <- headscan_full1[c(1,2,4,5,7,8,12,14,16,17,25,27,28,31,32,33)]
 ```
 
 
@@ -89,16 +99,31 @@ flextable(PCA_NAs) %>%
 
 
 ```{r}
-PCAdata <- PCAdata %>% drop_na()
+PCAdata_num <- PCAdata_num %>% drop_na()
 
-str(PCAdata)
+str(PCAdata_num)
 ```
 
+```{r}
+PCAdata_full <- left_join(PCAdata_num, PCAdata_full, by= "ID")
+
+n_occur <- data.frame(table(PCAdata_full$ID))
+n_occur[n_occur$Freq > 1,]
+PCAdata_full[PCAdata_full$ID %in% n_occur$Var1[n_occur$Freq > 1],]
+
+
+```
+
+
+```{r}
+PCAdata_num <- PCAdata_num[-c(1)]
+PCAdata_full <- PCAdata_full[-c(1)]
+```
 
 
 ```{r}
 #calculate principal components
-results <- prcomp(PCAdata, scale=TRUE)
+results <- prcomp(PCAdata_num, scale=TRUE)
 
 #reverse the signs (R calculates eigenvectors in negative direction)
 results$rotation <- -1*results$rotation
@@ -109,8 +134,6 @@ results$rotation
 
 ```{r}
 var_explained = results$sdev^2 / sum(results$sdev^2)
-
-library(ggplot2)
 ```
 
 
@@ -125,6 +148,13 @@ qplot(c(1:12), var_explained) +
 ```
 
 
+```{r}
+pca_res <- prcomp(PCAdata_num, scale.=TRUE)
+
+
+
+autoplot(pca_res, data=PCAdata_full, color="race_eth")
+```
 
 
 

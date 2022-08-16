@@ -32,6 +32,12 @@ bell_data <- bell_data[-1,-c(7,30)]
 chan_data <- chan_data[-1,-c(7,30)]
 ```
 
+```{r}
+#deleting row that kayna also coded
+jared_data <- jared_data[-c(1),]
+```
+
+
 ```{r adding coder columns}
 #adding columns to each to indicate coder
 kayna_data$coder <- "Kayna"
