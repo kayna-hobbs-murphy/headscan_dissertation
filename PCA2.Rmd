@@ -105,7 +105,7 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2)) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title="PCA plot")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 
 ```{r}
