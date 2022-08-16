@@ -1,6 +1,8 @@
 ---
 title: "PCA2"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 date: "2022-08-16"
 ---
 
@@ -101,7 +103,9 @@ pca.vars.m <- melt(pca.vars, id.vars = "vars")
 ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2)) +
   geom_point()+
   labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)")
+       x="PC1 (38.4%)",
+       title="PCA plot")+
+  theme(text=element_text(family= "Times New Roman"))+
 ```
 
 ```{r}
@@ -113,7 +117,8 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = race_eth)) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title = "All Race/Ethnicities PCA plot",
-       color = "Race/Ethnicity")
+       color = "Race/Ethnicity")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 
 ```{r}
@@ -130,7 +135,8 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = race_eth)) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title = "All Race/Ethnicities PCA plot",
-       color = "Race/Ethnicity")
+       color = "Race/Ethnicity")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 Need a plot with just Asian, Black, LatinX, and white
 
@@ -172,7 +178,8 @@ ggplot(data = PCAdata_race_eth, aes(x = pc1, y = pc2, color = race_eth)) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title="Four Most Common Race/Ethnicities PCA plot",
-       color = "Race/Ethnicity")
+       color = "Race/Ethnicity")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 ```{r}
 PCAdata_race_eth_nas %>% 
@@ -191,7 +198,8 @@ PCAdata_race_eth_nas %>%
        x="PC1 (38.4%)",
        title="Four Most Common Race/Ethnicities PCA plot",
        subtitle="Other Race/Ethnicities not shown",
-       color = "Race/Ethnicity")
+       color = "Race/Ethnicity")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 
 Just Asian and Black?
@@ -223,7 +231,8 @@ ggplot(data = PCAdata_race_eth1, aes(x = pc1, y = pc2, color = race_eth)) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title="Black and Asian Race/Ethnicities PCA plot",
-       color = "Race/Ethnicity")
+       color = "Race/Ethnicity")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 ```{r}
 PCAdata_race_eth_nas1 %>% 
@@ -242,7 +251,8 @@ PCAdata_race_eth_nas1 %>%
        x="PC1 (38.4%)",
        title="Black and Asian Race/Ethnicities PCA plot",
        subtitle = "Other Race/Ethnicities not shown",
-       color = "Race/Ethnicity")
+       color = "Race/Ethnicity")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 
 ```{r}
@@ -254,7 +264,8 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = gender)) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title = "All Genders PCA plot",
-       color= "Gender")
+       color= "Gender")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 
 
@@ -272,7 +283,8 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = gender)) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title="All Genders PCA plot",
-       color= "Gender")
+       color= "Gender")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 Need plot with just Male and Female 
 
@@ -306,7 +318,8 @@ ggplot(data = PCAdata_gender, aes(x = pc1, y = pc2, color = gender)) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title="Two Most Common Genders PCA plot",
-       color = "Gender")
+       color = "Gender")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 
 
@@ -327,7 +340,8 @@ PCAdata_gender_nas %>%
        x="PC1 (38.4%)",
        title="Four Most Common Genders PCA plot",
        subtitle="Other Genders not shown",
-       color = "Gender")
+       color = "Gender")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 
 
@@ -341,7 +355,8 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = age_group)) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title = "All Age Groups PCA plot",
-       color= "Age Group")
+       color= "Age Group")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 
 
@@ -359,7 +374,8 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = age_group)) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title = "All Age Groups PCA plot",
-       color= "Age Group")
+       color= "Age Group")+
+  theme(text=element_text(family= "Times New Roman"))
 ```
 
 
