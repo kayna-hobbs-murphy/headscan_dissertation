@@ -112,7 +112,8 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = race_eth)) +
       geom_point(alpha = 0.8) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Race/Ethnicities PCA plot")
+       title = "All Race/Ethnicities PCA plot",
+       color = "Race/Ethnicity")
 ```
 
 ```{r}
@@ -128,7 +129,8 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = race_eth)) +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Race/Ethnicities PCA plot")
+       title = "All Race/Ethnicities PCA plot",
+       color = "Race/Ethnicity")
 ```
 Need a plot with just Asian, Black, LatinX, and white
 
@@ -144,7 +146,7 @@ PCAdata_full2$age_group <- as.factor(PCAdata_full2$age_group)
 PCAdata_race_eth <- PCAdata_full2
 
 PCAdata_race_eth$race_eth <-  
-  recode_factor(PCAdata_full1$race_eth, 'AIAN'= "Other",
+  recode_factor(PCAdata_race_eth$race_eth, 'AIAN'= "Other",
                 'NHOPI' = "Other",
                 'PTNS' = "Other")
 
@@ -169,7 +171,8 @@ ggplot(data = PCAdata_race_eth, aes(x = pc1, y = pc2, color = race_eth)) +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="Four Most Common Race/Ethnicities PCA plot")
+       title="Four Most Common Race/Ethnicities PCA plot",
+       color = "Race/Ethnicity")
 ```
 ```{r}
 PCAdata_race_eth_nas %>% 
@@ -187,7 +190,8 @@ PCAdata_race_eth_nas %>%
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title="Four Most Common Race/Ethnicities PCA plot",
-       subtitle="Other Race/Ethnicities not shown")
+       subtitle="Other Race/Ethnicities not shown",
+       color = "Race/Ethnicity")
 ```
 
 Just Asian and Black?
@@ -218,7 +222,8 @@ ggplot(data = PCAdata_race_eth1, aes(x = pc1, y = pc2, color = race_eth)) +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="Black and Asian Race/Ethnicities PCA plot")
+       title="Black and Asian Race/Ethnicities PCA plot",
+       color = "Race/Ethnicity")
 ```
 ```{r}
 PCAdata_race_eth_nas1 %>% 
@@ -236,7 +241,8 @@ PCAdata_race_eth_nas1 %>%
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title="Black and Asian Race/Ethnicities PCA plot",
-       subtitle = "Other Race/Ethnicities not shown")
+       subtitle = "Other Race/Ethnicities not shown",
+       color = "Race/Ethnicity")
 ```
 
 ```{r}
@@ -246,7 +252,9 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = gender)) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) +
   labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)")
+       x="PC1 (38.4%)",
+       title = "All Genders PCA plot",
+       color= "Gender")
 ```
 
 
@@ -262,10 +270,65 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = gender)) +
   #theme_minimal() +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)")
+       x="PC1 (38.4%)",
+       title="All Genders PCA plot",
+       color= "Gender")
 ```
 Need plot with just Male and Female 
 
+```{r}
+PCAdata_gender <- PCAdata_full2
+
+PCAdata_gender$gender <-  
+  recode_factor(PCAdata_gender$gender, 'Non-binary or Other'= "Other",
+                'Prefer not to say' = "Other")
+
+PCAdata_gender$gender[is.na(PCAdata_gender$gender)]="Other"
+
+PCAdata_gender_nas <- PCAdata_full1 %>% 
+  mutate(gender = na_if_in(gender, c("Non-binary or Other", "Prefer not to say")))
+
+str(PCAdata_gender$gender)
+str(PCAdata_gender_nas$gender)
+```
+
+```{r}
+ggplot(data = PCAdata_gender, aes(x = pc1, y = pc2, color = gender)) +
+      geom_hline(yintercept = 0, lty = 2) +
+      geom_vline(xintercept = 0, lty = 2) +
+      geom_point(alpha = 0.8) + 
+  stat_ellipse(geom="polygon", aes(fill = gender), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95) +
+  #theme_minimal() +
+  #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title="Two Most Common Genders PCA plot",
+       color = "Gender")
+```
+
+
+```{r}
+PCAdata_gender_nas %>% 
+  drop_na(gender) %>% 
+  ggplot(aes(x = pc1, y = pc2, color = gender)) +
+      geom_hline(yintercept = 0, lty = 2) +
+      geom_vline(xintercept = 0, lty = 2) +
+      geom_point(alpha = 0.8) + 
+  stat_ellipse(geom="polygon", aes(fill = gender), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95) +
+  #theme_minimal() +
+  #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title="Four Most Common Genders PCA plot",
+       subtitle="Other Genders not shown",
+       color = "Gender")
+```
 
 
 
@@ -276,7 +339,9 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = age_group)) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) +
   labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)")
+       x="PC1 (38.4%)",
+       title = "All Age Groups PCA plot",
+       color= "Age Group")
 ```
 
 
@@ -292,6 +357,9 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = age_group)) +
   #theme_minimal() +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)")
+       x="PC1 (38.4%)",
+       title = "All Age Groups PCA plot",
+       color= "Age Group")
 ```
-Need plot with just 18-36 and 37-54
+
+
