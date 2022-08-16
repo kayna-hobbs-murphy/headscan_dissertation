@@ -129,19 +129,23 @@ PCAdata_full <- PCAdata_full[-c(1)]
 
 
 ```{r}
+#https://www.statology.org/principal-components-analysis-in-r/
+
 #calculate principal components
-results <- prcomp(PCAdata_num, scale=TRUE)
+pca_res <- prcomp(PCAdata_num, scale=TRUE)
 
 #reverse the signs (R calculates eigenvectors in negative direction)
-results$rotation <- -1*results$rotation
+pca_res$rotation <- -1*pca_res$rotation
 
 #display PCs
-results$rotation
+pca_res$rotation
 ```
 
 
 ```{r}
-var_explained = results$sdev^2 / sum(results$sdev^2)
+var_explained = pca_res$sdev^2 / sum(pca_res$sdev^2)
+
+var_explained_total <- var_explained
 ```
 
 
@@ -152,13 +156,23 @@ qplot(c(1:12), var_explained) +
   ylab("Variance Explained (proportion)") +
   ggtitle("Scree Plot") +
   ylim(0, 1) +
-  scale_x_discrete(limits=c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9","PC10","PC11","PC12"))
+  scale_x_discrete(limits=c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9","PC10","PC11","PC12")) 
 ```
 
 
 ```{r}
-pca_res <- prcomp(PCAdata_num, scale.=TRUE)
+
+#making plot axis match the ggplot versions in PCA2.Rmd!!! 
+#compare to PCAdata_full1 pc1 and pc2 columns (should be same sign, here times 100)
+pca_res$x <- pca_res$x * 100
+pca_res$x[,1] <- pca_res$x[,1] * -1
+#pca_res$x <- pca_res$x[,2] * 100
+
+pca_res$x
 ```
+
+
+#https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html
 
 ```{r}
 autoplot(pca_res, data=PCAdata_full, colour="race_eth")
@@ -168,7 +182,7 @@ autoplot(pca_res, data=PCAdata_full, colour="race_eth",
          loadings = TRUE, loadings.colour = 'blue',
          loadings.label = TRUE, loadings.label.size = 3)
 ```
-
+arrows close together=higher correlation
 
 
 ```{r}
