@@ -148,7 +148,7 @@ ggplot(data=measureNAs, aes(x=measure_name, y=measureNAprops))+
        y="Proportion of Missing Values",
        x="Measure Abbreviation (see Appendix B)")
 
-write_xlsx(measureNAs, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
+#write_xlsx(measureNAs, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
 ```
 
 AA_C race/eth, gender, age group sumstats
@@ -1529,7 +1529,7 @@ ggplot(data=GoSub_no_out, aes(x=GoSub_C))+
        y="Frequency",
        x="Gonion to Submandibular Contour (mm)")
 
-GoSub_Crace_sumstats1 <- GoSub_no_out %>% 
+GoSub_Csumstats1 <- GoSub_no_out %>% 
   summarise(n = n(),
             min = min(GoSub_C, na.rm = TRUE),
             max = max(GoSub_C, na.rm = TRUE),
@@ -5399,9 +5399,6 @@ TrGo_Csumstats <- headscan_full %>%
             percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE),
             na = sum(is.na(TrGo_C))) 
 
-TrGo_Crace_sumstats <- TrGo_Crace_sumstats %>% 
-  mutate(across(where(is.numeric), round, 2))
-
 
 #Size 12 Table TNR
 flextable(TrGo_Csumstats) %>%
@@ -5411,7 +5408,7 @@ flextable(TrGo_Csumstats) %>%
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
-flextable(TrGo_Crace_sumstats) %>%
+flextable(TrGo_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Tragion to Gonion Contour SumStats w/o outlier removed") %>% 
@@ -7227,7 +7224,7 @@ ggplot(data=headscan_full, aes(x=TrTr_L))+
        y="Frequency",
        x="Tragion to Tragion Linear (mm)")
 
-TrTr_Lrace_sumstats <- headscan_full %>% 
+TrTr_Lsumstats <- headscan_full %>% 
   summarise(n = n(),
             min = min(TrTr_L, na.rm = TRUE),
             max = max(TrTr_L, na.rm = TRUE),
