@@ -150,17 +150,19 @@ qplot(c(1:12), var_explained) +
 
 ```{r}
 pca_res <- prcomp(PCAdata_num, scale.=TRUE)
-
-
-
-autoplot(pca_res, data=PCAdata_full, color="race_eth")
 ```
 
+```{r}
+autoplot(pca_res, data=PCAdata_full, colour="race_eth")
+```
 
+```{r}
+autoplot(pca_res, data=PCAdata_full, colour="gender")
+```
 
-
-
-
+```{r}
+autoplot(pca_res, data=PCAdata_full, colour="age_group")
+```
 
 
 
