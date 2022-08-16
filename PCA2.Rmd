@@ -1,0 +1,36 @@
+---
+title: "PCA2"
+output: html_document
+date: "2022-08-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(FactoMineR)
+library(factoextra)
+library(tidyverse)
+library(MASS)
+library(reshape2)
+library(cowplot)
+library(flextable)
+library(readxl)
+library(extrafont)
+library(forcats)
+library(writexl)
+library(ggfortify)
+```
+
+
+```{r}
+PCAdata_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PCAdata_full.xlsx")
+
+
+```
+
+```{r}
+
+```
+
