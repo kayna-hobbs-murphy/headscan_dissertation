@@ -103,6 +103,22 @@ str(PCAdata_num)
 
 ```{r}
 PCAdata_full <- left_join(PCAdata_num, PCAdata_full, by= "ID")
+
+PCAdata_full <- PCAdata_full %>% 
+  rename(AA_C = "AA_C.x",
+         BiW_C = "BiW_C.x",
+         BiW_L = "BiW_L.x",
+         GoSub_C = "GoSub_C.x",
+         NRB_L = "NRB_L.x",
+         ProS_L = "ProS_L.x",
+         SelP_L = "SelP_L.x",
+         SelM_L = "SelM_L.x",
+         SnasM_C = "SnasM_C.x",
+         TrSman_C = "TrSman_C.x",
+         TrTr_C = "TrTr_C.x",
+         TrTr_L = "TrTr_L.x")
+
+PCAdata_full <- PCAdata_full[-c(14:25)]
 ```
 
 
