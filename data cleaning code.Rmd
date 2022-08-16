@@ -96,6 +96,7 @@ all_data <- all_data %>%
 demographic <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\abbrv_headscan_demo.xlsx")
 ```
 
+
 ```{r renaming race/eth}
 #renaming race/ethnicity factors to match Table 3.1
 demographic$Ethnicity <- 
