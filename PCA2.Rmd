@@ -196,7 +196,7 @@ Just Asian and Black?
 PCAdata_race_eth1 <- PCAdata_race_eth
 
 PCAdata_race_eth1$race_eth <-
-  recode_factor(PCAdata_full1$race_eth, 'white'= "Other",
+  recode_factor(PCAdata_race_eth1$race_eth, 'white'= "Other",
                 'LatinX' = "Other")
 
 PCAdata_race_eth_nas1 <- PCAdata_race_eth_nas %>% 
