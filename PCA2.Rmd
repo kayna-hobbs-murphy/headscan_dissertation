@@ -10,7 +10,6 @@ date: "2022-08-16"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-WOULD NOT RECOMMEND USING THIS! Scale is different from other PCA graphs on PCA.Rmd
 
 ```{r}
 library(FactoMineR)
