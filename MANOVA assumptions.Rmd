@@ -60,7 +60,18 @@ Look to pages 20-end 512 MultReg1
 For y variables: You should have an adequate sample size. Although the larger your sample size, the better, at a bare minimum, there needs to be as many cases (e.g., particpants) in each cell of the design as there are number of dependent variables. 12 dependent variables
 
 
+For MANOVA, the dependent variables should be somewhat correlated. 
 
+
+
+STEPS: 
+Power analysis to find sample size - 278
+NAs shouldn't be over 20%
+Find outliers & remove
+Double check correlations
+check assumptions 
+run manova
+run anovas
 
 ```{r}
 
