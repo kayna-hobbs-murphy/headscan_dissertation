@@ -92,39 +92,78 @@ my_ft_theme <- function(ft, ...) {
 ```{r}
 #remove identifiers and demographic data
 
-headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
+headscan_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
 
-headscan_full1$AA_C <- headscan_full1$AA_C *10
-headscan_full1$BGl_C <- headscan_full1$BGl_C * 10
-headscan_full1$BiW_C <- headscan_full1$BiW_C *10
-headscan_full1$BiW_L <- headscan_full1$BiW_L *10
-headscan_full1$ChCh_C <- headscan_full1$ChCh_C *10
-headscan_full1$GoSub_C <- headscan_full1$GoSub_C *10
-headscan_full1$NRB_L <- headscan_full1$NRB_L *10
-headscan_full1$ProA_L <- headscan_full1$ProA_L *10
-headscan_full1$ProA_C <- headscan_full1$ProA_C *10
-headscan_full1$ProS_C <- headscan_full1$ProS_C *10
-headscan_full1$ProS_L <- headscan_full1$ProS_L *10
-headscan_full1$SelP_C <- headscan_full1$SelP_C *10
-headscan_full1$SelP_L <- headscan_full1$SelP_L *10
-headscan_full1$SelDH_C <- headscan_full1$SelDH_C *10
-headscan_full1$SelM_L <- headscan_full1$SelM_L *10
-headscan_full1$SnasM_C <- headscan_full1$SnasM_C *10
-headscan_full1$SmanM_C <- headscan_full1$SmanM_C *10
-headscan_full1$SmanM_L <- headscan_full1$SmanM_L *10
-headscan_full1$SnasM_L <- headscan_full1$SnasM_L *10
-headscan_full1$TrHO_C <- headscan_full1$TrHO_C *10
-headscan_full1$TrEJ_C <- headscan_full1$TrEJ_C *10
-headscan_full1$TrGo_C <- headscan_full1$TrGo_C *10
-headscan_full1$TrSel_C <- headscan_full1$TrSel_C *10
-headscan_full1$TrSman_C <- headscan_full1$TrSman_C *10
-headscan_full1$TrSnas_C <- headscan_full1$TrSnas_C *10
-headscan_full1$TrTr_C <- headscan_full1$TrTr_C *10
-headscan_full1$TrTr_L <- headscan_full1$TrTr_L *10
+headscan_full$AA_C <- headscan_full$AA_C *10
+headscan_full$BGl_C <- headscan_full$BGl_C * 10
+headscan_full$BiW_C <- headscan_full$BiW_C *10
+headscan_full$BiW_L <- headscan_full$BiW_L *10
+headscan_full$ChCh_C <- headscan_full$ChCh_C *10
+headscan_full$GoSub_C <- headscan_full$GoSub_C *10
+headscan_full$NRB_L <- headscan_full$NRB_L *10
+headscan_full$ProA_L <- headscan_full$ProA_L *10
+headscan_full$ProA_C <- headscan_full$ProA_C *10
+headscan_full$ProS_C <- headscan_full$ProS_C *10
+headscan_full$ProS_L <- headscan_full$ProS_L *10
+headscan_full$SelP_C <- headscan_full$SelP_C *10
+headscan_full$SelP_L <- headscan_full$SelP_L *10
+headscan_full$SelDH_C <- headscan_full$SelDH_C *10
+headscan_full$SelM_L <- headscan_full$SelM_L *10
+headscan_full$SnasM_C <- headscan_full$SnasM_C *10
+headscan_full$SmanM_C <- headscan_full$SmanM_C *10
+headscan_full$SmanM_L <- headscan_full$SmanM_L *10
+headscan_full$SnasM_L <- headscan_full$SnasM_L *10
+headscan_full$TrHO_C <- headscan_full$TrHO_C *10
+headscan_full$TrEJ_C <- headscan_full$TrEJ_C *10
+headscan_full$TrGo_C <- headscan_full$TrGo_C *10
+headscan_full$TrSel_C <- headscan_full$TrSel_C *10
+headscan_full$TrSman_C <- headscan_full$TrSman_C *10
+headscan_full$TrSnas_C <- headscan_full$TrSnas_C *10
+headscan_full$TrTr_C <- headscan_full$TrTr_C *10
+headscan_full$TrTr_L <- headscan_full$TrTr_L *10
 
-str(headscan_full1)
+str(headscan_full)
+```
+
+```{r}
+SA3_data <- headscan_full[c(1,2,4,5,7,8,12,14,16,17,25,27,28,31,32,33)]
 ```
 
 
+```{r}
+SA3_NAsums <- colSums(is.na(SA3_data))
+
+SA3_NAprops <- colMeans(is.na(SA3_data))
+
+SA3_NAprops1 <- as.data.frame(SA3_NAprops)
+SA3_NAprops1 <- rownames_to_column(SA3_NAprops1, "var_name")
+SA3_NAprops1 <- SA3_NAprops1 %>% slice(-c(1, 29:33))
+
+SA3_NAsums1 <- as.data.frame(SA3_NAsums)
+SA3_NAsums1 <- rownames_to_column(SA3_NAsums1, "var_name")
+SA3_NAsums1 <- SA3_NAsums1 %>% slice(-c(1, 29:33))
+
+SA3_NAs <- inner_join(SA3_NAprops1, SA3_NAsums1, by = "var_name", desc)
+
+SA3_NAs$SA3_NAprops<- round(SA3_NAs$SA3_NAprops, digits=4)
+
+SA3_NAs$var_name <- fct_reorder(SA3_NAs$var_name, SA3_NAs$SA3_NAsums, .desc=TRUE)
+
+str(SA3_NAs$SA3_name)
+
+#Size 12 Table TNR
+flextable(SA3_NAs) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("NA values for each MANOVA Variable") %>% 
+  autofit() %>% 
+  set_header_labels(values = list(var_name = "Variable",
+                                  SA3_NAprops = "Proportion of NA values",
+                                  SA3_NAsums = "Count of NA values"))
+```
+
+```{r}
+
+```
 
 
