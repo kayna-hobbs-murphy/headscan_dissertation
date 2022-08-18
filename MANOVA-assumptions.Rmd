@@ -122,6 +122,10 @@ headscan_full$TrSnas_C <- headscan_full$TrSnas_C *10
 headscan_full$TrTr_C <- headscan_full$TrTr_C *10
 headscan_full$TrTr_L <- headscan_full$TrTr_L *10
 
+headscan_full$gender <- as.factor(headscan_full$gender)
+headscan_full$race_eth <- as.factor(headscan_full$race_eth)
+headscan_full$age_group <- as.factor(headscan_full$age_group)
+
 str(headscan_full)
 ```
 
@@ -163,7 +167,23 @@ flextable(SA3_NAs) %>%
 ```
 
 ```{r}
+SA3_data1 <- SA3_data
 
+#race/eth
+SA3_data1$race_eth <-  
+  recode_factor(SA3_data1$race_eth, 'AIAN'= "Other",
+                'NHOPI' = "Other",
+                'PTNS' = "Other")
+
+#gender
+SA3_data1$gender <-  
+  recode_factor(SA3_data1$gender, 'Non-binary or Other'= "Other",
+                'Prefer not to say' = "Other")
+
+SA3_data1$gender[is.na(SA3_data1$gender)]="Other"
+
+
+summary(SA3_data1)
 ```
 
 
