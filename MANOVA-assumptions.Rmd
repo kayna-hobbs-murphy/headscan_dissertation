@@ -219,96 +219,32 @@ Next, identify univariate outliers
 AA_C_out <- SA3_data2 %>% 
   identify_outliers(AA_C)
 
-AA_C_out1 <- SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(AA_C)
+AA_C_out$idenout_group <- "overall"
 
-AA_C_out2 <- SA3_data2 %>% 
-  group_by(gender) %>% 
-  identify_outliers(AA_C)
-
-AA_C_out3 <- SA3_data2 %>% 
-  group_by(age_group) %>% 
-  identify_outliers(AA_C)
-
-summary(AA_C_out$is.extreme)
-summary(AA_C_out1$is.extreme)
-summary(AA_C_out2$is.extreme)
-summary(AA_C_out3$is.extreme)
-```
-
-```{r}
-AA_C_out <- SA3_data2 %>% 
-  identify_outliers(AA_C)
 
 AA_C_out1 <- SA3_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(AA_C)
 
+AA_C_out1$idenout_group <- "race_eth"
+
+
 AA_C_out2 <- SA3_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(AA_C)
+
+AA_C_out2$idenout_group <- "gender"
+
 
 AA_C_out3 <- SA3_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(AA_C)
 
-summary(AA_C_out$is.extreme)
-summary(AA_C_out1$is.extreme)
-summary(AA_C_out2$is.extreme)
-summary(AA_C_out3$is.extreme)
+AA_C_out2$idenout_group <- "age_group"
+
+
+AA_C_extreme <- rbind(AA_C_out, AA_C_out1, AA_C_out2, AA_C_out3)
+
+
 ```
 
-```{r}
-SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(BiW_L)
-```
-
-```{r}
-SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(GoSub_C)
-```
-
-```{r}
-SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(NRB_L)
-```
-
-```{r}
-SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(ProS_L)
-```
-
-```{r}
-SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(SelP_L)
-```
-
-```{r}
-SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(SelM_L)
-```
-
-```{r}
-SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(SnasM_C)
-```
-
-```{r}
-SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(TrSman_C)
-```
-
-```{r}
-SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(TrTr_C)
-```
