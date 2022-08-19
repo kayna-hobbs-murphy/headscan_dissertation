@@ -1354,5 +1354,12 @@ all_extreme <- full_join(all_extreme, TrTr_L_extreme, by=c('ID',
 
 ```{r}
 combin_out <- full_join(mult_out, all_extreme, by=c('ID'))
+
+str(combin_out)
+```
+
+```{r}
+combin_out <- combin_out[c(1,14,15,16,17,18,19,21,22,23,24)]
+str(combin_out)
 ```
 
