@@ -266,6 +266,12 @@ AA_C_extreme <-
            extreme_race_eth == "TRUE" |
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
+
+
+#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
+#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
+#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
+#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
            
 AA_C_extreme[is.na(AA_C_extreme)]="Not Outlier"
 
@@ -337,6 +343,12 @@ BiW_C_extreme <-
            extreme_race_eth == "TRUE" |
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
+
+
+#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
+#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
+#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
+#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
            
 BiW_C_extreme[is.na(BiW_C_extreme)]="Not Outlier"
 
@@ -408,6 +420,12 @@ BiW_L_extreme <-
            extreme_race_eth == "TRUE" |
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
+
+
+#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
+#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
+#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
+#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
            
 BiW_L_extreme[is.na(BiW_L_extreme)]="Not Outlier"
 
@@ -481,6 +499,11 @@ GoSub_C_extreme <-
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
 
+#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
+#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
+#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
+#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
+
 GoSub_C_extreme[is.na(GoSub_C_extreme)]="Not Outlier"           
 
 #Size 12 Table TNR
@@ -499,3 +522,241 @@ flextable(GoSub_C_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 ```
+
+
+```{r}
+#NRB_L
+NRB_L_out <- SA3_data2 %>% 
+  identify_outliers(NRB_L)
+
+NRB_L_out$extreme_overall <- NRB_L_out$is.extreme
+
+NRB_L_out <- NRB_L_out[c(1,6,19)]
+
+
+
+NRB_L_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(NRB_L)
+
+NRB_L_out1$extreme_race_eth <- NRB_L_out1$is.extreme
+
+NRB_L_out1 <- NRB_L_out1[c(2,7,19)]
+
+
+
+
+NRB_L_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(NRB_L)
+
+NRB_L_out2$extreme_gender <- NRB_L_out2$is.extreme
+
+NRB_L_out2 <- NRB_L_out2[c(2,7,19)]
+
+
+
+NRB_L_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(NRB_L)
+
+NRB_L_out3$extreme_age <- NRB_L_out3$is.extreme
+
+NRB_L_out3 <- NRB_L_out3[c(2,7,19)]
+
+
+NRB_L_extreme <- full_join(NRB_L_out, NRB_L_out1, by=c('ID', 'NRB_L'))
+NRB_L_extreme <- full_join(NRB_L_extreme, NRB_L_out2, by=c('ID', 'NRB_L'))
+NRB_L_extreme <- full_join(NRB_L_extreme, NRB_L_out3, by=c('ID', 'NRB_L'))
+
+NRB_L_extreme <- 
+  filter(NRB_L_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+
+#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
+#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
+#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
+#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
+
+
+NRB_L_extreme[is.na(NRB_L_extreme)]="Not Outlier"           
+
+#Size 12 Table TNR
+flextable(NRB_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("NRB_L Extreme Outliers") 
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(NRB_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("NRB_L Extreme Outliers") %>% 
+  fit_to_width(7.5) %>% 
+  autofit
+#%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+```
+
+
+
+```{r}
+#ProS_L
+ProS_L_out <- SA3_data2 %>% 
+  identify_outliers(ProS_L)
+
+ProS_L_out$extreme_overall <- ProS_L_out$is.extreme
+
+ProS_L_out <- ProS_L_out[c(1,7,19)]
+
+
+
+ProS_L_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(ProS_L)
+
+ProS_L_out1$extreme_race_eth <- ProS_L_out1$is.extreme
+
+ProS_L_out1 <- ProS_L_out1[c(2,8,19)]
+
+
+
+
+ProS_L_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(ProS_L)
+
+ProS_L_out2$extreme_gender <- ProS_L_out2$is.extreme
+
+ProS_L_out2 <- ProS_L_out2[c(2,8,19)]
+
+
+
+ProS_L_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(ProS_L)
+
+ProS_L_out3$extreme_age <- ProS_L_out3$is.extreme
+
+ProS_L_out3 <- ProS_L_out3[c(2,8,19)]
+
+
+ProS_L_extreme <- full_join(ProS_L_out, ProS_L_out1, by=c('ID', 'ProS_L'))
+ProS_L_extreme <- full_join(ProS_L_extreme, ProS_L_out2, by=c('ID', 'ProS_L'))
+ProS_L_extreme <- full_join(ProS_L_extreme, ProS_L_out3, by=c('ID', 'ProS_L'))
+
+ProS_L_extreme <- 
+  filter(ProS_L_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+
+#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
+#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
+#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
+#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
+
+ProS_L_extreme[is.na(ProS_L_extreme)]="Not Outlier"           
+
+#Size 12 Table TNR
+flextable(ProS_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("ProS_L Extreme Outliers") 
+#%>% set_header_labels(values = list(ProS_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(ProS_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("ProS_L Extreme Outliers") %>% 
+  fit_to_width(7.5) %>% 
+  autofit
+#%>% set_header_labels(values = list(ProS_L = "Alare/AlareCont"))
+```
+
+
+SelP_L
+```{r}
+#SelP_L
+SelP_L_out <- SA3_data2 %>% 
+  identify_outliers(SelP_L)
+
+SelP_L_out$extreme_overall <- SelP_L_out$is.extreme
+
+SelP_L_out <- SelP_L_out[c(1,8,19)]
+
+
+
+SelP_L_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(SelP_L)
+
+SelP_L_out1$extreme_race_eth <- SelP_L_out1$is.extreme
+
+SelP_L_out1 <- SelP_L_out1[c(2,9,19)]
+
+
+
+
+SelP_L_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(SelP_L)
+
+SelP_L_out2$extreme_gender <- SelP_L_out2$is.extreme
+
+SelP_L_out2 <- SelP_L_out2[c(2,9,19)]
+
+
+
+SelP_L_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(SelP_L)
+
+SelP_L_out3$extreme_age <- SelP_L_out3$is.extreme
+
+SelP_L_out3 <- SelP_L_out3[c(2,9,19)]
+
+
+SelP_L_extreme <- full_join(SelP_L_out, SelP_L_out1, by=c('ID', 'SelP_L'))
+SelP_L_extreme <- full_join(SelP_L_extreme, SelP_L_out2, by=c('ID', 'SelP_L'))
+SelP_L_extreme <- full_join(SelP_L_extreme, SelP_L_out3, by=c('ID', 'SelP_L'))
+
+SelP_L_extreme <- 
+  filter(SelP_L_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+
+SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
+SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
+SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
+SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
+
+SelP_L_extreme[is.na(SelP_L_extreme)] = "Not Outlier"           
+
+#Size 12 Table TNR
+flextable(SelP_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SelP_L Extreme Outliers") 
+#%>% set_header_labels(values = list(SelP_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(SelP_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SelP_L Extreme Outliers") %>% 
+  fit_to_width(7.5) %>% 
+  autofit
+#%>% set_header_labels(values = list(SelP_L = "Alare/AlareCont"))
+```
+
+
+
+
