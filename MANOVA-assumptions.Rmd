@@ -219,15 +219,13 @@ Next, identify univariate outliers
 AA_C_out <- SA3_data2 %>% 
   identify_outliers(AA_C)
 
-AA_C_out$testgroup <- "overall"
+AA_C_out$extreme_overall <- AA_C_out$is.extreme
 
-AA_C_out <- AA_C_out[c(1,2,18,19)]
+#AA_C_out <- AA_C_out[c(1,2,18,19)]
 
-AA_C_out <- AA_C_out[AA_C_out$is.extreme == "TRUE",]
-
-AA_C_out <- AA_C_out %>% 
-  mutate("TRUE"=TRUE) %>% 
-  pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
+#AA_C_out <- AA_C_out %>% 
+  #mutate("TRUE"=TRUE) %>% 
+  #pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
 
 
 
@@ -237,7 +235,11 @@ AA_C_out1 <- SA3_data2 %>%
 
 AA_C_out1$testgroup <- "race_eth"
 
-AA_C_out1 <- AA_C_out1[c(1,2,18,19)]
+AA_C_out1 <- AA_C_out1[c(2,3,18,19)]
+
+AA_C_out1 <- AA_C_out1 %>% 
+  mutate("TRUE"=TRUE) %>% 
+  pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
 
 
 
@@ -247,6 +249,13 @@ AA_C_out2 <- SA3_data2 %>%
 
 AA_C_out2$testgroup <- "gender"
 
+AA_C_out2 <- AA_C_out2[c(2,3,18,19)]
+
+AA_C_out2 <- AA_C_out2 %>% 
+  mutate("TRUE"=TRUE) %>% 
+  pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
+
+
 
 AA_C_out3 <- SA3_data2 %>% 
   group_by(age_group) %>% 
@@ -254,6 +263,14 @@ AA_C_out3 <- SA3_data2 %>%
 
 AA_C_out3$testgroup <- "age_group"
 
+AA_C_out3 <- AA_C_out3[c(2,3,18,19)]
+
+AA_C_out3 <- AA_C_out3 %>% 
+  mutate("TRUE"=TRUE) %>% 
+  pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
+
+
+AA_C_extreme <- full_join(AA_C_out, AA_C_out1, by=c('ID', 'AA_C'))
 
 #AA_C_extreme <- rbind(AA_C_out, AA_C_out1, AA_C_out2, AA_C_out3)
 
@@ -268,8 +285,8 @@ AA_C_out3$testgroup <- "age_group"
 
 
 
-summary(AA_C_extreme)
-tibble(AA_C_extreme1)
+#summary(AA_C_extreme)
+#tibble(AA_C_extreme1)
 
 
 ```
@@ -293,92 +310,3 @@ n_occur_AA_C <- data.frame(table(AA_C_extreme$ID))
 n_occur_AA_C[n_occur_AA_C$Freq > 1,]
 AA_C_extreme[AA_C_extreme$ID %in% n_occur_AA_C$Var1[n_occur_AA_C$Freq > 1],]
 
-```{r}
-BiW_C_out <- SA3_data2 %>% 
-  identify_outliers(BiW_C)
-
-BiW_C_out$testgroup <- "overall"
-
-
-BiW_C_out1 <- SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(BiW_C)
-
-BiW_C_out1$testgroup <- "race_eth"
-
-
-BiW_C_out2 <- SA3_data2 %>% 
-  group_by(gender) %>% 
-  identify_outliers(BiW_C)
-
-BiW_C_out2$testgroup <- "gender"
-
-
-BiW_C_out3 <- SA3_data2 %>% 
-  group_by(age_group) %>% 
-  identify_outliers(BiW_C)
-
-BiW_C_out3$testgroup <- "age_group"
-
-
-BiW_C_extreme <- rbind(BiW_C_out, BiW_C_out1, BiW_C_out2, BiW_C_out3)
-
-BiW_C_extreme <- BiW_C_extreme[c(1,2,18,19)]
-
-
-BiW_C_extreme1 <- BiW_C_extreme[BiW_C_extreme$is.extreme == "TRUE",]
-
-BiW_C_extreme1 <- BiW_C_extreme1 %>% 
-  mutate("TRUE"=TRUE) %>% 
-  pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
-
-
-summary(BiW_C_extreme)
-tibble(BiW_C_extreme1)
-
-
-```
-
-```{r}
-BiW_L_out <- SA3_data2 %>% 
-  identify_outliers(BiW_L)
-
-BiW_L_out$testgroup <- "overall"
-
-
-BiW_L_out1 <- SA3_data2 %>% 
-  group_by(race_eth) %>% 
-  identify_outliers(BiW_L)
-
-BiW_L_out1$testgroup <- "race_eth"
-
-
-BiW_L_out2 <- SA3_data2 %>% 
-  group_by(gender) %>% 
-  identify_outliers(BiW_L)
-
-BiW_L_out2$testgroup <- "gender"
-
-
-BiW_L_out3 <- SA3_data2 %>% 
-  group_by(age_group) %>% 
-  identify_outliers(BiW_L)
-
-BiW_L_out3$testgroup <- "age_group"
-
-
-BiW_L_extreme <- rbind(BiW_L_out, BiW_L_out1, BiW_L_out2, BiW_L_out3)
-
-BiW_L_extreme <- BiW_L_extreme[c(1,2,18,19)]
-
-
-BiW_L_extreme1 <- BiW_L_extreme[BiW_L_extreme$is.extreme == "TRUE",]
-
-BiW_L_extreme1 <- BiW_L_extreme1 %>% 
-  mutate("TRUE"=TRUE) %>% 
-  pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
-
-
-summary(BiW_L_extreme)
-tibble(BiW_L_extreme1)
-```
