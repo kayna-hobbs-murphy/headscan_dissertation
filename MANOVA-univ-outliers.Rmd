@@ -210,6 +210,9 @@ sum(is.na(SA3_data1))
 ```
 #306 observations were deleted when we dropped NAs. That is not bad considering there are 892 missing values
 
+```{r}
+str(SA3_data2)
+```
 
 
 Next, identify univariate outliers
@@ -286,10 +289,18 @@ flextable(AA_C_extreme) %>%
 flextable(AA_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("AA_C Extreme Outliers") %>% 
+  set_caption("AA_C Extreme Outliers (mean=61.25mm)") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=AA_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="AA_C Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 ```{r}
@@ -364,9 +375,17 @@ flextable(BiW_C_extreme) %>%
 flextable(BiW_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("BiW_C Extreme Outliers") %>% 
+  set_caption("BiW_C Extreme Outliers (mean=133.4mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=BiW_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="BiW_C Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 ```{r}
@@ -441,9 +460,17 @@ flextable(BiW_L_extreme) %>%
 flextable(BiW_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("BiW_L Extreme Outliers") %>% 
+  set_caption("BiW_L Extreme Outliers (mean=111.2mm") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=BiW_L))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="BiW_L Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 
@@ -517,10 +544,18 @@ flextable(GoSub_C_extreme) %>%
 flextable(GoSub_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("GoSub_C Extreme Outliers") %>% 
+  set_caption("GoSub_C Extreme Outliers (mean=99.05mm") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=GoSub_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="GoSub_C Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 
@@ -595,10 +630,18 @@ flextable(NRB_L_extreme) %>%
 flextable(NRB_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("NRB_L Extreme Outliers") %>% 
+  set_caption("NRB_L Extreme Outliers (mean=17.98mm)") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=NRB_L))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="NRB_L Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 
@@ -673,10 +716,18 @@ flextable(ProS_L_extreme) %>%
 flextable(ProS_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("ProS_L Extreme Outliers") %>% 
+  set_caption("ProS_L Extreme Outliers (mean=19.16mm)") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(ProS_L = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=ProS_L))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="ProS_L Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 
@@ -751,10 +802,18 @@ flextable(SelP_L_extreme) %>%
 flextable(SelP_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("SelP_L Extreme Outliers") %>% 
+  set_caption("SelP_L Extreme Outliers (mean=44.53mm)") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(SelP_L = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=SelP_L))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SelP_L Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 
@@ -829,10 +888,18 @@ flextable(SelM_L_extreme) %>%
 flextable(SelM_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("SelM_L Extreme Outliers") %>% 
+  set_caption("SelM_L Extreme Outliers (mean=116.2mm)") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(SelM_L = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=SelM_L))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SelM_L Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 
