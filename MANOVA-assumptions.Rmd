@@ -250,7 +250,7 @@ AA_C_out3 <- SA3_data2 %>%
   group_by(age_group) %>% 
   identify_outliers(AA_C)
 
-AA_C_out3$extreme_gender <- AA_C_out3$is.extreme
+AA_C_out3$extreme_age <- AA_C_out3$is.extreme
 
 AA_C_out3 <- AA_C_out3[c(2,3,19)]
 
@@ -260,7 +260,11 @@ AA_C_extreme <- full_join(AA_C_extreme, AA_C_out2, by=c('ID', 'AA_C'))
 AA_C_extreme <- full_join(AA_C_extreme, AA_C_out3, by=c('ID', 'AA_C'))
 
 
-#AA_C_extreme1 <- AA_C_extreme[AA_C_extreme$is.extreme == "TRUE",]
+#AA_C_extreme1 <- AA_C_extreme[AA_C_extreme$extreme_overall == "TRUE",]
+#AA_C_extreme1 <- AA_C_extreme1[AA_C_extreme1$extreme_race_eth == "TRUE",]
+#AA_C_extreme1 <- AA_C_extreme1[AA_C_extreme1$extreme_gender == "TRUE",]
+#AA_C_extreme1 <- AA_C_extreme1[AA_C_extreme1$extreme_age == "TRUE",]
+
 
 #AA_C_extreme1 <- AA_C_extreme1 %>% 
   #mutate("TRUE"=TRUE) %>% 
