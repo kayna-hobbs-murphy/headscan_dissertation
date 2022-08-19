@@ -1282,7 +1282,16 @@ mult_out <- mult_out %>%
 
 
 ```{r}
-combin_out <- full_join(mult_out, AA_C_extreme, by=c('ID', 'AA_C'))
-combin_out <- full_join(combin_out, BiW_C_extreme, by=c('ID', 'BiW_C'))
+all_extreme <- full_join(AA_C_extreme, BiW_C_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+
+#combin_out <- full_join(mult_out, AA_C_extreme, by=c('ID', 'AA_C'))
+
+
+
+                                                        
 ```
 
