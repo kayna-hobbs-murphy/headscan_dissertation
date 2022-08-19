@@ -1,5 +1,5 @@
 ---
-title: "MANOVA univariate outlier assessment"
+title: "MANOVA outlier assessment"
 output: html_document
 date: "2022-08-18"
 ---
@@ -1436,10 +1436,15 @@ flextable(combin_out1) %>%
 ```{r}
 
 ##exclude outliers
-noout <- anti_join(SA3_data2, mult_out, by="ID")
+SA3_noout <- anti_join(SA3_data2, mult_out, by="ID")
 
 1710-19
 
-str(noout)
+str(SA3_noout)
+```
+
+
+```{r}
+write_xlsx(SA3_noout, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
 ```
 
