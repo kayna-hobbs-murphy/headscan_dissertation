@@ -15,6 +15,7 @@ library(officer)
 library(flextable)
 library(extrafont)
 library(writexl)
+library(rstatix)
 ```
 
 
@@ -166,6 +167,10 @@ flextable(SA3_NAs) %>%
                                   SA3_NAsums = "Count of NA values"))
 ```
 
+
+
+
+
 ```{r}
 SA3_data1 <- SA3_data
 
@@ -187,3 +192,123 @@ summary(SA3_data1)
 ```
 
 
+
+
+#Dr. Erin Buchanan from Missouri State
+If there were missing data categories over 20%, I could replace the data? According to manova-9 notes
+
+Otherwise, it seems like I have to delete the missing values. I did this for PCA as well. 
+
+
+```{r}
+
+SA3_data2 <- SA3_data1 %>% drop_na()
+
+sum(is.na(SA3_data1))
+
+2016-1710
+```
+#306 observations were deleted when we dropped NAs. That is not bad considering there are 892 missing values
+
+
+
+Next, identify univariate outliers
+
+
+```{r}
+AA_C_out <- SA3_data2 %>% 
+  identify_outliers(AA_C)
+
+AA_C_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(AA_C)
+
+AA_C_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(AA_C)
+
+AA_C_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(AA_C)
+
+summary(AA_C_out$is.extreme)
+summary(AA_C_out1$is.extreme)
+summary(AA_C_out2$is.extreme)
+summary(AA_C_out3$is.extreme)
+```
+
+```{r}
+AA_C_out <- SA3_data2 %>% 
+  identify_outliers(AA_C)
+
+AA_C_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(AA_C)
+
+AA_C_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(AA_C)
+
+AA_C_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(AA_C)
+
+summary(AA_C_out$is.extreme)
+summary(AA_C_out1$is.extreme)
+summary(AA_C_out2$is.extreme)
+summary(AA_C_out3$is.extreme)
+```
+
+```{r}
+SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(BiW_L)
+```
+
+```{r}
+SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(GoSub_C)
+```
+
+```{r}
+SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(NRB_L)
+```
+
+```{r}
+SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(ProS_L)
+```
+
+```{r}
+SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(SelP_L)
+```
+
+```{r}
+SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(SelM_L)
+```
+
+```{r}
+SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(SnasM_C)
+```
+
+```{r}
+SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(TrSman_C)
+```
+
+```{r}
+SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(TrTr_C)
+```
