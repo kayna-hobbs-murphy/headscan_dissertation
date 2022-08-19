@@ -282,7 +282,7 @@ AA_C_extreme[is.na(AA_C_extreme)]="Not Outlier"
 flextable(AA_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("AA_C Extreme Outliers") 
+  set_caption("AA_C Extreme Outliers (mean=61.25mm)") 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
@@ -368,7 +368,7 @@ BiW_C_extreme[is.na(BiW_C_extreme)]="Not Outlier"
 flextable(BiW_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("BiW_C Extreme Outliers") 
+  set_caption("BiW_C Extreme Outliers (mean=133.4mm)") 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
@@ -453,14 +453,14 @@ BiW_L_extreme[is.na(BiW_L_extreme)]="Not Outlier"
 flextable(BiW_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("BiW_L Extreme Outliers") 
+  set_caption("BiW_L Extreme Outliers (mean=111.2mm)") 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("BiW_L Extreme Outliers (mean=111.2mm") %>% 
+  set_caption("BiW_L Extreme Outliers (mean=111.2mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
@@ -537,20 +537,20 @@ GoSub_C_extreme[is.na(GoSub_C_extreme)]="Not Outlier"
 flextable(GoSub_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("GoSub_C Extreme Outliers") 
+  set_caption("GoSub_C Extreme Outliers (mean=99.05mm)") 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(GoSub_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("GoSub_C Extreme Outliers (mean=99.05mm") %>% 
+  set_caption("GoSub_C Extreme Outliers (mean=99.05mm)") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 ggplot(data=SA3_data2, aes(x=GoSub_C))+
-  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  geom_bar(stat="bin", bins=30, color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="GoSub_C Measurement Distribution",
        subtitle = "NA values removed",
@@ -623,7 +623,7 @@ NRB_L_extreme[is.na(NRB_L_extreme)]="Not Outlier"
 flextable(NRB_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("NRB_L Extreme Outliers") 
+  set_caption("NRB_L Extreme Outliers (mean=17.98mm)") 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
@@ -636,7 +636,7 @@ flextable(NRB_L_extreme) %>%
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 ggplot(data=SA3_data2, aes(x=NRB_L))+
-  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="NRB_L Measurement Distribution",
        subtitle = "NA values removed",
@@ -709,7 +709,7 @@ ProS_L_extreme[is.na(ProS_L_extreme)]="Not Outlier"
 flextable(ProS_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("ProS_L Extreme Outliers") 
+  set_caption("ProS_L Extreme Outliers (mean=19.16mm)") 
 #%>% set_header_labels(values = list(ProS_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
@@ -722,7 +722,7 @@ flextable(ProS_L_extreme) %>%
 #%>% set_header_labels(values = list(ProS_L = "Alare/AlareCont"))
 
 ggplot(data=SA3_data2, aes(x=ProS_L))+
-  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="ProS_L Measurement Distribution",
        subtitle = "NA values removed",
@@ -795,7 +795,7 @@ SelP_L_extreme[is.na(SelP_L_extreme)] = "Not Outlier"
 flextable(SelP_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("SelP_L Extreme Outliers") 
+  set_caption("SelP_L Extreme Outliers (mean=44.53mm)") 
 #%>% set_header_labels(values = list(SelP_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
@@ -808,7 +808,7 @@ flextable(SelP_L_extreme) %>%
 #%>% set_header_labels(values = list(SelP_L = "Alare/AlareCont"))
 
 ggplot(data=SA3_data2, aes(x=SelP_L))+
-  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="SelP_L Measurement Distribution",
        subtitle = "NA values removed",
@@ -881,7 +881,7 @@ SelM_L_extreme[is.na(SelM_L_extreme)] = "Not Outlier"
 flextable(SelM_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("SelM_L Extreme Outliers") 
+  set_caption("SelM_L Extreme Outliers (mean=116.2mm)") 
 #%>% set_header_labels(values = list(SelM_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
@@ -966,17 +966,25 @@ SnasM_C_extreme[is.na(SnasM_C_extreme)] = "Not Outlier"
 flextable(SnasM_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("SnasM_C Extreme Outliers") 
+  set_caption("SnasM_C Extreme Outliers (mean=75.1mm)") 
 #%>% set_header_labels(values = list(SnasM_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("SnasM_C Extreme Outliers") %>% 
+  set_caption("SnasM_C Extreme Outliers (mean=75.1mm)") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(SnasM_C = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=SnasM_C))+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SnasM_C Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 
@@ -1044,17 +1052,25 @@ TrSman_C_extreme[is.na(TrSman_C_extreme)] = "Not Outlier"
 flextable(TrSman_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("TrSman_C Extreme Outliers") 
+  set_caption("TrSman_C Extreme Outliers (mean=153.4mm)") 
 #%>% set_header_labels(values = list(TrSman_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(TrSman_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("TrSman_C Extreme Outliers") %>% 
+  set_caption("TrSman_C Extreme Outliers (mean=153.4mm)") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(TrSman_C = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=TrSman_C))+
+  geom_bar(stat="bin", bins=30, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrSman_C Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 
@@ -1121,17 +1137,25 @@ TrTr_C_extreme[is.na(TrTr_C_extreme)] = "Not Outlier"
 flextable(TrTr_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("TrTr_C Extreme Outliers") 
+  set_caption("TrTr_C Extreme Outliers (mean=282.7)") 
 #%>% set_header_labels(values = list(TrTr_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("TrTr_C Extreme Outliers") %>% 
+  set_caption("TrTr_C Extreme Outliers (mean=282.7)") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(TrTr_C = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=TrTr_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrTr_C Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
 
 
@@ -1199,15 +1223,23 @@ TrTr_L_extreme[is.na(TrTr_L_extreme)] = "Not Outlier"
 flextable(TrTr_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("TrTr_L Extreme Outliers") 
+  set_caption("TrTr_L Extreme Outliers (mean=146.5mm)") 
 #%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_L_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("TrTr_L Extreme Outliers") %>% 
+  set_caption("TrTr_L Extreme Outliers (mean=146.5mm)") %>% 
   fit_to_width(7.5) %>% 
   autofit
 #%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
+
+ggplot(data=SA3_data2, aes(x=TrTr_L))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrTr_L Measurement Distribution",
+       subtitle = "NA values removed",
+       y="Frequency",
+       x="Measurement in mm")
 ```
