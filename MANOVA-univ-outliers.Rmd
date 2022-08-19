@@ -1324,7 +1324,7 @@ all_extreme <- full_join(all_extreme, SelM_L_extreme, by=c('ID',
                                                         'extreme_gender',
                                                         'extreme_age'))
 
-all_extreme <- full_join(all_extreme, SnamsM_C_extreme, by=c('ID', 
+all_extreme <- full_join(all_extreme, SnasM_C_extreme, by=c('ID', 
                                                         'extreme_overall', 
                                                         'extreme_race_eth', 
                                                         'extreme_gender',
@@ -1353,10 +1353,6 @@ all_extreme <- full_join(all_extreme, TrTr_L_extreme, by=c('ID',
 
 
 ```{r}
-#combin_out <- full_join(mult_out, AA_C_extreme, by=c('ID', 'AA_C'))
-
-
-
-                                                        
+combin_out <- full_join(mult_out, all_extreme, by=c('ID'))
 ```
 
