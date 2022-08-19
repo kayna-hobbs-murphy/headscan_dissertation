@@ -267,6 +267,7 @@ AA_C_extreme <-
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
            
+AA_C_extreme[is.na(AA_C_extreme)]="Not Outlier"
 
 #Size 12 Table TNR
 flextable(AA_C_extreme) %>%
@@ -280,7 +281,8 @@ flextable(AA_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("AA_C Extreme Outliers") %>% 
-  fit_to_width(7.5) 
+  fit_to_width(7.5) %>% 
+  autofit
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 ```
 
@@ -336,6 +338,8 @@ BiW_C_extreme <-
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
            
+BiW_C_extreme[is.na(BiW_C_extreme)]="Not Outlier"
+
 
 #Size 12 Table TNR
 flextable(BiW_C_extreme) %>%
@@ -405,6 +409,8 @@ BiW_L_extreme <-
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
            
+BiW_L_extreme[is.na(BiW_L_extreme)]="Not Outlier"
+
 
 #Size 12 Table TNR
 flextable(BiW_L_extreme) %>%
@@ -474,7 +480,8 @@ GoSub_C_extreme <-
            extreme_race_eth == "TRUE" |
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
-           
+
+GoSub_C_extreme[is.na(GoSub_C_extreme)]="Not Outlier"           
 
 #Size 12 Table TNR
 flextable(GoSub_C_extreme) %>%
