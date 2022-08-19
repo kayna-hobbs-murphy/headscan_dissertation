@@ -1260,10 +1260,10 @@ mult_out$mahal <- mahalanobis(mult_out[ , -c(1,14,15,16)],
 
 mult_out$p <- pchisq(mult_out$mahal, df=11, lower.tail=FALSE)
 
-mult_out$outlier <- with(mult_out, ifelse(p < 0.001, 'TRUE', 'FALSE'))
+mult_out$multv_outlier <- with(mult_out, ifelse(p < 0.001, 'TRUE', 'FALSE'))
 
 mult_out <- mult_out %>% 
-  filter(outlier == TRUE)
+  filter(multv_outlier == TRUE)
 
 
 ##df
@@ -1281,4 +1281,8 @@ mult_out <- mult_out %>%
 ```
 
 
+```{r}
+combin_out <- full_join(mult_out, AA_C_extreme, by=c('ID', 'AA_C'))
+combin_out <- full_join(combin_out, BiW_C_extreme, by=c('ID', 'BiW_C'))
+```
 
