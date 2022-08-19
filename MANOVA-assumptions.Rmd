@@ -284,6 +284,211 @@ flextable(AA_C_extreme) %>%
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 ```
 
+```{r}
+#BiW_C
+BiW_C_out <- SA3_data2 %>% 
+  identify_outliers(BiW_C)
+
+BiW_C_out$extreme_overall <- BiW_C_out$is.extreme
+
+BiW_C_out <- BiW_C_out[c(1,3,19)]
 
 
 
+BiW_C_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(BiW_C)
+
+BiW_C_out1$extreme_race_eth <- BiW_C_out1$is.extreme
+
+BiW_C_out1 <- BiW_C_out1[c(2,4,19)]
+
+
+
+
+BiW_C_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(BiW_C)
+
+BiW_C_out2$extreme_gender <- BiW_C_out2$is.extreme
+
+BiW_C_out2 <- BiW_C_out2[c(2,4,19)]
+
+
+
+BiW_C_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(BiW_C)
+
+BiW_C_out3$extreme_age <- BiW_C_out3$is.extreme
+
+BiW_C_out3 <- BiW_C_out3[c(2,4,19)]
+
+
+BiW_C_extreme <- full_join(BiW_C_out, BiW_C_out1, by=c('ID', 'BiW_C'))
+BiW_C_extreme <- full_join(BiW_C_extreme, BiW_C_out2, by=c('ID', 'BiW_C'))
+BiW_C_extreme <- full_join(BiW_C_extreme, BiW_C_out3, by=c('ID', 'BiW_C'))
+
+BiW_C_extreme <- 
+  filter(BiW_C_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+           
+
+#Size 12 Table TNR
+flextable(BiW_C_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("BiW_C Extreme Outliers") 
+#%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(BiW_C_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("BiW_C Extreme Outliers") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
+```
+
+```{r}
+#BiW_L
+BiW_L_out <- SA3_data2 %>% 
+  identify_outliers(BiW_L)
+
+BiW_L_out$extreme_overall <- BiW_L_out$is.extreme
+
+BiW_L_out <- BiW_L_out[c(1,4,19)]
+
+
+
+BiW_L_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(BiW_L)
+
+BiW_L_out1$extreme_race_eth <- BiW_L_out1$is.extreme
+
+BiW_L_out1 <- BiW_L_out1[c(2,5,19)]
+
+
+
+
+BiW_L_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(BiW_L)
+
+BiW_L_out2$extreme_gender <- BiW_L_out2$is.extreme
+
+BiW_L_out2 <- BiW_L_out2[c(2,5,19)]
+
+
+
+BiW_L_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(BiW_L)
+
+BiW_L_out3$extreme_age <- BiW_L_out3$is.extreme
+
+BiW_L_out3 <- BiW_L_out3[c(2,5,19)]
+
+
+BiW_L_extreme <- full_join(BiW_L_out, BiW_L_out1, by=c('ID', 'BiW_L'))
+BiW_L_extreme <- full_join(BiW_L_extreme, BiW_L_out2, by=c('ID', 'BiW_L'))
+BiW_L_extreme <- full_join(BiW_L_extreme, BiW_L_out3, by=c('ID', 'BiW_L'))
+
+BiW_L_extreme <- 
+  filter(BiW_L_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+           
+
+#Size 12 Table TNR
+flextable(BiW_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("BiW_L Extreme Outliers") 
+#%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(BiW_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("BiW_L Extreme Outliers") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
+```
+
+
+```{r}
+#GoSub_C
+GoSub_C_out <- SA3_data2 %>% 
+  identify_outliers(GoSub_C)
+
+GoSub_C_out$extreme_overall <- GoSub_C_out$is.extreme
+
+GoSub_C_out <- GoSub_C_out[c(1,5,19)]
+
+
+
+GoSub_C_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(GoSub_C)
+
+GoSub_C_out1$extreme_race_eth <- GoSub_C_out1$is.extreme
+
+GoSub_C_out1 <- GoSub_C_out1[c(2,6,19)]
+
+
+
+
+GoSub_C_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(GoSub_C)
+
+GoSub_C_out2$extreme_gender <- GoSub_C_out2$is.extreme
+
+GoSub_C_out2 <- GoSub_C_out2[c(2,6,19)]
+
+
+
+GoSub_C_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(GoSub_C)
+
+GoSub_C_out3$extreme_age <- GoSub_C_out3$is.extreme
+
+GoSub_C_out3 <- GoSub_C_out3[c(2,6,19)]
+
+
+GoSub_C_extreme <- full_join(GoSub_C_out, GoSub_C_out1, by=c('ID', 'GoSub_C'))
+GoSub_C_extreme <- full_join(GoSub_C_extreme, GoSub_C_out2, by=c('ID', 'GoSub_C'))
+GoSub_C_extreme <- full_join(GoSub_C_extreme, GoSub_C_out3, by=c('ID', 'GoSub_C'))
+
+GoSub_C_extreme <- 
+  filter(GoSub_C_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+           
+
+#Size 12 Table TNR
+flextable(GoSub_C_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("GoSub_C Extreme Outliers") 
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(GoSub_C_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("GoSub_C Extreme Outliers") %>% 
+  fit_to_width(7.5) %>% 
+  autofit
+#%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
+```
