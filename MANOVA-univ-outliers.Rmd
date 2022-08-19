@@ -271,10 +271,10 @@ AA_C_extreme <-
            extreme_age == "TRUE" )
 
 
-#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
-#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
-#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
-#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
+AA_C_extreme$extreme_overall <- as.character(AA_C_extreme$extreme_overall)
+AA_C_extreme$extreme_race_eth <- as.character(AA_C_extreme$extreme_race_eth)
+AA_C_extreme$extreme_gender <- as.character(AA_C_extreme$extreme_gender)
+AA_C_extreme$extreme_age <- as.character(AA_C_extreme$extreme_age)
            
 AA_C_extreme[is.na(AA_C_extreme)]="Not Outlier"
 
@@ -356,10 +356,10 @@ BiW_C_extreme <-
            extreme_age == "TRUE" )
 
 
-#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
-#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
-#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
-#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
+BiW_C_extreme$extreme_overall <- as.character(BiW_C_extreme$extreme_overall)
+BiW_C_extreme$extreme_race_eth <- as.character(BiW_C_extreme$extreme_race_eth)
+BiW_C_extreme$extreme_gender <- as.character(BiW_C_extreme$extreme_gender)
+BiW_C_extreme$extreme_age <- as.character(BiW_C_extreme$extreme_age)
            
 BiW_C_extreme[is.na(BiW_C_extreme)]="Not Outlier"
 
@@ -441,10 +441,10 @@ BiW_L_extreme <-
            extreme_age == "TRUE" )
 
 
-#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
-#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
-#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
-#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
+BiW_L_extreme$extreme_overall <- as.character(BiW_L_extreme$extreme_overall)
+BiW_L_extreme$extreme_race_eth <- as.character(BiW_L_extreme$extreme_race_eth)
+BiW_L_extreme$extreme_gender <- as.character(BiW_L_extreme$extreme_gender)
+BiW_L_extreme$extreme_age <- as.character(BiW_L_extreme$extreme_age)
            
 BiW_L_extreme[is.na(BiW_L_extreme)]="Not Outlier"
 
@@ -526,10 +526,10 @@ GoSub_C_extreme <-
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
 
-#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
-#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
-#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
-#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
+GoSub_C_extreme$extreme_overall <- as.character(GoSub_C_extreme$extreme_overall)
+GoSub_C_extreme$extreme_race_eth <- as.character(GoSub_C_extreme$extreme_race_eth)
+GoSub_C_extreme$extreme_gender <- as.character(GoSub_C_extreme$extreme_gender)
+GoSub_C_extreme$extreme_age <- as.character(GoSub_C_extreme$extreme_age)
 
 GoSub_C_extreme[is.na(GoSub_C_extreme)]="Not Outlier"           
 
@@ -611,10 +611,10 @@ NRB_L_extreme <-
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
 
-#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
-#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
-#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
-#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
+NRB_L_extreme$extreme_overall <- as.character(NRB_L_extreme$extreme_overall)
+NRB_L_extreme$extreme_race_eth <- as.character(NRB_L_extreme$extreme_race_eth)
+NRB_L_extreme$extreme_gender <- as.character(NRB_L_extreme$extreme_gender)
+NRB_L_extreme$extreme_age <- as.character(NRB_L_extreme$extreme_age)
 
 
 NRB_L_extreme[is.na(NRB_L_extreme)]="Not Outlier"           
@@ -698,10 +698,10 @@ ProS_L_extreme <-
            extreme_gender == "TRUE" |
            extreme_age == "TRUE" )
 
-#SelP_L_extreme$extreme_overall <- as.character(SelP_L_extreme$extreme_overall)
-#SelP_L_extreme$extreme_race_eth <- as.character(SelP_L_extreme$extreme_race_eth)
-#SelP_L_extreme$extreme_gender <- as.character(SelP_L_extreme$extreme_gender)
-#SelP_L_extreme$extreme_age <- as.character(SelP_L_extreme$extreme_age)
+ProS_L_extreme$extreme_overall <- as.character(ProS_L_extreme$extreme_overall)
+ProS_L_extreme$extreme_race_eth <- as.character(ProS_L_extreme$extreme_race_eth)
+ProS_L_extreme$extreme_gender <- as.character(ProS_L_extreme$extreme_gender)
+ProS_L_extreme$extreme_age <- as.character(ProS_L_extreme$extreme_age)
 
 ProS_L_extreme[is.na(ProS_L_extreme)]="Not Outlier"           
 
@@ -1288,6 +1288,71 @@ all_extreme <- full_join(AA_C_extreme, BiW_C_extreme, by=c('ID',
                                                         'extreme_gender',
                                                         'extreme_age'))
 
+all_extreme <- full_join(all_extreme, BiW_L_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+
+all_extreme <- full_join(all_extreme, GoSub_C_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+
+all_extreme <- full_join(all_extreme, NRB_L_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+
+all_extreme <- full_join(all_extreme, ProS_L_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+
+all_extreme <- full_join(all_extreme, SelP_L_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+
+all_extreme <- full_join(all_extreme, SelM_L_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+
+all_extreme <- full_join(all_extreme, SnamsM_C_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+
+all_extreme <- full_join(all_extreme, TrSman_C_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+
+all_extreme <- full_join(all_extreme, TrTr_C_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+
+all_extreme <- full_join(all_extreme, TrTr_L_extreme, by=c('ID', 
+                                                        'extreme_overall', 
+                                                        'extreme_race_eth', 
+                                                        'extreme_gender',
+                                                        'extreme_age'))
+```
+
+
+
+
+```{r}
 #combin_out <- full_join(mult_out, AA_C_extreme, by=c('ID', 'AA_C'))
 
 
