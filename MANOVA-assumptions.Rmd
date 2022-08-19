@@ -216,6 +216,7 @@ Next, identify univariate outliers
 
 
 ```{r}
+#AA_C
 AA_C_out <- SA3_data2 %>% 
   identify_outliers(AA_C)
 
@@ -259,41 +260,30 @@ AA_C_extreme <- full_join(AA_C_out, AA_C_out1, by=c('ID', 'AA_C'))
 AA_C_extreme <- full_join(AA_C_extreme, AA_C_out2, by=c('ID', 'AA_C'))
 AA_C_extreme <- full_join(AA_C_extreme, AA_C_out3, by=c('ID', 'AA_C'))
 
-
-#AA_C_extreme1 <- AA_C_extreme[AA_C_extreme$extreme_overall == "TRUE",]
-#AA_C_extreme1 <- AA_C_extreme1[AA_C_extreme1$extreme_race_eth == "TRUE",]
-#AA_C_extreme1 <- AA_C_extreme1[AA_C_extreme1$extreme_gender == "TRUE",]
-#AA_C_extreme1 <- AA_C_extreme1[AA_C_extreme1$extreme_age == "TRUE",]
-
-
-#AA_C_extreme1 <- AA_C_extreme1 %>% 
-  #mutate("TRUE"=TRUE) %>% 
-  #pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
-
-
-
-#summary(AA_C_extreme)
-#tibble(AA_C_extreme1)
-
-
-```
+AA_C_extreme <- 
+  filter(AA_C_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+           
 
 #Size 12 Table TNR
-flextable(AA_Csumstats) %>%
+flextable(AA_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats") 
+  set_caption("AA_C Extreme Outliers") 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
-flextable(AA_Csumstats) %>%
+flextable(AA_C_extreme) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats") %>% 
+  set_caption("AA_C Extreme Outliers") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
+```
 
-n_occur_AA_C <- data.frame(table(AA_C_extreme$ID))
-n_occur_AA_C[n_occur_AA_C$Freq > 1,]
-AA_C_extreme[AA_C_extreme$ID %in% n_occur_AA_C$Var1[n_occur_AA_C$Freq > 1],]
+
+
 
