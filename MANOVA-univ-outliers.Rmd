@@ -1260,6 +1260,8 @@ mult_out$mahal <- mahalanobis(mult_out[ , -c(1,14,15,16)],
 
 mult_out$p <- pchisq(mult_out$mahal, df=11, lower.tail=FALSE)
 
+
+
 mult_out$multv_outlier <- with(mult_out, ifelse(p < 0.001, 'TRUE', 'FALSE'))
 
 mult_out <- mult_out %>% 
@@ -1397,10 +1399,16 @@ str(combin_out1)
 ```
 
 ```{r}
-# Sort by vector name [z] then [x]
-combin_out1[
-  with(combin_out1, order("multv_outlier", "extreme_overall", "extreme_race_eth", "extreme_gender", "extreme_age")),
-]
+
+combin_out1$multv_outlier <- factor(combin_out1$multv_outlier, levels = c("TRUE", "FALSE", "Not Outlier"))
+combin_out1$extreme_overall <- factor(combin_out1$extreme_overall, levels = c("TRUE", "FALSE", "Not Outlier"))
+combin_out1$extreme_race_eth <- factor(combin_out1$extreme_race_eth, levels = c("TRUE", "FALSE", "Not Outlier"))
+combin_out1$extreme_gender <- factor(combin_out1$extreme_gender, levels = c("TRUE", "FALSE", "Not Outlier"))
+combin_out1$extreme_age <- factor(combin_out1$extreme_age, levels = c("TRUE", "FALSE", "Not Outlier"))
+
+
+arrange(combin_out1, multv_outlier + extreme_overall)
+#combin_out1[with(combin_out1, order("multv_outlier", "extreme_overall", "extreme_race_eth", "extreme_gender", "extreme_age")), ]
 ```
 
 
@@ -1424,4 +1432,14 @@ flextable(combin_out1) %>%
 #%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
 ```
 
+
+```{r}
+
+##exclude outliers
+noout <- anti_join(SA3_data2, mult_out, by="ID")
+
+1710-19
+
+str(noout)
+```
 
