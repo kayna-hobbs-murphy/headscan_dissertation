@@ -221,12 +221,24 @@ AA_C_out <- SA3_data2 %>%
 
 AA_C_out$testgroup <- "overall"
 
+AA_C_out <- AA_C_out[c(1,2,18,19)]
+
+AA_C_out <- AA_C_out[AA_C_out$is.extreme == "TRUE",]
+
+AA_C_out <- AA_C_out %>% 
+  mutate("TRUE"=TRUE) %>% 
+  pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
+
+
 
 AA_C_out1 <- SA3_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(AA_C)
 
 AA_C_out1$testgroup <- "race_eth"
+
+AA_C_out1 <- AA_C_out1[c(1,2,18,19)]
+
 
 
 AA_C_out2 <- SA3_data2 %>% 
@@ -243,16 +255,18 @@ AA_C_out3 <- SA3_data2 %>%
 AA_C_out3$testgroup <- "age_group"
 
 
-AA_C_extreme <- rbind(AA_C_out, AA_C_out1, AA_C_out2, AA_C_out3)
+#AA_C_extreme <- rbind(AA_C_out, AA_C_out1, AA_C_out2, AA_C_out3)
 
-AA_C_extreme <- AA_C_extreme[c(1,2,18,19)]
+#AA_C_extreme <- AA_C_extreme[c(1,2,18,19)]
 
 
-AA_C_extreme1 <- AA_C_extreme[AA_C_extreme$is.extreme == "TRUE",]
+#AA_C_extreme1 <- AA_C_extreme[AA_C_extreme$is.extreme == "TRUE",]
 
-AA_C_extreme1 <- AA_C_extreme1 %>% 
-  mutate("TRUE"=TRUE) %>% 
-  pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
+#AA_C_extreme1 <- AA_C_extreme1 %>% 
+  #mutate("TRUE"=TRUE) %>% 
+  #pivot_wider(names_from = testgroup, values_from = "TRUE", values_fill=FALSE)
+
+
 
 summary(AA_C_extreme)
 tibble(AA_C_extreme1)
