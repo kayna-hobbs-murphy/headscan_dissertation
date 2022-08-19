@@ -1243,3 +1243,42 @@ ggplot(data=SA3_data2, aes(x=TrTr_L))+
        y="Frequency",
        x="Measurement in mm")
 ```
+
+
+
+```{r}
+##outliers
+mult_out <- SA3_data2
+
+
+#cutoff <- qchisq(1-.001, ncol(mult_out[ , -c(1,14,15,16)]))
+
+
+mult_out$mahal <- mahalanobis(mult_out[ , -c(1,14,15,16)],
+                    colMeans(mult_out[ , -c(1,14,15,16)]),
+                    cov(mult_out[ , -c(1,14,15,16)]))
+
+mult_out$p <- pchisq(mult_out$mahal, df=11, lower.tail=FALSE)
+
+mult_out$outlier <- with(mult_out, ifelse(p < 0.001, 'TRUE', 'FALSE'))
+
+mult_out <- mult_out %>% 
+  filter(outlier == TRUE)
+
+
+##df
+#summary(mahal < cutoff)
+
+#mult_out2 <- SA3_data2 %>%
+ #mahalanobis_distance() %>%
+ #filter(is.outlier == TRUE) %>%
+  #as.data.frame()
+
+#mult_out2
+
+##exclude outliers
+#noout = subset(nomiss, mahal < cutoff)
+```
+
+
+
