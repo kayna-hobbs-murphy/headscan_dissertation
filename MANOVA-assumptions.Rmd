@@ -759,4 +759,388 @@ flextable(SelP_L_extreme) %>%
 
 
 
+```{r}
+#SelM_L
+SelM_L_out <- SA3_data2 %>% 
+  identify_outliers(SelM_L)
 
+SelM_L_out$extreme_overall <- SelM_L_out$is.extreme
+
+SelM_L_out <- SelM_L_out[c(1,9,19)]
+
+
+
+SelM_L_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(SelM_L)
+
+SelM_L_out1$extreme_race_eth <- SelM_L_out1$is.extreme
+
+SelM_L_out1 <- SelM_L_out1[c(2,10,19)]
+
+
+
+
+SelM_L_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(SelM_L)
+
+SelM_L_out2$extreme_gender <- SelM_L_out2$is.extreme
+
+SelM_L_out2 <- SelM_L_out2[c(2,10,19)]
+
+
+
+SelM_L_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(SelM_L)
+
+SelM_L_out3$extreme_age <- SelM_L_out3$is.extreme
+
+SelM_L_out3 <- SelM_L_out3[c(2,10,19)]
+
+
+SelM_L_extreme <- full_join(SelM_L_out, SelM_L_out1, by=c('ID', 'SelM_L'))
+SelM_L_extreme <- full_join(SelM_L_extreme, SelM_L_out2, by=c('ID', 'SelM_L'))
+SelM_L_extreme <- full_join(SelM_L_extreme, SelM_L_out3, by=c('ID', 'SelM_L'))
+
+SelM_L_extreme <- 
+  filter(SelM_L_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+
+SelM_L_extreme$extreme_overall <- as.character(SelM_L_extreme$extreme_overall)
+SelM_L_extreme$extreme_race_eth <- as.character(SelM_L_extreme$extreme_race_eth)
+SelM_L_extreme$extreme_gender <- as.character(SelM_L_extreme$extreme_gender)
+SelM_L_extreme$extreme_age <- as.character(SelM_L_extreme$extreme_age)
+
+SelM_L_extreme[is.na(SelM_L_extreme)] = "Not Outlier"           
+
+#Size 12 Table TNR
+flextable(SelM_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SelM_L Extreme Outliers") 
+#%>% set_header_labels(values = list(SelM_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(SelM_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SelM_L Extreme Outliers") %>% 
+  fit_to_width(7.5) %>% 
+  autofit
+#%>% set_header_labels(values = list(SelM_L = "Alare/AlareCont"))
+```
+
+
+```{r}
+#SnasM_C
+SnasM_C_out <- SA3_data2 %>% 
+  identify_outliers(SnasM_C)
+
+SnasM_C_out$extreme_overall <- SnasM_C_out$is.extreme
+
+SnasM_C_out <- SnasM_C_out[c(1,10,19)]
+
+
+
+SnasM_C_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(SnasM_C)
+
+SnasM_C_out1$extreme_race_eth <- SnasM_C_out1$is.extreme
+
+SnasM_C_out1 <- SnasM_C_out1[c(2,11,19)]
+
+
+
+
+SnasM_C_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(SnasM_C)
+
+SnasM_C_out2$extreme_gender <- SnasM_C_out2$is.extreme
+
+SnasM_C_out2 <- SnasM_C_out2[c(2,11,19)]
+
+
+
+SnasM_C_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(SnasM_C)
+
+SnasM_C_out3$extreme_age <- SnasM_C_out3$is.extreme
+
+SnasM_C_out3 <- SnasM_C_out3[c(2,11,19)]
+
+
+SnasM_C_extreme <- full_join(SnasM_C_out, SnasM_C_out1, by=c('ID', 'SnasM_C'))
+SnasM_C_extreme <- full_join(SnasM_C_extreme, SnasM_C_out2, by=c('ID', 'SnasM_C'))
+SnasM_C_extreme <- full_join(SnasM_C_extreme, SnasM_C_out3, by=c('ID', 'SnasM_C'))
+
+SnasM_C_extreme <- 
+  filter(SnasM_C_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+
+SnasM_C_extreme$extreme_overall <- as.character(SnasM_C_extreme$extreme_overall)
+SnasM_C_extreme$extreme_race_eth <- as.character(SnasM_C_extreme$extreme_race_eth)
+SnasM_C_extreme$extreme_gender <- as.character(SnasM_C_extreme$extreme_gender)
+SnasM_C_extreme$extreme_age <- as.character(SnasM_C_extreme$extreme_age)
+
+SnasM_C_extreme[is.na(SnasM_C_extreme)] = "Not Outlier"           
+
+#Size 12 Table TNR
+flextable(SnasM_C_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SnasM_C Extreme Outliers") 
+#%>% set_header_labels(values = list(SnasM_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(SnasM_C_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SnasM_C Extreme Outliers") %>% 
+  fit_to_width(7.5) %>% 
+  autofit
+#%>% set_header_labels(values = list(SnasM_C = "Alare/AlareCont"))
+```
+
+
+
+```{r}
+#TrSman_C
+TrSman_C_out <- SA3_data2 %>% 
+  identify_outliers(TrSman_C)
+
+TrSman_C_out$extreme_overall <- TrSman_C_out$is.extreme
+
+TrSman_C_out <- TrSman_C_out[c(1,11,19)]
+
+
+
+TrSman_C_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(TrSman_C)
+
+TrSman_C_out1$extreme_race_eth <- TrSman_C_out1$is.extreme
+
+TrSman_C_out1 <- TrSman_C_out1[c(2,12,19)]
+
+
+
+
+TrSman_C_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(TrSman_C)
+
+TrSman_C_out2$extreme_gender <- TrSman_C_out2$is.extreme
+
+TrSman_C_out2 <- TrSman_C_out2[c(2,12,19)]
+
+
+
+TrSman_C_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(TrSman_C)
+
+TrSman_C_out3$extreme_age <- TrSman_C_out3$is.extreme
+
+TrSman_C_out3 <- TrSman_C_out3[c(2,12,19)]
+
+
+TrSman_C_extreme <- full_join(TrSman_C_out, TrSman_C_out1, by=c('ID', 'TrSman_C'))
+TrSman_C_extreme <- full_join(TrSman_C_extreme, TrSman_C_out2, by=c('ID', 'TrSman_C'))
+TrSman_C_extreme <- full_join(TrSman_C_extreme, TrSman_C_out3, by=c('ID', 'TrSman_C'))
+
+TrSman_C_extreme <- 
+  filter(TrSman_C_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+
+TrSman_C_extreme$extreme_overall <- as.character(TrSman_C_extreme$extreme_overall)
+TrSman_C_extreme$extreme_race_eth <- as.character(TrSman_C_extreme$extreme_race_eth)
+TrSman_C_extreme$extreme_gender <- as.character(TrSman_C_extreme$extreme_gender)
+TrSman_C_extreme$extreme_age <- as.character(TrSman_C_extreme$extreme_age)
+
+TrSman_C_extreme[is.na(TrSman_C_extreme)] = "Not Outlier"           
+
+#Size 12 Table TNR
+flextable(TrSman_C_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrSman_C Extreme Outliers") 
+#%>% set_header_labels(values = list(TrSman_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(TrSman_C_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrSman_C Extreme Outliers") %>% 
+  fit_to_width(7.5) %>% 
+  autofit
+#%>% set_header_labels(values = list(TrSman_C = "Alare/AlareCont"))
+```
+
+
+```{r}
+#TrTr_C
+TrTr_C_out <- SA3_data2 %>% 
+  identify_outliers(TrTr_C)
+
+TrTr_C_out$extreme_overall <- TrTr_C_out$is.extreme
+
+TrTr_C_out <- TrTr_C_out[c(1,12,19)]
+
+
+
+TrTr_C_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(TrTr_C)
+
+TrTr_C_out1$extreme_race_eth <- TrTr_C_out1$is.extreme
+
+TrTr_C_out1 <- TrTr_C_out1[c(2,13,19)]
+
+
+
+
+TrTr_C_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(TrTr_C)
+
+TrTr_C_out2$extreme_gender <- TrTr_C_out2$is.extreme
+
+TrTr_C_out2 <- TrTr_C_out2[c(2,13,19)]
+
+
+
+TrTr_C_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(TrTr_C)
+
+TrTr_C_out3$extreme_age <- TrTr_C_out3$is.extreme
+
+TrTr_C_out3 <- TrTr_C_out3[c(2,13,19)]
+
+
+TrTr_C_extreme <- full_join(TrTr_C_out, TrTr_C_out1, by=c('ID', 'TrTr_C'))
+TrTr_C_extreme <- full_join(TrTr_C_extreme, TrTr_C_out2, by=c('ID', 'TrTr_C'))
+TrTr_C_extreme <- full_join(TrTr_C_extreme, TrTr_C_out3, by=c('ID', 'TrTr_C'))
+
+TrTr_C_extreme <- 
+  filter(TrTr_C_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+
+TrTr_C_extreme$extreme_overall <- as.character(TrTr_C_extreme$extreme_overall)
+TrTr_C_extreme$extreme_race_eth <- as.character(TrTr_C_extreme$extreme_race_eth)
+TrTr_C_extreme$extreme_gender <- as.character(TrTr_C_extreme$extreme_gender)
+TrTr_C_extreme$extreme_age <- as.character(TrTr_C_extreme$extreme_age)
+
+TrTr_C_extreme[is.na(TrTr_C_extreme)] = "Not Outlier"           
+
+#Size 12 Table TNR
+flextable(TrTr_C_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrTr_C Extreme Outliers") 
+#%>% set_header_labels(values = list(TrTr_C = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(TrTr_C_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrTr_C Extreme Outliers") %>% 
+  fit_to_width(7.5) %>% 
+  autofit
+#%>% set_header_labels(values = list(TrTr_C = "Alare/AlareCont"))
+```
+
+
+
+```{r}
+#TrTr_L
+TrTr_L_out <- SA3_data2 %>% 
+  identify_outliers(TrTr_L)
+
+TrTr_L_out$extreme_overall <- TrTr_L_out$is.extreme
+
+TrTr_L_out <- TrTr_L_out[c(1,13,19)]
+
+
+
+TrTr_L_out1 <- SA3_data2 %>% 
+  group_by(race_eth) %>% 
+  identify_outliers(TrTr_L)
+
+TrTr_L_out1$extreme_race_eth <- TrTr_L_out1$is.extreme
+
+TrTr_L_out1 <- TrTr_L_out1[c(2,14,19)]
+
+
+
+
+TrTr_L_out2 <- SA3_data2 %>% 
+  group_by(gender) %>% 
+  identify_outliers(TrTr_L)
+
+TrTr_L_out2$extreme_gender <- TrTr_L_out2$is.extreme
+
+TrTr_L_out2 <- TrTr_L_out2[c(2,14,19)]
+
+
+
+TrTr_L_out3 <- SA3_data2 %>% 
+  group_by(age_group) %>% 
+  identify_outliers(TrTr_L)
+
+TrTr_L_out3$extreme_age <- TrTr_L_out3$is.extreme
+
+TrTr_L_out3 <- TrTr_L_out3[c(2,14,19)]
+
+
+TrTr_L_extreme <- full_join(TrTr_L_out, TrTr_L_out1, by=c('ID', 'TrTr_L'))
+TrTr_L_extreme <- full_join(TrTr_L_extreme, TrTr_L_out2, by=c('ID', 'TrTr_L'))
+TrTr_L_extreme <- full_join(TrTr_L_extreme, TrTr_L_out3, by=c('ID', 'TrTr_L'))
+
+TrTr_L_extreme <- 
+  filter(TrTr_L_extreme, 
+           extreme_overall == "TRUE" | 
+           extreme_race_eth == "TRUE" |
+           extreme_gender == "TRUE" |
+           extreme_age == "TRUE" )
+
+TrTr_L_extreme$extreme_overall <- as.character(TrTr_L_extreme$extreme_overall)
+TrTr_L_extreme$extreme_race_eth <- as.character(TrTr_L_extreme$extreme_race_eth)
+TrTr_L_extreme$extreme_gender <- as.character(TrTr_L_extreme$extreme_gender)
+TrTr_L_extreme$extreme_age <- as.character(TrTr_L_extreme$extreme_age)
+
+TrTr_L_extreme[is.na(TrTr_L_extreme)] = "Not Outlier"           
+
+#Size 12 Table TNR
+flextable(TrTr_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrTr_L Extreme Outliers") 
+#%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(TrTr_L_extreme) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrTr_L Extreme Outliers") %>% 
+  fit_to_width(7.5) %>% 
+  autofit
+#%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
+```
