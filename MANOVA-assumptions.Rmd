@@ -209,8 +209,6 @@ abline(0,1, lty=2)
 
 #normality
 hist(resid)
-
-leveneTest(variables ~ gender*race_eth*age_group, data=SA3_noout)
 ```
 
 Checking assumptions on actual MANOVA model: log base 10 transformation
@@ -250,4 +248,156 @@ abline(0,1, lty=2)
 
 #normality
 hist(resid_sqrt)
+```
+
+
+```{r}
+print("AA_C Levene Test")
+leveneTest(AA_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("BiW_C Levene Test")
+leveneTest(BiW_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("BiW_L Levene Test")
+leveneTest(BiW_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("GoSub_C Levene Test")
+leveneTest(GoSub_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("NRB_L Levene Test")
+leveneTest(NRB_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("ProS_L Levene Test")
+leveneTest(ProS_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SelP_L Levene Test")
+leveneTest(SelP_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SelM_L Levene Test")
+leveneTest(SelM_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SnasM_C Levene Test")
+leveneTest(SnasM_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrSman_C Levene Test")
+leveneTest(TrSman_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrTr_C Levene Test")
+leveneTest(TrTr_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrTr_L Levene Test")
+leveneTest(TrTr_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+```
+
+
+```{r}
+print("AA_C Levene Test: log transformation")
+leveneTest(log(AA_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("BiW_C Levene Test: log transformation")
+leveneTest(log(BiW_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("BiW_L Levene Test: log transformation")
+leveneTest(log(BiW_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("GoSub_C Levene Test: log transformation")
+leveneTest(log(GoSub_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("NRB_L Levene Test: log transformation")
+leveneTest(log(NRB_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("ProS_L Levene Test: log transformation")
+leveneTest(log(ProS_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SelP_L Levene Test: log transformation")
+leveneTest(log(SelP_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SelM_L Levene Test: log transformation")
+leveneTest(log(SelM_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SnasM_C Levene Test: log transformation")
+leveneTest(log(SnasM_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrSman_C Levene Test: log transformation")
+leveneTest(log(TrSman_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrTr_C Levene Test: log transformation")
+leveneTest(log(TrTr_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrTr_L Levene Test: log transformation")
+leveneTest(log(TrTr_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+```
+
+```{r}
+print("AA_C Levene Test: sqrt transformation")
+leveneTest(sqrt(AA_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("BiW_C Levene Test: sqrt transformation")
+leveneTest(sqrt(BiW_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("BiW_L Levene Test: sqrt transformation")
+leveneTest(sqrt(BiW_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("GoSub_C Levene Test: sqrt transformation")
+leveneTest(sqrt(GoSub_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("NRB_L Levene Test: sqrt transformation")
+leveneTest(sqrt(NRB_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("ProS_L Levene Test: sqrt transformation")
+leveneTest(sqrt(ProS_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SelP_L Levene Test: sqrt transformation")
+leveneTest(sqrt(SelP_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SelM_L Levene Test: sqrt transformation")
+leveneTest(sqrt(SelM_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SnasM_C Levene Test: sqrt transformation")
+leveneTest(sqrt(SnasM_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrSman_C Levene Test: sqrt transformation")
+leveneTest(sqrt(TrSman_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrTr_C Levene Test: sqrt transformation")
+leveneTest(sqrt(TrTr_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrTr_L Levene Test: sqrt transformation")
+leveneTest(sqrt(TrTr_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
 ```
