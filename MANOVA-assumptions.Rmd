@@ -1,5 +1,5 @@
 ---
-title: "MANOVA-assump"
+title: "MANOVA assumptions"
 output: html_document
 date: "2022-08-23"
 ---
@@ -8,7 +8,70 @@ date: "2022-08-23"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r packages}
+library(tidyverse)
+library(readxl)
+library(officer)
+library(flextable)
+library(extrafont)
+library(writexl)
+library(rstatix)
+library(corrr)
+library(corrplot)
+```
 
+```{r}
+SA3_noout <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
+```
+
+
+```{r}
+str(SA3_noout)
+SA3_num <- select_if(SA3_noout, is.numeric)
+```
+
+
+```{r}
+correl <- correlate(SA3_num)
+correl
+```
+```{r, fig.height=6, fig.width=8}
+correl2 <- cor(SA3_num)
+symnum(correl2)
+corrplot(correl2, method = 'number')
+```
+
+```{r}
+#make a random variable
+#any number over 2 in place of 7
+random <- rchisq(nrow(SA3_noout), 9)
+#run a fake regression
+fake <- lm(random~., data=SA3_noout[ , -1])
+#create standardized residuals 
+standardized <- rstudent(fake)
+#create the fitted values 
+fitted <- scale(fake$fitted.values)
+```
+
+```{r}
+#Normality
+hist(standardized)
+#some skew
+#try to make this in ggplot
+```
+
+```{r}
+#linearity
+qqnorm(standardized)
+abline(0,1)
+#not looking too great
+```
+
+```{r}
+##homogeneity
+plot(fitted,standardized)
+abline(0,0)
+abline(v = 0)
+#not looking so good
 ```
 
