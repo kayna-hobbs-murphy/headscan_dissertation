@@ -18,6 +18,7 @@ library(writexl)
 library(rstatix)
 library(corrr)
 library(corrplot)
+library(car)
 ```
 
 ```{r}
@@ -40,11 +41,12 @@ correl2 <- cor(SA3_num)
 symnum(correl2)
 corrplot(correl2, method = 'number')
 ```
+NO TRANSFORM
 
 ```{r}
 #make a random variable
-#any number over 2 in place of 7
-random <- rchisq(nrow(SA3_noout), 9)
+#any number over 2 in place of 10
+random <- rchisq(nrow(SA3_noout), 10)
 #run a fake regression
 fake <- lm(random~., data=SA3_noout[ , -1])
 #create standardized residuals 
@@ -73,5 +75,103 @@ plot(fitted,standardized)
 abline(0,0)
 abline(v = 0)
 #not looking so good
+```
+
+
+LOG BASE 10 TRANSFORM
+
+```{r}
+#make a random variable
+#any number over 2 in place of 7
+randomlog <- rchisq(nrow(SA3_noout), 10)
+#run a fake regression
+fakelog <- lm(log(random, base=10)~., data=SA3_noout[ , -1])
+#create standardized residuals 
+standardizedlog <- rstudent(fakelog)
+#create the fitted values 
+fittedlog <- scale(fakelog$fitted.values)
+```
+
+```{r}
+#Normality
+hist(standardizedlog)
+#some skew
+#try to make this in ggplot
+```
+
+```{r}
+#linearity
+qqnorm(standardizedlog)
+abline(0,1)
+#not looking too great
+```
+
+```{r}
+##homogeneity
+plot(fittedlog,standardizedlog)
+abline(0,0)
+abline(v = 0)
+#not looking so good
+```
+
+
+
+SQRT TRANSFORM
+
+```{r}
+#make a random variable
+#any number over 2 in place of 7
+randomsqrt <- rchisq(nrow(SA3_noout), 10)
+#run a fake regression
+fakesqrt <- lm(sqrt(random)~., data=SA3_noout[ , -1])
+#create standardized residuals 
+standardizedsqrt <- rstudent(fakesqrt)
+#create the fitted values 
+fittedsqrt <- scale(fakesqrt$fitted.values)
+```
+
+```{r}
+#Normality
+hist(standardizedsqrt)
+#some skew
+#try to make this in ggplot
+```
+
+```{r}
+#linearity
+qqnorm(standardizedsqrt)
+abline(0,1)
+#not looking too great
+```
+
+```{r}
+##homogeneity
+plot(fittedsqrt,standardizedsqrt)
+abline(0,0)
+abline(v = 0)
+#not looking so good
+```
+
+```{r}
+#influencial observations (STAR 513: Lecture 5 examples)
+# overwhelming to look at
+inf_out <- influence.measures(fakesqrt)
+# check out Cook's D (column 6)
+sum(inf_out$is.inf[, 6])
+```
+
+```{r}
+variables <- cbind(SA3_noout$AA_C, SA3_noout$BiW_C, SA3_noout$BiW_L, 
+                   SA3_noout$GoSub_C, SA3_noout$NRB_L, SA3_noout$ProS_L,
+                   SA3_noout$SelP_L, SA3_noout$SelM_L, SA3_noout$SnasM_C,
+                   SA3_noout$SnasM_C, SA3_noout$TrSman_C, SA3_noout$TrTr_C,
+                   SA3_noout$TrTr_L)
+
+lm_notransf <- lm(variables ~ gender*race_eth*age_group, data=SA3_noout,
+                  contrasts = list(gender=contr.sum, 
+                                   race_eth=contr.sum,
+                                   age_group=contr.sum))
+
+manova_notransf <- 
 ```
 
