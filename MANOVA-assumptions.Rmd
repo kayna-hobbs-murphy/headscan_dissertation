@@ -41,7 +41,7 @@ correl2 <- cor(SA3_num)
 symnum(correl2)
 corrplot(correl2, method = 'number')
 ```
-NO TRANSFORM
+checking assumptions using random variable: no transformation
 
 ```{r}
 #make a random variable
@@ -56,36 +56,33 @@ fitted <- scale(fake$fitted.values)
 ```
 
 ```{r}
-#Normality
-hist(standardized)
-#some skew
-#try to make this in ggplot
-```
 
-```{r}
-#linearity
-qqnorm(standardized)
-abline(0,1)
-#not looking too great
-```
-
-```{r}
 ##homogeneity
 plot(fitted,standardized)
 abline(0,0)
 abline(v = 0)
-#not looking so good
+
+#linearity
+qqnorm(standardized)
+abline(0,1)
+
+
+#Normality
+hist(standardized)
+
 ```
 
 
-LOG BASE 10 TRANSFORM
+
+
+checking assumptions using random variable: log base 10 transformation
 
 ```{r}
 #make a random variable
 #any number over 2 in place of 7
 randomlog <- rchisq(nrow(SA3_noout), 10)
 #run a fake regression
-fakelog <- lm(log(random, base=10)~., data=SA3_noout[ , -1])
+fakelog <- lm(log(randomlog, base=10)~., data=SA3_noout[ , -1])
 #create standardized residuals 
 standardizedlog <- rstudent(fakelog)
 #create the fitted values 
@@ -93,37 +90,35 @@ fittedlog <- scale(fakelog$fitted.values)
 ```
 
 ```{r}
-#Normality
-hist(standardizedlog)
-#some skew
-#try to make this in ggplot
-```
-
-```{r}
-#linearity
-qqnorm(standardizedlog)
-abline(0,1)
-#not looking too great
-```
-
-```{r}
 ##homogeneity
 plot(fittedlog,standardizedlog)
 abline(0,0)
 abline(v = 0)
-#not looking so good
+
+
+#linearity
+qqnorm(standardizedlog)
+abline(0,1)
+
+
+#Normality
+hist(standardizedlog)
 ```
 
 
 
-SQRT TRANSFORM
+
+
+
+
+checking assumptions using random variable: sqrt transformation
 
 ```{r}
 #make a random variable
 #any number over 2 in place of 7
 randomsqrt <- rchisq(nrow(SA3_noout), 10)
 #run a fake regression
-fakesqrt <- lm(sqrt(random)~., data=SA3_noout[ , -1])
+fakesqrt <- lm(sqrt(randomsqrt)~., data=SA3_noout[ , -1])
 #create standardized residuals 
 standardizedsqrt <- rstudent(fakesqrt)
 #create the fitted values 
@@ -131,26 +126,27 @@ fittedsqrt <- scale(fakesqrt$fitted.values)
 ```
 
 ```{r}
-#Normality
-hist(standardizedsqrt)
-#some skew
-#try to make this in ggplot
-```
+#homogeneity (unscaled)
+plot(fakesqrt$fitted.values, standardizedsqrt)
+abline(0,0)
+abline(v = 0)
 
-```{r}
+##homogeneity (scaled)
+plot(fittedsqrt, standardizedsqrt)
+abline(0,0)
+abline(v = 0)
+
 #linearity
 qqnorm(standardizedsqrt)
 abline(0,1)
-#not looking too great
+
+#Normality
+hist(standardizedsqrt)
+
+
 ```
 
-```{r}
-##homogeneity
-plot(fittedsqrt,standardizedsqrt)
-abline(0,0)
-abline(v = 0)
-#not looking so good
-```
+
 
 ```{r}
 #influencial observations (STAR 513: Lecture 5 examples)
@@ -160,6 +156,13 @@ inf_out <- influence.measures(fakesqrt)
 sum(inf_out$is.inf[, 6])
 ```
 
+
+
+
+
+
+Checking assumptions on actual MANOVA model: setup
+
 ```{r}
 variables <- cbind(SA3_noout$AA_C, SA3_noout$BiW_C, SA3_noout$BiW_L, 
                    SA3_noout$GoSub_C, SA3_noout$NRB_L, SA3_noout$ProS_L,
@@ -167,11 +170,84 @@ variables <- cbind(SA3_noout$AA_C, SA3_noout$BiW_C, SA3_noout$BiW_L,
                    SA3_noout$SnasM_C, SA3_noout$TrSman_C, SA3_noout$TrTr_C,
                    SA3_noout$TrTr_L)
 
-lm_notransf <- lm(variables ~ gender*race_eth*age_group, data=SA3_noout,
-                  contrasts = list(gender=contr.sum, 
-                                   race_eth=contr.sum,
-                                   age_group=contr.sum))
 
-manova_notransf <- 
+#part of Dr. Erin Buchanan's lecture, but Manova code returns error: Error in Anova.mlm(mod, ...) : model is singular
+#lm_notransf <- lm(variables ~ gender*race_eth*age_group, data=SA3_noout,
+                  #contrasts = list(gender=contr.sum, 
+                                   #race_eth=contr.sum,
+                                   #age_group=contr.sum))
+
+#manova_notransf <- Manova(lm_notransf, type = "III")
+
 ```
 
+Checking assumptions on actual MANOVA model: no transformation
+
+```{r}
+
+
+
+manova_out_nt <- manova(variables ~ gender*race_eth*age_group, data=SA3_noout)
+
+fitted1 <- scale(manova_out_nt$fitted.values)
+
+resid <- rstudent(manova_out_nt)
+
+#homogeneity (unscaled)
+plot(manova_out_nt$fitted.values, resid)
+abline(0,0)
+abline(v = 0)
+
+#homogeneity (scaled)
+plot(fitted1, resid)
+abline(0,0)
+abline(v = 0)
+
+#linearity
+qqnorm(resid)
+abline(0,1, lty=2)
+
+#normality
+hist(resid)
+
+leveneTest(variables ~ gender*race_eth*age_group, data=SA3_noout)
+```
+
+Checking assumptions on actual MANOVA model: log base 10 transformation
+
+```{r}
+
+manova_out_log <- manova(log(variables,base=10) ~ gender*race_eth*age_group, data=SA3_noout,
+                        subject="ID")
+
+
+resid_log <- rstudent(manova_out_log)
+plot(manova_out_log$fitted.values, resid_log)
+qqnorm(resid_log)
+abline(0,1, lty=2)
+hist(resid_log)
+```
+
+
+
+
+Checking assumptions on actual MANOVA model: sqrt transformation
+
+```{r}
+
+manova_out_sqrt <- manova(sqrt(variables) ~ gender*race_eth*age_group, data=SA3_noout,
+                        subject="ID")
+
+
+resid_sqrt <- rstudent(manova_out_sqrt)
+
+#homogeneity
+plot(manova_out_sqrt$fitted.values, resid_sqrt)
+
+#linearity
+qqnorm(resid_sqrt)
+abline(0,1, lty=2)
+
+#normality
+hist(resid_sqrt)
+```
