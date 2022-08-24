@@ -52,21 +52,14 @@ fake <- lm(random~., data=SA3_noout[ , -1])
 #create standardized residuals 
 standardized <- rstudent(fake)
 #create the fitted values 
-#fitted <- scale(fake$fitted.values)
+fitted <- fake$fitted.values
 ```
 
 ```{r}
-#homogeneity (unscaled)
-windowsFonts(A = windowsFont("Times New Roman"))
-plot(fake$fitted.values, standardized)
+#homogeneity
+plot(fitted, standardized)
 abline(0,0)
 abline(v = 0)
-
-
-##homogeneity (scaled)
-#plot(fitted, standardized)
-#abline(0,0)
-#abline(v = 0)
 
 #linearity
 qqnorm(standardized)
@@ -77,13 +70,18 @@ hist(standardized)
 ```
 
 ```{r}
-tmp <- dplyr::select(Mirex,weight,mirex) %>%
-  dplyr::mutate(fits=fitted(slr),
-                resids=resid(slr),
-                sresids=rstudent(slr))
-
-
+#creating dataframe for ggplot
+temp1 <- data.frame(fitted, standardized)
+str(temp1)
 ```
+
+```{r}
+temp %>% 
+  ggplot(x=fitted, y=standardized)+
+  geom_point()+
+  
+```
+
 
 
 
