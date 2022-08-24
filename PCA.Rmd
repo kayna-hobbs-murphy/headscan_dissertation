@@ -17,6 +17,7 @@ library(extrafont)
 library(forcats)
 library(writexl)
 library(ggfortify)
+library(scales)
 ```
 
 ```{r table-function}
@@ -151,14 +152,68 @@ var_explained_total <- var_explained
 ```
 
 
+
+
 ```{r, fig.width=5, fig.height=4}
 qplot(c(1:12), var_explained) + 
   geom_line() + 
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
   xlab("Principal Component") + 
   ylab("Variance Explained (proportion)") +
   ggtitle("Scree Plot") +
   ylim(0, 1) +
   scale_x_discrete(limits=c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9","PC10","PC11","PC12")) 
+```
+
+
+```{r}
+var_explained_data <- data.frame(var_explained)
+
+var_explained_data <- var_explained_data %>% 
+  rename(v_e = "var_explained")
+
+
+var_explained_data$vep <- var_explained_data$v_e
+
+var_explained_data <- rownames_to_column(var_explained_data, "PC_num")
+
+var_explained_data$vep <- percent(var_explained_data$vep, accuracy=0.01)
+
+var_explained_data$PC_num <- as.factor(var_explained_data$PC_num)
+
+var_explained_data$PC_num <- 
+  recode_factor(var_explained_data$PC_num, 
+                '1'= "PC1",
+                '2'= "PC2",
+                '3'= "PC3",
+                '4'= "PC4",
+                '5'= "PC5",
+                '6'= "PC6",
+                '7'= "PC7",
+                '8'= "PC8",
+                '9'= "PC9",
+                '10'= "PC10",
+                '11'= "PC11",
+                '12'= "PC12")
+```
+
+```{r}
+ggplot(data=var_explained_data, aes(x=PC_num, y=v_e, group=1)) + 
+  geom_line() +
+  geom_point() + 
+  geom_text(aes(label=vep),
+            position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank() 
+        )+
+  labs(title="Scree Plot",
+       x="Principal Component",
+       y="Total Variance Explained")
 ```
 
 
