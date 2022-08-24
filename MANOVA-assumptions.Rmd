@@ -76,10 +76,15 @@ str(temp1)
 ```
 
 ```{r}
-temp %>% 
-  ggplot(x=fitted, y=standardized)+
-  geom_point()+
-  
+ ggplot(data=temp1, aes(x=fitted, y=standardized))+
+  geom_point(shape=1)+
+  geom_hline(yintercept=0)+
+  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+
+  labs(title="Residuals vs. Fitted Values of Randomly Generated Variable",
+       subtitle = "No Data Transformation",
+       y= "Residuals (studentized)",
+       x= "Fitted Values")
 ```
 
 
