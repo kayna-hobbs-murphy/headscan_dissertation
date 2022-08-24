@@ -57,9 +57,9 @@ fitted <- fake$fitted.values
 
 ```{r}
 #homogeneity
-plot(fitted, standardized)
-abline(0,0)
-abline(v = 0)
+#plot(fitted, standardized)
+#abline(0,0)
+#abline(v = 0)
 
 #linearity
 qqnorm(standardized)
@@ -78,9 +78,9 @@ str(temp1)
 ```{r}
  ggplot(data=temp1, aes(x=fitted, y=standardized))+
   geom_point(shape=1)+
-  geom_hline(yintercept=0)+
-  theme(text=element_text(family= "Times New Roman"))+
+  geom_hline(yintercept=0)+  
   theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
   labs(title="Residuals vs. Fitted Values of Randomly Generated Variable",
        subtitle = "No Data Transformation",
        y= "Residuals (studentized)",
