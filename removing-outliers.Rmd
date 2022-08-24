@@ -1,6 +1,8 @@
 ---
 title: "removing outliers"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 date: "2022-07-26"
 ---
 
@@ -26,7 +28,7 @@ str(headscan_full)
 #histogram of all GoSub_C values w/ outlier
 ggplot(data=headscan_full, aes(x=GoSub_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Gonion to Submandibular Contour Measurement Distribution",
        subtitle= "with outlier",
        y="Frequency",
@@ -41,7 +43,7 @@ headscan_full1 <- headscan_full %>% mutate(GoSub_C = replace(GoSub_C, GoSub_C>40
 #histogram of all GoSub_C values
 ggplot(data=headscan_full1, aes(x=GoSub_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Gonion to Submandibular Contour Measurement Distribution",
        subtitle = "one outlier over 40cm changed to missing values",
        y="Frequency",
@@ -55,7 +57,7 @@ sum(is.na(headscan_full1$GoSub_C))
 #histogram of all NRB_L values w/ outlier
 ggplot(data=headscan_full, aes(x=NRB_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Nasal Root Breadth Measurement Distribution",
        subtitle= "with outliers",
        y="Frequency",
@@ -70,7 +72,7 @@ headscan_full1 <- headscan_full %>% mutate(NRB_L = replace(NRB_L, NRB_L>7, NA))
 #histogram of all NRB_L values
 ggplot(data=headscan_full1, aes(x=NRB_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Nasal Root Breadth Measurement Distribution",
        subtitle = "one outlier over 7cm changed to missing values",
        y="Frequency",
@@ -84,7 +86,7 @@ sum(is.na(headscan_full1$NRB_L))
 #histogram of all SelDH_C  values w/ outlier
 ggplot(data=headscan_full, aes(x=SelDH_C ))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Sellion to Dorsal Hump Contour Measurement Distribution",
        subtitle = "with outliers",
        y="Frequency",
@@ -99,7 +101,7 @@ headscan_full1 <- headscan_full %>% mutate(SelDH_C = replace(SelDH_C, SelDH_C>4,
 #histogram of all SelDH_C  values
 ggplot(data=headscan_full1, aes(x=SelDH_C))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Sellion to Dorsal Hump Contour Measurement Distribution",
        subtitle = "two outliers over 4cm changed to missing values",
        y="Frequency",
@@ -113,7 +115,7 @@ sum(is.na(headscan_full1$SelDH_C))
 #histogram of all SnasM_C values w/ outlier
 ggplot(data=headscan_full, aes(x=SnasM_C))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Subnasale to Menton Contour Measurement Distribution",
        subtitle = "with outliers",
        y="Frequency",
@@ -128,7 +130,7 @@ headscan_full1 <- headscan_full %>% mutate(SnasM_C = replace(SnasM_C, SnasM_C>16
 #histogram of all SnasM_C values
 ggplot(data=headscan_full1, aes(x=SnasM_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Subnasale to Menton Contour Measurement Distribution",
        subtitle = "one outlier over 16cm changed to missing values",
        y="Frequency",
@@ -142,7 +144,7 @@ sum(is.na(headscan_full1$SnasM_C))
 #histogram of all TrGo_C values
 ggplot(data=headscan_full, aes(x=TrGo_C))+
   geom_bar(stat="bin", bins=30, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Gonion Contour Measurement Distribution",
        subtitle = "without outliers removed",
        y="Frequency",
@@ -157,7 +159,7 @@ headscan_full1 <- headscan_full %>% mutate(TrGo_C = replace(TrGo_C, TrGo_C>17, N
 #histogram of all TrGo_C values
 ggplot(data=headscan_full1, aes(x=TrGo_C))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Gonion Contour Measurement Distribution",
        subtitle = "one outlier over 17cm changed to missing value",
        y="Frequency",
@@ -171,7 +173,7 @@ sum(is.na(headscan_full1$TrGo_C))
 #histogram of all TrSman_C values
 ggplot(data=headscan_full, aes(x=TrSman_C))+
   geom_bar(stat="bin", bins=35, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Submandibular Contour Measurement Distribution",
        subtitle = "with outliers",
        y="Frequency",
@@ -186,7 +188,7 @@ headscan_full1 <- headscan_full %>% mutate(TrSman_C = replace(TrSman_C, TrSman_C
 #histogram of all TrSman_C values
 ggplot(data=headscan_full1, aes(x=TrSman_C))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Submandibular Contour Measurement Distribution",
        subtitle = "one outlier over 29cm changed to missing value",
        y="Frequency",
@@ -200,7 +202,7 @@ sum(is.na(headscan_full1$TrSman_C))
 #histogram of all TrSnas_C  values
 ggplot(data=headscan_full, aes(x=TrSnas_C))+
   geom_bar(stat="bin", bins=35, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Subnasale Contour Measurement Distribution",
        subtitle = "with outliers",
        y="Frequency",
@@ -215,7 +217,7 @@ headscan_full1 <- headscan_full %>% mutate(TrSnas_C = replace(TrSnas_C, TrSnas_C
 #histogram of all TrSnas_C  values
 ggplot(data=headscan_full1, aes(x=TrSnas_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Tragion to Subnasale Contour Measurement Distribution",
        subtitle = "19 outliers over 35cm changed to missing values",
        y="Frequency",

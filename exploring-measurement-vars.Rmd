@@ -62,7 +62,7 @@ ggcorrplot(correlation_data_round, hc.order=FALSE,
              lab_size= 3,
              method= "circle",
              colors = c("tomato2", "white", "springgreen3"))+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x =  element_text(angle=90))+
   labs(title="Correlation of facial dimension measurement variables")             
 ```
@@ -135,7 +135,7 @@ correlation_data1 %>%
   mutate(both_measures=fct_reorder(both_measures, correlation)) %>% 
   ggplot(aes(x=correlation, y=both_measures))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     #theme(axis.text.x = element_text(angle = 90))+ 
     labs(title="Correlations",
        y="Correlated Measures Abbreviation (see Appendix B)",
@@ -164,7 +164,7 @@ high_cor %>%
   mutate(both_measures=fct_reorder(both_measures, correlation)) %>% 
   ggplot(aes(x=correlation, y=both_measures))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     #theme(axis.text.x = element_text(angle = 90))+ 
     labs(title="Correlations over 0.7",
        y="Correlated Measures Abbreviation (see Appendix B)",
@@ -200,7 +200,7 @@ coders %>%
               position= position_dodge(0.9),
               vjust = -0.5, 
               size = 3)+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     labs(title="Data Collection Count per Coder",
          y="# of Scans Digitized",
          x="Coder")
@@ -215,12 +215,12 @@ str(intraRR)
 
 
 
-```{r intraRR-iccs-wrapped-by-coder, fig.height=8, fig.width=5}
+```{r intraRR-iccs-wrapped-by-coder, fig.height=8, fig.width=6}
 intraRR %>%
   mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
   ggplot(aes(x=icc_value, y=measure))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   facet_wrap(coder~.)+
     #theme(axis.text.x = element_text(angle = 90))+ 
     labs(title="IntraRR ICC Values",
@@ -248,7 +248,7 @@ isabel_intra %>%
   mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
   ggplot(aes(x=icc_value, y=measure))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     #theme(axis.text.x = element_text(angle = 90))+ 
     labs(title="Coder A ICC Values",
          subtitle = "completed 28.61% of data collection",
@@ -261,7 +261,7 @@ kayna_intra %>%
   mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
   ggplot(aes(x=icc_value, y=measure))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     #theme(axis.text.x = element_text(angle = 90))+ 
     labs(title="Coder B ICC Values",
          subtitle = "completed 42.98% of data collection",
@@ -274,7 +274,7 @@ chandler_intra %>%
   mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
   ggplot(aes(x=icc_value, y=measure))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     #theme(axis.text.x = element_text(angle = 90))+ 
     labs(title="Coder C ICC Values",
          subtitle = "completed 14.53% of data collection",
@@ -287,7 +287,7 @@ jared_intra %>%
   mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
   ggplot(aes(x=icc_value, y=measure))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     #theme(axis.text.x = element_text(angle = 90))+ 
     labs(title="Coder D ICC Values",
          subtitle = "completed 13.88% of data collection",
@@ -312,12 +312,12 @@ low_intraRR <- low_intraRR %>%
 str(low_intraRR)
 ```
 
-```{r low-intraRR-iccs-wrapped-by-coder, fig.height=8, fig.width=5}
+```{r low-intraRR-iccs-wrapped-by-coder, fig.height=8, fig.width=6}
 low_intraRR %>%
   mutate(measure=fct_reorder(measure, icc_value, .desc=TRUE)) %>% 
   ggplot(aes(x=icc_value, y=measure))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   facet_wrap(coder~.)+
     #theme(axis.text.x = element_text(angle = 90))+ 
     labs(title="Low ICC Values",
@@ -330,7 +330,7 @@ low_intraRR %>%
 low_intraRR %>% 
   ggplot(aes(x=measure, y=icc_value, fill=coder))+
   geom_bar(position = "dodge", stat = "identity")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 90))+ 
   labs(title="Low ICC values for all Coders",
        subtitle = "Percent of Data Collected per Coder: A=29%, B=43%, C=14%, D=14%",
@@ -415,7 +415,7 @@ quest_meas_nona %>%
   geom_point(aes(shape=both_measures, color=coder, fill=both_measures), size=5)+
   scale_shape_manual(values=seq(0,12))+
   geom_rect(aes(xmin=0.4, xmax=0.75, ymin=0.85, ymax=1), fill= NA, alpha=0.4, colour="black")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 90))+ 
   labs(title="Correlation by IntraRR ICC values",
         subtitle = "Percent of Data Collected per Coder: A=29%, B=43%, C=14%, D=14%",
@@ -430,7 +430,7 @@ quest_meas_nona %>%
   scale_shape_manual(values=seq(0,12))+
   geom_rect(aes(xmin=0.4, xmax=0.75, ymin=0.85, ymax=1), fill= NA, alpha=0.4, colour="black")+
   facet_wrap(coder~.)+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 90))+ 
   labs(title="Correlation by IntraRR ICC values",
         subtitle = "Percent of Data Collected per Coder: A=29%, B=43%, C=14%, D=14%",
@@ -456,7 +456,7 @@ interRR %>%
   mutate(measure=fct_reorder(measure, inter_icc, .desc=TRUE)) %>% 
   ggplot(aes(x=inter_icc, y=measure))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     #theme(axis.text.x = element_text(angle = 90))+ 
     labs(title="InterRR Values",
          y="Measurement Location",
@@ -467,7 +467,7 @@ low_interRR %>%
   mutate(measure=fct_reorder(measure, inter_icc, .desc=TRUE)) %>% 
   ggplot(aes(x=inter_icc, y=measure))+
     geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     #theme(axis.text.x = element_text(angle = 90))+ 
     labs(title="Low InterRR Values",
          y="Measurement Location",
@@ -498,7 +498,7 @@ quest_meas_nona1 %>%
   scale_shape_manual(values=seq(0,12))+
   geom_rect(aes(xmin=0.25, xmax=0.75, ymin=0.85, ymax=1), fill= NA, alpha=0.4, colour="black")+
   xlim(0.25, 0.9)+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 90))+ 
   labs(title="Correlation by InterRR ICC values",
         y="Correlation",
@@ -518,7 +518,7 @@ quest_meas_nona2 %>%
   scale_shape_manual(values=seq(0,18))+
   geom_rect(aes(xmin=0, xmax=0.75, ymin=0.25, ymax=0.75), fill= NA, alpha=0.4, colour="black")+
   facet_wrap(coder~.)+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 90))+ 
   labs(title="Correlation by InterRR ICC values",
        subtitle = "Percent of Data Collected per Coder: A=29%, B=43%, C=14%, D=14%",
@@ -531,7 +531,7 @@ quest_meas_nona2 %>%
 questionable_measures %>% 
   ggplot(aes(x=fct_infreq(measure), label=scales::percent(prop.table(stat(count)))))+
     geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
-    theme(text=element_text(family= "Times New Roman"))+
+    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     theme(axis.text.x = element_text(angle = 90))+
     labs(title="Questionable Stats per Measure",
          y="# of Questionable Stats",

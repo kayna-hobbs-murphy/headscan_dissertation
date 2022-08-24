@@ -94,7 +94,7 @@ flextable(age_sumstats) %>%
 #bar chart
 ggplot(data=headscan_full, aes(x=age))+
   geom_bar(stat="bin", binwidth = 4, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Age Frequency",
        y="Count",
        x="Age")
@@ -143,7 +143,7 @@ flextable(raceage_sumstats) %>%
 #boxplot
 ggplot(data=headscan_full, aes(y=age, x=race_eth))+
   geom_boxplot(color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Age Frequency per Race/Ethnicity",
        y="Age",
        x="Race/Ethnicity")
@@ -151,7 +151,7 @@ ggplot(data=headscan_full, aes(y=age, x=race_eth))+
 #bar chart
 ggplot(data=headscan_full, aes(x=race_eth))+
   geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Race/Ethnicity Frequency",
        y="Count",
        x="Race/Ethnicity")
@@ -203,7 +203,7 @@ flextable(genderage_sumstats) %>%
 #boxplot
 ggplot(data=headscan_full, aes(y=age, x=gender))+
   geom_boxplot(color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Age Frequency per Gender",
        y="Age",
@@ -212,7 +212,7 @@ ggplot(data=headscan_full, aes(y=age, x=gender))+
 #bar chart
 ggplot(data=headscan_full, aes(x=gender))+
   geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gender Frequency",
        y="Count",
@@ -262,7 +262,7 @@ flextable(agegroup_sumstats) %>%
 #boxplot
 ggplot(data=headscan_full, aes(y=age, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Age Frequency per Age Group",
        y="Age",
        x="Age Group")
@@ -270,7 +270,7 @@ ggplot(data=headscan_full, aes(y=age, x=age_group))+
 #bar chart
 ggplot(data=headscan_full, aes(x=age_group))+
   geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Age Group Frequency",
        y="Count",
        x="Age Group")
@@ -278,7 +278,7 @@ ggplot(data=headscan_full, aes(x=age_group))+
 
 ```{r ggplot-wrapped, fig.width= 6.5, fig.height=3.5}
 ggplot(data=headscan_full, aes(x= age, fill=gender))+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   scale_fill_grey(na.value="gray90")+
   geom_histogram(binwidth = 3)+
   labs(title="Headscan Sample Demographics: Age",
@@ -297,7 +297,7 @@ ggplot(data=headscan_full, aes(x= age, fill=gender))+
 ggplot(data=headscan_full)+
   geom_histogram(binwidth=4, aes(x=age, fill=race_eth))+
   scale_fill_grey()+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title= "Demographics of Headscan Sample",
        subtitle = "Data collected by Human Solutions",
        fill= "Ethnicity",

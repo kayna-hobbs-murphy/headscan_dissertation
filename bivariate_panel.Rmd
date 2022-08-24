@@ -79,11 +79,11 @@ str(panel_numbers)
 
 From Zhaung 2007: menton-nasal root depression length is face length, bizygomatic breath is face width
 
-```{r bivariate overall}
+```{r bivariate overall, fig.width=8, fig.height=5}
 biv1 <- headscan_fullmm %>% 
   ggplot(aes(x=BiW_L, y=SelM_L))+
-  geom_point()+
-  theme(text=element_text(family= "Times New Roman"))+
+  geom_point(color="darkgray")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   xlim(80,160)+
   geom_rect(aes(xmin=120.5, xmax=132.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=132.5, xmax=144.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
@@ -103,11 +103,11 @@ biv1 <- headscan_fullmm %>%
 biv1 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
 
-```{r bivariate gender}
+```{r bivariate gender, fig.width=8, fig.height=5}
 biv2 <- headscan_fullmm %>% 
   ggplot(aes(x=BiW_L, y=SelM_L, color=gender))+
   geom_point()+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   xlim(80,160)+
   geom_rect(aes(xmin=120.5, xmax=132.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=132.5, xmax=144.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
@@ -128,11 +128,11 @@ biv2 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
 
 
-```{r bivariate age group}
+```{r bivariate age group, fig.width=8, fig.height=5}
 biv3<- headscan_fullmm %>% 
   ggplot(aes(x=BiW_L, y=SelM_L, color=age_group))+
   geom_point()+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   xlim(80,160)+
   geom_rect(aes(xmin=120.5, xmax=132.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=132.5, xmax=144.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
@@ -153,11 +153,11 @@ biv3 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
 
 
-```{r bivariate race/eth}
+```{r bivariate race/eth, fig.width=8, fig.height=5}
 biv4 <- headscan_fullmm %>% 
   ggplot(aes(x=BiW_L, y=SelM_L, color=race_eth))+
   geom_point()+
-  theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   xlim(80,160)+
   geom_rect(aes(xmin=120.5, xmax=132.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=132.5, xmax=144.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
