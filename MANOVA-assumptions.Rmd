@@ -52,26 +52,75 @@ fake <- lm(random~., data=SA3_noout[ , -1])
 #create standardized residuals 
 standardized <- rstudent(fake)
 #create the fitted values 
-fitted <- scale(fake$fitted.values)
+#fitted <- scale(fake$fitted.values)
 ```
 
 ```{r}
-
-##homogeneity
-plot(fitted,standardized)
+#homogeneity (unscaled)
+windowsFonts(A = windowsFont("Times New Roman"))
+plot(fake$fitted.values, standardized)
 abline(0,0)
 abline(v = 0)
+
+
+##homogeneity (scaled)
+#plot(fitted, standardized)
+#abline(0,0)
+#abline(v = 0)
 
 #linearity
 qqnorm(standardized)
 abline(0,1)
 
-
 #Normality
 hist(standardized)
+```
+
+```{r}
+tmp <- dplyr::select(Mirex,weight,mirex) %>%
+  dplyr::mutate(fits=fitted(slr),
+                resids=resid(slr),
+                sresids=rstudent(slr))
+
 
 ```
 
+
+
+checking assumptions using random variable: log base 10 transformation
+
+```{r}
+#make a random variable
+#any number over 2 in place of 7
+randomlog10 <- rchisq(nrow(SA3_noout), 10)
+#run a fake regression
+fakelog10 <- lm(log(randomlog10, base=10)~., data=SA3_noout[ , -1])
+#create standardized residuals 
+standardizedlog10 <- rstudent(fakelog10)
+#create the fitted values 
+#fittedlog10 <- scale(fakelog10$fitted.values)
+```
+
+```{r}
+#homogeneity (unscaled)
+plot(fakelog10$fitted.values, standardizedlog10)
+abline(0,0)
+abline(v = 0)
+
+##homogeneity (scaled)
+#plot(fittedlog10, standardizedlog10)
+#abline(0,0)
+#abline(v = 0)
+
+#linearity
+qqnorm(standardizedlog10)
+abline(0,1)
+
+#Normality
+hist(standardizedlog10)
+
+
+```
 
 
 
@@ -82,32 +131,32 @@ checking assumptions using random variable: log base 10 transformation
 #any number over 2 in place of 7
 randomlog <- rchisq(nrow(SA3_noout), 10)
 #run a fake regression
-fakelog <- lm(log(randomlog, base=10)~., data=SA3_noout[ , -1])
+fakelog <- lm(log(randomlog)~., data=SA3_noout[ , -1])
 #create standardized residuals 
 standardizedlog <- rstudent(fakelog)
 #create the fitted values 
-fittedlog <- scale(fakelog$fitted.values)
+#fittedlog <- scale(fakelog$fitted.values)
 ```
 
 ```{r}
-##homogeneity
-plot(fittedlog,standardizedlog)
+#homogeneity (unscaled)
+plot(fakelog$fitted.values, standardizedlog)
 abline(0,0)
 abline(v = 0)
 
+##homogeneity (scaled)
+#plot(fittedlog, standardizedlog)
+#abline(0,0)
+#abline(v = 0)
 
 #linearity
 qqnorm(standardizedlog)
 abline(0,1)
 
-
 #Normality
 hist(standardizedlog)
+
 ```
-
-
-
-
 
 
 
@@ -122,7 +171,7 @@ fakesqrt <- lm(sqrt(randomsqrt)~., data=SA3_noout[ , -1])
 #create standardized residuals 
 standardizedsqrt <- rstudent(fakesqrt)
 #create the fitted values 
-fittedsqrt <- scale(fakesqrt$fitted.values)
+#fittedsqrt <- scale(fakesqrt$fitted.values)
 ```
 
 ```{r}
@@ -132,9 +181,9 @@ abline(0,0)
 abline(v = 0)
 
 ##homogeneity (scaled)
-plot(fittedsqrt, standardizedsqrt)
-abline(0,0)
-abline(v = 0)
+#plot(fittedsqrt, standardizedsqrt)
+#abline(0,0)
+#abline(v = 0)
 
 #linearity
 qqnorm(standardizedsqrt)
@@ -146,7 +195,7 @@ hist(standardizedsqrt)
 
 ```
 
-
+Checking for influencial measures in dataset
 
 ```{r}
 #influencial observations (STAR 513: Lecture 5 examples)
@@ -181,6 +230,9 @@ variables <- cbind(SA3_noout$AA_C, SA3_noout$BiW_C, SA3_noout$BiW_L,
 
 ```
 
+
+
+
 Checking assumptions on actual MANOVA model: no transformation
 
 ```{r}
@@ -191,65 +243,124 @@ manova_out_nt <- manova(variables ~ gender*race_eth*age_group, data=SA3_noout)
 
 fitted1 <- scale(manova_out_nt$fitted.values)
 
-resid <- rstudent(manova_out_nt)
+resid1 <- rstudent(manova_out_nt)
 
 #homogeneity (unscaled)
-plot(manova_out_nt$fitted.values, resid)
+plot(manova_out_nt$fitted.values, resid1)
 abline(0,0)
 abline(v = 0)
 
 #homogeneity (scaled)
-plot(fitted1, resid)
-abline(0,0)
-abline(v = 0)
+#plot(fitted1, resid1)
+#abline(0,0)
+#abline(v = 0)
 
 #linearity
-qqnorm(resid)
+qqnorm(resid1)
 abline(0,1, lty=2)
 
 #normality
-hist(resid)
+hist(resid1)
 ```
+
 
 Checking assumptions on actual MANOVA model: log base 10 transformation
 
 ```{r}
 
-manova_out_log <- manova(log(variables,base=10) ~ gender*race_eth*age_group, data=SA3_noout,
-                        subject="ID")
+manova_out_log10 <- manova(log(variables, base=10) ~ gender*race_eth*age_group, data=SA3_noout)
 
 
-resid_log <- rstudent(manova_out_log)
-plot(manova_out_log$fitted.values, resid_log)
-qqnorm(resid_log)
+#fitted1_log10 <- scale(manova_out_log10$fitted.values)
+
+resid1_log10 <- rstudent(manova_out_log10)
+
+#homogeneity (unscaled)
+plot(manova_out_log10$fitted.values, resid1_log10)
+abline(0,0)
+abline(v = 0)
+
+#homogeneity (scaled)
+#plot(fitted1_log10, resid1_log10)
+#abline(0,0)
+#abline(v = 0)
+
+#linearity
+qqnorm(resid1_log10)
 abline(0,1, lty=2)
-hist(resid_log)
+
+#normality
+hist(resid1_log10)
 ```
 
 
 
+
+
+
+Checking assumptions on actual MANOVA model: log transformation
+
+```{r}
+
+manova_out_log <- manova(log(variables) ~ gender*race_eth*age_group, data=SA3_noout)
+
+
+#fitted1_log <- scale(manova_out_log$fitted.values)
+
+resid1_log <- rstudent(manova_out_log)
+
+#homogeneity (unscaled)
+plot(manova_out_log$fitted.values, resid1_log)
+abline(0,0)
+abline(v = 0)
+
+#homogeneity (scaled)
+#plot(fitted1_log, resid1_log)
+#abline(0,0)
+#abline(v = 0)
+
+#linearity
+qqnorm(resid1_log)
+abline(0,1, lty=2)
+
+#normality
+hist(resid1_log)
+```
 
 Checking assumptions on actual MANOVA model: sqrt transformation
 
 ```{r}
 
-manova_out_sqrt <- manova(sqrt(variables) ~ gender*race_eth*age_group, data=SA3_noout,
-                        subject="ID")
+manova_out_sqrt <- manova(sqrt(variables) ~ gender*race_eth*age_group, data=SA3_noout)
 
+#fitted1_sqrt <- scale(manova_out_sqrt$fitted.values)
 
-resid_sqrt <- rstudent(manova_out_sqrt)
+resid1_sqrt <- rstudent(manova_out_sqrt)
 
-#homogeneity
-plot(manova_out_sqrt$fitted.values, resid_sqrt)
+#homogeneity (unscaled)
+plot(manova_out_sqrt$fitted.values, resid1_sqrt)
+abline(0,0)
+abline(v = 0)
+
+#homogeneity (scaled)
+#plot(fitted1_sqrt, resid1_sqrt)
+#abline(0,0)
+#abline(v = 0)
 
 #linearity
-qqnorm(resid_sqrt)
+qqnorm(resid1_sqrt)
 abline(0,1, lty=2)
 
 #normality
-hist(resid_sqrt)
+hist(resid1_sqrt)
 ```
 
+
+
+
+
+
+Levene's test, no transformation
 
 ```{r}
 print("AA_C Levene Test")
@@ -302,55 +413,121 @@ print("                       ")
 ```
 
 
+
+
+Levene's test, log base 10 transformation
+
 ```{r}
-print("AA_C Levene Test: log transformation")
+print("AA_C Levene Test: log base 10 transformation")
 leveneTest(log(AA_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("BiW_C Levene Test: log transformation")
+print("BiW_C Levene Test: log base 10 transformation")
 leveneTest(log(BiW_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("BiW_L Levene Test: log transformation")
+print("BiW_L Levene Test: log base 10 transformation")
 leveneTest(log(BiW_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("GoSub_C Levene Test: log transformation")
+print("GoSub_C Levene Test: log base 10 transformation")
 leveneTest(log(GoSub_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("NRB_L Levene Test: log transformation")
+print("NRB_L Levene Test: log base 10 transformation")
 leveneTest(log(NRB_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("ProS_L Levene Test: log transformation")
+print("ProS_L Levene Test: log base 10 transformation")
 leveneTest(log(ProS_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("SelP_L Levene Test: log transformation")
+print("SelP_L Levene Test: log base 10 transformation")
 leveneTest(log(SelP_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("SelM_L Levene Test: log transformation")
+print("SelM_L Levene Test: log base 10 transformation")
 leveneTest(log(SelM_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("SnasM_C Levene Test: log transformation")
+print("SnasM_C Levene Test: log base 10 transformation")
 leveneTest(log(SnasM_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("TrSman_C Levene Test: log transformation")
+print("TrSman_C Levene Test: log base 10 transformation")
 leveneTest(log(TrSman_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("TrTr_C Levene Test: log transformation")
+print("TrTr_C Levene Test: log base 10 transformation")
 leveneTest(log(TrTr_C, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 
-print("TrTr_L Levene Test: log transformation")
+print("TrTr_L Levene Test: log base 10 transformation")
 leveneTest(log(TrTr_L, base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
 print("                       ")
 ```
+
+
+
+
+
+Levene's test, log transformation
+
+```{r}
+print("AA_C Levene Test: log transformation")
+leveneTest(log(AA_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("BiW_C Levene Test: log transformation")
+leveneTest(log(BiW_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("BiW_L Levene Test: log transformation")
+leveneTest(log(BiW_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("GoSub_C Levene Test: log transformation")
+leveneTest(log(GoSub_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("NRB_L Levene Test: log transformation")
+leveneTest(log(NRB_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("ProS_L Levene Test: log transformation")
+leveneTest(log(ProS_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SelP_L Levene Test: log transformation")
+leveneTest(log(SelP_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SelM_L Levene Test: log transformation")
+leveneTest(log(SelM_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("SnasM_C Levene Test: log transformation")
+leveneTest(log(SnasM_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrSman_C Levene Test: log transformation")
+leveneTest(log(TrSman_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrTr_C Levene Test: log transformation")
+leveneTest(log(TrTr_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+
+print("TrTr_L Levene Test: log transformation")
+leveneTest(log(TrTr_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+print("                       ")
+```
+
+
+
+
+
+Levene's test, sqrt transformation
 
 ```{r}
 print("AA_C Levene Test: sqrt transformation")
