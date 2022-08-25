@@ -476,50 +476,50 @@ resid1_log10 <- rstandard(manova_out_log10)
 
 
 #homogeneity 
-plot(fitted1_log10, resid1_log10)
-abline(0,0)
-abline(v = 0)
+#plot(fitted1_log10, resid1_log10)
+#abline(0,0)
+#abline(v = 0)
 
 #linearity
-qqnorm(resid1_log10)
-abline(0,1, lty=2)
+#qqnorm(resid1_log10)
+#abline(0,1, lty=2)
 
 #normality
-hist(resid1_log10)
+#hist(resid1_log10)
 ```
 
 ```{r}
 #creating dataframe for ggplot
-fitted1.1 <- as.data.frame(fitted1)
-resid1.1 <-as.data.frame(resid1)
+fitted2.1 <- as.data.frame(fitted1_log10)
+resid2.1 <-as.data.frame(resid1_log10)
 
-fitted1.1 <- rownames_to_column(fitted1.1, "scan_num")
+fitted2.1 <- rownames_to_column(fitted2.1, "scan_num")
 
-fitted1.1 <- pivot_longer(fitted1.1, V1:V13, names_to = "variable", values_to = "fitted_vals")
-
-
-resid1.1 <- rownames_to_column(resid1.1, "scan_num")
-
-resid1.1 <- pivot_longer(resid1.1, V1:V13, names_to = "variable", values_to = "resid_vals")
+fitted2.1 <- pivot_longer(fitted2.1, V1:V13, names_to = "variable", values_to = "fitted_vals")
 
 
+resid2.1 <- rownames_to_column(resid2.1, "scan_num")
 
-temp5 <- full_join(fitted1.1, resid1.1, by=c('scan_num', 'variable'))
-str(temp5)
+resid2.1 <- pivot_longer(resid2.1, V1:V13, names_to = "variable", values_to = "resid_vals")
+
+
+
+temp6 <- full_join(fitted2.1, resid2.1, by=c('scan_num', 'variable'))
+str(temp6)
 ```
 
 ```{r}
-ggplot(data=temp5, aes(x=fitted_vals, y=resid_vals))+
+ggplot(data=temp6, aes(x=fitted_vals, y=resid_vals))+
   geom_point(shape=1)+
   geom_hline(yintercept=0)+  
   theme_bw()+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Residuals vs. Fitted Values of Manova Model",
-       subtitle = "No Transformation",
+       subtitle = "Log Base 10 Transformation",
        y= "Standardized Residuals",
        x= "Fitted Values")
 
-ggplot(data=temp5, aes(sample=resid_vals))+
+ggplot(data=temp6, aes(sample=resid_vals))+
   stat_qq()+
   stat_qq_line()+
   scale_x_continuous(n.breaks = 7)+
@@ -527,7 +527,7 @@ ggplot(data=temp5, aes(sample=resid_vals))+
   theme_bw()+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="QQPlot of Manova Model",
-       subtitle = "No Transformation",
+       subtitle = "Log Base 10 Transformation",
        y= "Sample Quantiles",
        x= "Theoretical Quantities")
 
@@ -535,7 +535,7 @@ ggplot(data=temp5, aes(x=resid_vals))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Normality of Manova Model",
-       subtitle = "No Transformation",
+       subtitle = "Log Base 10 Transformation",
        y= "Count",
        x= "Standardized Residuals")
 ```
@@ -550,27 +550,78 @@ Checking assumptions on actual MANOVA model: log transformation
 manova_out_log <- manova(log(variables) ~ gender*race_eth*age_group, data=SA3_noout)
 
 
-#fitted1_log <- scale(manova_out_log$fitted.values)
+fitted1_log <- manova_out_log$fitted.values
 
 resid1_log <- rstandard(manova_out_log)
 
-#homogeneity (unscaled)
-plot(manova_out_log$fitted.values, resid1_log)
-abline(0,0)
-abline(v = 0)
 
-#homogeneity (scaled)
+#homogeneity
 #plot(fitted1_log, resid1_log)
 #abline(0,0)
 #abline(v = 0)
 
 #linearity
-qqnorm(resid1_log)
-abline(0,1, lty=2)
+#qqnorm(resid1_log)
+#abline(0,1, lty=2)
 
 #normality
-hist(resid1_log)
+#hist(resid1_log)
 ```
+
+```{r}
+#creating dataframe for ggplot
+fitted3.1 <- as.data.frame(fitted1_log)
+resid3.1 <-as.data.frame(resid1_log)
+
+fitted3.1 <- rownames_to_column(fitted3.1, "scan_num")
+
+fitted3.1 <- pivot_longer(fitted3.1, V1:V13, names_to = "variable", values_to = "fitted_vals")
+
+
+resid3.1 <- rownames_to_column(resid3.1, "scan_num")
+
+resid3.1 <- pivot_longer(resid3.1, V1:V13, names_to = "variable", values_to = "resid_vals")
+
+
+
+temp7 <- full_join(fitted3.1, resid3.1, by=c('scan_num', 'variable'))
+str(temp7)
+```
+
+```{r}
+ggplot(data=temp7, aes(x=fitted_vals, y=resid_vals))+
+  geom_point(shape=1)+
+  geom_hline(yintercept=0)+  
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Residuals vs. Fitted Values of Manova Model",
+       subtitle = "Log e Transformation",
+       y= "Standardized Residuals",
+       x= "Fitted Values")
+
+ggplot(data=temp7, aes(sample=resid_vals))+
+  stat_qq()+
+  stat_qq_line()+
+  scale_x_continuous(n.breaks = 7)+
+  #xlim(-3.5,3.5)+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="QQPlot of Manova Model",
+       subtitle = "Log e Transformation",
+       y= "Sample Quantiles",
+       x= "Theoretical Quantities")
+
+ggplot(data=temp7, aes(x=resid_vals))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Normality of Manova Model",
+       subtitle = "Log e Transformation",
+       y= "Count",
+       x= "Standardized Residuals")
+```
+
+
+
 
 Checking assumptions on actual MANOVA model: sqrt transformation
 
