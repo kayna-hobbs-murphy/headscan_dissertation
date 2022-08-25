@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
 library(rstatix)
+library(heplots)
 ```
 
 
@@ -107,7 +108,8 @@ SA3_num_vec <- SA3_num_vec %>%
 Box.test(SA3_num_vec, lag=1, type="Ljung-Box", fitdf=0)
 #this works! but is it what I'm looking for? there are no demographic variables involved here.
 #maybe I need to run this on variance data from my manova model? how do I do that?
-#df in my manova = 1656. maybe I should use this above as well?
+#not sure what df to use here
+
 ```
 
 
