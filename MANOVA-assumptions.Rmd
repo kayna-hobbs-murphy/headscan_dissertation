@@ -723,9 +723,18 @@ Box's test
 
 
 ```{r}
-covars <- boxM(manova_out_nt)
+boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
+           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           TrSman_C, TrTr_C, TrTr_L) ~ gender * race_eth * age_group, data=SA3_noout)
 
-test<-  lm(variables ~ gender*race_eth*age_group, data=SA3_noout)
+
+boxM(Y=SA3_noout[, c("AA_C", "BiW_C", "BiW_L", "GoSub_C", "NRB_L", "ProS_L", "SelP_L", "SelM_L", "SnasM_C", "SnasM_C", "TrSman_C", "TrTr_C", "TrTr_L")], group = SA3_noout$age_group)
+
+
+
+Box.test(SA3_noout, lag=1, type="Ljung-Box", fitdf=0)
+
+box_m(SA3_noout, gender)
 ```
 
 
