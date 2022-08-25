@@ -719,13 +719,13 @@ ggplot(data=temp8, aes(x=resid_vals))+
 
 
 
-Box's test
+Box's test to check homogeneity of covariance
 
 
 ```{r}
 
 
-#trying to create an interaction variable
+#create an interaction variable
 boxtest_data <- SA3_noout[-c(1)]
 
 boxtest_data$int <- interaction(boxtest_data$gender, boxtest_data$race_eth, boxtest_data$age_group)
@@ -733,42 +733,70 @@ boxtest_data$int <- interaction(boxtest_data$gender, boxtest_data$race_eth, boxt
 
 
 #interaction doesn't work
-boxM(boxtest_data[,1:12], boxtest_data[,16])
+#boxM(boxtest_data[,1:12], boxtest_data[,16])
+#incompatible dimensions in Y and group!
+
+#boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L, SelP_L, SelM_L, SnasM_C, SnasM_C, TrSman_C, TrTr_C, TrTr_L) ~ int, data=boxtest_data)
+
+#Warning: there are one or more levels with less observations than variables!Error in cov(Y[group == lev[i], ]) : 
+  #supply both 'x' and 'y' or a matrix-like 'x'
+```
 
 
-boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
-           SelP_L, SelM_L, SnasM_C, SnasM_C, 
-           TrSman_C, TrTr_C, TrTr_L) ~ int, data=boxtest_data)
-
-
+```{r}
 #trying to use already created manova model
-boxM(manova_out_nt)
+#boxM(manova_out_nt)
+#Error in if (projections) qr <- lmcall$qr <- TRUE : the condition has length > 1
+```
 
+
+```{r}
 #trying to create new lm for boxM
-box_lmout <- lm(variables ~ gender*race_eth*age_group, data=SA3_noout)
+#box_lmout <- lm(variables ~ gender*race_eth*age_group, data=SA3_noout)
 
-boxM(box_lmout)
+#boxM(box_lmout)
+#Error in boxM.formula(formula(Y), data = eval(data, envir = environment(formula(Y))),  : 
+  #Model must be completely crossed formula only.
+```
 
+```{r}
 #one demographic variable returns NA for chi squared and p value
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C, SnasM_C, 
            TrSman_C, TrTr_C, TrTr_L) ~ gender, data=boxtest_data)
 
+```
+
+```{r}
+#trying to use Box.test function
+#Box.test(SA3_num, lag=1, type="Ljung-Box", fitdf=0)
+#Error in Box.test(SA3_num, lag = 1, type = "Ljung-Box", fitdf = 0) : 
+  #x is not a vector or univariate time series
+
+SA3_num_vec <- as.vector(SA3_num)
 
 
+SA3_num_vec <- SA3_num_vec %>% 
+  unlist() %>% 
+  as.numeric()
 
-#none of the below works
-#SA3_num_vec <- as.vector(SA3_num)
+Box.test(SA3_num_vec, lag=1, type="Ljung-Box", fitdf=0)
+#this works! but is it what I'm looking for? there are no demographic variables involved here.
+#maybe I need to run this on variance data from my manova model? how do I do that?
+#df in my manova = 1656. maybe I should use this above as well?
+```
 
-#Box.test(SA3_num_vec, lag=1, type="Ljung-Box", fitdf=182)
 
-#gender_vector <- as.vector(SA3_noout['gender'])
+```{r}
+#trying to use box_m rstatix package
+gender_vector <- as.vector(SA3_noout['gender'])
 
-#class(SA3_num)
+class(SA3_num)
 
-#SA3_num_matrix <- data.matrix(SA3_num, rownames.force = NA)
+SA3_num_matrix <- data.matrix(SA3_num, rownames.force = NA)
 
 #box_m(SA3_num_matrix, gender_vector)
+#Error in box_m(SA3_num_matrix, gender_vector) : incompatible dimensions!
 ```
 
 
