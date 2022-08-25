@@ -388,15 +388,13 @@ Checking assumptions on actual MANOVA model: no transformation
 
 
 manova_out_nt <- manova(variables ~ gender*race_eth*age_group, data=SA3_noout)
-
-fitted1 <- scale(manova_out_nt$fitted.values)
-
+fitted1 <- manova_out_nt$fitted.values
 resid1 <- rstandard(manova_out_nt)
 
 #homogeneity (unscaled)
-plot(manova_out_nt$fitted.values, resid1)
-abline(0,0)
-abline(v = 0)
+#plot(manova_out_nt$fitted.values, resid1)
+#abline(0,0)
+#abline(v = 0)
 
 #homogeneity (scaled)
 #plot(fitted1, resid1)
@@ -404,12 +402,54 @@ abline(v = 0)
 #abline(v = 0)
 
 #linearity
-qqnorm(resid1)
-abline(0,1, lty=2)
+#qqnorm(resid1)
+#abline(0,1, lty=2)
 
 #normality
-hist(resid1)
+#hist(resid1)
 ```
+
+
+```{r}
+#creating dataframe for ggplot
+temp5 <- data.frame(fitted1, resid1)
+str(temp5)
+```
+
+```{r}
+ ggplot(data=temp5, aes(x=fitted1, y=resid1))+
+  geom_point(shape=1)+
+  geom_hline(yintercept=0)+  
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Residuals vs. Fitted Values of Manova Model",
+       subtitle = "No Transformation",
+       y= "Standardized Residuals",
+       x= "Fitted Values")
+
+ggplot(data=temp5, aes(sample=resid1))+
+  stat_qq()+
+  stat_qq_line()+
+  scale_x_continuous(n.breaks = 7)+
+  #xlim(-3.5,3.5)+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="QQPlot of Manova Model",
+       subtitle = "No Transformation",
+       y= "Sample Quantiles",
+       x= "Theoretical Quantities")
+
+ggplot(data=temp5, aes(x=resid1))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Normality of Manova Model",
+       subtitle = "No Transformation",
+       y= "Count",
+       x= "Standardized Residuals")
+```
+
+
+
 
 
 Checking assumptions on actual MANOVA model: log base 10 transformation
