@@ -380,8 +380,7 @@ Checking assumptions on actual MANOVA model: setup
 variables <- cbind(SA3_noout$AA_C, SA3_noout$BiW_C, SA3_noout$BiW_L, 
                    SA3_noout$GoSub_C, SA3_noout$NRB_L, SA3_noout$ProS_L,
                    SA3_noout$SelP_L, SA3_noout$SelM_L, SA3_noout$SnasM_C,
-                   SA3_noout$SnasM_C, SA3_noout$TrSman_C, SA3_noout$TrTr_C,
-                   SA3_noout$TrTr_L)
+                   SA3_noout$TrSman_C, SA3_noout$TrTr_C, SA3_noout$TrTr_L)
 
 
 #part of Dr. Erin Buchanan's lecture, but Manova code returns error: Error in Anova.mlm(mod, ...) : model is singular
