@@ -723,13 +723,23 @@ Box's test
 
 
 ```{r}
+
+
+#trying to create an interaction variable
+boxtest_data <- SA3_noout[-c(1)]
+
+boxtest_data$int <- interaction(boxtest_data$gender, boxtest_data$race_eth, boxtest_data$age_group)
+
+
+#interaction doesn't work
+boxM(boxtest_data[,1:12], boxtest_data[,16])
+
+
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C, SnasM_C, 
-           TrSman_C, TrTr_C, TrTr_L) ~ gender * race_eth * age_group, data=SA3_noout)
+           TrSman_C, TrTr_C, TrTr_L) ~ int, data=boxtest_data)
 
-boxM()
 
-boxM(Y=SA3_noout[, c("AA_C", "BiW_C", "BiW_L", "GoSub_C", "NRB_L", "ProS_L", "SelP_L", "SelM_L", "SnasM_C", "SnasM_C", "TrSman_C", "TrTr_C", "TrTr_L")], group = SA3_noout$age_group)
 
 #SA3_num_vec <- as.vector(SA3_num)
 
