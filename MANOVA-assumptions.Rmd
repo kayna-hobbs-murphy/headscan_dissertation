@@ -19,6 +19,7 @@ library(rstatix)
 library(corrr)
 library(corrplot)
 library(car)
+library(heplots)
 ```
 
 ```{r}
@@ -718,6 +719,14 @@ ggplot(data=temp8, aes(x=resid_vals))+
 
 
 
+Box's test
+
+
+```{r}
+covars <- boxM(manova_out_nt)
+
+test<-  lm(variables ~ gender*race_eth*age_group, data=SA3_noout)
+```
 
 
 
