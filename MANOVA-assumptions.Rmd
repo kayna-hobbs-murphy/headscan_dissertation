@@ -731,6 +731,7 @@ boxtest_data <- SA3_noout[-c(1)]
 boxtest_data$int <- interaction(boxtest_data$gender, boxtest_data$race_eth, boxtest_data$age_group)
 
 
+
 #interaction doesn't work
 boxM(boxtest_data[,1:12], boxtest_data[,16])
 
@@ -740,10 +741,26 @@ boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            TrSman_C, TrTr_C, TrTr_L) ~ int, data=boxtest_data)
 
 
+#trying to use already created manova model
+boxM(manova_out_nt)
 
+#trying to create new lm for boxM
+box_lmout <- lm(variables ~ gender*race_eth*age_group, data=SA3_noout)
+
+boxM(box_lmout)
+
+#one demographic variable returns NA for chi squared and p value
+boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
+           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           TrSman_C, TrTr_C, TrTr_L) ~ gender, data=boxtest_data)
+
+
+
+
+#none of the below works
 #SA3_num_vec <- as.vector(SA3_num)
 
-#Box.test(SA3_num_vec, lag=1, type="Ljung-Box", fitdf=0)
+#Box.test(SA3_num_vec, lag=1, type="Ljung-Box", fitdf=182)
 
 #gender_vector <- as.vector(SA3_noout['gender'])
 
