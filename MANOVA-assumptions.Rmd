@@ -721,6 +721,7 @@ ggplot(data=temp8, aes(x=resid_vals))+
 Box's test to check homogeneity of covariance
 
 
+
 ```{r}
 
 
@@ -729,7 +730,7 @@ boxtest_data <- SA3_noout[-c(1)]
 
 boxtest_data$int <- interaction(boxtest_data$gender, boxtest_data$race_eth, boxtest_data$age_group)
 
-
+#the internet cites boxM most often, but I have not had success
 
 #interaction doesn't work
 #boxM(boxtest_data[,1:12], boxtest_data[,16])
@@ -766,6 +767,8 @@ boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
 
 ```
 
+
+
 ```{r}
 #trying to use Box.test function
 #Box.test(SA3_num, lag=1, type="Ljung-Box", fitdf=0)
@@ -782,7 +785,8 @@ SA3_num_vec <- SA3_num_vec %>%
 Box.test(SA3_num_vec, lag=1, type="Ljung-Box", fitdf=0)
 #this works! but is it what I'm looking for? there are no demographic variables involved here.
 #maybe I need to run this on variance data from my manova model? how do I do that?
-#df in my manova = 1656. maybe I should use this above as well?
+#not sure what df to use here
+
 ```
 
 
