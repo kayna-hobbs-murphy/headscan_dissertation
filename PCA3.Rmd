@@ -1,3 +1,4 @@
+
 ---
 title: "PCA2"
 output:
@@ -30,47 +31,47 @@ library(fauxnaif)
 
 
 ```{r}
-PCAdata_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PCAdata_full.xlsx")
+testing_PCAdata<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
 
-str(PCAdata_full)
+str(testing_PCAdata)
 ```
 
 
 ```{r}
 #https://tem11010.github.io/Plotting-PCAs/
 
-PCAdata_full1 <-  PCAdata_full %>% filter (AA_C > 0, BiW_C > 0, BiW_L > 0, GoSub_C > 0, 
+testing_PCAdata1 <-  testing_PCAdata %>% filter (AA_C > 0, BiW_C > 0, BiW_L > 0, GoSub_C > 0, 
                                            NRB_L > 0, ProS_L > 0, SelP_L > 0, SelM_L > 0, 
                                            SnasM_C > 0, TrSman_C > 0, TrTr_C > 0, TrTr_L > 0)
 
 # log price
 
 # center and scale the data
-for (i in 1:length(colnames(PCAdata_full1))){
+for (i in 1:length(colnames(testing_PCAdata1))){
   
-  if (is.numeric(PCAdata_full1[, i])==TRUE)
+  if (is.numeric(testing_PCAdata1[, i])==TRUE)
     
-    PCAdata_full1[, i] <- as.numeric(scale(PCAdata_full1[, i]))
+    testing_PCAdata1[, i] <- as.numeric(scale(testing_PCAdata1[, i]))
   
   else
     
-    PCAdata_full1[, i] <- PCAdata_full1[, i]
+    testing_PCAdata1[, i] <- testing_PCAdata1[, i]
   
 }
 ```
 
 
 ```{r}
-pca1 <- PCA(PCAdata_full1[ ,c("AA_C", "BiW_C", "BiW_L", "GoSub_C", "NRB_L", "ProS_L", "SelP_L", 
+pca1 <- PCA(testing_PCAdata1[ ,c("AA_C", "BiW_C", "BiW_L", "GoSub_C", "NRB_L", "ProS_L", "SelP_L", 
                              "SelM_L", "SnasM_C", "TrSman_C", "TrTr_C", "TrTr_L")])
 
 summary(pca1)
 ```
 
 ```{r}
-PCAdata_full1$pc1 <- pca1$ind$coord[, 1] # indexing the first column
+testing_PCAdata1$pc1 <- pca1$ind$coord[, 1] # indexing the first column
 
-PCAdata_full1$pc2 <- pca1$ind$coord[, 2]  # indexing the second column
+testing_PCAdata1$pc2 <- pca1$ind$coord[, 2]  # indexing the second column
 
 
 ```
@@ -100,7 +101,7 @@ pca.vars.m <- melt(pca.vars, id.vars = "vars")
 
 
 ```{r, fig.width=8, fig.height=5}
-ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2)) +
+ggplot(data = testing_PCAdata1, aes(x = pc1, y = pc2)) +
   geom_point()+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
@@ -110,7 +111,7 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2)) +
 
 ```{r, fig.width=8, fig.height=5}
 #checking to make sure this matches plot in PCA.Rmd
-ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = race_eth)) +
+ggplot(data = testing_PCAdata1, aes(x = pc1, y = pc2, color = race_eth)) +
       geom_hline(yintercept = 0, lty = 2) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) +
@@ -122,7 +123,7 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = race_eth)) +
 ```
 
 ```{r, fig.width=8, fig.height=5}
-ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = race_eth)) +
+ggplot(data = testing_PCAdata1, aes(x = pc1, y = pc2, color = race_eth)) +
       geom_hline(yintercept = 0, lty = 2) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) + 
@@ -141,22 +142,22 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = race_eth)) +
 Need a plot with just Asian, Black, LatinX, and white
 
 ```{r}
-PCAdata_full2 <- PCAdata_full1
+testing_PCAdata2 <- testing_PCAdata1
 
-PCAdata_full2$race_eth <- as.factor(PCAdata_full2$race_eth)
-PCAdata_full2$gender <- as.factor(PCAdata_full2$gender)
-PCAdata_full2$age_group <- as.factor(PCAdata_full2$age_group)
+testing_PCAdata2$race_eth <- as.factor(testing_PCAdata2$race_eth)
+testing_PCAdata2$gender <- as.factor(testing_PCAdata2$gender)
+testing_PCAdata2$age_group <- as.factor(testing_PCAdata2$age_group)
 ```
 
 ```{r}
-PCAdata_race_eth <- PCAdata_full2
+PCAdata_race_eth <- testing_PCAdata2
 
 PCAdata_race_eth$race_eth <-  
   recode_factor(PCAdata_race_eth$race_eth, 'AIAN'= "Other",
                 'NHOPI' = "Other",
                 'PTNS' = "Other")
 
-PCAdata_race_eth_nas <- PCAdata_full1 %>% 
+PCAdata_race_eth_nas <- testing_PCAdata1 %>% 
   mutate(race_eth = na_if_in(race_eth, c("AIAN", "Other", "NHOPI", "PTNS")))
 
 str(PCAdata_race_eth$race_eth)
@@ -261,7 +262,7 @@ PCAdata_race_eth_nas1 %>%
 
 ```{r, fig.width=8, fig.height=5}
 #checking to make sure this matches plot in PCA.Rmd
-ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = gender)) +
+ggplot(data = testing_PCAdata1, aes(x = pc1, y = pc2, color = gender)) +
       geom_hline(yintercept = 0, lty = 2) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) +
@@ -274,7 +275,7 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = gender)) +
 
 
 ```{r, fig.width=8, fig.height=5}
-ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = gender)) +
+ggplot(data = testing_PCAdata1, aes(x = pc1, y = pc2, color = gender)) +
       geom_hline(yintercept = 0, lty = 2) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) + 
@@ -293,7 +294,7 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = gender)) +
 Need plot with just Male and Female 
 
 ```{r}
-PCAdata_gender <- PCAdata_full2
+PCAdata_gender <- testing_PCAdata2
 
 PCAdata_gender$gender <-  
   recode_factor(PCAdata_gender$gender, 'Non-binary or Other'= "Other",
@@ -301,8 +302,8 @@ PCAdata_gender$gender <-
 
 PCAdata_gender$gender[is.na(PCAdata_gender$gender)]="Other"
 
-PCAdata_gender_nas <- PCAdata_full1 %>% 
-  mutate(gender = na_if_in(gender, c("Non-binary or Other", "Prefer not to say")))
+PCAdata_gender_nas <- testing_PCAdata1 %>% 
+  mutate(gender = na_if_in(gender, c("Other")))
 
 str(PCAdata_gender$gender)
 str(PCAdata_gender_nas$gender)
@@ -352,7 +353,7 @@ PCAdata_gender_nas %>%
 
 ```{r, fig.width=8, fig.height=5}
 #checking to make sure this matches plot in PCA.Rmd
-ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = age_group)) +
+ggplot(data = testing_PCAdata1, aes(x = pc1, y = pc2, color = age_group)) +
       geom_hline(yintercept = 0, lty = 2) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) +
@@ -365,7 +366,7 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = age_group)) +
 
 
 ```{r, fig.width=8, fig.height=5}
-ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = age_group)) +
+ggplot(data = testing_PCAdata1, aes(x = pc1, y = pc2, color = age_group)) +
       geom_hline(yintercept = 0, lty = 2) +
       geom_vline(xintercept = 0, lty = 2) +
       geom_point(alpha = 0.8) + 

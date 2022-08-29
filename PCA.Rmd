@@ -206,7 +206,6 @@ ggplot(data=var_explained_data, aes(x=PC_num, y=v_e, group=1)) +
             position= position_dodge(0.9),
               vjust = -0.5, 
               size = 3)+
-  theme_bw()+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank() 

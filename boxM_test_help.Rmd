@@ -28,13 +28,21 @@ variables <- cbind(SA3_noout$AA_C, SA3_noout$BiW_C, SA3_noout$BiW_L,
                    SA3_noout$TrSman_C, SA3_noout$TrTr_C, SA3_noout$TrTr_L)
 
 manova_out_nt <- manova(variables ~ gender*race_eth*age_group, data=SA3_noout)
+
+#need to consider if we really need interaction model
+
 fitted1 <- manova_out_nt$fitted.values
 resid1 <- rstandard(manova_out_nt)
+
+
+
 
 #homogeneity 
 plot(fitted1, resid1)
 abline(0,0)
 #this is kind of concerning
+#ann says this is not a problem 
+#large measure: TrTrC?
 
 #linearity
 qqnorm(resid1)
@@ -88,6 +96,7 @@ boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C, SnasM_C, 
            TrSman_C, TrTr_C, TrTr_L) ~ gender, data=boxtest_data)
 
+#try just m/f
 ```
 
 
