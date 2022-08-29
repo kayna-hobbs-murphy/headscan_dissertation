@@ -35,7 +35,59 @@ my_ft_theme <- function(ft, ...) {
 }
 ```
 
+To check normality:
+QQ plot (A Q-Q plot or Quantile-Quantile plot is a common graphical way to check data for non-normality. Quantile is another term for percentile. A Q-Q plot is a plot of the quantiles of a data set versus the quantiles of a reference theoretical distribution. This plot is used to assess normality of residuals. Curvature and outliers indicate problems. Note: The QQ plot is not useful until variance is
+approximately equal.)
 
+shapiro.test with p value greater than 0.05 (Histograms and QQ plots are usually more informative than the tests, because small sample sizes generally “pass” the test (high p-value, no evidence against normality), and large sample sizes generally “fail” (small p-value, evidence against normality).)
+
+ 
+To check for outliers:
+
+Standardized (or studentized) residuals are residuals that have been
+“standardized” by dividing each residual by it’s SE.
+• They have approximately a t-distribution, which is approximately
+normal for moderate sample sizes, so we expect that about 95% of the
+standardized residuals will be between -2 and +2. Values greater in
+absolute value than 3.5 are usually considered outliers.
+• In R, standardized residuals can be found using
+rstandard(ModelObject).
+
+
+To check homogeneity of covariances/equal variance:
+
+Box's test (homegeneity of variance-covariance matrices)
+
+Levene’s test of equality of variances (homogeneity of variances)
+
+Plot of residuals vs fitted values (equal scatter; This is the primary diagnostic plot for assessing linearity and constant
+variance. Curvature, unequal variance (megaphone) or outliers indicate problems.)
+
+
+
+To check linear response:
+
+Plot of resids vs fitted values (should not show a trend)
+
+Look to pages 20-end 512 MultReg1
+
+
+
+For y variables: You should have an adequate sample size. Although the larger your sample size, the better, at a bare minimum, there needs to be as many cases (e.g., particpants) in each cell of the design as there are number of dependent variables. 12 dependent variables
+
+
+For MANOVA, the dependent variables should be somewhat correlated. 
+
+
+
+STEPS: 
+Power analysis to find sample size - 278
+NAs shouldn't be over 20%
+Find outliers & remove
+Double check correlations
+check assumptions 
+run manova
+run anovas
 
 ```{r}
 SA3_noout <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
@@ -713,7 +765,7 @@ ggplot(data=temp8, aes(x=resid_vals))+
        x= "Standardized Residuals")
 ```
 
-
+Shapiro tests for normality not conducted due to large sample size (test may fail as a result). All plots of normality look good!
 
 
 
