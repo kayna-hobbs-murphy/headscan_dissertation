@@ -31,8 +31,40 @@ my_ft_theme <- function(ft, ...) {
 }
 ```
 
+
+
 ```{r loading data}
 headscan_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
+
+headscan_full$AA_C <- headscan_full$AA_C *10
+headscan_full$BGl_C <- headscan_full$BGl_C * 10
+headscan_full$BiW_C <- headscan_full$BiW_C *10
+headscan_full$BiW_L <- headscan_full$BiW_L *10
+headscan_full$ChCh_C <- headscan_full$ChCh_C *10
+headscan_full$GoSub_C <- headscan_full$GoSub_C *10
+headscan_full$NRB_L <- headscan_full$NRB_L *10
+headscan_full$ProA_L <- headscan_full$ProA_L *10
+headscan_full$ProA_C <- headscan_full$ProA_C *10
+headscan_full$ProS_C <- headscan_full$ProS_C *10
+headscan_full$ProS_L <- headscan_full$ProS_L *10
+headscan_full$SelP_C <- headscan_full$SelP_C *10
+headscan_full$SelP_L <- headscan_full$SelP_L *10
+headscan_full$SelDH_C <- headscan_full$SelDH_C *10
+headscan_full$SelM_L <- headscan_full$SelM_L *10
+headscan_full$SnasM_C <- headscan_full$SnasM_C *10
+headscan_full$SmanM_C <- headscan_full$SmanM_C *10
+headscan_full$SmanM_L <- headscan_full$SmanM_L *10
+headscan_full$SnasM_L <- headscan_full$SnasM_L *10
+headscan_full$TrHO_C <- headscan_full$TrHO_C *10
+headscan_full$TrEJ_C <- headscan_full$TrEJ_C *10
+headscan_full$TrGo_C <- headscan_full$TrGo_C *10
+headscan_full$TrSel_C <- headscan_full$TrSel_C *10
+headscan_full$TrSman_C <- headscan_full$TrSman_C *10
+headscan_full$TrSnas_C <- headscan_full$TrSnas_C *10
+headscan_full$TrTr_C <- headscan_full$TrTr_C *10
+headscan_full$TrTr_L <- headscan_full$TrTr_L *10
+
+
 str(headscan_full)
 ```
 
@@ -50,9 +82,7 @@ ggplot(data=headscan_full, aes(x=GoSub_C))+
 
 max(headscan_full$GoSub_C, na.rm = TRUE)
 
-outlier_ids <- subset(headscan_full, GoSub_C>40)
-
-headscan_full1 <- headscan_full %>% mutate(GoSub_C = replace(GoSub_C, GoSub_C>40, NA))
+headscan_full1 <- headscan_full %>% mutate(GoSub_C = replace(GoSub_C, GoSub_C>400, NA))
 
 #histogram of all GoSub_C values
 ggplot(data=headscan_full1, aes(x=GoSub_C))+
@@ -61,7 +91,7 @@ ggplot(data=headscan_full1, aes(x=GoSub_C))+
   labs(title="Gonion to Submandibular Contour Measurement Distribution",
        subtitle = "one outlier over 40cm changed to missing values",
        y="Frequency",
-       x="Gonion to Submandibular Contour (cm)")
+       x="Gonion to Submandibular Contour (mm)")
 
 sum(is.na(headscan_full$GoSub_C))
 sum(is.na(headscan_full1$GoSub_C))
@@ -81,7 +111,7 @@ ggplot(data=headscan_full, aes(x=NRB_L))+
 
 max(headscan_full$NRB_L, na.rm = TRUE)
 
-headscan_full1 <- headscan_full1 %>% mutate(NRB_L = replace(NRB_L, NRB_L>7, NA))
+headscan_full1 <- headscan_full1 %>% mutate(NRB_L = replace(NRB_L, NRB_L>70, NA))
 
 #histogram of all NRB_L values
 ggplot(data=headscan_full1, aes(x=NRB_L))+
@@ -90,7 +120,7 @@ ggplot(data=headscan_full1, aes(x=NRB_L))+
   labs(title="Nasal Root Breadth Measurement Distribution",
        subtitle = "one outlier over 7cm changed to missing values",
        y="Frequency",
-       x="Nasal Root Breadth (cm)")
+       x="Nasal Root Breadth (mm)")
 
 sum(is.na(headscan_full$NRB_L))
 sum(is.na(headscan_full1$NRB_L))
@@ -110,7 +140,7 @@ ggplot(data=headscan_full, aes(x=SelDH_C ))+
 
 max(headscan_full$SelDH_C, na.rm = TRUE)
 	
-headscan_full1 <- headscan_full1 %>% mutate(SelDH_C = replace(SelDH_C, SelDH_C>4, NA))
+headscan_full1 <- headscan_full1 %>% mutate(SelDH_C = replace(SelDH_C, SelDH_C>40, NA))
 
 #histogram of all SelDH_C  values
 ggplot(data=headscan_full1, aes(x=SelDH_C))+
@@ -119,7 +149,7 @@ ggplot(data=headscan_full1, aes(x=SelDH_C))+
   labs(title="Sellion to Dorsal Hump Contour Measurement Distribution",
        subtitle = "two outliers over 4cm changed to missing values",
        y="Frequency",
-       x="Sellion to Dorsal Hump Contour (cm)")
+       x="Sellion to Dorsal Hump Contour (mm)")
 
 sum(is.na(headscan_full$SelDH_C))
 sum(is.na(headscan_full1$SelDH_C))
@@ -139,7 +169,7 @@ ggplot(data=headscan_full, aes(x=SnasM_C))+
 
 max(headscan_full$SnasM_C, na.rm = TRUE)
 
-headscan_full1 <- headscan_full1 %>% mutate(SnasM_C = replace(SnasM_C, SnasM_C>16, NA))
+headscan_full1 <- headscan_full1 %>% mutate(SnasM_C = replace(SnasM_C, SnasM_C>160, NA))
 
 #histogram of all SnasM_C values
 ggplot(data=headscan_full1, aes(x=SnasM_C))+
@@ -148,7 +178,7 @@ ggplot(data=headscan_full1, aes(x=SnasM_C))+
   labs(title="Subnasale to Menton Contour Measurement Distribution",
        subtitle = "one outlier over 16cm changed to missing values",
        y="Frequency",
-       x="Subnasale to Menton Contour (cm)")
+       x="Subnasale to Menton Contour (mm)")
 
 sum(is.na(headscan_full$SnasM_C))
 sum(is.na(headscan_full1$SnasM_C))
@@ -168,7 +198,7 @@ ggplot(data=headscan_full, aes(x=TrGo_C))+
 
 max(headscan_full$TrGo_C, na.rm = TRUE)
 
-headscan_full1 <- headscan_full1 %>% mutate(TrGo_C = replace(TrGo_C, TrGo_C>17, NA))
+headscan_full1 <- headscan_full1 %>% mutate(TrGo_C = replace(TrGo_C, TrGo_C>170, NA))
 
 #histogram of all TrGo_C values
 ggplot(data=headscan_full1, aes(x=TrGo_C))+
@@ -177,7 +207,7 @@ ggplot(data=headscan_full1, aes(x=TrGo_C))+
   labs(title="Tragion to Gonion Contour Measurement Distribution",
        subtitle = "one outlier over 17cm changed to missing value",
        y="Frequency",
-       x="Tragion to Gonion Contour (cm)")
+       x="Tragion to Gonion Contour (mm)")
 
 sum(is.na(headscan_full$TrGo_C))
 sum(is.na(headscan_full1$TrGo_C))
@@ -197,7 +227,7 @@ ggplot(data=headscan_full, aes(x=TrSman_C))+
 
 max(headscan_full$TrSman_C, na.rm = TRUE)
 
-headscan_full1 <- headscan_full1 %>% mutate(TrSman_C = replace(TrSman_C, TrSman_C>29, NA))
+headscan_full1 <- headscan_full1 %>% mutate(TrSman_C = replace(TrSman_C, TrSman_C>290, NA))
 
 #histogram of all TrSman_C values
 ggplot(data=headscan_full1, aes(x=TrSman_C))+
@@ -206,7 +236,7 @@ ggplot(data=headscan_full1, aes(x=TrSman_C))+
   labs(title="Tragion to Submandibular Contour Measurement Distribution",
        subtitle = "one outlier over 29cm changed to missing value",
        y="Frequency",
-       x="Tragion to Submandibular Contour (cm)")
+       x="Tragion to Submandibular Contour (mm)")
 
 sum(is.na(headscan_full$TrSman_C))
 sum(is.na(headscan_full1$TrSman_C))
@@ -226,7 +256,7 @@ ggplot(data=headscan_full, aes(x=TrSnas_C))+
 
 max(headscan_full$TrSnas_C, na.rm = TRUE)
 
-headscan_full1 <- headscan_full1 %>% mutate(TrSnas_C = replace(TrSnas_C, TrSnas_C>35, NA))
+headscan_full1 <- headscan_full1 %>% mutate(TrSnas_C = replace(TrSnas_C, TrSnas_C>350, NA))
 
 #histogram of all TrSnas_C  values
 ggplot(data=headscan_full1, aes(x=TrSnas_C))+
@@ -235,7 +265,7 @@ ggplot(data=headscan_full1, aes(x=TrSnas_C))+
   labs(title="Tragion to Subnasale Contour Measurement Distribution",
        subtitle = "19 outliers over 35cm changed to missing values",
        y="Frequency",
-       x="Tragion to Subnasale Contour (cm)")
+       x="Tragion to Subnasale Contour (mm)")
 
 sum(is.na(headscan_full$TrSnas_C))
 sum(is.na(headscan_full1$TrSnas_C))
@@ -246,26 +276,26 @@ str(headscan_full1)
 ```
 
 ```{r}
-outl1 <- subset(headscan_full, GoSub_C>40) 
+outl1 <- subset(headscan_full, GoSub_C>400) 
 outl1$vis_out <- "GoSub_C"
   
-outl2 <- subset(headscan_full, NRB_L>7)
+outl2 <- subset(headscan_full, NRB_L>70)
 outl2$vis_out <- "NRB_L"
 
-outl3 <- subset(headscan_full, SelDH_C>4)
+outl3 <- subset(headscan_full, SelDH_C>40)
 outl3$vis_out <- "SelDH_C"
 
 
-outl4 <- subset(headscan_full, SnasM_C>16)
+outl4 <- subset(headscan_full, SnasM_C>160)
 outl4$vis_out <- "SnasM_C"
 
-outl5 <- subset(headscan_full, TrGo_C>17)
+outl5 <- subset(headscan_full, TrGo_C>170)
 outl5$vis_out <- "TrGo_C"
 
-outl6 <- subset(headscan_full, TrSman_C>29)
+outl6 <- subset(headscan_full, TrSman_C>290)
 outl6$vis_out <- "TrSman_C"
 
-outl7 <- subset(headscan_full, TrSnas_C>35)
+outl7 <- subset(headscan_full, TrSnas_C>350)
 outl7$vis_out <- "TrSnas_C"
 
 
