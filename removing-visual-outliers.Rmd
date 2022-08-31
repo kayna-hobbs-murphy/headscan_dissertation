@@ -16,8 +16,20 @@ library(tidyverse)
 library(writexl)
 library(extrafont)
 library(forcats)
+library(flextable)
 ```
-
+```{r table-function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
 
 ```{r loading data}
 headscan_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
@@ -37,6 +49,8 @@ ggplot(data=headscan_full, aes(x=GoSub_C))+
 #REMOVING OUTLIER GoSubC
 
 max(headscan_full$GoSub_C, na.rm = TRUE)
+
+outlier_ids <- subset(headscan_full, GoSub_C>40)
 
 headscan_full1 <- headscan_full %>% mutate(GoSub_C = replace(GoSub_C, GoSub_C>40, NA))
 
@@ -67,7 +81,7 @@ ggplot(data=headscan_full, aes(x=NRB_L))+
 
 max(headscan_full$NRB_L, na.rm = TRUE)
 
-headscan_full1 <- headscan_full %>% mutate(NRB_L = replace(NRB_L, NRB_L>7, NA))
+headscan_full1 <- headscan_full1 %>% mutate(NRB_L = replace(NRB_L, NRB_L>7, NA))
 
 #histogram of all NRB_L values
 ggplot(data=headscan_full1, aes(x=NRB_L))+
@@ -96,7 +110,7 @@ ggplot(data=headscan_full, aes(x=SelDH_C ))+
 
 max(headscan_full$SelDH_C, na.rm = TRUE)
 	
-headscan_full1 <- headscan_full %>% mutate(SelDH_C = replace(SelDH_C, SelDH_C>4, NA))
+headscan_full1 <- headscan_full1 %>% mutate(SelDH_C = replace(SelDH_C, SelDH_C>4, NA))
 
 #histogram of all SelDH_C  values
 ggplot(data=headscan_full1, aes(x=SelDH_C))+
@@ -125,7 +139,7 @@ ggplot(data=headscan_full, aes(x=SnasM_C))+
 
 max(headscan_full$SnasM_C, na.rm = TRUE)
 
-headscan_full1 <- headscan_full %>% mutate(SnasM_C = replace(SnasM_C, SnasM_C>16, NA))
+headscan_full1 <- headscan_full1 %>% mutate(SnasM_C = replace(SnasM_C, SnasM_C>16, NA))
 
 #histogram of all SnasM_C values
 ggplot(data=headscan_full1, aes(x=SnasM_C))+
@@ -154,7 +168,7 @@ ggplot(data=headscan_full, aes(x=TrGo_C))+
 
 max(headscan_full$TrGo_C, na.rm = TRUE)
 
-headscan_full1 <- headscan_full %>% mutate(TrGo_C = replace(TrGo_C, TrGo_C>17, NA))
+headscan_full1 <- headscan_full1 %>% mutate(TrGo_C = replace(TrGo_C, TrGo_C>17, NA))
 
 #histogram of all TrGo_C values
 ggplot(data=headscan_full1, aes(x=TrGo_C))+
@@ -183,7 +197,7 @@ ggplot(data=headscan_full, aes(x=TrSman_C))+
 
 max(headscan_full$TrSman_C, na.rm = TRUE)
 
-headscan_full1 <- headscan_full %>% mutate(TrSman_C = replace(TrSman_C, TrSman_C>29, NA))
+headscan_full1 <- headscan_full1 %>% mutate(TrSman_C = replace(TrSman_C, TrSman_C>29, NA))
 
 #histogram of all TrSman_C values
 ggplot(data=headscan_full1, aes(x=TrSman_C))+
@@ -212,7 +226,7 @@ ggplot(data=headscan_full, aes(x=TrSnas_C))+
 
 max(headscan_full$TrSnas_C, na.rm = TRUE)
 
-headscan_full1 <- headscan_full %>% mutate(TrSnas_C = replace(TrSnas_C, TrSnas_C>35, NA))
+headscan_full1 <- headscan_full1 %>% mutate(TrSnas_C = replace(TrSnas_C, TrSnas_C>35, NA))
 
 #histogram of all TrSnas_C  values
 ggplot(data=headscan_full1, aes(x=TrSnas_C))+
@@ -231,9 +245,60 @@ sum(is.na(headscan_full1$TrSnas_C))
 str(headscan_full1)
 ```
 
+```{r}
+outl1 <- subset(headscan_full, GoSub_C>40) 
+outl1$vis_out <- "GoSub_C"
+  
+outl2 <- subset(headscan_full, NRB_L>7)
+outl2$vis_out <- "NRB_L"
+
+outl3 <- subset(headscan_full, SelDH_C>4)
+outl3$vis_out <- "SelDH_C"
+
+
+outl4 <- subset(headscan_full, SnasM_C>16)
+outl4$vis_out <- "SnasM_C"
+
+outl5 <- subset(headscan_full, TrGo_C>17)
+outl5$vis_out <- "TrGo_C"
+
+outl6 <- subset(headscan_full, TrSman_C>29)
+outl6$vis_out <- "TrSman_C"
+
+outl7 <- subset(headscan_full, TrSnas_C>35)
+outl7$vis_out <- "TrSnas_C"
+
+
+all_vis_out <- rbind(outl1, outl2, outl3, outl4, outl5, outl6, outl7)
+```
+
+
+
+
+```{r}
+sum(is.na(headscan_full))
+sum(is.na(headscan_full1))
+
+
+```
+
+```{r}
+all_vis_out1 <- all_vis_out[-c(2:33)]
+  
+#Size 12 Table TNR
+flextable(all_vis_out1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Visual Outliers") %>% 
+  autofit
+#%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
+
+```
 
 
 ```{r writing headscan_full1}
 write_xlsx(headscan_full1, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
+
+write_xlsx(all_vis_out1, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\all_vis_out1.xlsx")
 ```
 

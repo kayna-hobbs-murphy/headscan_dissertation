@@ -1386,7 +1386,7 @@ flextable(combin_out1) %>%
 
 ```{r}
 
-##exclude outliers
+##exclude multivariate outliers
 SA3_noout <- anti_join(SA3_data2, mult_out, by="ID")
 
 1710-19
