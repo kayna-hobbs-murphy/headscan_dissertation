@@ -29,35 +29,35 @@ str(headscan_full1)
 ```{r cm to mm}
 headscan_fullmm <- headscan_full1
 
-headscan_fullmm$AA_C <- headscan_fullmm$AA_C *10
-headscan_fullmm$BGl_C <- headscan_fullmm$BGl_C * 10
-headscan_fullmm$BiW_C <- headscan_fullmm$BiW_C *10
-headscan_fullmm$BiW_L <- headscan_fullmm$BiW_L *10
-headscan_fullmm$ChCh_C <- headscan_fullmm$ChCh_C *10
-headscan_fullmm$GoSub_C <- headscan_fullmm$GoSub_C *10
-headscan_fullmm$NRB_L <- headscan_fullmm$NRB_L *10
-headscan_fullmm$ProA_L <- headscan_fullmm$ProA_L *10
-headscan_fullmm$ProA_C <- headscan_fullmm$ProA_C *10
-headscan_fullmm$ProS_C <- headscan_fullmm$ProS_C *10
-headscan_fullmm$ProS_L <- headscan_fullmm$ProS_L *10
-headscan_fullmm$SelP_C <- headscan_fullmm$SelP_C *10
-headscan_fullmm$SelP_L <- headscan_fullmm$SelP_L *10
-headscan_fullmm$SelDH_C <- headscan_fullmm$SelDH_C *10
-headscan_fullmm$SelM_L <- headscan_fullmm$SelM_L *10
-headscan_fullmm$SnasM_C <- headscan_fullmm$SnasM_C *10
-headscan_fullmm$SmanM_C <- headscan_fullmm$SmanM_C *10
-headscan_fullmm$SmanM_L <- headscan_fullmm$SmanM_L *10
-headscan_fullmm$SnasM_L <- headscan_fullmm$SnasM_L *10
-headscan_fullmm$TrHO_C <- headscan_fullmm$TrHO_C *10
-headscan_fullmm$TrEJ_C <- headscan_fullmm$TrEJ_C *10
-headscan_fullmm$TrGo_C <- headscan_fullmm$TrGo_C *10
-headscan_fullmm$TrSel_C <- headscan_fullmm$TrSel_C *10
-headscan_fullmm$TrSman_C <- headscan_fullmm$TrSman_C *10
-headscan_fullmm$TrSnas_C <- headscan_fullmm$TrSnas_C *10
-headscan_fullmm$TrTr_C <- headscan_fullmm$TrTr_C *10
-headscan_fullmm$TrTr_L <- headscan_fullmm$TrTr_L *10
+#headscan_fullmm$AA_C <- headscan_fullmm$AA_C *10
+#headscan_fullmm$BGl_C <- headscan_fullmm$BGl_C * 10
+#headscan_fullmm$BiW_C <- headscan_fullmm$BiW_C *10
+#headscan_fullmm$BiW_L <- headscan_fullmm$BiW_L *10
+#headscan_fullmm$ChCh_C <- headscan_fullmm$ChCh_C *10
+#headscan_fullmm$GoSub_C <- headscan_fullmm$GoSub_C *10
+#headscan_fullmm$NRB_L <- headscan_fullmm$NRB_L *10
+#headscan_fullmm$ProA_L <- headscan_fullmm$ProA_L *10
+#headscan_fullmm$ProA_C <- headscan_fullmm$ProA_C *10
+#headscan_fullmm$ProS_C <- headscan_fullmm$ProS_C *10
+#headscan_fullmm$ProS_L <- headscan_fullmm$ProS_L *10
+#headscan_fullmm$SelP_C <- headscan_fullmm$SelP_C *10
+#headscan_fullmm$SelP_L <- headscan_fullmm$SelP_L *10
+#headscan_fullmm$SelDH_C <- headscan_fullmm$SelDH_C *10
+#headscan_fullmm$SelM_L <- headscan_fullmm$SelM_L *10
+#headscan_fullmm$SnasM_C <- headscan_fullmm$SnasM_C *10
+#headscan_fullmm$SmanM_C <- headscan_fullmm$SmanM_C *10
+#headscan_fullmm$SmanM_L <- headscan_fullmm$SmanM_L *10
+#headscan_fullmm$SnasM_L <- headscan_fullmm$SnasM_L *10
+#headscan_fullmm$TrHO_C <- headscan_fullmm$TrHO_C *10
+#headscan_fullmm$TrEJ_C <- headscan_fullmm$TrEJ_C *10
+#headscan_fullmm$TrGo_C <- headscan_fullmm$TrGo_C *10
+#headscan_fullmm$TrSel_C <- headscan_fullmm$TrSel_C *10
+#headscan_fullmm$TrSman_C <- headscan_fullmm$TrSman_C *10
+#headscan_fullmm$TrSnas_C <- headscan_fullmm$TrSnas_C *10
+#headscan_fullmm$TrTr_C <- headscan_fullmm$TrTr_C *10
+#headscan_fullmm$TrTr_L <- headscan_fullmm$TrTr_L *10
 
-str(headscan_fullmm)
+#str(headscan_fullmm)
 ```
 
 
