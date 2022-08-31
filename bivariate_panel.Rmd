@@ -114,7 +114,7 @@ headscan_fullmm <- headscan_fullmm %>% mutate(SelM_L = replace(SelM_L, SelM_L<70
 ```
 
 
-```{r bivariate overall, fig.width=8, fig.height=5}
+```{r bivariate overall 2, fig.width=8, fig.height=5}
 biv1 <- headscan_fullmm %>% 
   ggplot(aes(x=BiW_L, y=SelM_L))+
   geom_point(color="darkgray")+
