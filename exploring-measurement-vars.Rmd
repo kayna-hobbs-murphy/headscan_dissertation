@@ -13,14 +13,24 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r packages}
 library(tidyverse)
 library(readxl)
-library(officer)
-library(flextable)
 library(extrafont)
+library(flextable)
 library(corrr)
 library(ggcorrplot)
 library(writexl)
 ```
-
+```{r table-function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
 
 ```{r loading data}
 headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
@@ -36,8 +46,8 @@ correlation_data_full <- correlate(headscan_num)
 
 write_xlsx(correlation_data_full, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\correlation_data_full.xlsx")
 
-#do not run above as NA values on upper half were removed in excel
 
+#correlation_data.xlxs was created one time and upper (duplicate) values were deleted in excel
 
 ```
 
@@ -68,25 +78,7 @@ ggcorrplot(correlation_data_round, hc.order=FALSE,
 ```
 
 
-```{r, fig.width=11, fig.height=11}
-library(PerformanceAnalytics)
 
-chart.Correlation(headscan_num, histogram=FALSE, method="pearson")
-```
-
-
-```{r table-function}
-#times new roman tables
-my_ft_theme <- function(ft, ...) {
-  # Remove vertical cell padding
-  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
-  
-  # Change font to TNR 11
-  ft <- font(ft, fontname = "Times New Roman", part = "all")
-  ft <- fontsize(ft, part = "all", size = 12)
-  ft
-}
-```
 
 
 ```{r loading-correlation-data}
@@ -131,16 +123,17 @@ flextable(correlation_data1) %>%
 
 
 ```{r all-correlations-plot, fig.height=45, fig.width=5}
-correlation_data1 %>%
-  mutate(both_measures=fct_reorder(both_measures, correlation)) %>% 
-  ggplot(aes(x=correlation, y=both_measures))+
-    geom_bar(stat= "identity", color= "black", fill = "white")+
-    theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+#correlation_data1 %>%
+  #mutate(both_measures=fct_reorder(both_measures, correlation)) %>% 
+  #ggplot(aes(x=correlation, y=both_measures))+
+    #geom_bar(stat= "identity", color= "black", fill = "white")+
+    #theme_bw()+theme(text=element_text(family= "Times New Roman"))+
     #theme(axis.text.x = element_text(angle = 90))+ 
-    labs(title="Correlations",
-       y="Correlated Measures Abbreviation (see Appendix B)",
-       x="Correlation value")
+    #labs(title="Correlations",
+       #y="Correlated Measures Abbreviation (see Appendix B)",
+       #x="Correlation value")
 ```
+
 
 
 ```{r making-high_cor-dataset}
@@ -172,7 +165,7 @@ high_cor %>%
 ```
 
 ```{r adding-coder-abcd}
-headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
+#headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
 
 coders <- headscan_full1[-c(2:28, 30:33)]
 
@@ -229,6 +222,8 @@ intraRR %>%
          x="ICC Value")
 ```
 
+THIS IS WHERE I LEFT OFF NOTATIONS
+
 
 ```{r seperating-intra-into-coder}
 isabel_intra <- intraRR[intraRR$coder=="A",]
@@ -236,10 +231,10 @@ kayna_intra <- intraRR[intraRR$coder == "B",]
 chandler_intra <- intraRR[intraRR$coder == "C",]
 jared_intra <- intraRR[intraRR$coder == "D",]
 
-write_xlsx(isabel_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\isabel_intra.xlsx")
-write_xlsx(kayna_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\kayna_intra.xlsx")
-write_xlsx(chandler_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chandler_intra.xlsx")
-write_xlsx(jared_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\jared_intra.xlsx")
+#write_xlsx(isabel_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\isabel_intra.xlsx")
+#write_xlsx(kayna_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\kayna_intra.xlsx")
+#write_xlsx(chandler_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chandler_intra.xlsx")
+#write_xlsx(jared_intra, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\jared_intra.xlsx")
 ```
 
 
