@@ -13,9 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r packages}
 library(tidyverse)
 library(readxl)
-library(officer)
-library(flextable)
 library(extrafont)
+library(rstatix)
 ```
 
 ```{r loading data}
@@ -102,6 +101,43 @@ biv1 <- headscan_fullmm %>%
 
 biv1 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
+```{r}
+facelen_outl<-headscan_fullmm %>% 
+  identify_outliers(SelM_L)
+
+tibble(facelen_outl$SelM_L)
+
+min(facelen_outl$SelM_L, na.rm = TRUE)
+mean(headscan_fullmm$SelM_L, na.rm = TRUE)
+
+headscan_fullmm <- headscan_fullmm %>% mutate(SelM_L = replace(SelM_L, SelM_L<70, NA))
+```
+
+
+```{r bivariate overall, fig.width=8, fig.height=5}
+biv1 <- headscan_fullmm %>% 
+  ggplot(aes(x=BiW_L, y=SelM_L))+
+  geom_point(color="darkgray")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  xlim(80,160)+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=144.5, xmax=158.5, ymin=98.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=134.5, ymin=118.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
+       subtitle = "227 missing values omitted",
+       y="Face Length (mm)",
+       x="Face Width (mm)")
+
+biv1 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
+```
+
 
 ```{r bivariate gender, fig.width=8, fig.height=5}
 biv2 <- headscan_fullmm %>% 
@@ -120,7 +156,7 @@ biv2 <- headscan_fullmm %>%
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
   labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
-       subtitle = "226 missing values omitted",
+       subtitle = "227 missing values omitted",
        y="Face Length (mm)",
        x="Face Width (mm)")
 
@@ -145,7 +181,7 @@ biv3<- headscan_fullmm %>%
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
   labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
-       subtitle = "226 missing values omitted",
+       subtitle = "227 missing values omitted",
        y="Face Length (mm)",
        x="Face Width (mm)")
 
@@ -170,7 +206,7 @@ biv4 <- headscan_fullmm %>%
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
   labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
-       subtitle = "226 missing values omitted",
+       subtitle = "227 missing values omitted",
        y="Face Length (mm)",
        x="Face Width (mm)")
 
