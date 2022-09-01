@@ -13,11 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r packages}
 library(tidyverse)
 library(readxl)
-library(officer)
 library(flextable)
 library(extrafont)
-library(corrr)
-library(ggcorrplot)
 library(writexl)
 ```
 

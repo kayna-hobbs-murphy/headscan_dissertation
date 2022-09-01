@@ -18,6 +18,7 @@ library(flextable)
 library(corrr)
 library(ggcorrplot)
 library(writexl)
+library(ggrepel)
 ```
 ```{r table-function}
 #times new roman tables
@@ -410,8 +411,6 @@ myFont1 <- "Times New Roman"
 
 
 ```{r intra-by cor-all-plot, fig.height=5, fig.width=8}
-library(ggrepel)
-
 quest_meas_nona %>% 
   ggplot(aes(x=intra_icc, y=correlation))+
   geom_point(aes(shape=both_measures, color=coder), size=5)+
