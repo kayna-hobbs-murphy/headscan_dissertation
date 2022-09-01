@@ -44,7 +44,7 @@ str(headscan_num)
 ```{r making and writing correlation_data set}
 correlation_data_full <- correlate(headscan_num)
 
-write_xlsx(correlation_data_full, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\correlation_data_full.xlsx")
+#write_xlsx(correlation_data_full, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\correlation_data_full.xlsx")
 
 
 #correlation_data.xlxs was created one time and upper (duplicate) values were deleted in excel
@@ -410,11 +410,12 @@ myFont1 <- "Times New Roman"
 
 
 ```{r intra-by cor-all-plot, fig.height=5, fig.width=8}
-
+library(ggrepel)
 
 quest_meas_nona %>% 
   ggplot(aes(x=intra_icc, y=correlation))+
   geom_point(aes(shape=both_measures, color=coder), size=5)+
+  geom_text_repel(aes(label=measure), family="Times New Roman", size= 2.5, color="gray50")+
   annotate(geom="text", x=0.4, y=0.84, label= "Highly correlated measures with low intraRR", 
            size=3.5, fontface = 'italic', family= myFont1, hjust=0, vjust=0)+
   scale_shape_manual(values=seq(0,12))+
@@ -433,6 +434,7 @@ quest_meas_nona %>%
 quest_meas_nona %>% 
   ggplot(aes(x=intra_icc, y=correlation))+
   geom_point(aes(shape=both_measures, color=both_measures), size=5)+
+   geom_text_repel(aes(label=measure), family="Times New Roman", size= 2.5, color="gray50")+
   annotate(geom="text", x=0.4, y=0.833, label= "Highly correlated measures with low intraRR", 
            size=2.5, fontface = 'italic', family= myFont1, hjust=0, vjust=0)+
   scale_shape_manual(values=seq(0,12))+
@@ -455,7 +457,7 @@ interRR <- interRR %>%
   rename(inter_icc = "icc_value")
 
 
-write_xlsx(interRR, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\interRR.xlsx")
+#write_xlsx(interRR, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\interRR.xlsx")
 
 low_interRR <- filter(interRR, inter_icc < 0.9)
 ```
@@ -505,7 +507,8 @@ quest_meas_nona1 <- questionable_measures %>%
 quest_meas_nona1 %>% 
   ggplot(aes(x=inter_icc, y=correlation, na.rm=TRUE))+
   geom_point(aes(shape=both_measures, color=both_measures), size=5, na.rm = TRUE)+
-  annotate(geom="text", x=0.25, y=0.835, label= "Highly correlated measures with low intraRR", 
+  geom_text_repel(aes(label=measure), family="Times New Roman", size= 2.5, color="gray50")+
+  annotate(geom="text", x=0.25, y=0.835, label= "Highly correlated measures with low interRR", 
            size=3.5, fontface = 'italic', family= myFont1, hjust=0, vjust=0)+
   scale_shape_manual(values=seq(0,12))+
   geom_rect(aes(xmin=0.25, xmax=0.75, ymin=0.845, ymax=1), fill= NA, alpha=0.4, colour="black")+
@@ -529,7 +532,8 @@ quest_meas_nona2 <- questionable_measures %>%
 quest_meas_nona2 %>% 
   ggplot(aes(x=inter_icc, y=intra_icc, na.rm=TRUE))+
   geom_point(aes(shape=measure, color=measure), size=5, na.rm = TRUE)+
-  annotate(geom="text", x=0.02, y=0.27, label= "Highly correlated measures with low intraRR", 
+  #geom_text_repel(aes(label=measure), family="Times New Roman", size= 2.5, color="gray50")+
+  annotate(geom="text", x=0.02, y=0.27, label= "Measurements w/ low intraRR and interRR", 
            size=2.5, fontface = 'italic', family= myFont1, hjust=0, vjust=0)+
   scale_shape_manual(values=seq(0,18))+
   geom_rect(aes(xmin=0, xmax=0.75, ymin=0.25, ymax=0.75), fill= NA, alpha=0.4, colour="black")+
@@ -557,6 +561,6 @@ questionable_measures %>%
 ```
 
 ```{r writing-questionable-measures}
-write_xlsx(questionable_measures, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\questionable_measures.xlsx")
+#write_xlsx(questionable_measures, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\questionable_measures.xlsx")
 ```
 
