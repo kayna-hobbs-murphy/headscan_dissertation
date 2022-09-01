@@ -8,11 +8,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r packages}
-library(readr)
 library(readxl)
 library(tidyverse)
-library(knitr)
-library(kableExtra)
 library(writexl)
 ```
 
