@@ -13,6 +13,7 @@ library(tidyverse)
 library(readxl)
 library(flextable)
 library(extrafont)
+library(fauxnaif) 
 ```
 
 ```{r table-function}
@@ -84,6 +85,58 @@ all_outliers1$univar_sum <- all_outliers1$`GoSub_C univar` +
                             all_outliers1$`SelM_L univar` + 
                             all_outliers1$`AA_C univar` + 
                             all_outliers1$`BiW_C univar`
+
+```
+
+```{r}
+
+
+all_outliers1$`GoSub_C univar` <- as.character(all_outliers1$`GoSub_C univar`)
+all_outliers1$`TrSman_C univar` <- as.character(all_outliers1$`TrSman_C univar`)
+all_outliers1$`NRB_L univar` <- as.character(all_outliers1$`NRB_L univar`)
+all_outliers1$`SnasM_C univar`<- as.character(all_outliers1$`SnasM_C univar`)
+all_outliers1$`ProS_L univar` <- as.character(all_outliers1$`ProS_L univar`)
+all_outliers1$`SelP_L univar` <- as.character(all_outliers1$`SelP_L univar`)
+all_outliers1$`SelM_L univar` <- as.character(all_outliers1$`SelM_L univar`)
+all_outliers1$`AA_C univar` <- as.character(all_outliers1$`AA_C univar`)
+all_outliers1$`BiW_C univar` <- as.character(all_outliers1$`BiW_C univar`)
+
+
+
+all_outliers1$`GoSub_C univar`<-  
+  recode_factor(all_outliers1$`GoSub_C univar`, '0'= "no",'1' = "GoSub_C")
+all_outliers1 <- all_outliers1 %>% 
+  mutate(`GoSub_C univar` = na_if_in(`GoSub_C univar`, "no"))
+
+
+all_outliers1$`TrSman_C univar`<-  
+  recode_factor(all_outliers1$`TrSman_C univar`, '0'= "no",'1' = "TrSman_C")
+
+all_outliers1$`NRB_L univar` <-  
+  recode_factor(all_outliers1$`NRB_L univar`, '0'= "no",'1' = "NRB_L")
+
+all_outliers1$`SnasM_C univar` <-  
+  recode_factor(all_outliers1$`SnasM_C univar`, '0'= "no",'1' = "SnasM_C")
+
+all_outliers1$`ProS_L univar` <-  
+  recode_factor(all_outliers1$`ProS_L univar`, '0'= "no",'1' = "ProS_L")
+
+all_outliers1$`SelP_L univar` <-  
+  recode_factor(all_outliers1$`SelP_L univar`, '0'= "no",'1' = "SelP_L")
+
+all_outliers1$`SelM_L univar` <-  
+  recode_factor(all_outliers1$`SelM_L univar`, '0'= "no",'1' = "SelM_L")
+
+all_outliers1$`AA_C univar` <-  
+  recode_factor(all_outliers1$`AA_C univar`, '0'= "no",'1' = "AA_C")
+
+all_outliers1$`BiW_C univar` <-  
+  recode_factor(all_outliers1$`BiW_C univar`, '0'= "no",'1' = "BiW_C")
+
+all_outliers1 <- all_outliers1 %>% 
+  mutate(gender = na_if_in(gender, c("Non-binary or Other", "Prefer not to say")))
+
+correlation_data$both_measures <- paste(correlation_data$first_measure, sep= " & ", correlation_data$second_measure)
 ```
 
 
