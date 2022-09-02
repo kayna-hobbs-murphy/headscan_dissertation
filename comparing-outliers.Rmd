@@ -11,11 +11,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyverse)
 library(readxl)
-library(officer)
 library(flextable)
 library(extrafont)
-library(writexl)
-library(rstatix)
+```
+
+```{r table-function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
 ```
 
 ```{r}
@@ -39,4 +49,49 @@ all_outliers <- full_join(filtered_visoutl, stat_outliers, by="ID")
 all the visual outliers that were changed to NA based on visual assessment of
 measurement sumstats are also stat outliers (univariate AND multivariate)
 
-Create table
+```{r}
+all_outliers1 <- all_outliers
+
+all_outliers1$truee <- "1"
+
+all_outliers1 <- all_outliers1 %>% pivot_wider(names_from = offending, values_from = truee)
+
+str(all_outliers1)
+```
+
+```{r}
+all_outliers1$`GoSub_C univar` <- as.numeric(all_outliers1$`GoSub_C univar`)
+all_outliers1$`TrSman_C univar` <- as.numeric(all_outliers1$`TrSman_C univar`)
+all_outliers1$`NRB_L univar` <- as.numeric(all_outliers1$`NRB_L univar`)
+all_outliers1$`SnasM_C univar`<- as.numeric(all_outliers1$`SnasM_C univar`)
+all_outliers1$`ProS_L univar` <- as.numeric(all_outliers1$`ProS_L univar`)
+all_outliers1$`SelP_L univar`<- as.numeric(all_outliers1$`SelP_L univar`)
+all_outliers1$`SelM_L univar`<- as.numeric(all_outliers1$`SelM_L univar`)
+all_outliers1$`SelM_L univar`<-as.numeric(all_outliers1$`SelM_L univar`)
+all_outliers1$`AA_C univar`<- as.numeric(all_outliers1$`AA_C univar`)
+all_outliers1$`BiW_C univar`<- as.numeric(all_outliers1$`BiW_C univar`)
+
+all_outliers1$univar_sum <- `GoSub_C univar` + `GoSub_C univar`
+```
+
+
+
+
+```{r}
+#Size 12 Table TNR
+flextable(all_outliers1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Univariate, Multivariate, and Visual Outlier Status") %>% 
+  autofit
+#%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(all_outliers1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Univariate, Multivariate, and Visual Outlier Status") %>% 
+  autofit() %>% 
+  fit_to_width(7.5)
+```
+
