@@ -147,11 +147,16 @@ ggplot(data=headscan_full, aes(y=age, x=race_eth))+
        y="Age",
        x="Race/Ethnicity")
 
-#bar chart
-ggplot(data=headscan_full, aes(x=race_eth))+
-  geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
+headscan_full %>% 
+  ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Race/Ethnicity Frequency",
+       subtitle="PCA data",
        y="Count",
        x="Race/Ethnicity")
 
@@ -209,11 +214,16 @@ ggplot(data=headscan_full, aes(y=age, x=gender))+
        x="Gender")
 
 #bar chart
-ggplot(data=headscan_full, aes(x=gender))+
-  geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
+headscan_full %>% 
+  ggplot(aes(x=fct_infreq(gender), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
   labs(title="Gender Frequency",
+       subtitle="PCA data",
        y="Count",
        x="Gender")
 ```
@@ -267,10 +277,16 @@ ggplot(data=headscan_full, aes(y=age, x=age_group))+
        x="Age Group")
 
 #bar chart
-ggplot(data=headscan_full, aes(x=age_group))+
-  geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
+headscan_full %>% 
+  ggplot(aes(x=fct_infreq(age_group), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Age Group Frequency",
+       subtitle="PCA data",
        y="Count",
        x="Age Group")
 ```
