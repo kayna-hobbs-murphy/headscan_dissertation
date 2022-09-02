@@ -19,6 +19,24 @@ library(rstatix)
 ```
 
 ```{r}
-
+vis_outliers <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\all_vis_out1.xlsx")
+stat_outliers <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\combin_out1.xlsx")
 ```
 
+
+
+```{r}
+filtered_visoutl <- filter(vis_outliers, vis_out %in% c("GoSub_C", 
+                                                      "NRB_L", 
+                                                      "SnasM_C", 
+                                                      "TrSman_C"))
+```
+
+```{r}
+all_outliers <- full_join(filtered_visoutl, stat_outliers, by="ID")
+```
+
+all the visual outliers that were changed to NA based on visual assessment of
+measurement sumstats are also stat outliers (univariate AND multivariate)
+
+Create table
