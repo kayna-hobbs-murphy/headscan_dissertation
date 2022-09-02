@@ -14,10 +14,10 @@ library(tidyverse)
 library(flextable)
 library(readxl)
 library(extrafont)
-library(forcats)
+#library(forcats)
 library(writexl)
-library(ggfortify)
-library(scales)
+library(ggfortify) #autoplot
+library(scales) #percent()
 ```
 
 ```{r table-function}
@@ -38,33 +38,7 @@ my_ft_theme <- function(ft, ...) {
 
 headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
 
-headscan_full1$AA_C <- headscan_full1$AA_C *10
-headscan_full1$BGl_C <- headscan_full1$BGl_C * 10
-headscan_full1$BiW_C <- headscan_full1$BiW_C *10
-headscan_full1$BiW_L <- headscan_full1$BiW_L *10
-headscan_full1$ChCh_C <- headscan_full1$ChCh_C *10
-headscan_full1$GoSub_C <- headscan_full1$GoSub_C *10
-headscan_full1$NRB_L <- headscan_full1$NRB_L *10
-headscan_full1$ProA_L <- headscan_full1$ProA_L *10
-headscan_full1$ProA_C <- headscan_full1$ProA_C *10
-headscan_full1$ProS_C <- headscan_full1$ProS_C *10
-headscan_full1$ProS_L <- headscan_full1$ProS_L *10
-headscan_full1$SelP_C <- headscan_full1$SelP_C *10
-headscan_full1$SelP_L <- headscan_full1$SelP_L *10
-headscan_full1$SelDH_C <- headscan_full1$SelDH_C *10
-headscan_full1$SelM_L <- headscan_full1$SelM_L *10
-headscan_full1$SnasM_C <- headscan_full1$SnasM_C *10
-headscan_full1$SmanM_C <- headscan_full1$SmanM_C *10
-headscan_full1$SmanM_L <- headscan_full1$SmanM_L *10
-headscan_full1$SnasM_L <- headscan_full1$SnasM_L *10
-headscan_full1$TrHO_C <- headscan_full1$TrHO_C *10
-headscan_full1$TrEJ_C <- headscan_full1$TrEJ_C *10
-headscan_full1$TrGo_C <- headscan_full1$TrGo_C *10
-headscan_full1$TrSel_C <- headscan_full1$TrSel_C *10
-headscan_full1$TrSman_C <- headscan_full1$TrSman_C *10
-headscan_full1$TrSnas_C <- headscan_full1$TrSnas_C *10
-headscan_full1$TrTr_C <- headscan_full1$TrTr_C *10
-headscan_full1$TrTr_L <- headscan_full1$TrTr_L *10
+
 
 str(headscan_full1)
 ```
@@ -157,7 +131,6 @@ var_explained_total <- var_explained
 ```{r, fig.width=5, fig.height=4}
 qplot(c(1:12), var_explained) + 
   geom_line() + 
-  theme_bw()+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   xlab("Principal Component") + 
   ylab("Variance Explained (proportion)") +
@@ -324,6 +297,6 @@ autoplot(pca_res, data=PCAdata_full, colour="age_group",
 
 
 ```{r}
-write_xlsx(PCAdata_full, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PCAdata_full.xlsx")
+#write_xlsx(PCAdata_full, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PCAdata_full.xlsx")
 ```
 

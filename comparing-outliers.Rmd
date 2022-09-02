@@ -1,0 +1,24 @@
+---
+title: "comparing-outliers"
+output: html_document
+date: "2022-09-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(officer)
+library(flextable)
+library(extrafont)
+library(writexl)
+library(rstatix)
+```
+
+```{r}
+
+```
+
