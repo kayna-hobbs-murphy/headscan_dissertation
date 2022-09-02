@@ -13,19 +13,13 @@ knitr::opts_chunk$set(echo = TRUE)
 #run this with SA3_noout data
 
 ```{r}
-library(FactoMineR)
-library(factoextra)
 library(tidyverse)
-library(MASS)
-library(reshape2)
-library(cowplot)
 library(flextable)
 library(readxl)
 library(extrafont)
-library(forcats)
-library(writexl)
-library(ggfortify)
-library(fauxnaif)
+library(fauxnaif) #na if in
+library(reshape2) #melt
+library(FactoMineR) #PCA
 ```
 
 
@@ -381,5 +375,6 @@ ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2, color = age_group)) +
        color= "Age Group")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```
+
 
 
