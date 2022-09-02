@@ -105,38 +105,97 @@ all_outliers1$`BiW_C univar` <- as.character(all_outliers1$`BiW_C univar`)
 
 all_outliers1$`GoSub_C univar`<-  
   recode_factor(all_outliers1$`GoSub_C univar`, '0'= "no",'1' = "GoSub_C")
-all_outliers1 <- all_outliers1 %>% 
-  mutate(`GoSub_C univar` = na_if_in(`GoSub_C univar`, "no"))
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`GoSub_C univar` = na_if_in(`GoSub_C univar`, "no"))
 
 
 all_outliers1$`TrSman_C univar`<-  
   recode_factor(all_outliers1$`TrSman_C univar`, '0'= "no",'1' = "TrSman_C")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`TrSman_C univar` = na_if_in(`TrSman_C univar`, "no"))
+
 
 all_outliers1$`NRB_L univar` <-  
   recode_factor(all_outliers1$`NRB_L univar`, '0'= "no",'1' = "NRB_L")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`NRB_L univar`= na_if_in(`NRB_L univar`, "no"))
+
 
 all_outliers1$`SnasM_C univar` <-  
   recode_factor(all_outliers1$`SnasM_C univar`, '0'= "no",'1' = "SnasM_C")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`SnasM_C univar`= na_if_in(`SnasM_C univar`, "no"))
+
 
 all_outliers1$`ProS_L univar` <-  
   recode_factor(all_outliers1$`ProS_L univar`, '0'= "no",'1' = "ProS_L")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`ProS_L univar`= na_if_in(`ProS_L univar`, "no"))
+
 
 all_outliers1$`SelP_L univar` <-  
   recode_factor(all_outliers1$`SelP_L univar`, '0'= "no",'1' = "SelP_L")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`SelP_L univar`= na_if_in(`SelP_L univar`, "no"))
+
 
 all_outliers1$`SelM_L univar` <-  
   recode_factor(all_outliers1$`SelM_L univar`, '0'= "no",'1' = "SelM_L")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`SelM_L univar`= na_if_in(`SelM_L univar`, "no"))
+
 
 all_outliers1$`AA_C univar` <-  
   recode_factor(all_outliers1$`AA_C univar`, '0'= "no",'1' = "AA_C")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`AA_C univar`= na_if_in(`AA_C univar`, "no"))
+
 
 all_outliers1$`BiW_C univar` <-  
   recode_factor(all_outliers1$`BiW_C univar`, '0'= "no",'1' = "BiW_C")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`BiW_C univar`= na_if_in(`BiW_C univar`, "no"))
+```
 
-all_outliers1 <- all_outliers1 %>% 
-  mutate(gender = na_if_in(gender, c("Non-binary or Other", "Prefer not to say")))
+```{r}
+cols <- c("GoSub_C univar",
+          "TrSman_C univar",
+          "NRB_L univar",
+          "SnasM_C univar",
+          "ProS_L univar",
+          "SelP_L univar",
+          "SelM_L univar",
+          "AA_C univar",
+          "BiW_C univar")
 
-correlation_data$both_measures <- paste(correlation_data$first_measure, sep= " & ", correlation_data$second_measure)
+
+
+all_outliers1$univar_outliers <- apply( all_outliers1[ , cols], 1, paste, collapse="&")
+
+all_outliers1$univar_outliers <- gsub("no","",as.character(all_outliers1$univar_outliers))
+
+all_outliers1$univar_outliers <- gsub("&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&&&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&&&&&&","",as.character(all_outliers1$univar_outliers))
+
+
+	
+  
+all_outliers1$univar_outliers <- gsub("GoSub_C&TrSman_C&", "GoSub_C & TrSman_C", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&SnasM_C&", "SnasM_C", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&SelP_L&SelM_L", "SelP_L & SelM_L", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&TrSman_C&", "TrSman_C", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&SelP_L&", "SelP_L", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&AA_C&", "AA_C", as.character(all_outliers1$univar_outliers))
+
+
+
+all_outliers1$univar_outliers <- gsub("","none",as.character(all_outliers1$univar_outliers))
 ```
 
 
