@@ -13,7 +13,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r packages}
 library(tidyverse)
 library(readxl)
-library(officer)
 library(flextable)
 library(extrafont)
 library(writexl)
@@ -22,8 +21,6 @@ library(rstatix)
 
 
 
-
-FOR EACH MEASURE: 
 
 
 
@@ -1384,7 +1381,7 @@ flextable(combin_out1) %>%
 ```
 
 ```{r}
-write_xlsx(combin_out1, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\combin_out1.xlsx")
+#write_xlsx(combin_out1, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\combin_out1.xlsx")
 ```
 
 
@@ -1400,6 +1397,6 @@ str(SA3_noout)
 
 
 ```{r}
-write_xlsx(SA3_noout, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
+#write_xlsx(SA3_noout, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
 ```
 

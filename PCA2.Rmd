@@ -10,7 +10,6 @@ date: "2022-08-16"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#run this with SA3_noout data
 
 ```{r}
 library(tidyverse)
