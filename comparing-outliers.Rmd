@@ -60,18 +60,30 @@ str(all_outliers1)
 ```
 
 ```{r}
+
+
+all_outliers1[is.na(all_outliers1)]="0"
+
 all_outliers1$`GoSub_C univar` <- as.numeric(all_outliers1$`GoSub_C univar`)
 all_outliers1$`TrSman_C univar` <- as.numeric(all_outliers1$`TrSman_C univar`)
 all_outliers1$`NRB_L univar` <- as.numeric(all_outliers1$`NRB_L univar`)
 all_outliers1$`SnasM_C univar`<- as.numeric(all_outliers1$`SnasM_C univar`)
 all_outliers1$`ProS_L univar` <- as.numeric(all_outliers1$`ProS_L univar`)
-all_outliers1$`SelP_L univar`<- as.numeric(all_outliers1$`SelP_L univar`)
-all_outliers1$`SelM_L univar`<- as.numeric(all_outliers1$`SelM_L univar`)
-all_outliers1$`SelM_L univar`<-as.numeric(all_outliers1$`SelM_L univar`)
-all_outliers1$`AA_C univar`<- as.numeric(all_outliers1$`AA_C univar`)
-all_outliers1$`BiW_C univar`<- as.numeric(all_outliers1$`BiW_C univar`)
+all_outliers1$`SelP_L univar` <- as.numeric(all_outliers1$`SelP_L univar`)
+all_outliers1$`SelM_L univar` <- as.numeric(all_outliers1$`SelM_L univar`)
+all_outliers1$`AA_C univar` <- as.numeric(all_outliers1$`AA_C univar`)
+all_outliers1$`BiW_C univar` <- as.numeric(all_outliers1$`BiW_C univar`)
 
-all_outliers1$univar_sum <- `GoSub_C univar` + `GoSub_C univar`
+
+all_outliers1$univar_sum <- all_outliers1$`GoSub_C univar` + 
+                            all_outliers1$`TrSman_C univar` + 
+                            all_outliers1$`NRB_L univar` +
+                            all_outliers1$`SnasM_C univar` + 
+                            all_outliers1$`ProS_L univar` + 
+                            all_outliers1$`SelP_L univar` +
+                            all_outliers1$`SelM_L univar` + 
+                            all_outliers1$`AA_C univar` + 
+                            all_outliers1$`BiW_C univar`
 ```
 
 
