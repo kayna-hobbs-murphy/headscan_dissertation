@@ -194,11 +194,24 @@ all_outliers1$univar_outliers <- gsub("&SelP_L&", "SelP_L", as.character(all_out
 all_outliers1$univar_outliers <- gsub("&AA_C&", "AA_C", as.character(all_outliers1$univar_outliers))
 
 
+all_outliers1 <- all_outliers1 %>% 
+  mutate(univar_outliers= na_if_in(univar_outliers, ""))
 
-all_outliers1$univar_outliers <- gsub("","none",as.character(all_outliers1$univar_outliers))
 ```
 
+```{r}
+all_outliers1$vis_out <- gsub("0", "Not Visual Outlier", as.character(all_outliers1$vis_out))
+all_outliers1$multv_outlier <- gsub("TRUE", "Multivariate Outlier", as.character(all_outliers1$multv_outlier))
+all_outliers1$multv_outlier <- gsub("Not Outlier", "Not Multivariate Outlier", as.character(all_outliers1$multv_outlier))
 
+all_outliers1$univar_outliers <- all_outliers1$univar_outliers %>% 
+  replace_na("Not Univariate Outlier")
+```
+
+```{r}
+all_outliers1 <- all_outliers1[c(1,2,3,19)]
+
+```
 
 
 ```{r}
