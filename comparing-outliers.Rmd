@@ -211,7 +211,7 @@ all_outliers1$univar_outliers <- all_outliers1$univar_outliers %>%
 ```
 
 ```{r}
-all_outliers1 <- all_outliers1[c(1,2,3,19)]
+all_outliers1 <- all_outliers1[c(1,2,19,3)]
 
 ```
 
