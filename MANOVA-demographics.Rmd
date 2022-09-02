@@ -1,10 +1,11 @@
 ---
-title: "PCA demographics"
+title: "MANOVA-demographics"
 output:
   word_document: default
   html_document: default
 date: "2022-09-02"
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -33,21 +34,21 @@ my_ft_theme <- function(ft, ...) {
 
 
 ```{r}
-PCAdata_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PCAdata_full.xlsx")
+SA3_noout<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
 
-PCAdata_full$gender<-as.factor(PCAdata_full$gender)
-PCAdata_full$race_eth<-as.factor(PCAdata_full$race_eth)
-PCAdata_full$age_group<-as.factor(PCAdata_full$age_group)
+SA3_noout$gender<-as.factor(SA3_noout$gender)
+SA3_noout$race_eth<-as.factor(SA3_noout$race_eth)
+SA3_noout$age_group<-as.factor(SA3_noout$age_group)
 
 
-str(PCAdata_full)
+str(SA3_noout)
 ```
 
 
 
 
 ```{r}
-PCAdata_full %>% 
+SA3_noout %>% 
   ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count)))))+
   geom_bar(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
@@ -56,7 +57,7 @@ PCAdata_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Race/Ethnicity Frequency",
-       subtitle="PCA data",
+       subtitle="MANOVA data",
        y="Count",
        x="Race/Ethnicity")
 ```
@@ -64,7 +65,7 @@ PCAdata_full %>%
 
 
 ```{r}
-PCAdata_full %>% 
+SA3_noout %>% 
   ggplot(aes(x=fct_infreq(gender), label=scales::percent(prop.table(stat(count)))))+
   geom_bar(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
@@ -73,7 +74,7 @@ PCAdata_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Gender Frequency",
-       subtitle="PCA data",
+       subtitle="MANOVA data",
        y="Count",
        x="Gender")
 ```
@@ -81,7 +82,7 @@ PCAdata_full %>%
 
 
 ```{r}
-PCAdata_full %>% 
+SA3_noout %>% 
   ggplot(aes(x=fct_infreq(age_group), label=scales::percent(prop.table(stat(count)))))+
   geom_bar(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
@@ -90,7 +91,9 @@ PCAdata_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Age Group Frequency",
-       subtitle="PCA data",
+       subtitle="MANOVA data",
        y="Count",
        x="Age Group")
+
 ```
+
