@@ -156,7 +156,7 @@ headscan_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Race/Ethnicity Frequency",
-       subtitle="PCA data",
+       subtitle="Full dataset",
        y="Count",
        x="Race/Ethnicity")
 
@@ -223,7 +223,7 @@ headscan_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Gender Frequency",
-       subtitle="PCA data",
+       subtitle="Full dataset",
        y="Count",
        x="Gender")
 ```
@@ -286,7 +286,7 @@ headscan_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Age Group Frequency",
-       subtitle="PCA data",
+       subtitle="Full dataset",
        y="Count",
        x="Age Group")
 ```
