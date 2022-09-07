@@ -36,8 +36,6 @@ my_ft_theme <- function(ft, ...) {
 
 headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
 
-str(headscan_full1)
-
 headscan_num <- select_if(headscan_full1, is.numeric)
 headscan_num <- subset(headscan_num, select= -age)
 str(headscan_num)
@@ -68,6 +66,71 @@ AA_C_sum <- headscan_num %>%
             percent75th = quantile(AA_C, 0.75, na.rm=TRUE),
             percent95th = quantile(AA_C, 0.95, na.rm=TRUE))
 AA_C_sum$measure <- "AA_C"
+
+
+BGl_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(BGl_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BGl_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BGl_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BGl_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BGl_C, 0.95, na.rm=TRUE))
+BGl_C_sum$measure <- "BGl_C"
+
+BiW_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(BiW_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BiW_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BiW_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BiW_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE))
+BiW_C_sum$measure <- "BiW_C"
+
+BiW_L_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(BiW_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(BiW_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(BiW_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(BiW_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(BiW_L, 0.95, na.rm=TRUE))
+BiW_L_sum$measure <- "BiW_L"
+
+ChCh_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(ChCh_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE))
+ChCh_C_sum$measure <- "ChCh_C"
+
+GoSub_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE))
+GoSub_C_sum$measure <- "GoSub"
+
+NRB_L_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(NRB_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE))
+NRB_L_sum$measure <- "NRB_L"
+
+ProA_L_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(ProA_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_L, 0.95, na.rm=TRUE))
+ProA_L_sum$measure <- "ProA_L"
+
+ChCh_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(ChCh_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE))
+ChCh_C_sum$measure <- "ChCh_C"
 ```
 
 

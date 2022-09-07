@@ -176,6 +176,7 @@ AA_Csumstats <- headscan_full %>%
             percent75th = quantile(AA_C, 0.75, na.rm=TRUE),
             percent95th = quantile(AA_C, 0.95, na.rm=TRUE))
             
+AA_Csumstats <- round(AA_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(AA_Csumstats) %>%
@@ -392,6 +393,8 @@ BGl_Csumstats <- headscan_full %>%
             percent50th = quantile(BGl_C, 0.50, na.rm=TRUE),
             percent75th = quantile(BGl_C, 0.75, na.rm=TRUE),
             percent95th = quantile(BGl_C, 0.95, na.rm=TRUE)) 
+
+BGl_Csumstats <- round(BGl_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(BGl_Csumstats) %>%
@@ -611,6 +614,8 @@ BiW_Lsumstats <- headscan_full %>%
             percent50th = quantile(BiW_L, 0.50, na.rm=TRUE),
             percent75th = quantile(BiW_L, 0.75, na.rm=TRUE),
             percent95th = quantile(BiW_L, 0.95, na.rm=TRUE)) 
+
+BiW_Lsumstats <- round(BiW_Lsumstats, 2)
 
 #Size 12 Table TNR
 flextable(BiW_Lsumstats) %>%
@@ -1055,6 +1060,7 @@ ChCh_Csumstats <- headscan_full %>%
             percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
             percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE)) 
 
+ChCh_Csumstats <- round(ChCh_Csumstats, 2)
 
 
 #Size 12 Table TNR
@@ -1278,7 +1284,7 @@ GoSub_Csumstats <- headscan_full %>%
             percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
             percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE)) 
 
-
+GoSub_Csumstats <- round(GoSub_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(GoSub_Csumstats) %>%
@@ -1520,6 +1526,7 @@ GoSub_Csumstats1 <- GoSub_no_out %>%
             percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
             percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE)) 
 
+GoSub_Csumstats1 <- round(GoSub_Csumstats1, 2)
 
 #Size 12 Table TNR
 flextable(GoSub_Csumstats1) %>%
@@ -1745,6 +1752,8 @@ NRB_Lsumstats <- headscan_full %>%
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
             percent95th = quantile(NRB_L, 0.95, na.rm=TRUE)) 
 
+
+NRB_Lsumstats <- round(NRB_Lsumstats, 2)
 
 #Size 12 Table TNR
 flextable(NRB_Lsumstats) %>%
@@ -1982,6 +1991,8 @@ NRB_Lsumstats1 <- NRB_L_no_out %>%
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
             percent95th = quantile(NRB_L, 0.95, na.rm=TRUE)) 
 
+NRB_Lsumstats1 <- round(NRB_Lsumstats1, 2)
+
 
 #Size 12 Table TNR
 flextable(NRB_Lsumstats1) %>%
@@ -2204,6 +2215,8 @@ ProA_Lsumstats <- headscan_full %>%
             percent95th = quantile(ProA_L, 0.95, na.rm=TRUE)) 
 
 
+ProA_Lsumstats <- round(ProA_Lsumstats, 2)
+
 #Size 12 Table TNR
 flextable(ProA_Lsumstats) %>%
   my_ft_theme()%>% 
@@ -2425,7 +2438,7 @@ ProA_Csumstats <- headscan_full %>%
             percent75th = quantile(ProA_C, 0.75, na.rm=TRUE),
             percent95th = quantile(ProA_C, 0.95, na.rm=TRUE)) 
 
-
+ProA_Csumstats <- round(ProA_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(ProA_Csumstats) %>%
@@ -2647,6 +2660,7 @@ ProS_Lsumstats <- headscan_full %>%
             percent75th = quantile(ProS_L, 0.75, na.rm=TRUE),
             percent95th = quantile(ProS_L, 0.95, na.rm=TRUE)) 
 
+ProS_Lsumstats <- round(ProS_Lsumstats, 2)
 
 #Size 12 Table TNR
 flextable(ProS_Lsumstats) %>%
@@ -2868,6 +2882,7 @@ ProS_Csumstats <- headscan_full %>%
             percent75th = quantile(ProS_C, 0.75, na.rm=TRUE),
             percent95th = quantile(ProS_C, 0.95, na.rm=TRUE)) 
 
+ProS_Csumstats <- round(ProS_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(ProS_Csumstats) %>%
@@ -3088,6 +3103,7 @@ SelP_Lsumstats <- headscan_full %>%
             percent75th = quantile(SelP_L, 0.75, na.rm=TRUE),
             percent95th = quantile(SelP_L, 0.95, na.rm=TRUE)) 
 
+SelP_Lsumstats <- round(SelP_Lsumstats, 2)
 
 #Size 12 Table TNR
 flextable(SelP_Lsumstats) %>%
@@ -3308,6 +3324,7 @@ SelP_Csumstats <- headscan_full %>%
             percent75th = quantile(SelP_C, 0.75, na.rm=TRUE),
             percent95th = quantile(SelP_C, 0.95, na.rm=TRUE)) 
 
+SelP_Csumstats <- round(SelP_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(SelP_Csumstats) %>%
@@ -3527,6 +3544,7 @@ SelDH_Csumstats <- headscan_full %>%
             percent75th = quantile(SelDH_C, 0.75, na.rm=TRUE),
             percent95th = quantile(SelDH_C, 0.95, na.rm=TRUE)) 
 
+SelDH_Csumstats <- round(SelDH_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(SelDH_Csumstats) %>%
@@ -3758,6 +3776,7 @@ SelDH_Csumstats1 <- SelDH_C_no_out %>%
             percent75th = quantile(SelDH_C, 0.75, na.rm=TRUE),
             percent95th = quantile(SelDH_C, 0.95, na.rm=TRUE)) 
 
+SelDH_Csumstats1 <- round(SelDH_Csumstats1, 2)
 
 #Size 12 Table TNR
 flextable(SelDH_Csumstats1) %>%
@@ -3975,6 +3994,7 @@ SelM_Lsumstats <- headscan_full %>%
             percent75th = quantile(SelM_L, 0.75, na.rm=TRUE),
             percent95th = quantile(SelM_L, 0.95, na.rm=TRUE)) 
 
+SelM_Lsumstats <- round(SelM_Lsumstats, 2)
 
 #Size 12 Table TNR
 flextable(SelM_Lsumstats) %>%
@@ -4194,6 +4214,7 @@ SnasM_Lsumstats <- headscan_full %>%
             percent75th = quantile(SnasM_L, 0.75, na.rm=TRUE),
             percent95th = quantile(SnasM_L, 0.95, na.rm=TRUE)) 
 
+SnasM_Lsumstats <- round(SnasM_Lsumstats, 2)
 
 #Size 12 Table TNR
 flextable(SnasM_Lsumstats) %>%
@@ -4414,6 +4435,7 @@ SnasM_Csumstats <- headscan_full %>%
             percent75th = quantile(SnasM_C, 0.75, na.rm=TRUE),
             percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE)) 
 
+SnasM_Csumstats <- round(SnasM_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(SnasM_Csumstats) %>%
@@ -4646,6 +4668,7 @@ SnasM_Csumstats1 <- SnasM_C_no_out %>%
             percent75th = quantile(SnasM_C, 0.75, na.rm=TRUE),
             percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE)) 
 
+SnasM_Csumstats1 <- round(SnasM_Csumstats1, 2)
 
 #Size 12 Table TNR
 flextable(SnasM_Csumstats1) %>%
@@ -5085,6 +5108,7 @@ TrEJ_Csumstats <- headscan_full %>%
             percent75th = quantile(TrEJ_C, 0.75, na.rm=TRUE),
             percent95th = quantile(TrEJ_C, 0.95, na.rm=TRUE)) 
 
+TrEJ_Csumstats <- round(TrEJ_Csumstats, 2)
 
 
 #Size 12 Table TNR
@@ -5307,6 +5331,7 @@ TrGo_Csumstats <- headscan_full %>%
             percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
             percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE)) 
 
+TrGo_Csumstats <- round(TrGo_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(TrGo_Csumstats) %>%
@@ -5544,6 +5569,9 @@ TrGo_Csumstats1 <- TrGo_C_no_out %>%
             percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE)) 
 
 
+TrGo_Csumstats1 <- round(TrGo_Csumstats1, 2)
+
+
 #Size 12 Table TNR
 flextable(TrGo_Csumstats1) %>%
   my_ft_theme()%>% 
@@ -5765,6 +5793,7 @@ TrSel_Csumstats <- headscan_full %>%
             percent75th = quantile(TrSel_C, 0.75, na.rm=TRUE),
             percent95th = quantile(TrSel_C, 0.95, na.rm=TRUE)) 
 
+TrSel_Csumstats <- round(TrSel_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(TrSel_Csumstats) %>%
@@ -5988,6 +6017,7 @@ TrSman_Csumstats <- headscan_full %>%
             percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
             percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE)) 
 
+TrSman_Csumstats <- round(TrSman_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(TrSman_Csumstats) %>%
@@ -6220,6 +6250,7 @@ TrSman_Csumstats1 <- TrSman_C_no_out %>%
             percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
             percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE)) 
 
+TrSman_Csumstats1 <- round(TrSman_Csumstats1, 2)
 
 #Size 12 Table TNR
 flextable(TrSman_Csumstats1) %>%
@@ -6438,6 +6469,7 @@ TrSnas_Csumstats <- headscan_full %>%
             percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
             percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE)) 
 
+TrSnas_Csumstats <- round(TrSnas_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(TrSnas_Csumstats) %>%
@@ -6672,7 +6704,7 @@ TrSnas_Csumstats1 <- TrSnas_C_no_out %>%
             percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
             percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE)) 
 
-
+TrSnas_Csumstats1 <- round(TrSnas_Csumstats1, 2)
 
 #Size 12 Table TNR
 flextable(TrSnas_Csumstats1) %>%
@@ -6895,6 +6927,7 @@ TrTr_Csumstats <- headscan_full %>%
             percent75th = quantile(TrTr_C, 0.75, na.rm=TRUE),
             percent95th = quantile(TrTr_C, 0.95, na.rm=TRUE)) 
 
+TrTr_Csumstats <- round(TrTr_Csumstats, 2)
 
 #Size 12 Table TNR
 flextable(TrTr_Csumstats) %>%
@@ -7115,6 +7148,7 @@ TrTr_Lsumstats <- headscan_full %>%
             percent75th = quantile(TrTr_L, 0.75, na.rm=TRUE),
             percent95th = quantile(TrTr_L, 0.95, na.rm=TRUE)) 
 
+TrTr_Lsumstats <- round(TrTr_Lsumstats, 2)
 
 #Size 12 Table TNR
 flextable(TrTr_Lsumstats) %>%
