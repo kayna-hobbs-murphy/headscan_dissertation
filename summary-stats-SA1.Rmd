@@ -81,7 +81,7 @@ str(headscan_full)
 ```{r}
 #HTML Table format    
 #AACrace_sumstats %>% 
-  #kbl(caption = "Alare to Alare Contour SumStats by Race/Ethnicity") %>% 
+  #kbl(caption = "Alare to Alare Contour SumStats (mm) by Race/Ethnicity") %>% 
   #kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = TRUE)
 ```
 
@@ -182,14 +182,14 @@ AA_Csumstats <- round(AA_Csumstats, 2)
 flextable(AA_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats") 
+  set_caption("Alare to Alare Contour SumStats (mm)") 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(AA_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats") %>% 
+  set_caption("Alare to Alare Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 ```
@@ -220,14 +220,14 @@ AA_Crace_sumstats <- AA_Crace_sumstats %>%
 flextable(AA_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats by Race/Ethnicity") 
+  set_caption("Alare to Alare Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(AA_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Alare to Alare Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
@@ -277,14 +277,14 @@ AA_Cgender_sumstats <- AA_Cgender_sumstats %>%
 flextable(AA_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats by Gender") 
+  set_caption("Alare to Alare Contour SumStats (mm) by Gender") 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(AA_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats by Gender") %>% 
+  set_caption("Alare to Alare Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
@@ -335,14 +335,14 @@ AA_Cage_sumstats <- AA_Cage_sumstats %>%
 flextable(AA_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats by Age Group") 
+  set_caption("Alare to Alare Contour SumStats (mm) by Age Group") 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(AA_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Alare to Alare Contour SumStats by Age Group") %>% 
+  set_caption("Alare to Alare Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
@@ -400,14 +400,14 @@ BGl_Csumstats <- round(BGl_Csumstats, 2)
 flextable(BGl_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Back of Head to Glabella Contour SumStats") 
+  set_caption("Back of Head to Glabella Contour SumStats (mm)") 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BGl_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Back of Head to Glabella Contour SumStats") %>% 
+  set_caption("Back of Head to Glabella Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 ```
@@ -438,14 +438,14 @@ BGl_Crace_sumstats <- BGl_Crace_sumstats %>%
 flextable(BGl_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Back of Head to Glabella Contour SumStats by Race/Ethnicity") 
+  set_caption("Back of Head to Glabella Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_labels(values = list(BGl_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BGl_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Back of Head to Glabella Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Back of Head to Glabella Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BGl_C = "Alare/AlareCont"))
 
@@ -495,14 +495,14 @@ BGl_Cgender_sumstats <- BGl_Cgender_sumstats %>%
 flextable(BGl_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Back of Head to Glabella Contour SumStats by Gender") 
+  set_caption("Back of Head to Glabella Contour SumStats (mm) by Gender") 
 #%>% set_header_labels(values = list(BGl_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BGl_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Back of Head to Glabella Contour SumStats by Gender") %>% 
+  set_caption("Back of Head to Glabella Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BGl_C = "Alare/AlareCont"))
 
@@ -554,14 +554,14 @@ BGl_Cage_sumstats <- BGl_Cage_sumstats %>%
 flextable(BGl_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Back of Head to Glabella Contour SumStats by Age Group") 
+  set_caption("Back of Head to Glabella Contour SumStats (mm) by Age Group") 
 #%>% set_header_labels(values = list(BGl_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BGl_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Back of Head to Glabella Contour SumStats by Age Group") %>% 
+  set_caption("Back of Head to Glabella Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BGl_C = "Alare/AlareCont"))
 
@@ -621,14 +621,14 @@ BiW_Lsumstats <- round(BiW_Lsumstats, 2)
 flextable(BiW_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Linear SumStats") 
+  set_caption("Bizygomatic Width Linear SumStats (mm)") 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Linear SumStats") %>% 
+  set_caption("Bizygomatic Width Linear SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 ```
@@ -659,14 +659,14 @@ BiW_Lrace_sumstats <- BiW_Lrace_sumstats %>%
 flextable(BiW_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Linear SumStats by Race/Ethnicity") 
+  set_caption("Bizygomatic Width Linear SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Linear SumStats by Race/Ethnicity") %>% 
+  set_caption("Bizygomatic Width Linear SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
@@ -717,14 +717,14 @@ BiW_Lgender_sumstats <- BiW_Lgender_sumstats %>%
 flextable(BiW_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Linear SumStats by Gender") 
+  set_caption("Bizygomatic Width Linear SumStats (mm) by Gender") 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Linear SumStats by Gender") %>% 
+  set_caption("Bizygomatic Width Linear SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
@@ -776,14 +776,14 @@ BiW_Lage_sumstats <- BiW_Lage_sumstats %>%
 flextable(BiW_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Linear SumStats by Age Group") 
+  set_caption("Bizygomatic Width Linear SumStats (mm) by Age Group") 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Linear SumStats by Age Group") %>% 
+  set_caption("Bizygomatic Width Linear SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
@@ -845,14 +845,14 @@ BiW_Csumstats <- BiW_Csumstats %>%
 flextable(BiW_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats") 
+  set_caption("Bizygomatic Width Contour SumStats (mm)") 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats") %>% 
+  set_caption("Bizygomatic Width Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 ```
@@ -883,14 +883,14 @@ BiW_Crace_sumstats <- BiW_Crace_sumstats %>%
 flextable(BiW_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Race/Ethnicity") 
+  set_caption("Bizygomatic Width Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Bizygomatic Width Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
@@ -941,14 +941,14 @@ BiW_Cgender_sumstats <- BiW_Cgender_sumstats %>%
 flextable(BiW_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Gender") 
+  set_caption("Bizygomatic Width Contour SumStats (mm) by Gender") 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Gender") %>% 
+  set_caption("Bizygomatic Width Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
@@ -1000,14 +1000,14 @@ BiW_Cage_sumstats <- BiW_Cage_sumstats %>%
 flextable(BiW_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Age Group") 
+  set_caption("Bizygomatic Width Contour SumStats (mm) by Age Group") 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(BiW_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Bizygomatic Width Contour SumStats by Age Group") %>% 
+  set_caption("Bizygomatic Width Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
@@ -1067,14 +1067,14 @@ ChCh_Csumstats <- round(ChCh_Csumstats, 2)
 flextable(ChCh_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion Chellion Contour SumStats") 
+  set_caption("Chellion Chellion Contour SumStats (mm)") 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ChCh_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion Chellion Contour SumStats") %>% 
+  set_caption("Chellion Chellion Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
@@ -1106,14 +1106,14 @@ ChCh_Crace_sumstats <- ChCh_Crace_sumstats %>%
 flextable(ChCh_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion Chellion Contour SumStats by Race/Ethnicity") 
+  set_caption("Chellion Chellion Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ChCh_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion Chellion Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Chellion Chellion Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
@@ -1164,14 +1164,14 @@ ChCh_Cgender_sumstats <- ChCh_Cgender_sumstats %>%
 flextable(ChCh_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion to Chellion Contour SumStats by Gender") 
+  set_caption("Chellion to Chellion Contour SumStats (mm) by Gender") 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ChCh_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion to Chellion Contour SumStats by Gender") %>% 
+  set_caption("Chellion to Chellion Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
@@ -1223,14 +1223,14 @@ ChCh_Cage_sumstats <- ChCh_Cage_sumstats %>%
 flextable(ChCh_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion to Chellion Contour SumStats by Age Group") 
+  set_caption("Chellion to Chellion Contour SumStats (mm) by Age Group") 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ChCh_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Chellion to Chellion Contour SumStats by Age Group") %>% 
+  set_caption("Chellion to Chellion Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ChCh_C = "Alare/AlareCont"))
 
@@ -1290,14 +1290,14 @@ GoSub_Csumstats <- round(GoSub_Csumstats, 2)
 flextable(GoSub_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats w/o outlier removed") 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) w/o outlier removed") 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(GoSub_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats w/o outlier removed") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 ```
@@ -1328,14 +1328,14 @@ GoSub_Crace_sumstats <- GoSub_Crace_sumstats %>%
 flextable(GoSub_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Race/Ethnicity w/o outlier removed") 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(GoSub_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Race/Ethnicity w/o outlier removed") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
@@ -1388,14 +1388,14 @@ GoSub_Cgender_sumstats <- GoSub_Cgender_sumstats %>%
 flextable(GoSub_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Gender w/o outlier removed") 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Gender w/o outlier removed") 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(GoSub_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Gender w/o outlier removed") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Gender w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
@@ -1449,14 +1449,14 @@ GoSub_Cage_sumstats <- GoSub_Cage_sumstats %>%
 flextable(GoSub_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Age Group w/o outlier removed") 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Age Group w/o outlier removed") 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(GoSub_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Age Group w/o outlier removed") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Age Group w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
@@ -1532,14 +1532,14 @@ GoSub_Csumstats1 <- round(GoSub_Csumstats1, 2)
 flextable(GoSub_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats") 
+  set_caption("Gonion to Submandibular Contour SumStats (mm)") 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(GoSub_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 ```
@@ -1570,14 +1570,14 @@ GoSub_Crace_sumstats1 <- GoSub_Crace_sumstats1 %>%
 flextable(GoSub_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Race/Ethnicity") 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(GoSub_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
@@ -1628,14 +1628,14 @@ GoSub_Cgender_sumstats1 <- GoSub_Cgender_sumstats1 %>%
 flextable(GoSub_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Gender") 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Gender") 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(GoSub_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Gender") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
@@ -1687,14 +1687,14 @@ GoSub_Cage_sumstats1 <- GoSub_Cage_sumstats1 %>%
 flextable(GoSub_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Age Group") 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Age Group") 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(GoSub_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Gonion to Submandibular Contour SumStats by Age Group") %>% 
+  set_caption("Gonion to Submandibular Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
@@ -1759,14 +1759,14 @@ NRB_Lsumstats <- round(NRB_Lsumstats, 2)
 flextable(NRB_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats w/o outlier removed") 
+  set_caption("Nasal Root Breadth SumStats (mm) w/o outlier removed") 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(NRB_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats w/o outlier removed") %>% 
+  set_caption("Nasal Root Breadth SumStats (mm) w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 ```
@@ -1797,14 +1797,14 @@ NRB_Lrace_sumstats <- NRB_Lrace_sumstats %>%
 flextable(NRB_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Race/Ethnicity w/o outlier removed") 
+  set_caption("Nasal Root Breadth SumStats (mm) by Race/Ethnicity w/o outlier removed") 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(NRB_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Race/Ethnicity w/o outlier removed") %>% 
+  set_caption("Nasal Root Breadth SumStats (mm) by Race/Ethnicity w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
@@ -1857,14 +1857,14 @@ NRB_Lgender_sumstats <- NRB_Lgender_sumstats %>%
 flextable(NRB_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Gender w/o outlier removed") 
+  set_caption("Nasal Root Breadth SumStats (mm) by Gender w/o outlier removed") 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(NRB_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Gender w/o outlier removed") %>% 
+  set_caption("Nasal Root Breadth SumStats (mm) by Gender w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
@@ -1918,14 +1918,14 @@ NRB_Lage_sumstats <- NRB_Lage_sumstats %>%
 flextable(NRB_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Age Group w/o outlier removed") 
+  set_caption("Nasal Root Breadth SumStats (mm) by Age Group w/o outlier removed") 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(NRB_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Age Group w/o outlier removed") %>% 
+  set_caption("Nasal Root Breadth SumStats (mm) by Age Group w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
@@ -1998,14 +1998,14 @@ NRB_Lsumstats1 <- round(NRB_Lsumstats1, 2)
 flextable(NRB_Lsumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats") 
+  set_caption("Nasal Root Breadth SumStats (mm)") 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(NRB_Lsumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats") %>% 
+  set_caption("Nasal Root Breadth SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 ```
@@ -2036,14 +2036,14 @@ NRB_Lrace_sumstats1 <- NRB_Lrace_sumstats1 %>%
 flextable(NRB_Lrace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Race/Ethnicity") 
+  set_caption("Nasal Root Breadth SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(NRB_Lrace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Race/Ethnicity") %>% 
+  set_caption("Nasal Root Breadth SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
@@ -2094,14 +2094,14 @@ NRB_Lgender_sumstats1 <- NRB_Lgender_sumstats1 %>%
 flextable(NRB_Lgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Gender") 
+  set_caption("Nasal Root Breadth SumStats (mm) by Gender") 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(NRB_Lgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Gender") %>% 
+  set_caption("Nasal Root Breadth SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
@@ -2153,14 +2153,14 @@ NRB_Lage_sumstats1 <- NRB_Lage_sumstats1 %>%
 flextable(NRB_Lage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Age Group") 
+  set_caption("Nasal Root Breadth SumStats (mm) by Age Group") 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(NRB_Lage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Nasal Root Breadth SumStats by Age Group") %>% 
+  set_caption("Nasal Root Breadth SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
@@ -2221,14 +2221,14 @@ ProA_Lsumstats <- round(ProA_Lsumstats, 2)
 flextable(ProA_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Length SumStats") 
+  set_caption("Pronasale to Alare Length SumStats (mm)") 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ProA_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Length SumStats") %>% 
+  set_caption("Pronasale to Alare Length SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 ```
@@ -2259,14 +2259,14 @@ ProA_Lrace_sumstats <- ProA_Lrace_sumstats %>%
 flextable(ProA_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Length SumStats by Race/Ethnicity") 
+  set_caption("Pronasale to Alare Length SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ProA_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Length SumStats by Race/Ethnicity") %>% 
+  set_caption("Pronasale to Alare Length SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
@@ -2317,14 +2317,14 @@ ProA_Lgender_sumstats <- ProA_Lgender_sumstats %>%
 flextable(ProA_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Length SumStats by Gender") 
+  set_caption("Pronasale to Alare Length SumStats (mm) by Gender") 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ProA_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Length SumStats by Gender") %>% 
+  set_caption("Pronasale to Alare Length SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
@@ -2376,14 +2376,14 @@ ProA_Lage_sumstats <- ProA_Lage_sumstats %>%
 flextable(ProA_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Alare Length SumStats by Age Group") 
+  set_caption("Pronasale Alare Length SumStats (mm) by Age Group") 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ProA_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Length SumStats by Age Group") %>% 
+  set_caption("Pronasale to Alare Length SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProA_L = "Alare/AlareCont"))
 
@@ -2444,14 +2444,14 @@ ProA_Csumstats <- round(ProA_Csumstats, 2)
 flextable(ProA_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Contour SumStats") 
+  set_caption("Pronasale to Alare Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ProA_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Contour SumStats") %>% 
+  set_caption("Pronasale to Alare Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
 ```
@@ -2482,14 +2482,14 @@ ProA_Crace_sumstats <- ProA_Crace_sumstats %>%
 flextable(ProA_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Contour SumStats by Race/Ethnicity") 
+  set_caption("Pronasale to Alare Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ProA_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Pronasale to Alare Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
 
@@ -2540,14 +2540,14 @@ ProA_Cgender_sumstats <- ProA_Cgender_sumstats %>%
 flextable(ProA_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Contour SumStats by Gender") 
+  set_caption("Pronasale to Alare Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ProA_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Contour SumStats by Gender") %>% 
+  set_caption("Pronasale to Alare Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
 
@@ -2599,14 +2599,14 @@ ProA_Cage_sumstats <- ProA_Cage_sumstats %>%
 flextable(ProA_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Contour SumStats by Age Group") 
+  set_caption("Pronasale to Alare Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
 
 #Autofit Width Table TNR
 flextable(ProA_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Alare Contour SumStats by Age Group") %>% 
+  set_caption("Pronasale to Alare Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProA_C = "Alare/AlareCont"))
 
@@ -2666,14 +2666,14 @@ ProS_Lsumstats <- round(ProS_Lsumstats, 2)
 flextable(ProS_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Length SumStats") 
+  set_caption("Pronasale to Subnasale Length SumStats (mm)") 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Length SumStats") %>% 
+  set_caption("Pronasale to Subnasale Length SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 ```
@@ -2704,14 +2704,14 @@ ProS_Lrace_sumstats <- ProS_Lrace_sumstats %>%
 flextable(ProS_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Length SumStats by Race/Ethnicity") 
+  set_caption("Pronasale to Subnasale Length SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Length SumStats by Race/Ethnicity") %>% 
+  set_caption("Pronasale to Subnasale Length SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
@@ -2762,14 +2762,14 @@ ProS_Lgender_sumstats <- ProS_Lgender_sumstats %>%
 flextable(ProS_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Length SumStats by Gender") 
+  set_caption("Pronasale to Subnasale Length SumStats (mm) by Gender") 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Length SumStats by Gender") %>% 
+  set_caption("Pronasale to Subnasale Length SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
@@ -2821,14 +2821,14 @@ ProS_Lage_sumstats <- ProS_Lage_sumstats %>%
 flextable(ProS_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Length SumStats by Age Group") 
+  set_caption("Pronasale Subnasale Length SumStats (mm) by Age Group") 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale Subnasale Length SumStats by Age Group") %>% 
+  set_caption("Pronasale Subnasale Length SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(ProS_L = "Subnasale/SubnasaleCont"))
 
@@ -2888,14 +2888,14 @@ ProS_Csumstats <- round(ProS_Csumstats, 2)
 flextable(ProS_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Contour SumStats") 
+  set_caption("Pronasale to Subnasale Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Contour SumStats") %>% 
+  set_caption("Pronasale to Subnasale Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 ```
@@ -2925,14 +2925,14 @@ ProS_Crace_sumstats <- ProS_Crace_sumstats %>%
 flextable(ProS_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Contour SumStats by Race/Ethnicity") 
+  set_caption("Pronasale to Subnasale Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Pronasale to Subnasale Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
@@ -2983,14 +2983,14 @@ ProS_Cgender_sumstats <- ProS_Cgender_sumstats %>%
 flextable(ProS_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Contour SumStats by Gender") 
+  set_caption("Pronasale to Subnasale Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Contour SumStats by Gender") %>% 
+  set_caption("Pronasale to Subnasale Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
@@ -3042,14 +3042,14 @@ ProS_Cage_sumstats <- ProS_Cage_sumstats %>%
 flextable(ProS_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Contour SumStats by Age Group") 
+  set_caption("Pronasale to Subnasale Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(ProS_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Pronasale to Subnasale Contour SumStats by Age Group") %>% 
+  set_caption("Pronasale to Subnasale Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(ProS_C = "Subnasale/SubnasaleCont"))
 
@@ -3109,14 +3109,14 @@ SelP_Lsumstats <- round(SelP_Lsumstats, 2)
 flextable(SelP_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Length SumStats") 
+  set_caption("Sellion to Pronasale Length SumStats (mm)") 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelP_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Length SumStats") %>% 
+  set_caption("Sellion to Pronasale Length SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 ```
@@ -3146,14 +3146,14 @@ SelP_Lrace_sumstats <- SelP_Lrace_sumstats %>%
 flextable(SelP_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Length SumStats by Race/Ethnicity") 
+  set_caption("Sellion to Pronasale Length SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelP_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Length SumStats by Race/Ethnicity") %>% 
+  set_caption("Sellion to Pronasale Length SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 
@@ -3203,14 +3203,14 @@ SelP_Lgender_sumstats <- SelP_Lgender_sumstats %>%
 flextable(SelP_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Length SumStats by Gender") 
+  set_caption("Sellion to Pronasale Length SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelP_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Length SumStats by Gender") %>% 
+  set_caption("Sellion to Pronasale Length SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 
@@ -3262,14 +3262,14 @@ SelP_Lage_sumstats <- SelP_Lage_sumstats %>%
 flextable(SelP_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Length SumStats by Age Group") 
+  set_caption("Sellion to Pronasale Length SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelP_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Length SumStats by Age Group") %>% 
+  set_caption("Sellion to Pronasale Length SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_L = "Sellion/SellionCont"))
 
@@ -3330,14 +3330,14 @@ SelP_Csumstats <- round(SelP_Csumstats, 2)
 flextable(SelP_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Contour SumStats") 
+  set_caption("Sellion to Pronasale Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelP_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Contour SumStats") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 ```
@@ -3367,14 +3367,14 @@ SelP_Crace_sumstats <- SelP_Crace_sumstats %>%
 flextable(SelP_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Contour SumStats by Race/Ethnicity") 
+  set_caption("Sellion to Pronasale Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelP_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 
@@ -3424,14 +3424,14 @@ SelP_Cgender_sumstats <- SelP_Cgender_sumstats %>%
 flextable(SelP_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Contour SumStats by Gender") 
+  set_caption("Sellion to Pronasale Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelP_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Contour SumStats by Gender") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 
@@ -3482,14 +3482,14 @@ SelP_Cage_sumstats <- SelP_Cage_sumstats %>%
 flextable(SelP_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Contour SumStats by Age Group") 
+  set_caption("Sellion to Pronasale Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelP_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Pronasale Contour SumStats by Age Group") %>% 
+  set_caption("Sellion to Pronasale Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelP_C = "Sellion/SellionCont"))
 
@@ -3550,14 +3550,14 @@ SelDH_Csumstats <- round(SelDH_Csumstats, 2)
 flextable(SelDH_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats w/o outlier removed") 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) w/o outlier removed") 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelDH_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats w/o outlier removed") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
@@ -3588,14 +3588,14 @@ SelDH_Crace_sumstats <- SelDH_Crace_sumstats %>%
 flextable(SelDH_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Race/Ethnicity w/o outlier removed") 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelDH_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Race/Ethnicity w/o outlier removed") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
@@ -3647,14 +3647,14 @@ SelDH_Cgender_sumstats <- SelDH_Cgender_sumstats %>%
 flextable(SelDH_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender w/o outlier removed") 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Gender w/o outlier removed") 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelDH_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender w/o outlier removed") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Gender w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
@@ -3707,14 +3707,14 @@ SelDH_Cage_sumstats <- SelDH_Cage_sumstats %>%
 flextable(SelDH_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Age Group w/o outlier removed") 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Age Group w/o outlier removed") 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelDH_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Age Group w/o outlier removed") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Age Group w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
@@ -3782,14 +3782,14 @@ SelDH_Csumstats1 <- round(SelDH_Csumstats1, 2)
 flextable(SelDH_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats") 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelDH_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 ```
@@ -3819,14 +3819,14 @@ SelDH_Crace_sumstats1 <- SelDH_Crace_sumstats1 %>%
 flextable(SelDH_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Race/Ethnicity") 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelDH_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
@@ -3876,14 +3876,14 @@ SelDH_Cgender_sumstats1 <- SelDH_Cgender_sumstats1 %>%
 flextable(SelDH_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelDH_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Gender") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
@@ -3934,14 +3934,14 @@ SelDH_Cage_sumstats1 <- SelDH_Cage_sumstats1 %>%
 flextable(SelDH_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Age Group") 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelDH_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Dorsal Hump Contour SumStats by Age Group") %>% 
+  set_caption("Sellion to Dorsal Hump Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelDH_C = "Sellion/SellionCont"))
 
@@ -4000,14 +4000,14 @@ SelM_Lsumstats <- round(SelM_Lsumstats, 2)
 flextable(SelM_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Menton Length SumStats") 
+  set_caption("Sellion to Menton Length SumStats (mm)") 
 #%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelM_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Menton Length SumStats") %>% 
+  set_caption("Sellion to Menton Length SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 ```
@@ -4037,14 +4037,14 @@ SelM_Lrace_sumstats <- SelM_Lrace_sumstats %>%
 flextable(SelM_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Menton Length SumStats by Race/Ethnicity") 
+  set_caption("Sellion to Menton Length SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelM_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Menton Length SumStats by Race/Ethnicity") %>% 
+  set_caption("Sellion to Menton Length SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 
@@ -4094,14 +4094,14 @@ SelM_Lgender_sumstats <- SelM_Lgender_sumstats %>%
 flextable(SelM_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Menton Length SumStats by Gender") 
+  set_caption("Sellion to Menton Length SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelM_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Menton Length SumStats by Gender") %>% 
+  set_caption("Sellion to Menton Length SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 
@@ -4153,14 +4153,14 @@ SelM_Lage_sumstats <- SelM_Lage_sumstats %>%
 flextable(SelM_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Menton Length SumStats by Age Group") 
+  set_caption("Sellion to Menton Length SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 
 #Autofit Width Table TNR
 flextable(SelM_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Sellion to Menton Length SumStats by Age Group") %>% 
+  set_caption("Sellion to Menton Length SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SelM_L = "Sellion/SellionCont"))
 
@@ -4220,14 +4220,14 @@ SnasM_Lsumstats <- round(SnasM_Lsumstats, 2)
 flextable(SnasM_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Length SumStats") 
+  set_caption("Subnasale to Menton Length SumStats (mm)") 
 #%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Length SumStats") %>% 
+  set_caption("Subnasale to Menton Length SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 ```
@@ -4258,14 +4258,14 @@ SnasM_Lrace_sumstats <- SnasM_Lrace_sumstats %>%
 flextable(SnasM_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Length SumStats by Race/Ethnicity") 
+  set_caption("Subnasale to Menton Length SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Length SumStats by Race/Ethnicity") %>% 
+  set_caption("Subnasale to Menton Length SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 
@@ -4316,14 +4316,14 @@ SnasM_Lgender_sumstats <- SnasM_Lgender_sumstats %>%
 flextable(SnasM_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Length SumStats by Gender") 
+  set_caption("Subnasale to Menton Length SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Length SumStats by Gender") %>% 
+  set_caption("Subnasale to Menton Length SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 
@@ -4374,14 +4374,14 @@ SnasM_Lage_sumstats <- SnasM_Lage_sumstats %>%
 flextable(SnasM_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Length SumStats by Age Group") 
+  set_caption("Subnasale to Menton Length SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Length SumStats by Age Group") %>% 
+  set_caption("Subnasale to Menton Length SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_L = "Subnasale/SubnasaleCont"))
 
@@ -4441,14 +4441,14 @@ SnasM_Csumstats <- round(SnasM_Csumstats, 2)
 flextable(SnasM_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats w/o outlier removed") 
+  set_caption("Subnasale to Menton Contour SumStats (mm) w/o outlier removed") 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats w/o outlier removed") %>% 
+  set_caption("Subnasale to Menton Contour SumStats (mm) w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
@@ -4479,14 +4479,14 @@ SnasM_Crace_sumstats <- SnasM_Crace_sumstats %>%
 flextable(SnasM_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Race/Ethnicity w/o outlier removed") 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Race/Ethnicity w/o outlier removed") %>% 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
@@ -4539,14 +4539,14 @@ SnasM_Cgender_sumstats <- SnasM_Cgender_sumstats %>%
 flextable(SnasM_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Gender") 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Gender") %>% 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
@@ -4598,14 +4598,14 @@ SnasM_Cage_sumstats <- SnasM_Cage_sumstats %>%
 flextable(SnasM_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Age Group w/o outlier removed") 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Age Group w/o outlier removed") 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Age Group w/o outlier removed") %>% 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Age Group w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
@@ -4674,14 +4674,14 @@ SnasM_Csumstats1 <- round(SnasM_Csumstats1, 2)
 flextable(SnasM_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats") 
+  set_caption("Subnasale to Menton Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats") %>% 
+  set_caption("Subnasale to Menton Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 ```
@@ -4711,14 +4711,14 @@ SnasM_Crace_sumstats1 <- SnasM_Crace_sumstats1 %>%
 flextable(SnasM_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Race/Ethnicity") 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
@@ -4769,14 +4769,14 @@ SnasM_Cgender_sumstats1 <- SnasM_Cgender_sumstats1 %>%
 flextable(SnasM_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Gender") 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Gender") %>% 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
@@ -4826,14 +4826,14 @@ SnasM_Cage_sumstats1 <- SnasM_Cage_sumstats1 %>%
 flextable(SnasM_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Age Group") 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SnasM_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Subnasale to Menton Contour SumStats by Age Group") %>% 
+  set_caption("Subnasale to Menton Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SnasM_C = "Subnasale/SubnasaleCont"))
 
@@ -4892,14 +4892,14 @@ TrHO_Csumstats <- TrHO_Csumstats %>%
 flextable(TrHO_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats") 
+  set_caption("Top of Head to Otobasion Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrHO_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats") %>% 
+  set_caption("Top of Head to Otobasion Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
 ```
@@ -4930,14 +4930,14 @@ TrHO_Crace_sumstats <- TrHO_Crace_sumstats %>%
 flextable(TrHO_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Race/Ethnicity") 
+  set_caption("Top of Head to Otobasion Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrHO_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Top of Head to Otobasion Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
 
@@ -4988,14 +4988,14 @@ TrHO_Cgender_sumstats <- TrHO_Cgender_sumstats %>%
 flextable(TrHO_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Gender") 
+  set_caption("Top of Head to Otobasion Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrHO_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Gender") %>% 
+  set_caption("Top of Head to Otobasion Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
 
@@ -5047,14 +5047,14 @@ TrHO_Cage_sumstats <- TrHO_Cage_sumstats %>%
 flextable(TrHO_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Age Group") 
+  set_caption("Top of Head to Otobasion Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrHO_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Top of Head to Otobasion Contour SumStats by Age Group") %>% 
+  set_caption("Top of Head to Otobasion Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrHO_C = "Subnasale/SubnasaleCont"))
 
@@ -5115,14 +5115,14 @@ TrEJ_Csumstats <- round(TrEJ_Csumstats, 2)
 flextable(TrEJ_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Earlobe Juncture Contour SumStats") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrEJ_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Earlobe Juncture Contour SumStats") %>% 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 ```
@@ -5153,14 +5153,14 @@ TrEJ_Crace_sumstats <- TrEJ_Crace_sumstats %>%
 flextable(TrEJ_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Earlobe Juncture Contour SumStats by Race/Ethnicity") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrEJ_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Earlobe Juncture Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
@@ -5211,14 +5211,14 @@ TrEJ_Cgender_sumstats <- TrEJ_Cgender_sumstats %>%
 flextable(TrEJ_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Earlobe Juncture Contour SumStats by Gender") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrEJ_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Earlobe Juncture Contour SumStats by Gender") %>% 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
@@ -5270,14 +5270,14 @@ TrEJ_Cage_sumstats <- TrEJ_Cage_sumstats %>%
 flextable(TrEJ_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Earlobe Juncture Contour SumStats by Age Group") 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrEJ_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Earlobe Juncture Contour SumStats by Age Group") %>% 
+  set_caption("Tragion to Earlobe Juncture Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrEJ_C = "Subnasale/SubnasaleCont"))
 
@@ -5337,14 +5337,14 @@ TrGo_Csumstats <- round(TrGo_Csumstats, 2)
 flextable(TrGo_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats w/o outlier removed") 
+  set_caption("Tragion to Gonion Contour SumStats (mm) w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrGo_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats w/o outlier removed") %>% 
+  set_caption("Tragion to Gonion Contour SumStats (mm) w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 ```
@@ -5375,14 +5375,14 @@ TrGo_Crace_sumstats <- TrGo_Crace_sumstats %>%
 flextable(TrGo_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Race/Ethnicity w/o outlier removed") 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrGo_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Race/Ethnicity w/o outlier removed") %>% 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
@@ -5435,14 +5435,14 @@ TrGo_Cgender_sumstats <- TrGo_Cgender_sumstats %>%
 flextable(TrGo_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Gender w/o outlier removed") 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Gender w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrGo_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Gender w/o outlier removed") %>% 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Gender w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
@@ -5496,14 +5496,14 @@ TrGo_Cage_sumstats <- TrGo_Cage_sumstats %>%
 flextable(TrGo_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Age Group w/o outlier removed") 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Age Group w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrGo_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Age Group w/o outlier removed") %>% 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Age Group w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
@@ -5576,14 +5576,14 @@ TrGo_Csumstats1 <- round(TrGo_Csumstats1, 2)
 flextable(TrGo_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats") 
+  set_caption("Tragion to Gonion Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrGo_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats") %>% 
+  set_caption("Tragion to Gonion Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 ```
@@ -5614,14 +5614,14 @@ TrGo_Crace_sumstats1 <- TrGo_Crace_sumstats1 %>%
 flextable(TrGo_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Race/Ethnicity") 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrGo_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
@@ -5672,14 +5672,14 @@ TrGo_Cgender_sumstats1 <- TrGo_Cgender_sumstats1 %>%
 flextable(TrGo_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Gender") 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrGo_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Gender") %>% 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
@@ -5731,14 +5731,14 @@ TrGo_Cage_sumstats1 <- TrGo_Cage_sumstats1 %>%
 flextable(TrGo_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Age Group") 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrGo_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Gonion Contour SumStats by Age Group") %>% 
+  set_caption("Tragion to Gonion Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrGo_C = "Subnasale/SubnasaleCont"))
 
@@ -5799,14 +5799,14 @@ TrSel_Csumstats <- round(TrSel_Csumstats, 2)
 flextable(TrSel_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Sellion Contour SumStats") 
+  set_caption("Tragion to Sellion Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSel_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Sellion Contour SumStats") %>% 
+  set_caption("Tragion to Sellion Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
 ```
@@ -5837,14 +5837,14 @@ TrSel_Crace_sumstats <- TrSel_Crace_sumstats %>%
 flextable(TrSel_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Sellion Contour SumStats by Race/Ethnicity") 
+  set_caption("Tragion to Sellion Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSel_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Sellion Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Tragion to Sellion Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
 
@@ -5895,14 +5895,14 @@ TrSel_Cgender_sumstats <- TrSel_Cgender_sumstats %>%
 flextable(TrSel_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Sellion Contour SumStats by Gender") 
+  set_caption("Tragion to Sellion Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSel_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Sellion Contour SumStats by Gender") %>% 
+  set_caption("Tragion to Sellion Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
 
@@ -5954,14 +5954,14 @@ TrSel_Cage_sumstats <- TrSel_Cage_sumstats %>%
 flextable(TrSel_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Sellion Contour SumStats by Age Group") 
+  set_caption("Tragion to Sellion Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSel_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Sellion Contour SumStats by Age Group") %>% 
+  set_caption("Tragion to Sellion Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSel_C = "Subnasale/SubnasaleCont"))
 
@@ -6023,14 +6023,14 @@ TrSman_Csumstats <- round(TrSman_Csumstats, 2)
 flextable(TrSman_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats w/o outlier removed") 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSman_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats w/o outlier removed") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 ```
@@ -6060,14 +6060,14 @@ TrSman_Crace_sumstats <- TrSman_Crace_sumstats %>%
 flextable(TrSman_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Race/Ethnicity w/o outlier removed") 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSman_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Race/Ethnicity w/o outlier removed") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
@@ -6120,14 +6120,14 @@ TrSman_Cgender_sumstats <- TrSman_Cgender_sumstats %>%
 flextable(TrSman_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Gender w/o outlier removed") 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Gender w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSman_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Gender w/o outlier removed") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Gender w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
@@ -6181,14 +6181,14 @@ TrSman_Cage_sumstats <- TrSman_Cage_sumstats %>%
 flextable(TrSman_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Age Group w/o outlier removed") 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Age Group w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSman_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Age Group w/o outlier removed") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Age Group w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
@@ -6256,14 +6256,14 @@ TrSman_Csumstats1 <- round(TrSman_Csumstats1, 2)
 flextable(TrSman_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats") 
+  set_caption("Tragion to Submandibular Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSman_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 ```
@@ -6293,14 +6293,14 @@ TrSman_Crace_sumstats1 <- TrSman_Crace_sumstats1 %>%
 flextable(TrSman_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Race/Ethnicity") 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSman_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
@@ -6351,14 +6351,14 @@ TrSman_Cgender_sumstats1 <- TrSman_Cgender_sumstats1 %>%
 flextable(TrSman_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Gender") 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSman_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Gender") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
@@ -6410,14 +6410,14 @@ TrSman_Cage_sumstats1 <- TrSman_Cage_sumstats1 %>%
 flextable(TrSman_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Age Group") 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSman_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Submandibular Contour SumStats by Age Group") %>% 
+  set_caption("Tragion to Submandibular Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSman_C = "Subnasale/SubnasaleCont"))
 
@@ -6475,14 +6475,14 @@ TrSnas_Csumstats <- round(TrSnas_Csumstats, 2)
 flextable(TrSnas_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats w/o outliers removed") 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) w/o outliers removed") 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSnas_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats w/o outliers removed") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) w/o outliers removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 ```
@@ -6513,14 +6513,14 @@ TrSnas_Crace_sumstats <- TrSnas_Crace_sumstats %>%
 flextable(TrSnas_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Race/Ethnicity w/o outlier removed") 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSnas_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Race/Ethnicity w/o outlier removed") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Race/Ethnicity w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
@@ -6573,14 +6573,14 @@ TrSnas_Cgender_sumstats <- TrSnas_Cgender_sumstats %>%
 flextable(TrSnas_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Gender w/o outlier removed") 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Gender w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSnas_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Gender w/o outlier removed") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Gender w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
@@ -6634,14 +6634,14 @@ TrSnas_Cage_sumstats <- TrSnas_Cage_sumstats %>%
 flextable(TrSnas_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Age Group w/o outlier removed") 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Age Group w/o outlier removed") 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSnas_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Age Group w/o outlier removed") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Age Group w/o outlier removed") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
@@ -6710,14 +6710,14 @@ TrSnas_Csumstats1 <- round(TrSnas_Csumstats1, 2)
 flextable(TrSnas_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats") 
+  set_caption("Tragion to Subnasale Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSnas_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 ```
@@ -6748,14 +6748,14 @@ TrSnas_Crace_sumstats1 <- TrSnas_Crace_sumstats1 %>%
 flextable(TrSnas_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Race/Ethnicity") 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSnas_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
@@ -6806,14 +6806,14 @@ TrSnas_Cgender_sumstats1 <- TrSnas_Cgender_sumstats1 %>%
 flextable(TrSnas_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Gender") 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSnas_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Gender") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
@@ -6865,14 +6865,14 @@ TrSnas_Cage_sumstats1 <- TrSnas_Cage_sumstats1 %>%
 flextable(TrSnas_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Age Group") 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(TrSnas_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Subnasale Contour SumStats by Age Group") %>% 
+  set_caption("Tragion to Subnasale Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrSnas_C = "Subnasale/SubnasaleCont"))
 
@@ -6933,14 +6933,14 @@ TrTr_Csumstats <- round(TrTr_Csumstats, 2)
 flextable(TrTr_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Contour SumStats") 
+  set_caption("Tragion to Tragion Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Csumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Contour SumStats") %>% 
+  set_caption("Tragion to Tragion Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
 ```
@@ -6971,14 +6971,14 @@ TrTr_Crace_sumstats <- TrTr_Crace_sumstats %>%
 flextable(TrTr_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Contour SumStats by Race/Ethnicity") 
+  set_caption("Tragion to Tragion Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Crace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Contour SumStats by Race/Ethnicity") %>% 
+  set_caption("Tragion to Tragion Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
 
@@ -7029,14 +7029,14 @@ TrTr_Cgender_sumstats <- TrTr_Cgender_sumstats %>%
 flextable(TrTr_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Contour SumStats by Gender") 
+  set_caption("Tragion to Tragion Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Cgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Contour SumStats by Gender") %>% 
+  set_caption("Tragion to Tragion Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
 
@@ -7088,14 +7088,14 @@ TrTr_Cage_sumstats <- TrTr_Cage_sumstats %>%
 flextable(TrTr_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Contour SumStats by Age Group") 
+  set_caption("Tragion to Tragion Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Cage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Contour SumStats by Age Group") %>% 
+  set_caption("Tragion to Tragion Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(TrTr_C = "Tragion/TragionCont"))
 
@@ -7154,14 +7154,14 @@ TrTr_Lsumstats <- round(TrTr_Lsumstats, 2)
 flextable(TrTr_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Linear SumStats") 
+  set_caption("Tragion to Tragion Linear SumStats (mm)") 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Lsumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Linear SumStats") %>% 
+  set_caption("Tragion to Tragion Linear SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 ```
@@ -7191,14 +7191,14 @@ TrTr_Lrace_sumstats <- TrTr_Lrace_sumstats %>%
 flextable(TrTr_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Linear SumStats by Race/Ethnicity") 
+  set_caption("Tragion to Tragion Linear SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Lrace_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Linear SumStats by Race/Ethnicity") %>% 
+  set_caption("Tragion to Tragion Linear SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 
@@ -7248,14 +7248,14 @@ TrTr_Lgender_sumstats <- TrTr_Lgender_sumstats %>%
 flextable(TrTr_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Linear SumStats by Gender") 
+  set_caption("Tragion to Tragion Linear SumStats (mm) by Gender") 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Lgender_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Linear SumStats by Gender") %>% 
+  set_caption("Tragion to Tragion Linear SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 
@@ -7306,14 +7306,14 @@ TrTr_Lage_sumstats <- TrTr_Lage_sumstats %>%
 flextable(TrTr_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Linear SumStats by Age Group") 
+  set_caption("Tragion to Tragion Linear SumStats (mm) by Age Group") 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 
 #Autofit Width Table TNR
 flextable(TrTr_Lage_sumstats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Tragion to Tragion Linear SumStats by Age Group") %>% 
+  set_caption("Tragion to Tragion Linear SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Labels(values = list(TrTr_L = "Tragion/TragionCont"))
 

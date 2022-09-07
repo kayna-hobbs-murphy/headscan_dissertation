@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(flextable)
 library(readxl)
+library(writexl)
 library(extrafont)
 library(missMDA)
 library(psych)
@@ -304,7 +305,7 @@ headscan_stats <- headscan_stats %>%
 flextable(headscan_stats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Non-imputed SumStats") %>% 
+  set_caption("Non-imputed SumStats (mm)") %>% 
   fit_to_width(7.5) 
 ```
 Imputing data!!!
@@ -576,7 +577,7 @@ imputed_stats <- imputed_stats %>%
 flextable(imputed_stats) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Imputed SumStats") %>% 
+  set_caption("Imputed SumStats (mm)") %>% 
   fit_to_width(7.5) 
 ```
 
@@ -634,5 +635,19 @@ diff$diff_95th <- diff$imputed95th - diff$original95th
 diff <- diff[c(1, 28:40)]
 
 str(diff)
+```
+
+```{r}
+
+#Autofit Width Table TNR
+flextable(diff) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Differences (mm) Between Imputed and Original SumStats") %>% 
+  fit_to_width(7.5) 
+```
+
+```{r}
+#write_xlsx(imputed_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\imputed_data.xlsx")
 ```
 
