@@ -857,7 +857,7 @@ flextable(BiW_Csumstats) %>%
 #BiW_C race/eth sumstats
 BiW_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(BiW_C)),
             min = min(BiW_C, na.rm = TRUE),
             max = max(BiW_C, na.rm = TRUE),
             mean = mean(BiW_C, na.rm = TRUE),
@@ -868,8 +868,7 @@ BiW_Crace_sumstats <- headscan_full %>%
             percent25th = quantile(BiW_C, 0.25, na.rm=TRUE),
             percent50th = quantile(BiW_C, 0.50, na.rm=TRUE),
             percent75th = quantile(BiW_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(BiW_C))) 
+            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE)) 
 
 BiW_Crace_sumstats <- BiW_Crace_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -917,7 +916,7 @@ ggplot(data=headscan_full, aes(y=BiW_C, x=race_eth))+
 #BiW_C gender sumstats
 BiW_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(BiW_C)),
             min = min(BiW_C, na.rm = TRUE),
             max = max(BiW_C, na.rm = TRUE),
             mean = mean(BiW_C, na.rm = TRUE),
@@ -928,8 +927,7 @@ BiW_Cgender_sumstats <- headscan_full %>%
             percent25th = quantile(BiW_C, 0.25, na.rm=TRUE),
             percent50th = quantile(BiW_C, 0.50, na.rm=TRUE),
             percent75th = quantile(BiW_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(BiW_C)))
+            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE))
 
 BiW_Cgender_sumstats <- BiW_Cgender_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -976,7 +974,7 @@ ggplot(data=headscan_full, aes(y=BiW_C, x=gender))+
 #BiW_C age group sumstats
 BiW_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(BiW_C)),
             min = min(BiW_C, na.rm = TRUE),
             max = max(BiW_C, na.rm = TRUE),
             mean = mean(BiW_C, na.rm = TRUE),
@@ -987,8 +985,7 @@ BiW_Cage_sumstats <- headscan_full %>%
             percent25th = quantile(BiW_C, 0.25, na.rm=TRUE),
             percent50th = quantile(BiW_C, 0.50, na.rm=TRUE),
             percent75th = quantile(BiW_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(BiW_C)))
+            percent95th = quantile(BiW_C, 0.95, na.rm=TRUE))
 
 BiW_Cage_sumstats <- BiW_Cage_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1045,7 +1042,7 @@ ggplot(data=headscan_full, aes(x=ChCh_C))+
        x="Chellion to Chellion Contour (mm)")
 
 ChCh_Csumstats <- headscan_full %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(ChCh_C)),
             min = min(ChCh_C, na.rm = TRUE),
             max = max(ChCh_C, na.rm = TRUE),
             mean = mean(ChCh_C, na.rm = TRUE),
@@ -1056,8 +1053,7 @@ ChCh_Csumstats <- headscan_full %>%
             percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
             percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
             percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(ChCh_C))) 
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE)) 
 
 
 
@@ -1083,7 +1079,7 @@ flextable(ChCh_Csumstats) %>%
 #ChCh_C race/eth sumstats
 ChCh_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(ChCh_C)),
             min = min(ChCh_C, na.rm = TRUE),
             max = max(ChCh_C, na.rm = TRUE),
             mean = mean(ChCh_C, na.rm = TRUE),
@@ -1094,8 +1090,7 @@ ChCh_Crace_sumstats <- headscan_full %>%
             percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
             percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
             percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(ChCh_C))) 
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE)) 
 
 ChCh_Crace_sumstats <- ChCh_Crace_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1143,7 +1138,7 @@ ggplot(data=headscan_full, aes(y=ChCh_C, x=race_eth))+
 #ChCh_C gender sumstats
 ChCh_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(ChCh_C)),
             min = min(ChCh_C, na.rm = TRUE),
             max = max(ChCh_C, na.rm = TRUE),
             mean = mean(ChCh_C, na.rm = TRUE),
@@ -1154,8 +1149,7 @@ ChCh_Cgender_sumstats <- headscan_full %>%
             percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
             percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
             percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(ChCh_C)))
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE))
 
 ChCh_Cgender_sumstats <- ChCh_Cgender_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1202,7 +1196,7 @@ ggplot(data=headscan_full, aes(y=ChCh_C, x=gender))+
 #ChCh_C age group sumstats
 ChCh_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(ChCh_C)),
             min = min(ChCh_C, na.rm = TRUE),
             max = max(ChCh_C, na.rm = TRUE),
             mean = mean(ChCh_C, na.rm = TRUE),
@@ -1213,8 +1207,7 @@ ChCh_Cage_sumstats <- headscan_full %>%
             percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
             percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
             percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(ChCh_C)))
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE))
 
 ChCh_Cage_sumstats <- ChCh_Cage_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1272,7 +1265,7 @@ ggplot(data=headscan_full, aes(x=GoSub_C))+
        x="Gonion to Submandibular Contour (mm)")
 
 GoSub_Csumstats <- headscan_full %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(GoSub_C)),
             min = min(GoSub_C, na.rm = TRUE),
             max = max(GoSub_C, na.rm = TRUE),
             mean = mean(GoSub_C, na.rm = TRUE),
@@ -1283,8 +1276,7 @@ GoSub_Csumstats <- headscan_full %>%
             percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
             percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
             percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C))) 
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE)) 
 
 
 
@@ -1309,7 +1301,7 @@ flextable(GoSub_Csumstats) %>%
 #GoSub_C race/eth sumstats
 GoSub_Crace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(GoSub_C)),
             min = min(GoSub_C, na.rm = TRUE),
             max = max(GoSub_C, na.rm = TRUE),
             mean = mean(GoSub_C, na.rm = TRUE),
@@ -1320,8 +1312,7 @@ GoSub_Crace_sumstats <- headscan_full %>%
             percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
             percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
             percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C))) 
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE)) 
 
 GoSub_Crace_sumstats <- GoSub_Crace_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1371,7 +1362,7 @@ ggplot(data=headscan_full, aes(y=GoSub_C, x=race_eth))+
 #GoSub_C gender sumstats
 GoSub_Cgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(GoSub_C)),
             min = min(GoSub_C, na.rm = TRUE),
             max = max(GoSub_C, na.rm = TRUE),
             mean = mean(GoSub_C, na.rm = TRUE),
@@ -1382,8 +1373,7 @@ GoSub_Cgender_sumstats <- headscan_full %>%
             percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
             percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
             percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C)))
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE))
 
 GoSub_Cgender_sumstats <- GoSub_Cgender_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1432,7 +1422,7 @@ ggplot(data=headscan_full, aes(y=GoSub_C, x=gender))+
 #GoSub_C age group sumstats
 GoSub_Cage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(GoSub_C)),
             min = min(GoSub_C, na.rm = TRUE),
             max = max(GoSub_C, na.rm = TRUE),
             mean = mean(GoSub_C, na.rm = TRUE),
@@ -1443,8 +1433,7 @@ GoSub_Cage_sumstats <- headscan_full %>%
             percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
             percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
             percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C)))
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE))
 
 GoSub_Cage_sumstats <- GoSub_Cage_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1518,7 +1507,7 @@ ggplot(data=GoSub_no_out, aes(x=GoSub_C))+
        x="Gonion to Submandibular Contour (mm)")
 
 GoSub_Csumstats1 <- GoSub_no_out %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(GoSub_C)),
             min = min(GoSub_C, na.rm = TRUE),
             max = max(GoSub_C, na.rm = TRUE),
             mean = mean(GoSub_C, na.rm = TRUE),
@@ -1529,8 +1518,7 @@ GoSub_Csumstats1 <- GoSub_no_out %>%
             percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
             percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
             percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C))) 
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE)) 
 
 
 #Size 12 Table TNR
@@ -1554,7 +1542,7 @@ flextable(GoSub_Csumstats1) %>%
 #GoSub_C race/eth sumstats
 GoSub_Crace_sumstats1 <- GoSub_no_out %>% 
   group_by(race_eth) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(GoSub_C)),
             min = min(GoSub_C, na.rm = TRUE),
             max = max(GoSub_C, na.rm = TRUE),
             mean = mean(GoSub_C, na.rm = TRUE),
@@ -1565,8 +1553,7 @@ GoSub_Crace_sumstats1 <- GoSub_no_out %>%
             percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
             percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
             percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C))) 
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE)) 
 
 GoSub_Crace_sumstats1 <- GoSub_Crace_sumstats1 %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1614,7 +1601,7 @@ ggplot(data=GoSub_no_out, aes(y=GoSub_C, x=race_eth))+
 #GoSub_C gender sumstats
 GoSub_Cgender_sumstats1 <- GoSub_no_out %>% 
   group_by(gender) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(GoSub_C)),
             min = min(GoSub_C, na.rm = TRUE),
             max = max(GoSub_C, na.rm = TRUE),
             mean = mean(GoSub_C, na.rm = TRUE),
@@ -1625,8 +1612,7 @@ GoSub_Cgender_sumstats1 <- GoSub_no_out %>%
             percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
             percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
             percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C)))
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE))
 
 GoSub_Cgender_sumstats1 <- GoSub_Cgender_sumstats1 %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1673,7 +1659,7 @@ ggplot(data=GoSub_no_out, aes(y=GoSub_C, x=gender))+
 #GoSub_C age group sumstats
 GoSub_Cage_sumstats1 <- GoSub_no_out %>% 
   group_by(age_group) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(GoSub_C)),
             min = min(GoSub_C, na.rm = TRUE),
             max = max(GoSub_C, na.rm = TRUE),
             mean = mean(GoSub_C, na.rm = TRUE),
@@ -1684,8 +1670,7 @@ GoSub_Cage_sumstats1 <- GoSub_no_out %>%
             percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
             percent50th = quantile(GoSub_C, 0.50, na.rm=TRUE),
             percent75th = quantile(GoSub_C, 0.75, na.rm=TRUE),
-            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE),
-            na = sum(is.na(GoSub_C)))
+            percent95th = quantile(GoSub_C, 0.95, na.rm=TRUE))
 
 GoSub_Cage_sumstats1 <- GoSub_Cage_sumstats1 %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1747,7 +1732,7 @@ ggplot(data=headscan_full, aes(x=NRB_L))+
        x="Nasal Root Breadth (mm)")
 
 NRB_Lsumstats <- headscan_full %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(NRB_L)),
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
@@ -1758,8 +1743,7 @@ NRB_Lsumstats <- headscan_full %>%
             percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
             percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
-            na = sum(is.na(NRB_L))) 
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE)) 
 
 
 #Size 12 Table TNR
@@ -1783,7 +1767,7 @@ flextable(NRB_Lsumstats) %>%
 #NRB_L race/eth sumstats
 NRB_Lrace_sumstats <- headscan_full %>% 
   group_by(race_eth) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(NRB_L)),
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
@@ -1794,8 +1778,7 @@ NRB_Lrace_sumstats <- headscan_full %>%
             percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
             percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
-            na = sum(is.na(NRB_L))) 
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE)) 
 
 NRB_Lrace_sumstats <- NRB_Lrace_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1845,7 +1828,7 @@ ggplot(data=headscan_full, aes(y=NRB_L, x=race_eth))+
 #NRB_L gender sumstats
 NRB_Lgender_sumstats <- headscan_full %>% 
   group_by(gender) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(NRB_L)),
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
@@ -1856,8 +1839,7 @@ NRB_Lgender_sumstats <- headscan_full %>%
             percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
             percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
-            na = sum(is.na(NRB_L)))
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE))
 
 NRB_Lgender_sumstats <- NRB_Lgender_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1906,7 +1888,7 @@ ggplot(data=headscan_full, aes(y=NRB_L, x=gender))+
 #NRB_L age group sumstats
 NRB_Lage_sumstats <- headscan_full %>% 
   group_by(age_group) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(NRB_L)),
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
@@ -1917,8 +1899,7 @@ NRB_Lage_sumstats <- headscan_full %>%
             percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
             percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
-            na = sum(is.na(NRB_L)))
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE))
 
 NRB_Lage_sumstats <- NRB_Lage_sumstats %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -1988,7 +1969,7 @@ ggplot(data=NRB_L_no_out, aes(x=NRB_L))+
        x="Nasal Root Breadth (mm)")
 
 NRB_Lsumstats1 <- NRB_L_no_out %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(NRB_L)),
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
@@ -1999,8 +1980,7 @@ NRB_Lsumstats1 <- NRB_L_no_out %>%
             percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
             percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
-            na = sum(is.na(NRB_L))) 
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE)) 
 
 
 #Size 12 Table TNR
@@ -2024,7 +2004,7 @@ flextable(NRB_Lsumstats1) %>%
 #NRB_L race/eth sumstats
 NRB_Lrace_sumstats1 <- NRB_L_no_out %>% 
   group_by(race_eth) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(NRB_L)),
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
@@ -2035,8 +2015,7 @@ NRB_Lrace_sumstats1 <- NRB_L_no_out %>%
             percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
             percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
-            na = sum(is.na(NRB_L))) 
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE)) 
 
 NRB_Lrace_sumstats1 <- NRB_Lrace_sumstats1 %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -2084,7 +2063,7 @@ ggplot(data=NRB_L_no_out, aes(y=NRB_L, x=race_eth))+
 #NRB_L gender sumstats
 NRB_Lgender_sumstats1 <- NRB_L_no_out %>% 
   group_by(gender) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(NRB_L)),
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
@@ -2095,8 +2074,7 @@ NRB_Lgender_sumstats1 <- NRB_L_no_out %>%
             percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
             percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
-            na = sum(is.na(NRB_L)))
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE))
 
 NRB_Lgender_sumstats1 <- NRB_Lgender_sumstats1 %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -2143,7 +2121,7 @@ ggplot(data=NRB_L_no_out, aes(y=NRB_L, x=gender))+
 #NRB_L age group sumstats
 NRB_Lage_sumstats1 <- NRB_L_no_out %>% 
   group_by(age_group) %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(NRB_L)),
             min = min(NRB_L, na.rm = TRUE),
             max = max(NRB_L, na.rm = TRUE),
             mean = mean(NRB_L, na.rm = TRUE),
@@ -2154,8 +2132,7 @@ NRB_Lage_sumstats1 <- NRB_L_no_out %>%
             percent25th = quantile(NRB_L, 0.25, na.rm=TRUE),
             percent50th = quantile(NRB_L, 0.50, na.rm=TRUE),
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
-            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE),
-            na = sum(is.na(NRB_L)))
+            percent95th = quantile(NRB_L, 0.95, na.rm=TRUE))
 
 NRB_Lage_sumstats1 <- NRB_Lage_sumstats1 %>% 
   mutate(across(where(is.numeric), round, 2))
@@ -2213,7 +2190,7 @@ ggplot(data=headscan_full, aes(x=ProA_L))+
        x="Pronasale Alare Length (mm)")
 
 ProA_Lsumstats <- headscan_full %>% 
-  summarise(n = n(), na = sum(is.na(AA_C)),
+  summarise(n = n(), na = sum(is.na(ProA_L)),
             min = min(ProA_L, na.rm = TRUE),
             max = max(ProA_L, na.rm = TRUE),
             mean = mean(ProA_L, na.rm = TRUE),
@@ -2224,8 +2201,7 @@ ProA_Lsumstats <- headscan_full %>%
             percent25th = quantile(ProA_L, 0.25, na.rm=TRUE),
             percent50th = quantile(ProA_L, 0.50, na.rm=TRUE),
             percent75th = quantile(ProA_L, 0.75, na.rm=TRUE),
-            percent95th = quantile(ProA_L, 0.95, na.rm=TRUE),
-            na = sum(is.na(ProA_L))) 
+            percent95th = quantile(ProA_L, 0.95, na.rm=TRUE)) 
 
 
 #Size 12 Table TNR

@@ -53,9 +53,27 @@ imputed <- round(imputed, 0)
 ```{r}
 summary(headscan_num)
 headscan_stats <- describe(headscan_num)
+headscan_stats1 <- headscan_stats[c(2,8,9,3,5,4,13)]
+
+
+
+AA_Csumstats <- headscan_full %>% 
+  summarise(n = n(),
+            min = min(AA_C, na.rm = TRUE),
+            max = max(AA_C, na.rm = TRUE),
+            mean = mean(AA_C, na.rm = TRUE),
+            mdn = median(AA_C, na.rm = TRUE),
+            sd = sd(AA_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(AA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(AA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(AA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(AA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(AA_C, 0.95, na.rm=TRUE),
+            na = sum(is.na(AA_C))) 
 
 #Autofit Width Table TNR
-flextable(headscan_stats) %>%
+flextable(headscan_stats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Non-imputed SumStats") %>% 
