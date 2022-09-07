@@ -61,8 +61,8 @@ PCAimp_full <- imputed_data[c(1,2,4,5,7,8,12,14,16,17,25,27,28,31,32,33)]
   #set_caption("NA values for PCA Measurement Locations, total 891 NA values") %>% 
   #autofit() %>% 
   #set_header_labels(values = list(measure_name = "Measurement Location",
-                                  measureNAprops = "Proportion of NA values",
-                                  measureNAsums = "Count of NA values"))
+                                  #measureNAprops = "Proportion of NA values",
+                                 # measureNAsums = "Count of NA values"))
 ```
 
 

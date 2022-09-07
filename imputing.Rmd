@@ -671,7 +671,7 @@ headscan_demographics <- headscan_full1[c(1,29:33)]
 
 imputed_data <- full_join(imputed_data, headscan_demographics, by="ID")
 
-write_xlsx(imputed_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\imputed_data.xlsx")
+#write_xlsx(imputed_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\imputed_data.xlsx")
 ```
 
 ```{r}
