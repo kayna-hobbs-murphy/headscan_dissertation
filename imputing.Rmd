@@ -1,0 +1,70 @@
+---
+title: "imputing"
+output:
+  word_document: default
+  html_document: default
+date: "2022-09-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+library(flextable)
+library(readxl)
+library(extrafont)
+library(missMDA)
+library(psych)
+```
+
+```{r table-function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
+```{r}
+#remove identifiers and demographic data
+
+headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
+str(headscan_full1)
+
+headscan_num <- select_if(headscan_full1, is.numeric)
+headscan_num <- subset(headscan_num, select= -age)
+str(headscan_num)
+```
+
+```{r}
+res.comp <- imputePCA(headscan_num, ncp=2)
+imputed <- as.data.frame(res.comp$completeObs)
+imputed <- round(imputed, 0)
+```
+
+
+```{r}
+summary(headscan_num)
+headscan_stats <- describe(headscan_num)
+
+#Autofit Width Table TNR
+flextable(headscan_stats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Non-imputed SumStats") %>% 
+  fit_to_width(7.5) 
+```
+
+```{r}
+summary(imputed)
+```
+
+
+
