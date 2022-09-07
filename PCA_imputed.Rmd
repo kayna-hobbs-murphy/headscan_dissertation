@@ -1,0 +1,302 @@
+---
+title: "PCA_imputed"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(flextable)
+library(readxl)
+library(extrafont)
+#library(forcats)
+library(writexl)
+library(ggfortify) #autoplot
+library(scales) #percent()
+```
+
+```{r table-function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
+```{r}
+#remove identifiers and demographic data
+
+imputed_data<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\imputed_data.xlsx")
+
+
+
+str(imputed_data)
+```
+
+
+```{r}
+PCAimp_num <- imputed_data[c(1,2,4,5,7,8,12,14,16,17,25,27,28)]
+
+PCAimp_full <- imputed_data[c(1,2,4,5,7,8,12,14,16,17,25,27,28,31,32,33)]
+```
+
+
+```{r}
+#measureNAs <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
+
+#PCA_NAs <- slice(measureNAs, c(1,3,4,6,7,11,13,15,16,24,26,27))
+
+#Size 12 Table TNR
+#flextable(PCA_NAs) %>%
+  #my_ft_theme()%>% 
+  #bold(part = "header") %>% 
+  #set_caption("NA values for PCA Measurement Locations, total 891 NA values") %>% 
+  #autofit() %>% 
+  #set_header_labels(values = list(measure_name = "Measurement Location",
+                                  measureNAprops = "Proportion of NA values",
+                                  measureNAsums = "Count of NA values"))
+```
+
+
+
+```{r}
+#PCAimp_num <- PCAimp_num %>% drop_na()
+
+#str(PCAimp_num)
+```
+
+
+
+
+```{r}
+PCAimp_full <- left_join(PCAimp_num, PCAimp_full, by= "ID")
+
+PCAimp_full <- PCAimp_full %>% 
+  rename(AA_C = "AA_C.x",
+         BiW_C = "BiW_C.x",
+         BiW_L = "BiW_L.x",
+         GoSub_C = "GoSub_C.x",
+         NRB_L = "NRB_L.x",
+         ProS_L = "ProS_L.x",
+         SelP_L = "SelP_L.x",
+         SelM_L = "SelM_L.x",
+         SnasM_C = "SnasM_C.x",
+         TrSman_C = "TrSman_C.x",
+         TrTr_C = "TrTr_C.x",
+         TrTr_L = "TrTr_L.x")
+
+PCAimp_full <- PCAimp_full[-c(14:25)]
+```
+
+
+```{r}
+PCAimp_num <- PCAimp_num[-c(1)]
+PCAimp_full <- PCAimp_full[-c(1)]
+```
+
+
+```{r}
+#https://www.statology.org/principal-components-analysis-in-r/
+
+#calculate principal components
+pca_res_imp<- prcomp(PCAimp_num, scale=TRUE)
+
+#reverse the signs (R calculates eigenvectors in negative direction)
+pca_res_imp$rotation <- -1*pca_res_imp$rotation
+
+#display PCs
+pca_res_imp$rotation
+```
+
+
+```{r}
+imp_var = pca_res_imp$sdev^2 / sum(pca_res_imp$sdev^2)
+
+imp_var_total <- imp_var
+```
+
+
+
+
+```{r, fig.width=5, fig.height=4}
+qplot(c(1:12), imp_var) + 
+  geom_line() + 
+  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
+  xlab("Principal Component") + 
+  ylab("Variance Explained (proportion)") +
+  ggtitle("Scree Plot") +
+  ylim(0, 1) +
+  scale_x_discrete(limits=c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9","PC10","PC11","PC12")) 
+```
+
+
+```{r}
+imp_var_data <- data.frame(imp_var)
+
+imp_var_data <- imp_var_data %>% 
+  rename(v_e = "imp_var")
+
+
+imp_var_data$vep <- imp_var_data$v_e
+
+imp_var_data <- rownames_to_column(imp_var_data, "PC_num")
+
+imp_var_data$vep <- percent(imp_var_data$vep, accuracy=0.01)
+
+imp_var_data$PC_num <- as.factor(imp_var_data$PC_num)
+
+imp_var_data$PC_num <- 
+  recode_factor(imp_var_data$PC_num, 
+                '1'= "PC1",
+                '2'= "PC2",
+                '3'= "PC3",
+                '4'= "PC4",
+                '5'= "PC5",
+                '6'= "PC6",
+                '7'= "PC7",
+                '8'= "PC8",
+                '9'= "PC9",
+                '10'= "PC10",
+                '11'= "PC11",
+                '12'= "PC12")
+```
+
+```{r}
+ggplot(data=imp_var_data, aes(x=PC_num, y=v_e, group=1)) + 
+  geom_line() +
+  geom_point() + 
+  geom_text(aes(label=vep),
+            position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank() 
+        )+
+  labs(title="Scree Plot",
+       x="Principal Component",
+       y="Total Variance Explained")
+```
+
+
+```{r}
+
+#making plot axis match the ggplot versions in PCA2.Rmd!!! 
+#compare to PCAimp_full1 pc1 and pc2 columns (should be same sign, here times 100)
+pca_res_imp$x <- pca_res_imp$x * 100
+pca_res_imp$x[,1] <- pca_res_imp$x[,1] * -1
+#pca_res_imp$x <- pca_res_imp$x[,2] * 100
+
+#pca_res_imp$x
+```
+
+
+#https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html
+
+```{r, fig.width=8, fig.height=5}
+autoplot(pca_res_imp, data=PCAimp_full)+
+  geom_hline(yintercept = 0, lty = 2) +
+  geom_vline(xintercept = 0, lty = 2) +
+  theme_bw() + theme(text=element_text(family= "Times New Roman"))+  
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title="PCA plot")
+```
+
+
+```{r, fig.width=8, fig.height=5}
+autoplot(pca_res_imp, data=PCAimp_full, colour="race_eth")+
+  geom_hline(yintercept = 0, lty = 2) +
+  geom_vline(xintercept = 0, lty = 2) +
+  theme_bw() + theme(text=element_text(family= "Times New Roman")) +
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title = "All Race/Ethnicities PCA plot",
+       color = "Race/Ethnicity")
+```
+```{r, fig.width=8, fig.height=5}
+autoplot(pca_res_imp, data=PCAimp_full, colour="race_eth",
+         loadings = TRUE, loadings.colour = 'blue',
+         loadings.label = TRUE, loadings.label.size = 3)+
+  geom_hline(yintercept = 0, lty = 2) +
+  geom_vline(xintercept = 0, lty = 2) +
+  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title = "All Race/Ethnicities PCA plot",
+       subtitle = "with factor loadings",
+       color = "Race/Ethnicity")
+```
+arrows close together=higher correlation
+
+COULD add ellipses (like in PCA2) to this graph with factor loadings.. 
+but cannot add loadings to plot in PCA2 with ellipses 
+
+
+```{r, fig.width=8, fig.height=5}
+autoplot(pca_res_imp, data=PCAimp_full, colour="gender")+
+  geom_hline(yintercept = 0, lty = 2) +
+  geom_vline(xintercept = 0, lty = 2) +
+  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title = "All Genders PCA plot",
+       color = "Gender")
+```
+
+```{r, fig.width=8, fig.height=5}
+autoplot(pca_res_imp, data=PCAimp_full, colour="gender",
+         loadings = TRUE, loadings.colour = 'blue',
+         loadings.label = TRUE, loadings.label.size = 3)+
+  geom_hline(yintercept = 0, lty = 2) +
+  geom_vline(xintercept = 0, lty = 2) +
+  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title = "All Genders PCA plot",
+       subtitle = "with factor loadings",
+       color = "Gender")
+```
+
+
+```{r, fig.width=8, fig.height=5}
+autoplot(pca_res_imp, data=PCAimp_full, colour="age_group")+
+  geom_hline(yintercept = 0, lty = 2) +
+  geom_vline(xintercept = 0, lty = 2) +
+  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title = "All Age Groups PCA plot",
+       color = "Age Group")
+```
+
+
+```{r, fig.width=8, fig.height=5}
+autoplot(pca_res_imp, data=PCAimp_full, colour="age_group",
+         loadings = TRUE, loadings.colour = 'blue',
+         loadings.label = TRUE, loadings.label.size = 3)+
+  geom_hline(yintercept = 0, lty = 2) +
+  geom_vline(xintercept = 0, lty = 2) +
+  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
+  labs(y="PC2 (18.83%)",
+       x="PC1 (38.4%)",
+       title = "All Age Groups PCA plot",
+       subtitle = "with factor loadings",
+       color = "Age Group")
+```
+
+
+```{r}
+imp_selected <- PCAimp_full
+
+#write_xlsx(imp_selected, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\imp_selected.xlsx")
+```
+

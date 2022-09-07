@@ -38,6 +38,8 @@ my_ft_theme <- function(ft, ...) {
 
 headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
 
+headscan_full1  <- column_to_rownames(headscan_full1,'ID')
+
 headscan_num <- select_if(headscan_full1, is.numeric)
 headscan_num <- subset(headscan_num, select= -age)
 str(headscan_num)
@@ -311,6 +313,7 @@ flextable(headscan_stats) %>%
 Imputing data!!!
 
 ```{r}
+
 imputed <- imputePCA(headscan_num, ncp=2)
 imputed_data <- as.data.frame(imputed$completeObs)
 imputed_data <- round(imputed_data, 0)
@@ -661,7 +664,14 @@ flextable(diff_selected) %>%
 
 
 ```{r}
-#write_xlsx(imputed_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\imputed_data.xlsx")
+headscan_full1 <- rownames_to_column(headscan_full1, "ID")
+imputed_data <- rownames_to_column(imputed_data, "ID")
+
+headscan_demographics <- headscan_full1[c(1,29:33)]
+
+imputed_data <- full_join(imputed_data, headscan_demographics, by="ID")
+
+write_xlsx(imputed_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\imputed_data.xlsx")
 ```
 
 ```{r}
