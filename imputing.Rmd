@@ -582,7 +582,14 @@ flextable(imputed_stats) %>%
 
 
 ```{r}
+diff <- headscan_stats[c(1,2)]
 
+diff <- diff %>% 
+  rename(original_n=n)
+
+diff
+
+diff$n_diff <- diff$original_stat - diff$imputed_stat
 
 diff1 <- cbind(headscan_stats$min, imputed_stats$min)
 diff1 <- as.data.frame(diff1)
@@ -604,10 +611,28 @@ diff5 <- cbind(headscan_stats$sd, imputed_stats$sd)
 diff5 <- as.data.frame(diff4)
 diff5$sd_diff <- diff5$V2 - diff5$V1
 
-diff5 <- cbind(headscan_stats$sd, imputed_stats$sd)
-diff5 <- as.data.frame(diff4)
-diff5$sd_diff <- diff5$V2 - diff5$V1
+diff6 <- cbind(headscan_stats$se, imputed_stats$se)
+diff6 <- as.data.frame(diff6)
+diff6$se_diff <- diff6$V2 - diff6$V1
 
+diff7 <- cbind(headscan_stats$percent5th, imputed_stats$percent5th)
+diff7 <- as.data.frame(diff7)
+diff7$fifth_diff <- diff7$V2 - diff7$V1
 
+diff8 <- cbind(headscan_stats$percent25th, imputed_stats$percent25th)
+diff8 <- as.data.frame(diff8)
+diff8$twfifth_diff <- diff8$V2 - diff8$V1
+
+diff9 <- cbind(headscan_stats$percent50th, imputed_stats$percent50th)
+diff9 <- as.data.frame(diff9)
+diff9$fifty_diff <- diff9$V2 - diff9$V1
+
+diff10 <- cbind(headscan_stats$percent75th, imputed_stats$percent75th)
+diff10 <- as.data.frame(diff10)
+diff10$snfifth_diff <- diff10$V2 - diff10$V1
+
+diff11 <- cbind(headscan_stats$percent95th, imputed_stats$percent95th)
+diff11 <- as.data.frame(diff11)
+diff11$nfifth_diff <- diff11$V2 - diff11$V1
 ```
 
