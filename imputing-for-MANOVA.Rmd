@@ -15,6 +15,9 @@ library(flextable)
 library(extrafont)
 library(writexl)
 library(rstatix)
+library(missMDA)
+library(psych)
+library(arsenal)
 ```
 
 
@@ -119,17 +122,17 @@ Otherwise, it seems like I have to delete the missing values. I did this for PCA
 
 
 ```{r}
-
+SA3_data2 <- SA3_data1
 #SA3_data2 <- SA3_data1 %>% drop_na()
 
 #sum(is.na(SA3_data1))
 
-2016-1710
+#2016-1710
 ```
 
 
 ```{r}
-#str(SA3_data2)
+str(SA3_data2)
 ```
 
 
@@ -138,7 +141,7 @@ Next, identify univariate outliers
 
 ```{r}
 #AA_C
-AA_C_out <- SA3_data1 %>% 
+AA_C_out <- SA3_data2 %>% 
   identify_outliers(AA_C)
 
 AA_C_out$extreme_overall <- AA_C_out$is.extreme
@@ -1336,7 +1339,7 @@ arrange(combin_out1, multv_outlier + extreme_overall)
 flextable(combin_out1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Univariate and Multivariate Outlier Status") %>% 
+  set_caption("Univariate and Multivariate Outlier Status: Imputed Data (matches non-imputed)") %>% 
   autofit
 #%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
 
@@ -1344,7 +1347,7 @@ flextable(combin_out1) %>%
 flextable(combin_out1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Univariate and Multivariate Outlier Status") %>% 
+  set_caption("Univariate and Multivariate Outlier Status: Imputed Data (matches non-imputed)") %>% 
   autofit() %>% 
   fit_to_width(7.5)
   
@@ -1358,16 +1361,18 @@ flextable(combin_out1) %>%
 
 ```{r}
 
-##exclude multivariate outliers
-SA3_noout <- anti_join(SA3_data2, mult_out, by="ID")
+##imputing multivariate outliers
+SA3_imputed <- SA3_data2
 
-1710-19
+#DO IMPUTING STEPS HERE
 
-str(SA3_noout)
+#first, set all outliers above to NA, multivariate (whole row) and univariate (measure only)
+
+str(SA3_imputed)
 ```
 
 
 ```{r}
-#write_xlsx(SA3_noout, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
+#write_xlsx(SA3_imputed, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_imputed.xlsx")
 ```
 
