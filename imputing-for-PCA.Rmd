@@ -1,5 +1,5 @@
 ---
-title: "imputing-after-stat-outliers"
+title: "imputing-for-PCA"
 output:
   word_document: default
   html_document: default
@@ -36,12 +36,12 @@ my_ft_theme <- function(ft, ...) {
 
 ```{r}
 
-SA3_noout<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
+headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
 
-SA3_noout  <- column_to_rownames(SA3_noout,'ID')
+headscan_full1  <- column_to_rownames(headscan_full1,'ID')
 
-headscan_num <- select_if(SA3_noout, is.numeric)
-#headscan_num <- subset(headscan_num, select= -age)
+headscan_num <- select_if(headscan_full1, is.numeric)
+headscan_num <- subset(headscan_num, select= -age)
 str(headscan_num)
 ```
 
@@ -67,6 +67,15 @@ AA_C_sum <- headscan_num %>%
             percent95th = quantile(AA_C, 0.95, na.rm=TRUE))
 AA_C_sum$measure <- "AA_C"
 
+
+BGl_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(BGl_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BGl_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BGl_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BGl_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BGl_C, 0.95, na.rm=TRUE))
+BGl_C_sum$measure <- "BGl_C"
+
 BiW_C_sum <- headscan_num %>% 
   summarise(percent5th = quantile(BiW_C, 0.05, na.rm=TRUE),
             percent25th = quantile(BiW_C, 0.25, na.rm=TRUE),
@@ -82,6 +91,14 @@ BiW_L_sum <- headscan_num %>%
             percent75th = quantile(BiW_L, 0.75, na.rm=TRUE),
             percent95th = quantile(BiW_L, 0.95, na.rm=TRUE))
 BiW_L_sum$measure <- "BiW_L"
+
+ChCh_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(ChCh_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE))
+ChCh_C_sum$measure <- "ChCh_C"
 
 GoSub_C_sum <- headscan_num %>% 
   summarise(percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
@@ -99,6 +116,30 @@ NRB_L_sum <- headscan_num %>%
             percent95th = quantile(NRB_L, 0.95, na.rm=TRUE))
 NRB_L_sum$measure <- "NRB_L"
 
+ProA_L_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(ProA_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_L, 0.95, na.rm=TRUE))
+ProA_L_sum$measure <- "ProA_L"
+
+ProA_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(ProA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_C, 0.95, na.rm=TRUE))
+ProA_C_sum$measure <- "ProA_C"
+
+ProS_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(ProS_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProS_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProS_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProS_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProS_C, 0.95, na.rm=TRUE))
+ProS_C_sum$measure <- "ProS_C"
+
 ProS_L_sum <- headscan_num %>% 
   summarise(percent5th = quantile(ProS_L, 0.05, na.rm=TRUE),
             percent25th = quantile(ProS_L, 0.25, na.rm=TRUE),
@@ -107,6 +148,14 @@ ProS_L_sum <- headscan_num %>%
             percent95th = quantile(ProS_L, 0.95, na.rm=TRUE))
 ProS_L_sum$measure <- "ProS_L"
 
+SelP_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(SelP_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelP_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelP_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelP_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelP_C, 0.95, na.rm=TRUE))
+SelP_C_sum$measure <- "SelP_C"
+
 SelP_L_sum <- headscan_num %>% 
   summarise(percent5th = quantile(SelP_L, 0.05, na.rm=TRUE),
             percent25th = quantile(SelP_L, 0.25, na.rm=TRUE),
@@ -114,6 +163,14 @@ SelP_L_sum <- headscan_num %>%
             percent75th = quantile(SelP_L, 0.75, na.rm=TRUE),
             percent95th = quantile(SelP_L, 0.95, na.rm=TRUE))
 SelP_L_sum$measure <- "SelP_L"
+
+SelDH_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(SelDH_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelDH_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelDH_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelDH_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelDH_C, 0.95, na.rm=TRUE))
+SelDH_C_sum$measure <- "SelDH_C"
 
 SelM_L_sum <- headscan_num %>% 
   summarise(percent5th = quantile(SelM_L, 0.05, na.rm=TRUE),
@@ -131,6 +188,62 @@ SnasM_C_sum <- headscan_num %>%
             percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE))
 SnasM_C_sum$measure <- "SnasM_C"
 
+SmanM_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(SmanM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_C, 0.95, na.rm=TRUE))
+SmanM_C_sum$measure <- "SmanM_C"
+
+SmanM_L_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(SmanM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_L, 0.95, na.rm=TRUE))
+SmanM_L_sum$measure <- "SmanM_L"
+
+SnasM_L_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(SnasM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_L, 0.95, na.rm=TRUE))
+SnasM_L_sum$measure <- "SnasM_L"
+
+TrHO_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(TrHO_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrHO_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrHO_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrHO_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrHO_C, 0.95, na.rm=TRUE))
+TrHO_C_sum$measure <- "TrHO_C"
+
+TrEJ_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(TrEJ_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrEJ_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrEJ_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrEJ_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrEJ_C, 0.95, na.rm=TRUE))
+TrEJ_C_sum$measure <- "TrEJ_C"
+
+TrGo_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrGo_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrGo_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE))
+TrGo_C_sum$measure <- "TrGo_C"
+
+TrSel_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(TrSel_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSel_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSel_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSel_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSel_C, 0.95, na.rm=TRUE))
+TrSel_C_sum$measure <- "TrSel_C"
+
 TrSman_C_sum <- headscan_num %>% 
   summarise(percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
             percent25th = quantile(TrSman_C, 0.25, na.rm=TRUE),
@@ -138,6 +251,14 @@ TrSman_C_sum <- headscan_num %>%
             percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
             percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE))
 TrSman_C_sum$measure <- "TrSman_C"
+
+TrSnas_C_sum <- headscan_num %>% 
+  summarise(percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSnas_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSnas_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE))
+TrSnas_C_sum$measure <- "TrSnas_C"
 
 TrTr_C_sum <- headscan_num %>% 
   summarise(percent5th = quantile(TrTr_C, 0.05, na.rm=TRUE),
@@ -158,8 +279,12 @@ TrTr_L_sum$measure <- "TrTr_L"
 
 
 ```{r}
-quantile_data <- rbind(AA_C_sum, BiW_L_sum, BiW_C_sum, GoSub_C_sum, NRB_L_sum,
-                       ProS_L_sum, SelM_L_sum, SnasM_C_sum, TrSman_C_sum, TrTr_C_sum, TrTr_L_sum)
+quantile_data <- rbind(AA_C_sum, BGl_C_sum, BiW_L_sum, BiW_C_sum, ChCh_C_sum,
+                       GoSub_C_sum, NRB_L_sum, ProA_L_sum, ProA_C_sum, ProS_C_sum,
+                       ProS_L_sum, SelP_C_sum, SelP_L_sum, SelDH_C_sum, SelM_L_sum,
+                       SnasM_C_sum, SmanM_C_sum, SmanM_L_sum, SnasM_L_sum, TrHO_C_sum,
+                       TrEJ_C_sum, TrGo_C_sum, TrSel_C_sum, TrSman_C_sum, TrSnas_C_sum,
+                       TrTr_C_sum, TrTr_L_sum)
 ```
 
 ```{r}
@@ -185,8 +310,6 @@ flextable(headscan_stats) %>%
   set_caption("Non-imputed SumStats (mm)") %>% 
   fit_to_width(7.5) 
 ```
-
-
 Imputing data!!!
 
 ```{r}
@@ -218,6 +341,14 @@ AA_C_sum1 <- imputed_data %>%
 AA_C_sum1$measure <- "AA_C"
 
 
+BGl_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(BGl_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(BGl_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(BGl_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(BGl_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(BGl_C, 0.95, na.rm=TRUE))
+BGl_C_sum1$measure <- "BGl_C"
+
 BiW_C_sum1 <- imputed_data %>% 
   summarise(percent5th = quantile(BiW_C, 0.05, na.rm=TRUE),
             percent25th = quantile(BiW_C, 0.25, na.rm=TRUE),
@@ -234,6 +365,14 @@ BiW_L_sum1 <- imputed_data %>%
             percent95th = quantile(BiW_L, 0.95, na.rm=TRUE))
 BiW_L_sum1$measure <- "BiW_L"
 
+ChCh_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(ChCh_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ChCh_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ChCh_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ChCh_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ChCh_C, 0.95, na.rm=TRUE))
+ChCh_C_sum1$measure <- "ChCh_C"
+
 GoSub_C_sum1 <- imputed_data %>% 
   summarise(percent5th = quantile(GoSub_C, 0.05, na.rm=TRUE),
             percent25th = quantile(GoSub_C, 0.25, na.rm=TRUE),
@@ -249,6 +388,30 @@ NRB_L_sum1 <- imputed_data %>%
             percent75th = quantile(NRB_L, 0.75, na.rm=TRUE),
             percent95th = quantile(NRB_L, 0.95, na.rm=TRUE))
 NRB_L_sum1$measure <- "NRB_L"
+
+ProA_L_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(ProA_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_L, 0.95, na.rm=TRUE))
+ProA_L_sum1$measure <- "ProA_L"
+
+ProA_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(ProA_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProA_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProA_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProA_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProA_C, 0.95, na.rm=TRUE))
+ProA_C_sum1$measure <- "ProA_C"
+
+ProS_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(ProS_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(ProS_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(ProS_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(ProS_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(ProS_C, 0.95, na.rm=TRUE))
+ProS_C_sum1$measure <- "ProS_C"
 
 ProS_L_sum1 <- imputed_data %>% 
   summarise(percent5th = quantile(ProS_L, 0.05, na.rm=TRUE),
@@ -274,6 +437,14 @@ SelP_L_sum1 <- imputed_data %>%
             percent95th = quantile(SelP_L, 0.95, na.rm=TRUE))
 SelP_L_sum1$measure <- "SelP_L"
 
+SelDH_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(SelDH_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SelDH_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SelDH_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SelDH_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SelDH_C, 0.95, na.rm=TRUE))
+SelDH_C_sum1$measure <- "SelDH_C"
+
 SelM_L_sum1 <- imputed_data %>% 
   summarise(percent5th = quantile(SelM_L, 0.05, na.rm=TRUE),
             percent25th = quantile(SelM_L, 0.25, na.rm=TRUE),
@@ -290,6 +461,62 @@ SnasM_C_sum1 <- imputed_data %>%
             percent95th = quantile(SnasM_C, 0.95, na.rm=TRUE))
 SnasM_C_sum1$measure <- "SnasM_C"
 
+SmanM_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(SmanM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_C, 0.95, na.rm=TRUE))
+SmanM_C_sum1$measure <- "SmanM_C"
+
+SmanM_L_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(SmanM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_L, 0.95, na.rm=TRUE))
+SmanM_L_sum1$measure <- "SmanM_L"
+
+SnasM_L_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(SnasM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SnasM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SnasM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SnasM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SnasM_L, 0.95, na.rm=TRUE))
+SnasM_L_sum1$measure <- "SnasM_L"
+
+TrHO_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(TrHO_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrHO_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrHO_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrHO_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrHO_C, 0.95, na.rm=TRUE))
+TrHO_C_sum1$measure <- "TrHO_C"
+
+TrEJ_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(TrEJ_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrEJ_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrEJ_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrEJ_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrEJ_C, 0.95, na.rm=TRUE))
+TrEJ_C_sum1$measure <- "TrEJ_C"
+
+TrGo_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(TrGo_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrGo_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrGo_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrGo_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrGo_C, 0.95, na.rm=TRUE))
+TrGo_C_sum1$measure <- "TrGo_C"
+
+TrSel_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(TrSel_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSel_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSel_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSel_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSel_C, 0.95, na.rm=TRUE))
+TrSel_C_sum1$measure <- "TrSel_C"
+
 TrSman_C_sum1 <- imputed_data %>% 
   summarise(percent5th = quantile(TrSman_C, 0.05, na.rm=TRUE),
             percent25th = quantile(TrSman_C, 0.25, na.rm=TRUE),
@@ -297,6 +524,14 @@ TrSman_C_sum1 <- imputed_data %>%
             percent75th = quantile(TrSman_C, 0.75, na.rm=TRUE),
             percent95th = quantile(TrSman_C, 0.95, na.rm=TRUE))
 TrSman_C_sum1$measure <- "TrSman_C"
+
+TrSnas_C_sum1 <- imputed_data %>% 
+  summarise(percent5th = quantile(TrSnas_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(TrSnas_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(TrSnas_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(TrSnas_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(TrSnas_C, 0.95, na.rm=TRUE))
+TrSnas_C_sum1$measure <- "TrSnas_C"
 
 TrTr_C_sum1 <- imputed_data %>% 
   summarise(percent5th = quantile(TrTr_C, 0.05, na.rm=TRUE),
@@ -317,9 +552,12 @@ TrTr_L_sum1$measure <- "TrTr_L"
 
 
 ```{r}
-quantile_data <- rbind(AA_C_sum1, BGl_C_sum1, BiW_L_sum1, BiW_C_sum1,
-                       GoSub_C_sum1, NRB_L_sum1, ProS_L_sum1, SelM_L_sum1,
-                       SnasM_C_sum1, TrSman_C_sum1, TrTr_C_sum1, TrTr_L_sum1)
+quantile_data <- rbind(AA_C_sum1, BGl_C_sum1, BiW_L_sum1, BiW_C_sum1, ChCh_C_sum1,
+                       GoSub_C_sum1, NRB_L_sum1, ProA_L_sum1, ProA_C_sum1, ProS_C_sum1,
+                       ProS_L_sum1, SelP_C_sum1, SelP_L_sum1, SelDH_C_sum1, SelM_L_sum1,
+                       SnasM_C_sum1, SmanM_C_sum1, SmanM_L_sum1, SnasM_L_sum1, TrHO_C_sum1,
+                       TrEJ_C_sum1, TrGo_C_sum1, TrSel_C_sum1, TrSman_C_sum1, TrSnas_C_sum1,
+                       TrTr_C_sum1, TrTr_L_sum1)
 ```
 
 ```{r}
@@ -426,10 +664,10 @@ flextable(diff_selected) %>%
 
 
 ```{r}
-SA3_noout <- rownames_to_column(SA3_noout, "ID")
+headscan_full1 <- rownames_to_column(headscan_full1, "ID")
 imputed_data <- rownames_to_column(imputed_data, "ID")
 
-headscan_demographics <- SA3_noout[c(1,29:33)]
+headscan_demographics <- headscan_full1[c(1,29:33)]
 
 imputed_data <- full_join(imputed_data, headscan_demographics, by="ID")
 
