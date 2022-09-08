@@ -1,5 +1,5 @@
 ---
-title: "imputing"
+title: "imputing-before-stat-outliers"
 output:
   word_document: default
   html_document: default
