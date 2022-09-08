@@ -1,6 +1,8 @@
 ---
 title: "PCA2_imputed"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 date: "2022-09-07"
 ---
 
@@ -53,26 +55,26 @@ for (i in 1:length(colnames(imp_selected1))){
 
 
 ```{r}
-pca1 <- PCA(imp_selected1[ ,c("AA_C", "BiW_C", "BiW_L", "GoSub_C", "NRB_L", "ProS_L", "SelP_L", 
+pca1.1 <- PCA(imp_selected1[ ,c("AA_C", "BiW_C", "BiW_L", "GoSub_C", "NRB_L", "ProS_L", "SelP_L", 
                              "SelM_L", "SnasM_C", "TrSman_C", "TrTr_C", "TrTr_L")])
 
-summary(pca1)
+summary(pca1.1)
 ```
 
 ```{r}
-imp_selected1$pc1 <- pca1$ind$coord[, 1] # indexing the first column
+imp_selected1$pc1 <- pca1.1$ind$coord[, 1] # indexing the first column
 
-imp_selected1$pc2 <- pca1$ind$coord[, 2]  # indexing the second column
+imp_selected1$pc2 <- pca1.1$ind$coord[, 2]  # indexing the second column
 
 
 ```
 
 ```{r}
-pca.vars <- pca1$var$coord %>% data.frame
+pca.vars1 <- pca1.1$var$coord %>% data.frame
 
-pca.vars$vars <- rownames(pca.vars)
+pca.vars1$vars1 <- rownames(pca.vars1)
 
-pca.vars.m <- melt(pca.vars, id.vars = "vars")
+pca.vars.m1 <- melt(pca.vars1, id.vars = "vars1")
 ```
 
 ```{r}
