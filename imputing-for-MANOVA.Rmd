@@ -18,6 +18,7 @@ library(rstatix)
 library(missMDA)
 library(psych)
 library(arsenal)
+library(naniar)
 ```
 
 
@@ -1362,7 +1363,45 @@ flextable(combin_out1) %>%
 ```{r}
 
 ##imputing multivariate outliers
-SA3_imputed <- SA3_data2
+
+#changing multivariate outlier rows to NA
+SA3_imputed <- SA3_data2[c(1:13)]
+
+demographic <- SA3_data2[c(1, 14:16)]
+
+
+
+is_mout <- mult_out
+
+is_mout <- column_to_rownames(is_mout, "ID")
+
+is_mout <- is_mout[c(1:12)]
+
+is_mout %>% replace_with_na_all(condition = ~.x > 1)
+
+#is_mout <- rownames_to_column(is_mout, "ID")
+
+
+#SA3_imputed <- full_join(is_mout, SA3_imputed, by="ID")
+
+#sum(is.na(SA3_imputed))
+
+
+
+
+
+#SA3_imputed <- 
+
+#is_mout <- filter(SA3_imputed, out %in% "multoutlier")
+
+#is_mout <- column_to_rownames(is_mout, "ID")
+
+#is_mout %>% replace_with_na_all(condition = ~.x > 1)
+
+#is_mout <- rownames_to_column(is_mout, "ID")
+
+#is_mout <- is_mout[c(1:13)]
+
 
 
 #first, set all outliers above to NA, multivariate (whole row) and univariate (measure only)
