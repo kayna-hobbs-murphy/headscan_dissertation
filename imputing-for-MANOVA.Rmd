@@ -1365,42 +1365,34 @@ flextable(combin_out1) %>%
 ##imputing multivariate outliers
 
 #changing multivariate outlier rows to NA
-SA3_imputed <- SA3_data2[c(1:13)]
+SA3_imputing <- SA3_data2[c(1:13)]
 
 demographic <- SA3_data2[c(1, 14:16)]
 
 
 
-is_mout <- mult_out
 
-is_mout <- column_to_rownames(is_mout, "ID")
-
-is_mout <- is_mout[c(1:12)]
-
-is_mout %>% replace_with_na_all(condition = ~.x > 1)
-
-#is_mout <- rownames_to_column(is_mout, "ID")
-
-
-#SA3_imputed <- full_join(is_mout, SA3_imputed, by="ID")
-
-#sum(is.na(SA3_imputed))
+is_mout <- mult_out[c(1, 19)]
 
 
 
+SA3_imputing <- full_join(is_mout, SA3_imputing, by="ID")
 
+sum(is.na(SA3_imputing))
 
-#SA3_imputed <- 
+SA3_imputing <- column_to_rownames(SA3_imputing, "ID")
 
-#is_mout <- filter(SA3_imputed, out %in% "multoutlier")
+which(SA3_imputing == "TRUE", arr.ind=TRUE)
 
-#is_mout <- column_to_rownames(is_mout, "ID")
+SA3_imputing1 <- SA3_imputing[1:23,] <- NA
 
-#is_mout %>% replace_with_na_all(condition = ~.x > 1)
+SA3_imputing1 <- rownames_to_column(SA3_imputing, "ID")
 
-#is_mout <- rownames_to_column(is_mout, "ID")
+23*12 
 
-#is_mout <- is_mout[c(1:13)]
+1996 + 276
+  
+sum(is.na(SA3_imputing1))
 
 
 
