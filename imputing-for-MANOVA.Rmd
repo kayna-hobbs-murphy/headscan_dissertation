@@ -1399,13 +1399,26 @@ SA3_imputing1 <- SA3_imputing1[-c(2)]
 sum(is.na(SA3_imputing1))
 ```
 
+Univariate outliers do not seem like outliers based on looking at the data. They are not the max or min of their column.
 
 ```{r}
-#first, set all outliers above to NA, multivariate (whole row) and univariate (measure only)
+#changing univariate specific measures to NA
 
-#DO IMPUTING STEPS HERE
+is_uout <- combin_out1
+
+is_uout <- filter(is_uout, multv_outlier %in% "Not Outlier")
+
+is_uout <- is_uout[c(1,7)]
+
+SA3_imputing2 <- full_join(is_uout, SA3_imputing1, by="ID")
 
 ```
+
+
+```{r}
+
+```
+
 
 
 ```{r}
