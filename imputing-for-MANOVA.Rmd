@@ -1365,7 +1365,7 @@ flextable(combin_out1) %>%
 
 SA3_imputing <- SA3_data2[c(1:13)]
 
-demographic <- SA3_data2[c(1, 14:16)]
+
 ```
 
 ```{r}
@@ -1416,7 +1416,23 @@ SA3_imputing2 <- full_join(is_uout, SA3_imputing1, by="ID")
 
 
 ```{r}
+SA3_imputing1 <- column_to_rownames(SA3_imputing1, "ID")
 
+SA3_num <- select_if(SA3_imputing1, is.numeric)
+
+SA3_imputing1 <- rownames_to_column(SA3_imputing1, "ID")
+
+
+imputed <- imputePCA(SA3_num, ncp=2)
+SA3_imputed <- as.data.frame(imputed$completeObs)
+SA3_imputed <- round(SA3_imputed, 0)
+
+SA3_imputed <- rownames_to_column(SA3_imputed, "ID")
+
+demographic <- SA3_data2[c(1, 14:16)]
+
+
+SA3_imputed <- full_join(SA3_imputed, demographic, by="ID")
 ```
 
 
