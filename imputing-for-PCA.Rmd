@@ -42,6 +42,9 @@ headscan_full1  <- column_to_rownames(headscan_full1,'ID')
 headscan_num <- select_if(headscan_full1, is.numeric)
 headscan_num <- subset(headscan_num, select= -age)
 str(headscan_num)
+
+sum(is.na(headscan_num))
+27*2016
 ```
 
 
@@ -658,6 +661,9 @@ flextable(diff_selected) %>%
   bold(part = "header") %>% 
   set_caption("Differences (mm) Between Imputed and Original SumStats") %>% 
   fit_to_width(7.5) 
+
+sum(diff_selected$na_diff)
+12*2016
 ```
 
 
