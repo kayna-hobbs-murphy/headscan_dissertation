@@ -18,7 +18,6 @@ library(writexl)
 library(extrafont)
 library(missMDA)
 library(psych)
-library(arsenal)
 ```
 
 ```{r table-function}
