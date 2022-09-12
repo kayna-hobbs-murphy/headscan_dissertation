@@ -66,6 +66,30 @@ flextable(PCA_NAs) %>%
                                   measureNAprops = "Proportion of NA values",
                                   measureNAsums = "Count of NA values"))
 ```
+```{r na-measure-count, fig.height=6, fig.width=8}
+PCA_NAs$measure_name <- fct_reorder(PCA_NAs$measure_name, PCA_NAs$measureNAsums, .desc=TRUE)
+
+#bar chart with counts
+ggplot(data=PCA_NAs, aes(x=measure_name, y=measureNAsums))+
+  geom_bar(stat= "identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  labs(title="Missing Values by Measurement Location (Count)",
+       y="Count of Missing Values",
+       x="Measurement Location")
+```
+
+```{r na-measure-prop, fig.height=6, fig.width=8}
+#bar chart with proportions
+ggplot(data=PCA_NAs, aes(x=measure_name, y=measureNAprops))+
+  geom_bar(stat= "identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  labs(title="Missing Values by Measurement Location (Proportion)",
+       y="Proportion of Missing Values",
+       x="Measurement Location")
+
+```
 
 
 
