@@ -1614,103 +1614,73 @@ Chosen_data2 is full dataset with following transformations:
 cm to mm
 small demographic categories to other
 
-
 ```{r}
+out_na <- full_join(all_outliers1, chosen_data2, by="ID")
 
-2016-25
-
-##exclude multivariate outliers
-
-
-
-##imputing multivariate outliers, all steps below
-
-SA3_imputing <- SA3_data2[c(1:13)]
-
-
+out_na <- out_na[-c(17:19)]
+#add demograpic variables back in later
 ```
 
 ```{r}
-#changing multivariate outlier rows to NA
-is_mout <- mult_out[c(1, 19)]
+#change multivariate outliers to NA
 
-SA3_imputing <- full_join(is_mout, SA3_imputing, by="ID")
+sum(is.na(out_na[c(5:16)]))
 
-SA3_imputing1 <- SA3_imputing
+which(out_na == "Multivariate Outlier", arr.ind=TRUE)
 
-which(SA3_imputing1 == "TRUE", arr.ind=TRUE)
+out_na1 <- out_na
 
-SA3_imputing1 <- column_to_rownames(SA3_imputing1, "ID")
+19*12
+
+891+228
+
+out_na1 <- column_to_rownames(out_na1, "ID")
   
-sum(is.na(SA3_imputing1))
+out_na1[1:19,] <- NA
 
-SA3_imputing1[1:23,] <- NA
+out_na1 <- rownames_to_column(out_na1, "ID")
 
-SA3_imputing1 <- rownames_to_column(SA3_imputing1, "ID")
-  
-23*13 
-
-1993 + 299
-  
-sum(is.na(SA3_imputing1))
-
-SA3_imputing1 <- SA3_imputing1[-c(2)]
-
-23*12
-
-sum(is.na(SA3_imputing1))
+sum(is.na(out_na1[c(5:16)]))
 ```
-
-Univariate outliers do not seem like outliers based on looking at the data. They are not the max or min of their column.
 
 ```{r}
-#changing univariate specific measures to NA
-
-is_uout <- combin_out1
-
-is_uout <- filter(is_uout, multv_outlier %in% "Not Outlier")
-
-is_uout <- is_uout[c(1,7)]
-
-SA3_imputing2 <- full_join(is_uout, SA3_imputing1, by="ID")
-
+#which(out_na1 == "AA_C", arr.ind=TRUE)
+#out_na1[20, ]
+#out_na1$AA_C[out_na1$univar_outliers == "AA_C" & out_na1$AA_C == 45] <- NA
+out_na1$AA_C[out_na1$univar_outliers == "AA_C"] <- NA
 ```
-
 
 ```{r}
-SA3_imputing1 <- column_to_rownames(SA3_imputing1, "ID")
-
-SA3_num <- select_if(SA3_imputing1, is.numeric)
-
-SA3_imputing1 <- rownames_to_column(SA3_imputing1, "ID")
-
-
-imputed <- imputePCA(SA3_num, ncp=2)
-SA3_imputed <- as.data.frame(imputed$completeObs)
-SA3_imputed <- round(SA3_imputed, 0)
-
-SA3_imputed <- rownames_to_column(SA3_imputed, "ID")
-
-demographic <- SA3_data2[c(1, 14:16)]
-
-
-SA3_imputed <- full_join(SA3_imputed, demographic, by="ID")
+#which(out_na1 == "BiW_C", arr.ind=TRUE)
+#out_na1[21, ]
+#out_na1$BiW_C[out_na1$univar_outliers == "BiW_C" & out_na1$BiW_C == 188] <- NA
+out_na1$BiW_C[out_na1$univar_outliers == "BiW_C"] <- NA
 ```
-
-
-
 
 ```{r}
-chosen_nona <- anti_join(chosen_data2, all_outliers1, by="ID")
-str(chosen_nona)
+#which(out_na1 == "NRB_L", arr.ind=TRUE)
+#out_na1[22, ]
+#out_na1$NRB_L[out_na1$univar_outliers == "NRB_L" & out_na1$NRB_L == 40] <- NA
+out_na1$NRB_L[out_na1$univar_outliers == "NRB_L"] <- NA
+```
 
-chosen_nona <- chosen_nona %>% drop_na()
+```{r}
+#which(out_na1 == "ProS_L", arr.ind=TRUE)
+#out_na1[23, ]
+#out_na1$ProS_L[out_na1$univar_outliers == "ProS_L" & out_na1$ProS_L == 30] <- NA
+out_na1$ProS_L[out_na1$univar_outliers == "ProS_L"] <- NA
+```
 
+```{r}
+which(out_na1 == "SelP_L", arr.ind=TRUE)
+out_na1[24, ]
+out_na1[25, ]
+
+out_na1$SelP_L[out_na1$univar_outliers == "SelP_L" & out_na1$SelP_L == 51] <- NA
+out_na1$SelP_L[out_na1$univar_outliers == "SelP_L" & out_na1$SelP_L == 52] <- NA
 
 ```
 
 
-IMPUTE FOR PCA AND MANOVA WITH THIS DATASET, see imputing file
-
-
-
+CREATING CHOSEN_NONA
+removing NA values by entire row
