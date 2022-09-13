@@ -18,6 +18,7 @@ library(extrafont)
 library(writexl)
 library(rstatix)
 library(fauxnaif) 
+library(missMDA)
 ```
 
 
@@ -1617,6 +1618,8 @@ small demographic categories to other
 ```{r}
 out_na <- full_join(all_outliers1, chosen_data2, by="ID")
 
+demographics <- chosen_data2[c(1, 14:16)]
+
 out_na <- out_na[-c(17:19)]
 #add demograpic variables back in later
 ```
@@ -1681,6 +1684,61 @@ out_na1$SelP_L[out_na1$univar_outliers == "SelP_L" & out_na1$SelP_L == 52] <- NA
 
 ```
 
+Writing dataset with NA values retained, so they can be analyzed if needed (maybe by demographic)
+
+```{r}
+chosen_withna <- full_join(out_na1, demographics, by="ID")
+chosen_withna <- chosen_withna[-c(2:4)]
+str(chosen_withna)
+```
+
+
 
 CREATING CHOSEN_NONA
 removing NA values by entire row
+```{r}
+chosen_nona <- chosen_withna %>% drop_na()
+str(chosen_nona)
+```
+
+
+IMPUTING
+```{r}
+imputing <- chosen_withna 
+
+imputing <- imputing %>% arrange(ID)
+
+imputing <- column_to_rownames(imputing, "ID")
+
+imputing_num <- select_if(imputing, is.numeric)
+
+#imputing <- rownames_to_column(imputing, "ID")
+
+
+
+#https://rmisstastic.netlify.app/how-to/impute/missimp
+#https://www.youtube.com/watch?v=YDbx2pk9xNY
+
+ncp.pca <- estim_ncpPCA(imputing_num,ncp.min=0, ncp.max=5)$ncp
+
+
+
+imputed <- imputePCA(imputing_num, ncp=ncp.pca)
+chosen_imputed <- as.data.frame(imputed$completeObs)
+chosen_imputed <- round(chosen_imputed, 0)
+
+chosen_imputed <- rownames_to_column(chosen_imputed, "ID")
+
+
+
+chosen_imputed <- full_join(chosen_imputed, demographics, by="ID")
+```
+
+
+```{r}
+#write_xlsx(chosen_withna, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_withna.xlsx")
+#write_xlsx(chosen_nona, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona.xlsx")
+#write_xlsx(chosen_imputed, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed.xlsx")
+```
+
+
