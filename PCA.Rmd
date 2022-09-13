@@ -33,23 +33,6 @@ my_ft_theme <- function(ft, ...) {
 }
 ```
 
-```{r}
-#remove identifiers and demographic data
-
-headscan_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
-
-
-
-str(headscan_full)
-```
-
-
-```{r}
-PCAdata_num <- headscan_full1[c(1,2,4,5,7,8,12,14,16,17,25,27,28)]
-
-PCAdata_full <- headscan_full1[c(1,2,4,5,7,8,12,14,16,17,25,27,28,31,32,33)]
-```
-
 
 ```{r}
 measureNAs <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
@@ -95,37 +78,10 @@ ggplot(data=PCA_NAs, aes(x=measure_name, y=measureNAprops))+
 
 ```{r}
 #PCAdata_num <- PCAdata_num %>% drop_na()
+PCAdata_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona.xlsx")
+PCAdata_num <- select_if(PCAdata_full, is.numeric)
 
 str(PCAdata_num)
-```
-
-
-
-
-```{r}
-PCAdata_full <- left_join(PCAdata_num, PCAdata_full, by= "ID")
-
-PCAdata_full <- PCAdata_full %>% 
-  rename(AA_C = "AA_C.x",
-         BiW_C = "BiW_C.x",
-         BiW_L = "BiW_L.x",
-         GoSub_C = "GoSub_C.x",
-         NRB_L = "NRB_L.x",
-         ProS_L = "ProS_L.x",
-         SelP_L = "SelP_L.x",
-         SelM_L = "SelM_L.x",
-         SnasM_C = "SnasM_C.x",
-         TrSman_C = "TrSman_C.x",
-         TrTr_C = "TrTr_C.x",
-         TrTr_L = "TrTr_L.x")
-
-PCAdata_full <- PCAdata_full[-c(14:25)]
-```
-
-
-```{r}
-PCAdata_num <- PCAdata_num[-c(1)]
-PCAdata_full <- PCAdata_full[-c(1)]
 ```
 
 
@@ -320,7 +276,4 @@ autoplot(pca_res, data=PCAdata_full, colour="age_group",
 ```
 
 
-```{r}
-#write_xlsx(PCAdata_full, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PCAdata_full.xlsx")
-```
 
