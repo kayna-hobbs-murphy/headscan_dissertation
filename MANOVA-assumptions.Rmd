@@ -1,0 +1,29 @@
+---
+title: "MANOVA-equalcovars"
+output: html_document
+date: "2022-08-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+ 
+From Ann:
+
+For MANOVA (= formal analysis), may want to think about how to use “other” or “no answer” categories.
+Also consider whether you want to include all interactions.
+If you do, consider the combination of the two issues above.   
+ 
+When retaining “other” and “no answer” categories, there are a total of
+3 genders (including 14 Other)
+5 races (including 29 Other)
+3 age groups
+This yields a total of 3*5*3 = 45 possible combinations, but only observe 35 total combinations.  Some of those combinations include only 1-2 people.
+
+ADDITIVE MODEL
+ 
+Use summary() to get tests corresponding to predictors.
+For MANOVA there are several possible methods for testing.   
+ 
+Personally, I would not worry about doing Box’s test.  You might mention the corresponding assumption, but I am not inclined to do a formal test.   Or if you really do want to run it, perhaps do it separately by each factor (gender, race, age_group).  
+
