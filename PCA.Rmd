@@ -36,11 +36,11 @@ my_ft_theme <- function(ft, ...) {
 ```{r}
 #remove identifiers and demographic data
 
-headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
+headscan_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
 
 
 
-str(headscan_full1)
+str(headscan_full)
 ```
 
 
@@ -94,7 +94,7 @@ ggplot(data=PCA_NAs, aes(x=measure_name, y=measureNAprops))+
 
 
 ```{r}
-PCAdata_num <- PCAdata_num %>% drop_na()
+#PCAdata_num <- PCAdata_num %>% drop_na()
 
 str(PCAdata_num)
 ```
