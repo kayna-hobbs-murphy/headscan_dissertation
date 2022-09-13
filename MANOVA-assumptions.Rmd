@@ -39,18 +39,6 @@ approximately equal.)
 
 shapiro.test with p value greater than 0.05 (Histograms and QQ plots are usually more informative than the tests, because small sample sizes generally “pass” the test (high p-value, no evidence against normality), and large sample sizes generally “fail” (small p-value, evidence against normality).)
 
- 
-To check for outliers:
-
-Standardized (or studentized) residuals are residuals that have been
-“standardized” by dividing each residual by it’s SE.
-• They have approximately a t-distribution, which is approximately
-normal for moderate sample sizes, so we expect that about 95% of the
-standardized residuals will be between -2 and +2. Values greater in
-absolute value than 3.5 are usually considered outliers.
-• In R, standardized residuals can be found using
-rstandard(ModelObject).
-
 
 To check homogeneity of covariances/equal variance:
 
@@ -80,8 +68,8 @@ For MANOVA, the dependent variables should be somewhat correlated.
 
 STEPS: 
 Power analysis to find sample size - 278
-NAs shouldn't be over 20%
-Find outliers & remove
+NAs shouldn't be over 20% 
+Find outliers & remove (see removing stat outliers or MANOVA imputing)
 Double check correlations
 check assumptions 
 run manova
