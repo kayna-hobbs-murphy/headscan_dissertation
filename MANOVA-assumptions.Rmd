@@ -478,18 +478,20 @@ resid1.1 <-as.data.frame(resid1)
 
 fitted1.1 <- rownames_to_column(fitted1.1, "scan_num")
 
-fitted1.1 <- pivot_longer(fitted1.1, V1:V13, names_to = "variable", values_to = "fitted_vals")
+fitted1.1 <- pivot_longer(fitted1.1, V1:V12, names_to = "variable", values_to = "fitted_vals")
 
 
 resid1.1 <- rownames_to_column(resid1.1, "scan_num")
 
-resid1.1 <- pivot_longer(resid1.1, V1:V13, names_to = "variable", values_to = "resid_vals")
+resid1.1 <- pivot_longer(resid1.1, V1:V12, names_to = "variable", values_to = "resid_vals")
 
 
 
 temp5 <- full_join(fitted1.1, resid1.1, by=c('scan_num', 'variable'))
 str(temp5)
 ```
+
+THIS is the model for reporting, and for use in MANOVA. 
 
 ```{r}
 ggplot(data=temp5, aes(x=fitted_vals, y=resid_vals))+
@@ -562,12 +564,12 @@ resid2.1 <-as.data.frame(resid1_log10)
 
 fitted2.1 <- rownames_to_column(fitted2.1, "scan_num")
 
-fitted2.1 <- pivot_longer(fitted2.1, V1:V13, names_to = "variable", values_to = "fitted_vals")
+fitted2.1 <- pivot_longer(fitted2.1, V1:V12, names_to = "variable", values_to = "fitted_vals")
 
 
 resid2.1 <- rownames_to_column(resid2.1, "scan_num")
 
-resid2.1 <- pivot_longer(resid2.1, V1:V13, names_to = "variable", values_to = "resid_vals")
+resid2.1 <- pivot_longer(resid2.1, V1:V12, names_to = "variable", values_to = "resid_vals")
 
 
 
@@ -642,12 +644,12 @@ resid3.1 <-as.data.frame(resid1_log)
 
 fitted3.1 <- rownames_to_column(fitted3.1, "scan_num")
 
-fitted3.1 <- pivot_longer(fitted3.1, V1:V13, names_to = "variable", values_to = "fitted_vals")
+fitted3.1 <- pivot_longer(fitted3.1, V1:V12, names_to = "variable", values_to = "fitted_vals")
 
 
 resid3.1 <- rownames_to_column(resid3.1, "scan_num")
 
-resid3.1 <- pivot_longer(resid3.1, V1:V13, names_to = "variable", values_to = "resid_vals")
+resid3.1 <- pivot_longer(resid3.1, V1:V12, names_to = "variable", values_to = "resid_vals")
 
 
 
@@ -720,12 +722,12 @@ resid4.1 <-as.data.frame(resid1_sqrt)
 
 fitted4.1 <- rownames_to_column(fitted4.1, "scan_num")
 
-fitted4.1 <- pivot_longer(fitted4.1, V1:V13, names_to = "variable", values_to = "fitted_vals")
+fitted4.1 <- pivot_longer(fitted4.1, V1:V12, names_to = "variable", values_to = "fitted_vals")
 
 
 resid4.1 <- rownames_to_column(resid4.1, "scan_num")
 
-resid4.1 <- pivot_longer(resid4.1, V1:V13, names_to = "variable", values_to = "resid_vals")
+resid4.1 <- pivot_longer(resid4.1, V1:V12, names_to = "variable", values_to = "resid_vals")
 
 
 
