@@ -89,40 +89,40 @@ str(headscan_full)
 ```
 
 ```{r}
-SA3_data <- headscan_full[c(1,2,4,5,7,8,12,14,16,17,25,27,28,31,32,33)]
+chosen_data <- headscan_full[c(1,2,4,5,7,8,12,14,16,17,25,27,28,31,32,33)]
 ```
 
 
 ```{r}
-SA3_NAsums <- colSums(is.na(SA3_data))
+chosen_NAsums <- colSums(is.na(chosen_data))
 
-SA3_NAprops <- colMeans(is.na(SA3_data))
+chosen_NAprops <- colMeans(is.na(chosen_data))
 
-SA3_NAprops1 <- as.data.frame(SA3_NAprops)
-SA3_NAprops1 <- rownames_to_column(SA3_NAprops1, "var_name")
-SA3_NAprops1 <- SA3_NAprops1 %>% slice(-c(1, 29:33))
+chosen_NAprops1 <- as.data.frame(chosen_NAprops)
+chosen_NAprops1 <- rownames_to_column(chosen_NAprops1, "var_name")
+chosen_NAprops1 <- chosen_NAprops1 %>% slice(-c(1, 29:33))
 
-SA3_NAsums1 <- as.data.frame(SA3_NAsums)
-SA3_NAsums1 <- rownames_to_column(SA3_NAsums1, "var_name")
-SA3_NAsums1 <- SA3_NAsums1 %>% slice(-c(1, 29:33))
+chosen_NAsums1 <- as.data.frame(chosen_NAsums)
+chosen_NAsums1 <- rownames_to_column(chosen_NAsums1, "var_name")
+chosen_NAsums1 <- chosen_NAsums1 %>% slice(-c(1, 29:33))
 
-SA3_NAs <- inner_join(SA3_NAprops1, SA3_NAsums1, by = "var_name", desc)
+chosen_NAs <- inner_join(chosen_NAprops1, chosen_NAsums1, by = "var_name", desc)
 
-SA3_NAs$SA3_NAprops<- round(SA3_NAs$SA3_NAprops, digits=4)
+chosen_NAs$chosen_NAprops<- round(chosen_NAs$chosen_NAprops, digits=4)
 
-SA3_NAs$var_name <- fct_reorder(SA3_NAs$var_name, SA3_NAs$SA3_NAsums, .desc=TRUE)
+chosen_NAs$var_name <- fct_reorder(chosen_NAs$var_name, chosen_NAs$chosen_NAsums, .desc=TRUE)
 
-str(SA3_NAs$SA3_name)
+str(chosen_NAs$chosen_name)
 
 #Size 12 Table TNR
-flextable(SA3_NAs) %>%
+flextable(chosen_NAs) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("NA values for each MANOVA Variable") %>% 
+  set_caption("NA values for each Chosen Variable") %>% 
   autofit() %>% 
   set_header_labels(values = list(var_name = "Variable",
-                                  SA3_NAprops = "Proportion of NA values",
-                                  SA3_NAsums = "Count of NA values"))
+                                  chosen_NAprops = "Proportion of NA values",
+                                  chosen_NAsums = "Count of NA values"))
 ```
 
 
@@ -130,46 +130,34 @@ flextable(SA3_NAs) %>%
 
 
 ```{r}
-SA3_data1 <- SA3_data
+chosen_data1 <- chosen_data
 
 #race/eth
-SA3_data1$race_eth <-  
-  recode_factor(SA3_data1$race_eth, 'AIAN'= "Other",
+chosen_data1$race_eth <-  
+  recode_factor(chosen_data1$race_eth, 'AIAN'= "Other",
                 'NHOPI' = "Other",
                 'PTNS' = "Other")
 
 #gender
-SA3_data1$gender <-  
-  recode_factor(SA3_data1$gender, 'Non-binary or Other'= "Other",
+chosen_data1$gender <-  
+  recode_factor(chosen_data1$gender, 'Non-binary or Other'= "Other",
                 'Prefer not to say' = "Other")
 
-SA3_data1$gender[is.na(SA3_data1$gender)]="Other"
+chosen_data1$gender[is.na(chosen_data1$gender)]="Other"
 
 
-summary(SA3_data1)
+summary(chosen_data1)
 ```
 
 
 
 
-#Dr. Erin Buchanan from Missouri State
-If there were missing data categories over 20%, I could replace the data? According to manova-9 notes
-
-Otherwise, it seems like I have to delete the missing values. I did this for PCA as well. 
-
-
 ```{r}
+chosen_data2 <- chosen_data1
 
-SA3_data2 <- SA3_data1 %>% drop_na()
 
-sum(is.na(SA3_data1))
+sum(is.na(chosen_data1))
 
-2016-1710
-```
-#306 observations were deleted when we dropped NAs. That is not bad considering there are 892 missing values
-
-```{r}
-str(SA3_data2)
 ```
 
 
@@ -178,7 +166,7 @@ Next, identify univariate outliers
 
 ```{r}
 #AA_C
-AA_C_out <- SA3_data2 %>% 
+AA_C_out <- chosen_data2 %>% 
   identify_outliers(AA_C)
 
 AA_C_out$extreme_overall <- AA_C_out$is.extreme
@@ -187,7 +175,7 @@ AA_C_out <- AA_C_out[c(1,2,19)]
 
 
 
-AA_C_out1 <- SA3_data2 %>% 
+AA_C_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(AA_C)
 
@@ -198,7 +186,7 @@ AA_C_out1 <- AA_C_out1[c(2,3,19)]
 
 
 
-AA_C_out2 <- SA3_data2 %>% 
+AA_C_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(AA_C)
 
@@ -208,7 +196,7 @@ AA_C_out2 <- AA_C_out2[c(2,3,19)]
 
 
 
-AA_C_out3 <- SA3_data2 %>% 
+AA_C_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(AA_C)
 
@@ -252,7 +240,7 @@ flextable(AA_C_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(AA_C = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=AA_C))+
+ggplot(data=chosen_data2, aes(x=AA_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="AA_C Measurement Distribution",
@@ -263,7 +251,7 @@ ggplot(data=SA3_data2, aes(x=AA_C))+
 
 ```{r}
 #BiW_C
-BiW_C_out <- SA3_data2 %>% 
+BiW_C_out <- chosen_data2 %>% 
   identify_outliers(BiW_C)
 
 BiW_C_out$extreme_overall <- BiW_C_out$is.extreme
@@ -272,7 +260,7 @@ BiW_C_out <- BiW_C_out[c(1,3,19)]
 
 
 
-BiW_C_out1 <- SA3_data2 %>% 
+BiW_C_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(BiW_C)
 
@@ -283,7 +271,7 @@ BiW_C_out1 <- BiW_C_out1[c(2,4,19)]
 
 
 
-BiW_C_out2 <- SA3_data2 %>% 
+BiW_C_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(BiW_C)
 
@@ -293,7 +281,7 @@ BiW_C_out2 <- BiW_C_out2[c(2,4,19)]
 
 
 
-BiW_C_out3 <- SA3_data2 %>% 
+BiW_C_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(BiW_C)
 
@@ -337,7 +325,7 @@ flextable(BiW_C_extreme) %>%
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_C = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=BiW_C))+
+ggplot(data=chosen_data2, aes(x=BiW_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="BiW_C Measurement Distribution",
@@ -348,7 +336,7 @@ ggplot(data=SA3_data2, aes(x=BiW_C))+
 
 ```{r}
 #BiW_L
-BiW_L_out <- SA3_data2 %>% 
+BiW_L_out <- chosen_data2 %>% 
   identify_outliers(BiW_L)
 
 BiW_L_out$extreme_overall <- BiW_L_out$is.extreme
@@ -357,7 +345,7 @@ BiW_L_out <- BiW_L_out[c(1,4,19)]
 
 
 
-BiW_L_out1 <- SA3_data2 %>% 
+BiW_L_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(BiW_L)
 
@@ -368,7 +356,7 @@ BiW_L_out1 <- BiW_L_out1[c(2,5,19)]
 
 
 
-BiW_L_out2 <- SA3_data2 %>% 
+BiW_L_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(BiW_L)
 
@@ -378,7 +366,7 @@ BiW_L_out2 <- BiW_L_out2[c(2,5,19)]
 
 
 
-BiW_L_out3 <- SA3_data2 %>% 
+BiW_L_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(BiW_L)
 
@@ -422,7 +410,7 @@ flextable(BiW_L_extreme) %>%
   fit_to_width(7.5) 
 #%>% set_header_labels(values = list(BiW_L = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=BiW_L))+
+ggplot(data=chosen_data2, aes(x=BiW_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="BiW_L Measurement Distribution",
@@ -434,7 +422,7 @@ ggplot(data=SA3_data2, aes(x=BiW_L))+
 
 ```{r}
 #GoSub_C
-GoSub_C_out <- SA3_data2 %>% 
+GoSub_C_out <- chosen_data2 %>% 
   identify_outliers(GoSub_C)
 
 GoSub_C_out$extreme_overall <- GoSub_C_out$is.extreme
@@ -443,7 +431,7 @@ GoSub_C_out <- GoSub_C_out[c(1,5,19)]
 
 
 
-GoSub_C_out1 <- SA3_data2 %>% 
+GoSub_C_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(GoSub_C)
 
@@ -454,7 +442,7 @@ GoSub_C_out1 <- GoSub_C_out1[c(2,6,19)]
 
 
 
-GoSub_C_out2 <- SA3_data2 %>% 
+GoSub_C_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(GoSub_C)
 
@@ -464,7 +452,7 @@ GoSub_C_out2 <- GoSub_C_out2[c(2,6,19)]
 
 
 
-GoSub_C_out3 <- SA3_data2 %>% 
+GoSub_C_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(GoSub_C)
 
@@ -507,7 +495,7 @@ flextable(GoSub_C_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(GoSub_C = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=GoSub_C))+
+ggplot(data=chosen_data2, aes(x=GoSub_C))+
   geom_bar(stat="bin", bins=30, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="GoSub_C Measurement Distribution",
@@ -519,7 +507,7 @@ ggplot(data=SA3_data2, aes(x=GoSub_C))+
 
 ```{r}
 #NRB_L
-NRB_L_out <- SA3_data2 %>% 
+NRB_L_out <- chosen_data2 %>% 
   identify_outliers(NRB_L)
 
 NRB_L_out$extreme_overall <- NRB_L_out$is.extreme
@@ -528,7 +516,7 @@ NRB_L_out <- NRB_L_out[c(1,6,19)]
 
 
 
-NRB_L_out1 <- SA3_data2 %>% 
+NRB_L_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(NRB_L)
 
@@ -539,7 +527,7 @@ NRB_L_out1 <- NRB_L_out1[c(2,7,19)]
 
 
 
-NRB_L_out2 <- SA3_data2 %>% 
+NRB_L_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(NRB_L)
 
@@ -549,7 +537,7 @@ NRB_L_out2 <- NRB_L_out2[c(2,7,19)]
 
 
 
-NRB_L_out3 <- SA3_data2 %>% 
+NRB_L_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(NRB_L)
 
@@ -593,7 +581,7 @@ flextable(NRB_L_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(NRB_L = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=NRB_L))+
+ggplot(data=chosen_data2, aes(x=NRB_L))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="NRB_L Measurement Distribution",
@@ -606,7 +594,7 @@ ggplot(data=SA3_data2, aes(x=NRB_L))+
 
 ```{r}
 #ProS_L
-ProS_L_out <- SA3_data2 %>% 
+ProS_L_out <- chosen_data2 %>% 
   identify_outliers(ProS_L)
 
 ProS_L_out$extreme_overall <- ProS_L_out$is.extreme
@@ -615,7 +603,7 @@ ProS_L_out <- ProS_L_out[c(1,7,19)]
 
 
 
-ProS_L_out1 <- SA3_data2 %>% 
+ProS_L_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(ProS_L)
 
@@ -626,7 +614,7 @@ ProS_L_out1 <- ProS_L_out1[c(2,8,19)]
 
 
 
-ProS_L_out2 <- SA3_data2 %>% 
+ProS_L_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(ProS_L)
 
@@ -636,7 +624,7 @@ ProS_L_out2 <- ProS_L_out2[c(2,8,19)]
 
 
 
-ProS_L_out3 <- SA3_data2 %>% 
+ProS_L_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(ProS_L)
 
@@ -679,7 +667,7 @@ flextable(ProS_L_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(ProS_L = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=ProS_L))+
+ggplot(data=chosen_data2, aes(x=ProS_L))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="ProS_L Measurement Distribution",
@@ -692,7 +680,7 @@ ggplot(data=SA3_data2, aes(x=ProS_L))+
 SelP_L
 ```{r}
 #SelP_L
-SelP_L_out <- SA3_data2 %>% 
+SelP_L_out <- chosen_data2 %>% 
   identify_outliers(SelP_L)
 
 SelP_L_out$extreme_overall <- SelP_L_out$is.extreme
@@ -701,7 +689,7 @@ SelP_L_out <- SelP_L_out[c(1,8,19)]
 
 
 
-SelP_L_out1 <- SA3_data2 %>% 
+SelP_L_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(SelP_L)
 
@@ -712,7 +700,7 @@ SelP_L_out1 <- SelP_L_out1[c(2,9,19)]
 
 
 
-SelP_L_out2 <- SA3_data2 %>% 
+SelP_L_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(SelP_L)
 
@@ -722,7 +710,7 @@ SelP_L_out2 <- SelP_L_out2[c(2,9,19)]
 
 
 
-SelP_L_out3 <- SA3_data2 %>% 
+SelP_L_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(SelP_L)
 
@@ -765,7 +753,7 @@ flextable(SelP_L_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(SelP_L = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=SelP_L))+
+ggplot(data=chosen_data2, aes(x=SelP_L))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="SelP_L Measurement Distribution",
@@ -778,7 +766,7 @@ ggplot(data=SA3_data2, aes(x=SelP_L))+
 
 ```{r}
 #SelM_L
-SelM_L_out <- SA3_data2 %>% 
+SelM_L_out <- chosen_data2 %>% 
   identify_outliers(SelM_L)
 
 SelM_L_out$extreme_overall <- SelM_L_out$is.extreme
@@ -787,7 +775,7 @@ SelM_L_out <- SelM_L_out[c(1,9,19)]
 
 
 
-SelM_L_out1 <- SA3_data2 %>% 
+SelM_L_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(SelM_L)
 
@@ -798,7 +786,7 @@ SelM_L_out1 <- SelM_L_out1[c(2,10,19)]
 
 
 
-SelM_L_out2 <- SA3_data2 %>% 
+SelM_L_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(SelM_L)
 
@@ -808,7 +796,7 @@ SelM_L_out2 <- SelM_L_out2[c(2,10,19)]
 
 
 
-SelM_L_out3 <- SA3_data2 %>% 
+SelM_L_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(SelM_L)
 
@@ -851,7 +839,7 @@ flextable(SelM_L_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(SelM_L = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=SelM_L))+
+ggplot(data=chosen_data2, aes(x=SelM_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="SelM_L Measurement Distribution",
@@ -863,7 +851,7 @@ ggplot(data=SA3_data2, aes(x=SelM_L))+
 
 ```{r}
 #SnasM_C
-SnasM_C_out <- SA3_data2 %>% 
+SnasM_C_out <- chosen_data2 %>% 
   identify_outliers(SnasM_C)
 
 SnasM_C_out$extreme_overall <- SnasM_C_out$is.extreme
@@ -872,7 +860,7 @@ SnasM_C_out <- SnasM_C_out[c(1,10,19)]
 
 
 
-SnasM_C_out1 <- SA3_data2 %>% 
+SnasM_C_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(SnasM_C)
 
@@ -883,7 +871,7 @@ SnasM_C_out1 <- SnasM_C_out1[c(2,11,19)]
 
 
 
-SnasM_C_out2 <- SA3_data2 %>% 
+SnasM_C_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(SnasM_C)
 
@@ -893,7 +881,7 @@ SnasM_C_out2 <- SnasM_C_out2[c(2,11,19)]
 
 
 
-SnasM_C_out3 <- SA3_data2 %>% 
+SnasM_C_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(SnasM_C)
 
@@ -936,7 +924,7 @@ flextable(SnasM_C_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(SnasM_C = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=SnasM_C))+
+ggplot(data=chosen_data2, aes(x=SnasM_C))+
   geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="SnasM_C Measurement Distribution",
@@ -949,7 +937,7 @@ ggplot(data=SA3_data2, aes(x=SnasM_C))+
 
 ```{r}
 #TrSman_C
-TrSman_C_out <- SA3_data2 %>% 
+TrSman_C_out <- chosen_data2 %>% 
   identify_outliers(TrSman_C)
 
 TrSman_C_out$extreme_overall <- TrSman_C_out$is.extreme
@@ -958,7 +946,7 @@ TrSman_C_out <- TrSman_C_out[c(1,11,19)]
 
 
 
-TrSman_C_out1 <- SA3_data2 %>% 
+TrSman_C_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(TrSman_C)
 
@@ -969,7 +957,7 @@ TrSman_C_out1 <- TrSman_C_out1[c(2,12,19)]
 
 
 
-TrSman_C_out2 <- SA3_data2 %>% 
+TrSman_C_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(TrSman_C)
 
@@ -979,7 +967,7 @@ TrSman_C_out2 <- TrSman_C_out2[c(2,12,19)]
 
 
 
-TrSman_C_out3 <- SA3_data2 %>% 
+TrSman_C_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(TrSman_C)
 
@@ -1022,7 +1010,7 @@ flextable(TrSman_C_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(TrSman_C = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=TrSman_C))+
+ggplot(data=chosen_data2, aes(x=TrSman_C))+
   geom_bar(stat="bin", bins=30, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="TrSman_C Measurement Distribution",
@@ -1034,7 +1022,7 @@ ggplot(data=SA3_data2, aes(x=TrSman_C))+
 
 ```{r}
 #TrTr_C
-TrTr_C_out <- SA3_data2 %>% 
+TrTr_C_out <- chosen_data2 %>% 
   identify_outliers(TrTr_C)
 
 TrTr_C_out$extreme_overall <- TrTr_C_out$is.extreme
@@ -1043,7 +1031,7 @@ TrTr_C_out <- TrTr_C_out[c(1,12,19)]
 
 
 
-TrTr_C_out1 <- SA3_data2 %>% 
+TrTr_C_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(TrTr_C)
 
@@ -1054,7 +1042,7 @@ TrTr_C_out1 <- TrTr_C_out1[c(2,13,19)]
 
 
 
-TrTr_C_out2 <- SA3_data2 %>% 
+TrTr_C_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(TrTr_C)
 
@@ -1064,7 +1052,7 @@ TrTr_C_out2 <- TrTr_C_out2[c(2,13,19)]
 
 
 
-TrTr_C_out3 <- SA3_data2 %>% 
+TrTr_C_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(TrTr_C)
 
@@ -1107,7 +1095,7 @@ flextable(TrTr_C_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(TrTr_C = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=TrTr_C))+
+ggplot(data=chosen_data2, aes(x=TrTr_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="TrTr_C Measurement Distribution",
@@ -1120,7 +1108,7 @@ ggplot(data=SA3_data2, aes(x=TrTr_C))+
 
 ```{r}
 #TrTr_L
-TrTr_L_out <- SA3_data2 %>% 
+TrTr_L_out <- chosen_data2 %>% 
   identify_outliers(TrTr_L)
 
 TrTr_L_out$extreme_overall <- TrTr_L_out$is.extreme
@@ -1129,7 +1117,7 @@ TrTr_L_out <- TrTr_L_out[c(1,13,19)]
 
 
 
-TrTr_L_out1 <- SA3_data2 %>% 
+TrTr_L_out1 <- chosen_data2 %>% 
   group_by(race_eth) %>% 
   identify_outliers(TrTr_L)
 
@@ -1140,7 +1128,7 @@ TrTr_L_out1 <- TrTr_L_out1[c(2,14,19)]
 
 
 
-TrTr_L_out2 <- SA3_data2 %>% 
+TrTr_L_out2 <- chosen_data2 %>% 
   group_by(gender) %>% 
   identify_outliers(TrTr_L)
 
@@ -1150,7 +1138,7 @@ TrTr_L_out2 <- TrTr_L_out2[c(2,14,19)]
 
 
 
-TrTr_L_out3 <- SA3_data2 %>% 
+TrTr_L_out3 <- chosen_data2 %>% 
   group_by(age_group) %>% 
   identify_outliers(TrTr_L)
 
@@ -1193,7 +1181,7 @@ flextable(TrTr_L_extreme) %>%
   autofit
 #%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
 
-ggplot(data=SA3_data2, aes(x=TrTr_L))+
+ggplot(data=chosen_data2, aes(x=TrTr_L))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(title="TrTr_L Measurement Distribution",
@@ -1206,8 +1194,8 @@ ggplot(data=SA3_data2, aes(x=TrTr_L))+
 
 ```{r}
 ##outliers
-mult_out <- SA3_data2
-
+mult_out <- chosen_data2
+mult_out <- mult_out %>% drop_na()
 
 #cutoff <- qchisq(1-.001, ncol(mult_out[ , -c(1,14,15,16)]))
 
@@ -1229,7 +1217,7 @@ mult_out <- mult_out %>%
 ##df
 #summary(mahal < cutoff)
 
-#mult_out2 <- SA3_data2 %>%
+#mult_out2 <- chosen_data2 %>%
  #mahalanobis_distance() %>%
  #filter(is.outlier == TRUE) %>%
   #as.data.frame()
@@ -1347,7 +1335,7 @@ str(combin_out)
 
 ```{r}
 
-combin_out1 <- combin_out[c(1,19,21,22,23,24,25)]
+combin_out1 <- combin_out[c(1,19,25,21,22,23,24)]
 
 combin_out1$offending[is.na(combin_out1$offending)] = "Not Univar Outlier" 
 
@@ -1396,21 +1384,12 @@ flextable(combin_out1) %>%
 ```
 
 
-```{r}
 
-##exclude multivariate outliers
-SA3_noout <- anti_join(SA3_data2, mult_out, by="ID")
-
-1710-19
-
-str(SA3_noout)
-```
 
 
 
 ```{r}
 vis_outliers <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\all_vis_out1.xlsx")
-
 ```
 
 
@@ -1435,6 +1414,8 @@ measurement sumstats are also stat outliers (univariate AND multivariate)
 all_outliers1 <- all_outliers
 
 all_outliers1$truee <- "1"
+
+all_outliers1 <- all_outliers1[c(1:4,9)]
 
 all_outliers1 <- all_outliers1 %>% pivot_wider(names_from = offending, values_from = truee)
 
@@ -1573,6 +1554,7 @@ all_outliers1$univar_outliers <- gsub("&SelP_L&SelM_L", "SelP_L & SelM_L", as.ch
 all_outliers1$univar_outliers <- gsub("&TrSman_C&", "TrSman_C", as.character(all_outliers1$univar_outliers))
 all_outliers1$univar_outliers <- gsub("&SelP_L&", "SelP_L", as.character(all_outliers1$univar_outliers))
 all_outliers1$univar_outliers <- gsub("&AA_C&", "AA_C", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("SnasM_CProS_L", "SnasM_C & ProS_L", as.character(all_outliers1$univar_outliers))
 
 
 all_outliers1 <- all_outliers1 %>% 
@@ -1590,9 +1572,10 @@ all_outliers1$univar_outliers <- all_outliers1$univar_outliers %>%
 ```
 
 ```{r}
-all_outliers1 <- all_outliers1[c(1,2,19,3)]
+all_outliers1 <- all_outliers1[c(1,2,15,3)]
 
 ```
+
 
 
 ```{r}
@@ -1612,6 +1595,120 @@ flextable(all_outliers1) %>%
   autofit() %>% 
   fit_to_width(7.5)
 ```
+
+```{r}
+str_count(all_outliers1, "Not Visual Outlier")
+str_count(all_outliers1, "Not Univariate Outlier")
+str_count(all_outliers1, "Not Multivariate Outlier")
+```
+4 visual outliers
+22 univariate outliers
+19 multivariate outliers
+(overlap between above numbers, total 25 outliers to change to NA)
+
+
+NEXT STEPS:
+
+Chosen_data2 is full dataset with following transformations:
+12 chosen measurement vars
+cm to mm
+small demographic categories to other
+
+
+```{r}
+
+2016-25
+
+##exclude multivariate outliers
+
+
+
+##imputing multivariate outliers, all steps below
+
+SA3_imputing <- SA3_data2[c(1:13)]
+
+
+```
+
+```{r}
+#changing multivariate outlier rows to NA
+is_mout <- mult_out[c(1, 19)]
+
+SA3_imputing <- full_join(is_mout, SA3_imputing, by="ID")
+
+SA3_imputing1 <- SA3_imputing
+
+which(SA3_imputing1 == "TRUE", arr.ind=TRUE)
+
+SA3_imputing1 <- column_to_rownames(SA3_imputing1, "ID")
+  
+sum(is.na(SA3_imputing1))
+
+SA3_imputing1[1:23,] <- NA
+
+SA3_imputing1 <- rownames_to_column(SA3_imputing1, "ID")
+  
+23*13 
+
+1993 + 299
+  
+sum(is.na(SA3_imputing1))
+
+SA3_imputing1 <- SA3_imputing1[-c(2)]
+
+23*12
+
+sum(is.na(SA3_imputing1))
+```
+
+Univariate outliers do not seem like outliers based on looking at the data. They are not the max or min of their column.
+
+```{r}
+#changing univariate specific measures to NA
+
+is_uout <- combin_out1
+
+is_uout <- filter(is_uout, multv_outlier %in% "Not Outlier")
+
+is_uout <- is_uout[c(1,7)]
+
+SA3_imputing2 <- full_join(is_uout, SA3_imputing1, by="ID")
+
+```
+
+
+```{r}
+SA3_imputing1 <- column_to_rownames(SA3_imputing1, "ID")
+
+SA3_num <- select_if(SA3_imputing1, is.numeric)
+
+SA3_imputing1 <- rownames_to_column(SA3_imputing1, "ID")
+
+
+imputed <- imputePCA(SA3_num, ncp=2)
+SA3_imputed <- as.data.frame(imputed$completeObs)
+SA3_imputed <- round(SA3_imputed, 0)
+
+SA3_imputed <- rownames_to_column(SA3_imputed, "ID")
+
+demographic <- SA3_data2[c(1, 14:16)]
+
+
+SA3_imputed <- full_join(SA3_imputed, demographic, by="ID")
+```
+
+
+
+
+```{r}
+chosen_nona <- anti_join(chosen_data2, all_outliers1, by="ID")
+str(chosen_nona)
+
+chosen_nona <- chosen_nona %>% drop_na()
+
+
+```
+
 
 IMPUTE FOR PCA AND MANOVA WITH THIS DATASET, see imputing file
 
