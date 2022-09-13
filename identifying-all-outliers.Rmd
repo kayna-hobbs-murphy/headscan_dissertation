@@ -17,10 +17,21 @@ library(flextable)
 library(extrafont)
 library(writexl)
 library(rstatix)
+library(fauxnaif) 
 ```
 
 
 
+To check for outliers:
+
+Standardized (or studentized) residuals are residuals that have been
+“standardized” by dividing each residual by it’s SE.
+• They have approximately a t-distribution, which is approximately
+normal for moderate sample sizes, so we expect that about 95% of the
+standardized residuals will be between -2 and +2. Values greater in
+absolute value than 3.5 are usually considered outliers.
+• In R, standardized residuals can be found using
+rstandard(ModelObject). (FROM 511/512 notes!)
 
 
 
@@ -1396,7 +1407,213 @@ str(SA3_noout)
 ```
 
 
+
 ```{r}
-#write_xlsx(SA3_noout, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
+vis_outliers <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\all_vis_out1.xlsx")
+
 ```
+
+
+
+```{r}
+filtered_visoutl <- filter(vis_outliers, vis_out %in% c("GoSub_C", 
+                                                      "NRB_L", 
+                                                      "SnasM_C", 
+                                                      "TrSman_C"))
+```
+
+```{r}
+stat_outliers <- combin_out1
+
+all_outliers <- full_join(filtered_visoutl, stat_outliers, by="ID")
+```
+
+all the visual outliers that were changed to NA based on visual assessment of
+measurement sumstats are also stat outliers (univariate AND multivariate)
+
+```{r}
+all_outliers1 <- all_outliers
+
+all_outliers1$truee <- "1"
+
+all_outliers1 <- all_outliers1 %>% pivot_wider(names_from = offending, values_from = truee)
+
+str(all_outliers1)
+```
+
+```{r}
+
+
+all_outliers1[is.na(all_outliers1)]="0"
+
+all_outliers1$`GoSub_C univar` <- as.numeric(all_outliers1$`GoSub_C univar`)
+all_outliers1$`TrSman_C univar` <- as.numeric(all_outliers1$`TrSman_C univar`)
+all_outliers1$`NRB_L univar` <- as.numeric(all_outliers1$`NRB_L univar`)
+all_outliers1$`SnasM_C univar`<- as.numeric(all_outliers1$`SnasM_C univar`)
+all_outliers1$`ProS_L univar` <- as.numeric(all_outliers1$`ProS_L univar`)
+all_outliers1$`SelP_L univar` <- as.numeric(all_outliers1$`SelP_L univar`)
+all_outliers1$`SelM_L univar` <- as.numeric(all_outliers1$`SelM_L univar`)
+all_outliers1$`AA_C univar` <- as.numeric(all_outliers1$`AA_C univar`)
+all_outliers1$`BiW_C univar` <- as.numeric(all_outliers1$`BiW_C univar`)
+
+
+all_outliers1$univar_sum <- all_outliers1$`GoSub_C univar` + 
+                            all_outliers1$`TrSman_C univar` + 
+                            all_outliers1$`NRB_L univar` +
+                            all_outliers1$`SnasM_C univar` + 
+                            all_outliers1$`ProS_L univar` + 
+                            all_outliers1$`SelP_L univar` +
+                            all_outliers1$`SelM_L univar` + 
+                            all_outliers1$`AA_C univar` + 
+                            all_outliers1$`BiW_C univar`
+
+```
+
+```{r}
+
+
+all_outliers1$`GoSub_C univar` <- as.character(all_outliers1$`GoSub_C univar`)
+all_outliers1$`TrSman_C univar` <- as.character(all_outliers1$`TrSman_C univar`)
+all_outliers1$`NRB_L univar` <- as.character(all_outliers1$`NRB_L univar`)
+all_outliers1$`SnasM_C univar`<- as.character(all_outliers1$`SnasM_C univar`)
+all_outliers1$`ProS_L univar` <- as.character(all_outliers1$`ProS_L univar`)
+all_outliers1$`SelP_L univar` <- as.character(all_outliers1$`SelP_L univar`)
+all_outliers1$`SelM_L univar` <- as.character(all_outliers1$`SelM_L univar`)
+all_outliers1$`AA_C univar` <- as.character(all_outliers1$`AA_C univar`)
+all_outliers1$`BiW_C univar` <- as.character(all_outliers1$`BiW_C univar`)
+
+
+
+all_outliers1$`GoSub_C univar`<-  
+  recode_factor(all_outliers1$`GoSub_C univar`, '0'= "no",'1' = "GoSub_C")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`GoSub_C univar` = na_if_in(`GoSub_C univar`, "no"))
+
+
+all_outliers1$`TrSman_C univar`<-  
+  recode_factor(all_outliers1$`TrSman_C univar`, '0'= "no",'1' = "TrSman_C")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`TrSman_C univar` = na_if_in(`TrSman_C univar`, "no"))
+
+
+all_outliers1$`NRB_L univar` <-  
+  recode_factor(all_outliers1$`NRB_L univar`, '0'= "no",'1' = "NRB_L")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`NRB_L univar`= na_if_in(`NRB_L univar`, "no"))
+
+
+all_outliers1$`SnasM_C univar` <-  
+  recode_factor(all_outliers1$`SnasM_C univar`, '0'= "no",'1' = "SnasM_C")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`SnasM_C univar`= na_if_in(`SnasM_C univar`, "no"))
+
+
+all_outliers1$`ProS_L univar` <-  
+  recode_factor(all_outliers1$`ProS_L univar`, '0'= "no",'1' = "ProS_L")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`ProS_L univar`= na_if_in(`ProS_L univar`, "no"))
+
+
+all_outliers1$`SelP_L univar` <-  
+  recode_factor(all_outliers1$`SelP_L univar`, '0'= "no",'1' = "SelP_L")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`SelP_L univar`= na_if_in(`SelP_L univar`, "no"))
+
+
+all_outliers1$`SelM_L univar` <-  
+  recode_factor(all_outliers1$`SelM_L univar`, '0'= "no",'1' = "SelM_L")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`SelM_L univar`= na_if_in(`SelM_L univar`, "no"))
+
+
+all_outliers1$`AA_C univar` <-  
+  recode_factor(all_outliers1$`AA_C univar`, '0'= "no",'1' = "AA_C")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`AA_C univar`= na_if_in(`AA_C univar`, "no"))
+
+
+all_outliers1$`BiW_C univar` <-  
+  recode_factor(all_outliers1$`BiW_C univar`, '0'= "no",'1' = "BiW_C")
+#all_outliers1 <- all_outliers1 %>% 
+  #mutate(`BiW_C univar`= na_if_in(`BiW_C univar`, "no"))
+```
+
+```{r}
+cols <- c("GoSub_C univar",
+          "TrSman_C univar",
+          "NRB_L univar",
+          "SnasM_C univar",
+          "ProS_L univar",
+          "SelP_L univar",
+          "SelM_L univar",
+          "AA_C univar",
+          "BiW_C univar")
+
+
+
+all_outliers1$univar_outliers <- apply( all_outliers1[ , cols], 1, paste, collapse="&")
+
+all_outliers1$univar_outliers <- gsub("no","",as.character(all_outliers1$univar_outliers))
+
+all_outliers1$univar_outliers <- gsub("&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&&&&&","",as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&&&&&&&&&","",as.character(all_outliers1$univar_outliers))
+
+
+	
+  
+all_outliers1$univar_outliers <- gsub("GoSub_C&TrSman_C&", "GoSub_C & TrSman_C", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&SnasM_C&", "SnasM_C", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&SelP_L&SelM_L", "SelP_L & SelM_L", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&TrSman_C&", "TrSman_C", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&SelP_L&", "SelP_L", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("&AA_C&", "AA_C", as.character(all_outliers1$univar_outliers))
+
+
+all_outliers1 <- all_outliers1 %>% 
+  mutate(univar_outliers= na_if_in(univar_outliers, ""))
+
+```
+
+```{r}
+all_outliers1$vis_out <- gsub("0", "Not Visual Outlier", as.character(all_outliers1$vis_out))
+all_outliers1$multv_outlier <- gsub("TRUE", "Multivariate Outlier", as.character(all_outliers1$multv_outlier))
+all_outliers1$multv_outlier <- gsub("Not Outlier", "Not Multivariate Outlier", as.character(all_outliers1$multv_outlier))
+
+all_outliers1$univar_outliers <- all_outliers1$univar_outliers %>% 
+  replace_na("Not Univariate Outlier")
+```
+
+```{r}
+all_outliers1 <- all_outliers1[c(1,2,19,3)]
+
+```
+
+
+```{r}
+#Size 12 Table TNR
+flextable(all_outliers1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Univariate, Multivariate, and Visual Outlier Status") %>% 
+  autofit
+#%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
+
+#Autofit Width Table TNR
+flextable(all_outliers1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Univariate, Multivariate, and Visual Outlier Status") %>% 
+  autofit() %>% 
+  fit_to_width(7.5)
+```
+
+IMPUTE FOR PCA AND MANOVA WITH THIS DATASET, see imputing file
+
+
 
