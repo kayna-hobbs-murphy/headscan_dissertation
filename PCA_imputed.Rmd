@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 title: "PCA-imputed"
+=======
+title: "PCA"
+>>>>>>> 46b8c90c414e4ff6c3b50f981caae7361e490f45
 output:
   word_document: default
   html_document: default
