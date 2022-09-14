@@ -14,9 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(flextable)
 library(readxl)
-library(writexl)
 library(extrafont)
-library(missMDA)
 library(psych)
 ```
 
@@ -35,16 +33,11 @@ my_ft_theme <- function(ft, ...) {
 
 ```{r}
 
-chosen_withna<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_withna.xlsx")
+chosen_withna <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_withna.xlsx")
 
 chosen_withna  <- column_to_rownames(chosen_withna,'ID')
 
-chosen_num<- select_if(chosen_withna, is.numeric)
-#chosen_num <- subset(chosen_num, select= -age)
-str(chosen_num)
-
-sum(is.na(chosen_num))
-27*2016
+chosen_num <- select_if(chosen_withna, is.numeric)
 ```
 
 
