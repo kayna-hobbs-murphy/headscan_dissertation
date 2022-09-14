@@ -1722,6 +1722,8 @@ str(chosen_nona)
 
 IMPUTING
 ```{r}
+
+
 imputing <- chosen_withna 
 
 imputing <- imputing %>% arrange(ID)
@@ -1730,7 +1732,7 @@ imputing <- column_to_rownames(imputing, "ID")
 
 imputing_num <- select_if(imputing, is.numeric)
 
-#imputing <- rownames_to_column(imputing, "ID")
+sum(is.na(imputing_num))
 
 
 
@@ -1754,9 +1756,9 @@ chosen_imputed <- full_join(chosen_imputed, demographics, by="ID")
 
 
 ```{r}
-write_xlsx(chosen_withna, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_withna.xlsx")
-write_xlsx(chosen_nona, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona.xlsx")
-write_xlsx(chosen_imputed, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed.xlsx")
+#write_xlsx(chosen_withna, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_withna.xlsx")
+#write_xlsx(chosen_nona, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona.xlsx")
+#write_xlsx(chosen_imputed, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed.xlsx")
 ```
 
 
