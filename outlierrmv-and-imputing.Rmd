@@ -1382,10 +1382,6 @@ flextable(combin_out1) %>%
 #%>% set_header_labels(values = list(TrTr_L = "Alare/AlareCont"))
 ```
 
-```{r}
-#write_xlsx(combin_out1, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\combin_out1.xlsx")
-```
-
 
 
 
@@ -1558,6 +1554,7 @@ all_outliers1$univar_outliers <- gsub("&TrSman_C&", "TrSman_C", as.character(all
 all_outliers1$univar_outliers <- gsub("&SelP_L&", "SelP_L", as.character(all_outliers1$univar_outliers))
 all_outliers1$univar_outliers <- gsub("&AA_C&", "AA_C", as.character(all_outliers1$univar_outliers))
 all_outliers1$univar_outliers <- gsub("SnasM_CProS_L", "SnasM_C & ProS_L", as.character(all_outliers1$univar_outliers))
+all_outliers1$univar_outliers <- gsub("ProS_LAA_CBiW_C", "AA_C, BiW_C, & ProS_L", as.character(all_outliers1$univar_outliers))
 
 
 all_outliers1 <- all_outliers1 %>% 
@@ -1575,7 +1572,7 @@ all_outliers1$univar_outliers <- all_outliers1$univar_outliers %>%
 ```
 
 ```{r}
-all_outliers1 <- all_outliers1[c(1,2,15,3)]
+all_outliers1 <- all_outliers1[c(1,2,16,3)]
 
 ```
 
@@ -1605,9 +1602,9 @@ str_count(all_outliers1, "Not Univariate Outlier")
 str_count(all_outliers1, "Not Multivariate Outlier")
 ```
 4 visual outliers
-22 univariate outliers
-19 multivariate outliers
-(overlap between above numbers, total 25 outliers to change to NA)
+25 univariate outliers
+18 multivariate outliers
+(overlap between above numbers, total 31 outliers to change to NA)
 
 
 NEXT STEPS:
@@ -1635,13 +1632,13 @@ which(out_na == "Multivariate Outlier", arr.ind=TRUE)
 
 out_na1 <- out_na
 
-19*12
+18*12
 
-891+228
+891+216
 
 out_na1 <- column_to_rownames(out_na1, "ID")
   
-out_na1[1:19,] <- NA
+out_na1[1:18,] <- NA
 
 out_na1 <- rownames_to_column(out_na1, "ID")
 
@@ -1653,6 +1650,7 @@ sum(is.na(out_na1[c(5:16)]))
 #out_na1[20, ]
 #out_na1$AA_C[out_na1$univar_outliers == "AA_C" & out_na1$AA_C == 45] <- NA
 out_na1$AA_C[out_na1$univar_outliers == "AA_C"] <- NA
+out_na1$AA_C[out_na1$univar_outliers == "AA_C, BiW_C, & ProS_L"] <- NA
 ```
 
 ```{r}
@@ -1660,6 +1658,7 @@ out_na1$AA_C[out_na1$univar_outliers == "AA_C"] <- NA
 #out_na1[21, ]
 #out_na1$BiW_C[out_na1$univar_outliers == "BiW_C" & out_na1$BiW_C == 188] <- NA
 out_na1$BiW_C[out_na1$univar_outliers == "BiW_C"] <- NA
+out_na1$BiW_C[out_na1$univar_outliers == "AA_C, BiW_C, & ProS_L"] <- NA
 ```
 
 ```{r}
@@ -1674,17 +1673,34 @@ out_na1$NRB_L[out_na1$univar_outliers == "NRB_L"] <- NA
 #out_na1[23, ]
 #out_na1$ProS_L[out_na1$univar_outliers == "ProS_L" & out_na1$ProS_L == 30] <- NA
 out_na1$ProS_L[out_na1$univar_outliers == "ProS_L"] <- NA
+out_na1$ProS_L[out_na1$univar_outliers == "AA_C, BiW_C, & ProS_L"] <- NA
 ```
 
 ```{r}
-which(out_na1 == "SelP_L", arr.ind=TRUE)
-out_na1[24, ]
-out_na1[25, ]
+#which(out_na1 == "SelP_L", arr.ind=TRUE)
+#out_na1[24, ]
+#out_na1[25, ]
 
-out_na1$SelP_L[out_na1$univar_outliers == "SelP_L" & out_na1$SelP_L == 51] <- NA
-out_na1$SelP_L[out_na1$univar_outliers == "SelP_L" & out_na1$SelP_L == 52] <- NA
+#out_na1$SelP_L[out_na1$univar_outliers == "SelP_L" & out_na1$SelP_L == 51] <- NA
+#out_na1$SelP_L[out_na1$univar_outliers == "SelP_L" & out_na1$SelP_L == 52] <- NA
+
+out_na1$SelP_L[out_na1$univar_outliers == "SelP_L"] <- NA
 
 ```
+
+
+```{r}
+#which(out_na1 == "SelM_L", arr.ind=TRUE)
+
+out_na1$SelM_L[out_na1$univar_outliers == "SelM_L"] <- NA
+```
+
+```{r}
+#which(out_na1 == "TrSman_C", arr.ind=TRUE)
+
+out_na1$TrSman_C[out_na1$univar_outliers == "TrSman_C"] <- NA
+```
+
 
 Writing dataset with NA values retained, so they can be analyzed if needed (maybe by demographic)
 
@@ -1738,9 +1754,9 @@ chosen_imputed <- full_join(chosen_imputed, demographics, by="ID")
 
 
 ```{r}
-#write_xlsx(chosen_withna, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_withna.xlsx")
-#write_xlsx(chosen_nona, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona.xlsx")
-#write_xlsx(chosen_imputed, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed.xlsx")
+write_xlsx(chosen_withna, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_withna.xlsx")
+write_xlsx(chosen_nona, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona.xlsx")
+write_xlsx(chosen_imputed, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed.xlsx")
 ```
 
 
