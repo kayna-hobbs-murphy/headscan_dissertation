@@ -132,19 +132,21 @@ flextable(chosen_NAs) %>%
 
 ```{r}
 chosen_data1 <- chosen_data
+#USE THIS LATER FOR MANOVA
+
 
 #race/eth
-chosen_data1$race_eth <-  
-  recode_factor(chosen_data1$race_eth, 'AIAN'= "Other",
-                'NHOPI' = "Other",
-                'PTNS' = "Other")
+#chosen_data1$race_eth <-  
+  #recode_factor(chosen_data1$race_eth, 'AIAN'= "Other",
+                #'NHOPI' = "Other",
+                #'PTNS' = "Other")
 
 #gender
-chosen_data1$gender <-  
-  recode_factor(chosen_data1$gender, 'Non-binary or Other'= "Other",
-                'Prefer not to say' = "Other")
+#chosen_data1$gender <-  
+  #recode_factor(chosen_data1$gender, 'Non-binary or Other'= "Other",
+                #'Prefer not to say' = "Other")
 
-chosen_data1$gender[is.na(chosen_data1$gender)]="Other"
+#chosen_data1$gender[is.na(chosen_data1$gender)]="Other"
 
 
 summary(chosen_data1)

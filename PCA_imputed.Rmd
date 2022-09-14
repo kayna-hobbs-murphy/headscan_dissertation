@@ -1,6 +1,8 @@
 ---
-title: "PCA_imputed"
-output: html_document
+title: "PCA"
+output:
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -32,74 +34,14 @@ my_ft_theme <- function(ft, ...) {
 ```
 
 ```{r}
-#remove identifiers and demographic data
-
-imputed_data<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\imputed_data.xlsx")
-
-
-
-str(imputed_data)
-```
-
-
-```{r}
-PCAimp_num <- imputed_data[c(1,2,4,5,7,8,12,14,16,17,25,27,28)]
-
-PCAimp_full <- imputed_data[c(1,2,4,5,7,8,12,14,16,17,25,27,28,31,32,33)]
-```
-
-
-```{r}
-#measureNAs <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
-
-#PCA_NAs <- slice(measureNAs, c(1,3,4,6,7,11,13,15,16,24,26,27))
-
-#Size 12 Table TNR
-#flextable(PCA_NAs) %>%
-  #my_ft_theme()%>% 
-  #bold(part = "header") %>% 
-  #set_caption("NA values for PCA Measurement Locations, total 891 NA values") %>% 
-  #autofit() %>% 
-  #set_header_labels(values = list(measure_name = "Measurement Location",
-                                  #measureNAprops = "Proportion of NA values",
-                                 # measureNAsums = "Count of NA values"))
-```
+#PCAdata_num <- PCAdata_num %>% drop_na()
+PCAdata_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed.xlsx")
 
 
 
-```{r}
-#PCAimp_num <- PCAimp_num %>% drop_na()
+PCAdata_num <- select_if(PCAdata_full, is.numeric)
 
-#str(PCAimp_num)
-```
-
-
-
-
-```{r}
-PCAimp_full <- left_join(PCAimp_num, PCAimp_full, by= "ID")
-
-PCAimp_full <- PCAimp_full %>% 
-  rename(AA_C = "AA_C.x",
-         BiW_C = "BiW_C.x",
-         BiW_L = "BiW_L.x",
-         GoSub_C = "GoSub_C.x",
-         NRB_L = "NRB_L.x",
-         ProS_L = "ProS_L.x",
-         SelP_L = "SelP_L.x",
-         SelM_L = "SelM_L.x",
-         SnasM_C = "SnasM_C.x",
-         TrSman_C = "TrSman_C.x",
-         TrTr_C = "TrTr_C.x",
-         TrTr_L = "TrTr_L.x")
-
-PCAimp_full <- PCAimp_full[-c(14:25)]
-```
-
-
-```{r}
-PCAimp_num <- PCAimp_num[-c(1)]
-PCAimp_full <- PCAimp_full[-c(1)]
+str(PCAdata_num)
 ```
 
 
@@ -107,27 +49,27 @@ PCAimp_full <- PCAimp_full[-c(1)]
 #https://www.statology.org/principal-components-analysis-in-r/
 
 #calculate principal components
-pca_res_imp<- prcomp(PCAimp_num, scale=TRUE)
+pca_res <- prcomp(PCAdata_num, scale=TRUE)
 
 #reverse the signs (R calculates eigenvectors in negative direction)
-pca_res_imp$rotation <- -1*pca_res_imp$rotation
+pca_res$rotation <- -1*pca_res$rotation
 
 #display PCs
-pca_res_imp$rotation
+pca_res$rotation
 ```
 
 
 ```{r}
-imp_var = pca_res_imp$sdev^2 / sum(pca_res_imp$sdev^2)
+var_explained = pca_res$sdev^2 / sum(pca_res$sdev^2)
 
-imp_var_total <- imp_var
+var_explained_total <- var_explained
 ```
 
 
 
 
 ```{r, fig.width=5, fig.height=4}
-qplot(c(1:12), imp_var) + 
+qplot(c(1:12), var_explained) + 
   geom_line() + 
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   xlab("Principal Component") + 
@@ -139,22 +81,22 @@ qplot(c(1:12), imp_var) +
 
 
 ```{r}
-imp_var_data <- data.frame(imp_var)
+var_explained_data <- data.frame(var_explained)
 
-imp_var_data <- imp_var_data %>% 
-  rename(v_e = "imp_var")
+var_explained_data <- var_explained_data %>% 
+  rename(v_e = "var_explained")
 
 
-imp_var_data$vep <- imp_var_data$v_e
+var_explained_data$vep <- var_explained_data$v_e
 
-imp_var_data <- rownames_to_column(imp_var_data, "PC_num")
+var_explained_data <- rownames_to_column(var_explained_data, "PC_num")
 
-imp_var_data$vep <- percent(imp_var_data$vep, accuracy=0.01)
+var_explained_data$vep <- percent(var_explained_data$vep, accuracy=0.01)
 
-imp_var_data$PC_num <- as.factor(imp_var_data$PC_num)
+var_explained_data$PC_num <- as.factor(var_explained_data$PC_num)
 
-imp_var_data$PC_num <- 
-  recode_factor(imp_var_data$PC_num, 
+var_explained_data$PC_num <- 
+  recode_factor(var_explained_data$PC_num, 
                 '1'= "PC1",
                 '2'= "PC2",
                 '3'= "PC3",
@@ -170,7 +112,7 @@ imp_var_data$PC_num <-
 ```
 
 ```{r}
-ggplot(data=imp_var_data, aes(x=PC_num, y=v_e, group=1)) + 
+ggplot(data=var_explained_data, aes(x=PC_num, y=v_e, group=1)) + 
   geom_line() +
   geom_point() + 
   geom_text(aes(label=vep),
@@ -190,19 +132,19 @@ ggplot(data=imp_var_data, aes(x=PC_num, y=v_e, group=1)) +
 ```{r}
 
 #making plot axis match the ggplot versions in PCA2.Rmd!!! 
-#compare to PCAimp_full1 pc1 and pc2 columns (should be same sign, here times 100)
-pca_res_imp$x <- pca_res_imp$x * 100
-pca_res_imp$x[,1] <- pca_res_imp$x[,1] * -1
-#pca_res_imp$x <- pca_res_imp$x[,2] * 100
+#compare to PCAdata_full1 pc1 and pc2 columns (should be same sign, here times 100)
+pca_res$x <- pca_res$x * 100
+pca_res$x[,1] <- pca_res$x[,1] * -1
+#pca_res$x <- pca_res$x[,2] * 100
 
-#pca_res_imp$x
+#pca_res$x
 ```
 
 
 #https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html
 
 ```{r, fig.width=8, fig.height=5}
-autoplot(pca_res_imp, data=PCAimp_full)+
+autoplot(pca_res, data=PCAdata_full)+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+  
@@ -213,7 +155,7 @@ autoplot(pca_res_imp, data=PCAimp_full)+
 
 
 ```{r, fig.width=8, fig.height=5}
-autoplot(pca_res_imp, data=PCAimp_full, colour="race_eth")+
+autoplot(pca_res, data=PCAdata_full, colour="race_eth")+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
   theme_bw() + theme(text=element_text(family= "Times New Roman")) +
@@ -223,7 +165,7 @@ autoplot(pca_res_imp, data=PCAimp_full, colour="race_eth")+
        color = "Race/Ethnicity")
 ```
 ```{r, fig.width=8, fig.height=5}
-autoplot(pca_res_imp, data=PCAimp_full, colour="race_eth",
+autoplot(pca_res, data=PCAdata_full, colour="race_eth",
          loadings = TRUE, loadings.colour = 'blue',
          loadings.label = TRUE, loadings.label.size = 3)+
   geom_hline(yintercept = 0, lty = 2) +
@@ -242,7 +184,7 @@ but cannot add loadings to plot in PCA2 with ellipses
 
 
 ```{r, fig.width=8, fig.height=5}
-autoplot(pca_res_imp, data=PCAimp_full, colour="gender")+
+autoplot(pca_res, data=PCAdata_full, colour="gender")+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
@@ -253,7 +195,7 @@ autoplot(pca_res_imp, data=PCAimp_full, colour="gender")+
 ```
 
 ```{r, fig.width=8, fig.height=5}
-autoplot(pca_res_imp, data=PCAimp_full, colour="gender",
+autoplot(pca_res, data=PCAdata_full, colour="gender",
          loadings = TRUE, loadings.colour = 'blue',
          loadings.label = TRUE, loadings.label.size = 3)+
   geom_hline(yintercept = 0, lty = 2) +
@@ -268,7 +210,7 @@ autoplot(pca_res_imp, data=PCAimp_full, colour="gender",
 
 
 ```{r, fig.width=8, fig.height=5}
-autoplot(pca_res_imp, data=PCAimp_full, colour="age_group")+
+autoplot(pca_res, data=PCAdata_full, colour="age_group")+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
@@ -280,7 +222,7 @@ autoplot(pca_res_imp, data=PCAimp_full, colour="age_group")+
 
 
 ```{r, fig.width=8, fig.height=5}
-autoplot(pca_res_imp, data=PCAimp_full, colour="age_group",
+autoplot(pca_res, data=PCAdata_full, colour="age_group",
          loadings = TRUE, loadings.colour = 'blue',
          loadings.label = TRUE, loadings.label.size = 3)+
   geom_hline(yintercept = 0, lty = 2) +
@@ -294,9 +236,4 @@ autoplot(pca_res_imp, data=PCAimp_full, colour="age_group",
 ```
 
 
-```{r}
-imp_selected <- PCAimp_full
-
-#write_xlsx(imp_selected, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\imp_selected.xlsx")
-```
 

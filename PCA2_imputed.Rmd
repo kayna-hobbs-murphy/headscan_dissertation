@@ -24,7 +24,7 @@ library(FactoMineR) #PCA
 
 
 ```{r}
-imp_selected<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\imp_selected.xlsx")
+imp_selected<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed.xlsx")
 
 str(imp_selected)
 ```

@@ -23,7 +23,7 @@ library(FactoMineR) #PCA
 
 
 ```{r}
-PCAdata_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PCAdata_full.xlsx")
+PCAdata_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona.xlsx")
 
 str(PCAdata_full)
 ```

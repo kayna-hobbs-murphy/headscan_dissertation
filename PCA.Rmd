@@ -79,6 +79,9 @@ ggplot(data=PCA_NAs, aes(x=measure_name, y=measureNAprops))+
 ```{r}
 #PCAdata_num <- PCAdata_num %>% drop_na()
 PCAdata_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona.xlsx")
+
+
+
 PCAdata_num <- select_if(PCAdata_full, is.numeric)
 
 str(PCAdata_num)
