@@ -32,21 +32,21 @@ my_ft_theme <- function(ft, ...) {
 ##EXPLORE HEADSCAN ORIGINAL DEMOGRAPHICS##
 update dataframe
 ```{r}
-PCAdata_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PCAdata_full.xlsx")
+chosen_withna<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_withna.xlsx")
 
-PCAdata_full$gender<-as.factor(PCAdata_full$gender)
-PCAdata_full$race_eth<-as.factor(PCAdata_full$race_eth)
-PCAdata_full$age_group<-as.factor(PCAdata_full$age_group)
+chosen_withna$gender<-as.factor(chosen_withna$gender)
+chosen_withna$race_eth<-as.factor(chosen_withna$race_eth)
+chosen_withna$age_group<-as.factor(chosen_withna$age_group)
 
 
-str(PCAdata_full)
+str(chosen_withna)
 ```
 
 
 
 
 ```{r}
-PCAdata_full %>% 
+chosen_withna %>% 
   ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count)))))+
   geom_bar(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
@@ -55,7 +55,7 @@ PCAdata_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Race/Ethnicity Frequency",
-       subtitle="PCA data",
+       subtitle="With NA values and all demographics retained",
        y="Count",
        x="Race/Ethnicity")
 ```
@@ -63,7 +63,7 @@ PCAdata_full %>%
 
 
 ```{r}
-PCAdata_full %>% 
+chosen_withna %>% 
   ggplot(aes(x=fct_infreq(gender), label=scales::percent(prop.table(stat(count)))))+
   geom_bar(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
@@ -72,7 +72,7 @@ PCAdata_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Gender Frequency",
-       subtitle="PCA data",
+       subtitle="With NA values and all demographics retained",
        y="Count",
        x="Gender")
 ```
@@ -80,7 +80,7 @@ PCAdata_full %>%
 
 
 ```{r}
-PCAdata_full %>% 
+chosen_withna %>% 
   ggplot(aes(x=fct_infreq(age_group), label=scales::percent(prop.table(stat(count)))))+
   geom_bar(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
@@ -89,7 +89,10 @@ PCAdata_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Age Group Frequency",
-       subtitle="PCA data",
+       subtitle="With NA values and all demographics retained",
        y="Count",
        x="Age Group")
 ```
+
+
+
