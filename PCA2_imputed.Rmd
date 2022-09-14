@@ -98,7 +98,7 @@ ggplot(data = imp_selected1, aes(x = pc1, y = pc2)) +
   geom_point()+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="PCA plot")+
+       title="PCA Plot: Imputed Data")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```
 
@@ -110,7 +110,7 @@ ggplot(data = imp_selected1, aes(x = pc1, y = pc2, color = race_eth)) +
       geom_point(alpha = 0.8) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Race/Ethnicities PCA plot",
+       title = "All Race/Ethnicities PCA Plot: Imputed Data",
        color = "Race/Ethnicity")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```
@@ -128,7 +128,7 @@ ggplot(data = imp_selected1, aes(x = pc1, y = pc2, color = race_eth)) +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Race/Ethnicities PCA plot",
+       title = "All Race/Ethnicities PCA Plot: Imputed Data",
        color = "Race/Ethnicity")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```
@@ -171,7 +171,7 @@ ggplot(data = PCAdata_race_eth, aes(x = pc1, y = pc2, color = race_eth)) +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="Four Most Common Race/Ethnicities PCA plot",
+       title="Four Most Common Race/Ethnicities PCA Plot: Imputed Data",
        color = "Race/Ethnicity")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```
@@ -192,7 +192,7 @@ PCAdata_race_eth_nas %>%
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="Four Most Common Race/Ethnicities PCA plot",
+       title="Four Most Common Race/Ethnicities PCA Plot: Imputed Data",
        subtitle="Other Race/Ethnicities not shown",
        color = "Race/Ethnicity")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
@@ -227,7 +227,7 @@ ggplot(data = PCAdata_race_eth1, aes(x = pc1, y = pc2, color = race_eth)) +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="Black and Asian Race/Ethnicities PCA plot",
+       title="Black and Asian Race/Ethnicities PCA Plot: Imputed Data",
        color = "Race/Ethnicity")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```
@@ -247,7 +247,7 @@ PCAdata_race_eth_nas1 %>%
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="Black and Asian Race/Ethnicities PCA plot",
+       title="Black and Asian Race/Ethnicities PCA Plot: Imputed Data",
        subtitle = "Other Race/Ethnicities not shown",
        color = "Race/Ethnicity")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
@@ -261,7 +261,7 @@ ggplot(data = imp_selected1, aes(x = pc1, y = pc2, color = gender)) +
       geom_point(alpha = 0.8) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Genders PCA plot",
+       title = "All Genders PCA Plot: Imputed Data",
        color= "Gender")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```
@@ -280,7 +280,7 @@ ggplot(data = imp_selected1, aes(x = pc1, y = pc2, color = gender)) +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="All Genders PCA plot",
+       title="All Genders PCA Plot: Imputed Data",
        color= "Gender")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```
@@ -315,7 +315,7 @@ ggplot(data = PCAdata_gender, aes(x = pc1, y = pc2, color = gender)) +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="Two Most Common Genders PCA plot",
+       title="Two Most Common Genders PCA Plot: Imputed Data",
        color = "Gender")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```
@@ -336,7 +336,7 @@ PCAdata_gender_nas %>%
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="Four Most Common Genders PCA plot",
+       title="Four Most Common Genders PCA Plot: Imputed Data",
        subtitle="Other Genders not shown",
        color = "Gender")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
@@ -352,7 +352,7 @@ ggplot(data = imp_selected1, aes(x = pc1, y = pc2, color = age_group)) +
       geom_point(alpha = 0.8) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Age Groups PCA plot",
+       title = "All Age Groups PCA Plot: Imputed Data",
        color= "Age Group")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```
@@ -371,7 +371,7 @@ ggplot(data = imp_selected1, aes(x = pc1, y = pc2, color = age_group)) +
   #theme(panel.grid = element_blank(), panel.border = element_rect(fill= "transparent"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Age Groups PCA plot",
+       title = "All Age Groups PCA Plot: Imputed Data",
        color= "Age Group")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))
 ```

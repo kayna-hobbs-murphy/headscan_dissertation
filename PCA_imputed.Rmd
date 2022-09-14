@@ -1,9 +1,5 @@
 ---
-<<<<<<< HEAD
 title: "PCA-imputed"
-=======
-title: "PCA"
->>>>>>> 46b8c90c414e4ff6c3b50f981caae7361e490f45
 output:
   word_document: default
   html_document: default
@@ -78,7 +74,7 @@ qplot(c(1:12), var_explained) +
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   xlab("Principal Component") + 
   ylab("Variance Explained (proportion)") +
-  ggtitle("Scree Plot") +
+  ggtitle("Scree Plot: Imputed Data") +
   ylim(0, 1) +
   scale_x_discrete(limits=c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9","PC10","PC11","PC12")) 
 ```
@@ -127,7 +123,7 @@ ggplot(data=var_explained_data, aes(x=PC_num, y=v_e, group=1)) +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank() 
         )+
-  labs(title="Scree Plot",
+  labs(title="Scree Plot: Imputed Data",
        x="Principal Component",
        y="Total Variance Explained")
 ```
@@ -154,7 +150,7 @@ autoplot(pca_res, data=PCAdata_full)+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+  
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title="PCA plot")
+       title="PCA Plot: Imputed Data")
 ```
 
 
@@ -165,7 +161,7 @@ autoplot(pca_res, data=PCAdata_full, colour="race_eth")+
   theme_bw() + theme(text=element_text(family= "Times New Roman")) +
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Race/Ethnicities PCA plot",
+       title = "All Race/Ethnicities PCA Plot: Imputed Data",
        color = "Race/Ethnicity")
 ```
 ```{r, fig.width=8, fig.height=5}
@@ -177,7 +173,7 @@ autoplot(pca_res, data=PCAdata_full, colour="race_eth",
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Race/Ethnicities PCA plot",
+       title = "All Race/Ethnicities PCA Plot: Imputed Data",
        subtitle = "with factor loadings",
        color = "Race/Ethnicity")
 ```
@@ -194,7 +190,7 @@ autoplot(pca_res, data=PCAdata_full, colour="gender")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Genders PCA plot",
+       title = "All Genders PCA Plot: Imputed Data",
        color = "Gender")
 ```
 
@@ -207,7 +203,7 @@ autoplot(pca_res, data=PCAdata_full, colour="gender",
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Genders PCA plot",
+       title = "All Genders PCA Plot: Imputed Data",
        subtitle = "with factor loadings",
        color = "Gender")
 ```
@@ -220,7 +216,7 @@ autoplot(pca_res, data=PCAdata_full, colour="age_group")+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Age Groups PCA plot",
+       title = "All Age Groups PCA Plot: Imputed Data",
        color = "Age Group")
 ```
 
@@ -234,7 +230,7 @@ autoplot(pca_res, data=PCAdata_full, colour="age_group",
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
-       title = "All Age Groups PCA plot",
+       title = "All Age Groups PCA Plot: Imputed Data",
        subtitle = "with factor loadings",
        color = "Age Group")
 ```

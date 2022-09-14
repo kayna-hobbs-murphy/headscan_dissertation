@@ -295,7 +295,7 @@ PCAdata_gender$gender <-
 PCAdata_gender$gender[is.na(PCAdata_gender$gender)]="Other"
 
 PCAdata_gender_nas <- PCAdata_full1 %>% 
-  mutate(gender = na_if_in(gender, c("Non-binary or Other", "Prefer not to say")))
+  mutate(gender = na_if_in(gender, c("Non-binary or Other", "Prefer not to say", "Other")))
 
 str(PCAdata_gender$gender)
 str(PCAdata_gender_nas$gender)
