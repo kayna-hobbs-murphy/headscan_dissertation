@@ -1,0 +1,304 @@
+---
+title: "exploring-demo-postimpute"
+output:
+  word_document: default
+  html_document: default
+date: "2022-09-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+library(readxl)
+library(flextable)
+library(writexl)
+library(extrafont)
+library(forcats)
+```
+
+```{r table-function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
+```{r}
+chosen_withna<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_withna.xlsx")
+
+chosen_withna$gender<-as.factor(chosen_withna$gender)
+chosen_withna$race_eth<-as.factor(chosen_withna$race_eth)
+chosen_withna$age_group<-as.factor(chosen_withna$age_group)
+
+
+str(chosen_withna)
+```
+
+
+```{r}
+chosen_withna1 <- chosen_withna
+
+#race/eth
+chosen_withna1$race_eth <-  
+  recode_factor(chosen_withna1$race_eth, 'AIAN'= "Other",
+                'NHOPI' = "Other",
+                'PTNS' = "Other")
+
+#gender
+chosen_withna1$gender <-  
+  recode_factor(chosen_withna1$gender, 'Non-binary or Other'= "Other",
+                'Prefer not to say' = "Other")
+
+chosen_withna1$gender[is.na(chosen_withna1$gender)]="Other"
+
+summary(chosen_withna1)
+```
+
+
+```{r}
+chosen_withna1 %>% 
+  ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Race/Ethnicity Frequency",
+       subtitle="With NA values retained and demographics abbreviated",
+       y="Count",
+       x="Race/Ethnicity")
+```
+
+
+
+```{r}
+chosen_withna1 %>% 
+  ggplot(aes(x=fct_infreq(gender), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Gender Frequency",
+       subtitle="With NA values retained and demographics abbreviated",
+       y="Count",
+       x="Gender")
+```
+
+
+
+```{r}
+chosen_withna1 %>% 
+  ggplot(aes(x=fct_infreq(age_group), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Group Frequency",
+       subtitle="With NA values retained and demographics abbreviated",
+       y="Count",
+       x="Age Group")
+```
+
+
+
+
+
+
+
+
+```{r}
+chosen_nona<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona.xlsx")
+
+chosen_nona$gender<-as.factor(chosen_nona$gender)
+chosen_nona$race_eth<-as.factor(chosen_nona$race_eth)
+chosen_nona$age_group<-as.factor(chosen_nona$age_group)
+
+
+str(chosen_nona)
+```
+
+```{r}
+chosen_nona1 <- chosen_nona
+
+#race/eth
+chosen_nona1$race_eth <-  
+  recode_factor(chosen_nona1$race_eth, 'AIAN'= "Other",
+                'NHOPI' = "Other",
+                'PTNS' = "Other")
+
+#gender
+chosen_nona1$gender <-  
+  recode_factor(chosen_nona1$gender, 'Non-binary or Other'= "Other",
+                'Prefer not to say' = "Other")
+
+chosen_nona1$gender[is.na(chosen_nona1$gender)]="Other"
+
+summary(chosen_nona1)
+```
+
+
+
+```{r}
+chosen_nona1 %>% 
+  ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Race/Ethnicity Frequency",
+       subtitle="With NA values removed and demographics abbreviated",
+       y="Count",
+       x="Race/Ethnicity")
+```
+
+
+
+```{r}
+chosen_nona1 %>% 
+  ggplot(aes(x=fct_infreq(gender), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Gender Frequency",
+       subtitle="With NA values removed and demographics abbreviated",
+       y="Count",
+       x="Gender")
+```
+
+
+
+```{r}
+chosen_nona1 %>% 
+  ggplot(aes(x=fct_infreq(age_group), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Group Frequency",
+       subtitle="With NA values removed and demographics abbreviated",
+       y="Count",
+       x="Age Group")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+chosen_imputed<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed.xlsx")
+
+chosen_imputed$gender<-as.factor(chosen_imputed$gender)
+chosen_imputed$race_eth<-as.factor(chosen_imputed$race_eth)
+chosen_imputed$age_group<-as.factor(chosen_imputed$age_group)
+
+
+str(chosen_imputed)
+```
+
+```{r}
+chosen_imputed1 <- chosen_imputed
+
+#race/eth
+chosen_imputed1$race_eth <-  
+  recode_factor(chosen_imputed1$race_eth, 'AIAN'= "Other",
+                'NHOPI' = "Other",
+                'PTNS' = "Other")
+
+#gender
+chosen_imputed1$gender <-  
+  recode_factor(chosen_imputed1$gender, 'Non-binary or Other'= "Other",
+                'Prefer not to say' = "Other")
+
+chosen_imputed1$gender[is.na(chosen_imputed1$gender)]="Other"
+
+summary(chosen_imputed1)
+```
+
+
+```{r}
+chosen_imputed1 %>% 
+  ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Race/Ethnicity Frequency",
+       subtitle="With NA values imputed and demographics abbreviated",
+       y="Count",
+       x="Race/Ethnicity")
+```
+
+
+
+```{r}
+chosen_imputed1 %>% 
+  ggplot(aes(x=fct_infreq(gender), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Gender Frequency",
+       subtitle="With NA values imputed and demographics abbreviated",
+       y="Count",
+       x="Gender")
+```
+
+
+
+```{r}
+chosen_imputed1 %>% 
+  ggplot(aes(x=fct_infreq(age_group), label=scales::percent(prop.table(stat(count)))))+
+  geom_bar(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Group Frequency",
+       subtitle="With NA values imputed and demographics abbreviated",
+       y="Count",
+       x="Age Group")
+```
+
+
+
+
+```{r}
+#write_xlsx(chosen_withna1, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_withna1.xlsx")
+#(chosen_nona1, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
+#write_xlsx(chosen_imputed1, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed1.xlsx")
+```
+
