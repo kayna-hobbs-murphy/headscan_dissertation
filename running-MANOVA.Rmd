@@ -20,6 +20,7 @@ library(corrr)
 library(corrplot)
 library(car)
 library(heplots)
+library(broom)
 ```
 
 ```{r}
@@ -43,13 +44,29 @@ variables <- cbind(chosen_nona1$AA_C, chosen_nona1$BiW_C, chosen_nona1$BiW_L,
                    chosen_nona1$GoSub_C, chosen_nona1$NRB_L, chosen_nona1$ProS_L,
                    chosen_nona1$SelP_L, chosen_nona1$SelM_L, chosen_nona1$SnasM_C,
                    chosen_nona1$TrSman_C, chosen_nona1$TrTr_C, chosen_nona1$TrTr_L)
-
-manova_out_nona <- manova(variables ~ gender+race_eth+age_group, data=chosen_nona1)
-
-summary(manova_out_nona)
 ```
 
-https://www.hindawi.com/journals/cmmm/2019/2173638/
+#https://www.hindawi.com/journals/cmmm/2019/2173638/ 
+Use Pillai! better for when we don't know enough about covariance
+
+#https://www.sagepub.com/sites/default/files/upm-assets/9761_book_item_9761.pdf
+Type III sum of squares can be used in models where there are uneven group sizes, although there needs to be at least one participant in each cell. It calculates the sum of squares after the independent variables have all been adjusted for the inclusion of all other independent variables in the model
+
+
+```{r}
+output<-lm(variables ~ gender+race_eth+age_group, data=chosen_nona1,
+           contrasts = list(gender=contr.sum, race_eth=contr.sum, age_group=contr.sum))
+
+manova_out_nona1 <- Manova(output, type="III")
+
+summary(manova_out_nona1)
+```
+
+
+```{r}
+manova_out_data<-as.data.frame(manova_out_nona1$SSPE)
+```
+
 
 
 
