@@ -42,7 +42,7 @@ my_ft_theme <- function(ft, ...) {
 
 
 ```{r}
-SA3_noout <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\SA3_noout.xlsx")
+SA3_noout <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
 ```
 
 
@@ -388,7 +388,7 @@ variables <- cbind(SA3_noout$AA_C, SA3_noout$BiW_C, SA3_noout$BiW_L,
 
 
 #part of Dr. Erin Buchanan's lecture, but Manova code returns error: Error in Anova.mlm(mod, ...) : model is singular
-#lm_notransf <- lm(variables ~ gender*race_eth*age_group, data=SA3_noout,
+#lm_notransf <- lm(variables ~ gender+race_eth+age_group, data=SA3_noout,
                   #contrasts = list(gender=contr.sum, 
                                    #race_eth=contr.sum,
                                    #age_group=contr.sum))
@@ -405,7 +405,7 @@ Checking assumptions on actual MANOVA model: no transformation
 
 
 
-manova_out_nt <- manova(variables ~ gender*race_eth*age_group, data=SA3_noout)
+manova_out_nt <- manova(variables ~ gender+race_eth+age_group, data=SA3_noout)
 fitted1 <- manova_out_nt$fitted.values
 resid1 <- rstandard(manova_out_nt)
 
@@ -488,7 +488,7 @@ Checking assumptions on actual MANOVA model: log base 10 transformation
 
 ```{r}
 
-manova_out_log10 <- manova(log(variables, base=10) ~ gender*race_eth*age_group, data=SA3_noout)
+manova_out_log10 <- manova(log(variables, base=10) ~ gender+race_eth+age_group, data=SA3_noout)
 
 
 fitted1_log10 <- manova_out_log10$fitted.values
@@ -568,7 +568,7 @@ Checking assumptions on actual MANOVA model: log transformation
 
 ```{r}
 
-manova_out_log <- manova(log(variables) ~ gender*race_eth*age_group, data=SA3_noout)
+manova_out_log <- manova(log(variables) ~ gender+race_eth+age_group, data=SA3_noout)
 
 
 fitted1_log <- manova_out_log$fitted.values
@@ -648,7 +648,7 @@ Checking assumptions on actual MANOVA model: sqrt transformation
 
 ```{r}
 
-manova_out_sqrt <- manova(sqrt(variables) ~ gender*race_eth*age_group, data=SA3_noout)
+manova_out_sqrt <- manova(sqrt(variables) ~ gender+race_eth+age_group, data=SA3_noout)
 
 fitted1_sqrt <- manova_out_sqrt$fitted.values
 
@@ -727,86 +727,36 @@ Shapiro tests for normality not conducted due to large sample size (test may fai
 Box's test to check homogeneity of covariance
 
 
-
 ```{r}
+boxtest_data <- column_to_rownames(SA3_noout, "ID")
 
+boxtest_data$race_eth <-
+  recode_factor(boxtest_data$race_eth, 'LatinX'= "Other",
+                'Asian' = "Other")
 
-#create an interaction variable
-boxtest_data <- SA3_noout[-c(1)]
+boxtest_data$gender <-
+  recode_factor(boxtest_data$gender, 'Female'= "Female or Other",
+                'Other' = "Female or Other")
 
-boxtest_data$int <- interaction(boxtest_data$gender, boxtest_data$race_eth, boxtest_data$age_group)
+boxtest_data <- boxtest_data %>% drop_na()
 
-#the internet cites boxM most often, but I have not had success
+boxtest_data$age_group <- as.factor(boxtest_data$age_group)
 
-#interaction doesn't work
-#boxM(boxtest_data[,1:12], boxtest_data[,16])
-#incompatible dimensions in Y and group!
+summary(boxtest_data)
 
-#boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L, SelP_L, SelM_L, SnasM_C, SnasM_C, TrSman_C, TrTr_C, TrTr_L) ~ int, data=boxtest_data)
+boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
+           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           TrSman_C, TrTr_C, TrTr_L) ~ race_eth, data=boxtest_data)
 
-#Warning: there are one or more levels with less observations than variables!Error in cov(Y[group == lev[i], ]) : 
-  #supply both 'x' and 'y' or a matrix-like 'x'
-```
-
-
-```{r}
-#trying to use already created manova model
-#boxM(manova_out_nt)
-#Error in if (projections) qr <- lmcall$qr <- TRUE : the condition has length > 1
-```
-
-
-```{r}
-#trying to create new lm for boxM
-#box_lmout <- lm(variables ~ gender*race_eth*age_group, data=SA3_noout)
-
-#boxM(box_lmout)
-#Error in boxM.formula(formula(Y), data = eval(data, envir = environment(formula(Y))),  : 
-  #Model must be completely crossed formula only.
-```
-
-```{r}
-#one demographic variable returns NA for chi squared and p value
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C, SnasM_C, 
            TrSman_C, TrTr_C, TrTr_L) ~ gender, data=boxtest_data)
 
+boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
+           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           TrSman_C, TrTr_C, TrTr_L) ~ age_group, data=boxtest_data)
 ```
 
-
-
-```{r}
-#trying to use Box.test function
-#Box.test(SA3_num, lag=1, type="Ljung-Box", fitdf=0)
-#Error in Box.test(SA3_num, lag = 1, type = "Ljung-Box", fitdf = 0) : 
-  #x is not a vector or univariate time series
-
-SA3_num_vec <- as.vector(SA3_num)
-
-
-SA3_num_vec <- SA3_num_vec %>% 
-  unlist() %>% 
-  as.numeric()
-
-Box.test(SA3_num_vec, lag=1, type="Ljung-Box", fitdf=0)
-#this works! but is it what I'm looking for? there are no demographic variables involved here.
-#maybe I need to run this on variance data from my manova model? how do I do that?
-#not sure what df to use here
-
-```
-
-
-```{r}
-#trying to use box_m rstatix package
-gender_vector <- as.vector(SA3_noout['gender'])
-
-class(SA3_num)
-
-SA3_num_matrix <- data.matrix(SA3_num, rownames.force = NA)
-
-#box_m(SA3_num_matrix, gender_vector)
-#Error in box_m(SA3_num_matrix, gender_vector) : incompatible dimensions!
-```
 
 
 
@@ -814,84 +764,84 @@ Levene's test, no transformation
 
 ```{r}
 
-AA_C_levene <- leveneTest(AA_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+AA_C_levene <- leveneTest(AA_C ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 AA_C_levene <- rownames_to_column(AA_C_levene, "X")
 AA_C_levene$measure <-"AA_C"
 AA_C_levene <- AA_C_levene[-c(1)]
 AA_C_levene <- AA_C_levene[-c(2),]
 
 
-BiW_C_levene <- leveneTest(BiW_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+BiW_C_levene <- leveneTest(BiW_C ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 BiW_C_levene <- rownames_to_column(BiW_C_levene, "X")
 BiW_C_levene$measure <-"BiW_C"
 BiW_C_levene <- BiW_C_levene[-c(1)]
 BiW_C_levene <- BiW_C_levene[-c(2),]
 
 
-BiW_L_levene <- leveneTest(BiW_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+BiW_L_levene <- leveneTest(BiW_L ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 BiW_L_levene <- rownames_to_column(BiW_L_levene, "X")
 BiW_L_levene$measure <-"BiW_L"
 BiW_L_levene <- BiW_L_levene[-c(1)]
 BiW_L_levene <- BiW_L_levene[-c(2),]
 
 
-GoSub_C_levene <- leveneTest(GoSub_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+GoSub_C_levene <- leveneTest(GoSub_C ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 GoSub_C_levene <- rownames_to_column(GoSub_C_levene, "X")
 GoSub_C_levene$measure <-"GoSub_C"
 GoSub_C_levene <- GoSub_C_levene[-c(1)]
 GoSub_C_levene <- GoSub_C_levene[-c(2),]
 
 
-NRB_L_levene <- leveneTest(NRB_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+NRB_L_levene <- leveneTest(NRB_L ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 NRB_L_levene <- rownames_to_column(NRB_L_levene, "X")
 NRB_L_levene$measure <-"NRB_L"
 NRB_L_levene <- NRB_L_levene[-c(1)]
 NRB_L_levene <- NRB_L_levene[-c(2),]
 
 
-ProS_L_levene <- leveneTest(ProS_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+ProS_L_levene <- leveneTest(ProS_L ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 ProS_L_levene <- rownames_to_column(ProS_L_levene, "X")
 ProS_L_levene$measure <-"ProS_L"
 ProS_L_levene <- ProS_L_levene[-c(1)]
 ProS_L_levene <- ProS_L_levene[-c(2),]
 
 
-SelP_L_levene <- leveneTest(SelP_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SelP_L_levene <- leveneTest(SelP_L ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SelP_L_levene <- rownames_to_column(SelP_L_levene, "X")
 SelP_L_levene$measure <-"SelP_L"
 SelP_L_levene <- SelP_L_levene[-c(1)]
 SelP_L_levene <- SelP_L_levene[-c(2),]
 
 
-SelM_L_levene <- leveneTest(SelM_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SelM_L_levene <- leveneTest(SelM_L ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SelM_L_levene <- rownames_to_column(SelM_L_levene, "X")
 SelM_L_levene$measure <-"SelM_L"
 SelM_L_levene <- SelM_L_levene[-c(1)]
 SelM_L_levene <- SelM_L_levene[-c(2),]
 
 
-SnasM_C_levene <- leveneTest(SnasM_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SnasM_C_levene <- leveneTest(SnasM_C ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SnasM_C_levene <- rownames_to_column(SnasM_C_levene, "X")
 SnasM_C_levene$measure <-"SnasM_C"
 SnasM_C_levene <- SnasM_C_levene[-c(1)]
 SnasM_C_levene <- SnasM_C_levene[-c(2),]
 
 
-TrSman_C_levene <- leveneTest(TrSman_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrSman_C_levene <- leveneTest(TrSman_C ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrSman_C_levene <- rownames_to_column(TrSman_C_levene, "X")
 TrSman_C_levene$measure <-"TrSman_C"
 TrSman_C_levene <- TrSman_C_levene[-c(1)]
 TrSman_C_levene <- TrSman_C_levene[-c(2),]
 
 
-TrTr_C_levene <- leveneTest(TrTr_C ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrTr_C_levene <- leveneTest(TrTr_C ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrTr_C_levene <- rownames_to_column(TrTr_C_levene, "X")
 TrTr_C_levene$measure <-"TrTr_C"
 TrTr_C_levene <- TrTr_C_levene[-c(1)]
 TrTr_C_levene <- TrTr_C_levene[-c(2),]
 
 
-TrTr_L_levene <- leveneTest(TrTr_L ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrTr_L_levene <- leveneTest(TrTr_L ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrTr_L_levene <- rownames_to_column(TrTr_L_levene, "X")
 TrTr_L_levene$measure <-"TrTr_L"
 TrTr_L_levene <- TrTr_L_levene[-c(1)]
@@ -932,84 +882,84 @@ flextable(levene_data) %>%
 Levene's test, log base 10 transformation
 ```{r}
 
-AA_C_levene10 <- leveneTest(log(AA_C , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+AA_C_levene10 <- leveneTest(log(AA_C , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 AA_C_levene10 <- rownames_to_column(AA_C_levene10, "X")
 AA_C_levene10$measure <-"AA_C"
 AA_C_levene10 <- AA_C_levene10[-c(1)]
 AA_C_levene10 <- AA_C_levene10[-c(2),]
 
 
-BiW_C_levene10 <- leveneTest(log(BiW_C , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+BiW_C_levene10 <- leveneTest(log(BiW_C , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 BiW_C_levene10 <- rownames_to_column(BiW_C_levene10, "X")
 BiW_C_levene10$measure <-"BiW_C"
 BiW_C_levene10 <- BiW_C_levene10[-c(1)]
 BiW_C_levene10 <- BiW_C_levene10[-c(2),]
 
 
-BiW_L_levene10 <- leveneTest(log(BiW_L , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+BiW_L_levene10 <- leveneTest(log(BiW_L , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 BiW_L_levene10 <- rownames_to_column(BiW_L_levene10, "X")
 BiW_L_levene10$measure <-"BiW_L"
 BiW_L_levene10 <- BiW_L_levene10[-c(1)]
 BiW_L_levene10 <- BiW_L_levene10[-c(2),]
 
 
-GoSub_C_levene10 <- leveneTest(log(GoSub_C , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+GoSub_C_levene10 <- leveneTest(log(GoSub_C , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 GoSub_C_levene10 <- rownames_to_column(GoSub_C_levene10, "X")
 GoSub_C_levene10$measure <-"GoSub_C"
 GoSub_C_levene10 <- GoSub_C_levene10[-c(1)]
 GoSub_C_levene10 <- GoSub_C_levene10[-c(2),]
 
 
-NRB_L_levene10 <- leveneTest(log(NRB_L , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+NRB_L_levene10 <- leveneTest(log(NRB_L , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 NRB_L_levene10 <- rownames_to_column(NRB_L_levene10, "X")
 NRB_L_levene10$measure <-"NRB_L"
 NRB_L_levene10 <- NRB_L_levene10[-c(1)]
 NRB_L_levene10 <- NRB_L_levene10[-c(2),]
 
 
-ProS_L_levene10 <- leveneTest(log(ProS_L , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+ProS_L_levene10 <- leveneTest(log(ProS_L , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 ProS_L_levene10 <- rownames_to_column(ProS_L_levene10, "X")
 ProS_L_levene10$measure <-"ProS_L"
 ProS_L_levene10 <- ProS_L_levene10[-c(1)]
 ProS_L_levene10 <- ProS_L_levene10[-c(2),]
 
 
-SelP_L_levene10 <- leveneTest(log(SelP_L , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SelP_L_levene10 <- leveneTest(log(SelP_L , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SelP_L_levene10 <- rownames_to_column(SelP_L_levene10, "X")
 SelP_L_levene10$measure <-"SelP_L"
 SelP_L_levene10 <- SelP_L_levene10[-c(1)]
 SelP_L_levene10 <- SelP_L_levene10[-c(2),]
 
 
-SelM_L_levene10 <- leveneTest(log(SelM_L , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SelM_L_levene10 <- leveneTest(log(SelM_L , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SelM_L_levene10 <- rownames_to_column(SelM_L_levene10, "X")
 SelM_L_levene10$measure <-"SelM_L"
 SelM_L_levene10 <- SelM_L_levene10[-c(1)]
 SelM_L_levene10 <- SelM_L_levene10[-c(2),]
 
 
-SnasM_C_levene10 <- leveneTest(log(SnasM_C , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SnasM_C_levene10 <- leveneTest(log(SnasM_C , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SnasM_C_levene10 <- rownames_to_column(SnasM_C_levene10, "X")
 SnasM_C_levene10$measure <-"SnasM_C"
 SnasM_C_levene10 <- SnasM_C_levene10[-c(1)]
 SnasM_C_levene10 <- SnasM_C_levene10[-c(2),]
 
 
-TrSman_C_levene10 <- leveneTest(log(TrSman_C , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrSman_C_levene10 <- leveneTest(log(TrSman_C , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrSman_C_levene10 <- rownames_to_column(TrSman_C_levene10, "X")
 TrSman_C_levene10$measure <-"TrSman_C"
 TrSman_C_levene10 <- TrSman_C_levene10[-c(1)]
 TrSman_C_levene10 <- TrSman_C_levene10[-c(2),]
 
 
-TrTr_C_levene10 <- leveneTest(log(TrTr_C , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrTr_C_levene10 <- leveneTest(log(TrTr_C , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrTr_C_levene10 <- rownames_to_column(TrTr_C_levene10, "X")
 TrTr_C_levene10$measure <-"TrTr_C"
 TrTr_C_levene10 <- TrTr_C_levene10[-c(1)]
 TrTr_C_levene10 <- TrTr_C_levene10[-c(2),]
 
 
-TrTr_L_levene10 <- leveneTest(log(TrTr_L , base=10) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrTr_L_levene10 <- leveneTest(log(TrTr_L , base=10) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrTr_L_levene10 <- rownames_to_column(TrTr_L_levene10, "X")
 TrTr_L_levene10$measure <-"TrTr_L"
 TrTr_L_levene10 <- TrTr_L_levene10[-c(1)]
@@ -1053,84 +1003,84 @@ Levene's test, log transformation
 
 ```{r}
 
-AA_C_levene_e <- leveneTest(log(AA_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+AA_C_levene_e <- leveneTest(log(AA_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 AA_C_levene_e <- rownames_to_column(AA_C_levene_e, "X")
 AA_C_levene_e$measure <-"AA_C"
 AA_C_levene_e <- AA_C_levene_e[-c(1)]
 AA_C_levene_e <- AA_C_levene_e[-c(2),]
 
 
-BiW_C_levene_e <- leveneTest(log(BiW_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+BiW_C_levene_e <- leveneTest(log(BiW_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 BiW_C_levene_e <- rownames_to_column(BiW_C_levene_e, "X")
 BiW_C_levene_e$measure <-"BiW_C"
 BiW_C_levene_e <- BiW_C_levene_e[-c(1)]
 BiW_C_levene_e <- BiW_C_levene_e[-c(2),]
 
 
-BiW_L_levene_e <- leveneTest(log(BiW_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+BiW_L_levene_e <- leveneTest(log(BiW_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 BiW_L_levene_e <- rownames_to_column(BiW_L_levene_e, "X")
 BiW_L_levene_e$measure <-"BiW_L"
 BiW_L_levene_e <- BiW_L_levene_e[-c(1)]
 BiW_L_levene_e <- BiW_L_levene_e[-c(2),]
 
 
-GoSub_C_levene_e <- leveneTest(log(GoSub_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+GoSub_C_levene_e <- leveneTest(log(GoSub_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 GoSub_C_levene_e <- rownames_to_column(GoSub_C_levene_e, "X")
 GoSub_C_levene_e$measure <-"GoSub_C"
 GoSub_C_levene_e <- GoSub_C_levene_e[-c(1)]
 GoSub_C_levene_e <- GoSub_C_levene_e[-c(2),]
 
 
-NRB_L_levene_e <- leveneTest(log(NRB_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+NRB_L_levene_e <- leveneTest(log(NRB_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 NRB_L_levene_e <- rownames_to_column(NRB_L_levene_e, "X")
 NRB_L_levene_e$measure <-"NRB_L"
 NRB_L_levene_e <- NRB_L_levene_e[-c(1)]
 NRB_L_levene_e <- NRB_L_levene_e[-c(2),]
 
 
-ProS_L_levene_e <- leveneTest(log(ProS_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+ProS_L_levene_e <- leveneTest(log(ProS_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 ProS_L_levene_e <- rownames_to_column(ProS_L_levene_e, "X")
 ProS_L_levene_e$measure <-"ProS_L"
 ProS_L_levene_e <- ProS_L_levene_e[-c(1)]
 ProS_L_levene_e <- ProS_L_levene_e[-c(2),]
 
 
-SelP_L_levene_e <- leveneTest(log(SelP_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SelP_L_levene_e <- leveneTest(log(SelP_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SelP_L_levene_e <- rownames_to_column(SelP_L_levene_e, "X")
 SelP_L_levene_e$measure <-"SelP_L"
 SelP_L_levene_e <- SelP_L_levene_e[-c(1)]
 SelP_L_levene_e <- SelP_L_levene_e[-c(2),]
 
 
-SelM_L_levene_e <- leveneTest(log(SelM_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SelM_L_levene_e <- leveneTest(log(SelM_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SelM_L_levene_e <- rownames_to_column(SelM_L_levene_e, "X")
 SelM_L_levene_e$measure <-"SelM_L"
 SelM_L_levene_e <- SelM_L_levene_e[-c(1)]
 SelM_L_levene_e <- SelM_L_levene_e[-c(2),]
 
 
-SnasM_C_levene_e <- leveneTest(log(SnasM_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SnasM_C_levene_e <- leveneTest(log(SnasM_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SnasM_C_levene_e <- rownames_to_column(SnasM_C_levene_e, "X")
 SnasM_C_levene_e$measure <-"SnasM_C"
 SnasM_C_levene_e <- SnasM_C_levene_e[-c(1)]
 SnasM_C_levene_e <- SnasM_C_levene_e[-c(2),]
 
 
-TrSman_C_levene_e <- leveneTest(log(TrSman_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrSman_C_levene_e <- leveneTest(log(TrSman_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrSman_C_levene_e <- rownames_to_column(TrSman_C_levene_e, "X")
 TrSman_C_levene_e$measure <-"TrSman_C"
 TrSman_C_levene_e <- TrSman_C_levene_e[-c(1)]
 TrSman_C_levene_e <- TrSman_C_levene_e[-c(2),]
 
 
-TrTr_C_levene_e <- leveneTest(log(TrTr_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrTr_C_levene_e <- leveneTest(log(TrTr_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrTr_C_levene_e <- rownames_to_column(TrTr_C_levene_e, "X")
 TrTr_C_levene_e$measure <-"TrTr_C"
 TrTr_C_levene_e <- TrTr_C_levene_e[-c(1)]
 TrTr_C_levene_e <- TrTr_C_levene_e[-c(2),]
 
 
-TrTr_L_levene_e <- leveneTest(log(TrTr_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrTr_L_levene_e <- leveneTest(log(TrTr_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrTr_L_levene_e <- rownames_to_column(TrTr_L_levene_e, "X")
 TrTr_L_levene_e$measure <-"TrTr_L"
 TrTr_L_levene_e <- TrTr_L_levene_e[-c(1)]
@@ -1174,84 +1124,84 @@ Levene's test, sqrt transformation
 
 ```{r}
 
-AA_C_levenesqrt <- leveneTest(sqrt(AA_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+AA_C_levenesqrt <- leveneTest(sqrt(AA_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 AA_C_levenesqrt <- rownames_to_column(AA_C_levenesqrt, "X")
 AA_C_levenesqrt$measure <-"AA_C"
 AA_C_levenesqrt <- AA_C_levenesqrt[-c(1)]
 AA_C_levenesqrt <- AA_C_levenesqrt[-c(2),]
 
 
-BiW_C_levenesqrt <- leveneTest(sqrt(BiW_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+BiW_C_levenesqrt <- leveneTest(sqrt(BiW_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 BiW_C_levenesqrt <- rownames_to_column(BiW_C_levenesqrt, "X")
 BiW_C_levenesqrt$measure <-"BiW_C"
 BiW_C_levenesqrt <- BiW_C_levenesqrt[-c(1)]
 BiW_C_levenesqrt <- BiW_C_levenesqrt[-c(2),]
 
 
-BiW_L_levenesqrt <- leveneTest(sqrt(BiW_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+BiW_L_levenesqrt <- leveneTest(sqrt(BiW_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 BiW_L_levenesqrt <- rownames_to_column(BiW_L_levenesqrt, "X")
 BiW_L_levenesqrt$measure <-"BiW_L"
 BiW_L_levenesqrt <- BiW_L_levenesqrt[-c(1)]
 BiW_L_levenesqrt <- BiW_L_levenesqrt[-c(2),]
 
 
-GoSub_C_levenesqrt <- leveneTest(sqrt(GoSub_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+GoSub_C_levenesqrt <- leveneTest(sqrt(GoSub_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 GoSub_C_levenesqrt <- rownames_to_column(GoSub_C_levenesqrt, "X")
 GoSub_C_levenesqrt$measure <-"GoSub_C"
 GoSub_C_levenesqrt <- GoSub_C_levenesqrt[-c(1)]
 GoSub_C_levenesqrt <- GoSub_C_levenesqrt[-c(2),]
 
 
-NRB_L_levenesqrt <- leveneTest(sqrt(NRB_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+NRB_L_levenesqrt <- leveneTest(sqrt(NRB_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 NRB_L_levenesqrt <- rownames_to_column(NRB_L_levenesqrt, "X")
 NRB_L_levenesqrt$measure <-"NRB_L"
 NRB_L_levenesqrt <- NRB_L_levenesqrt[-c(1)]
 NRB_L_levenesqrt <- NRB_L_levenesqrt[-c(2),]
 
 
-ProS_L_levenesqrt <- leveneTest(sqrt(ProS_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+ProS_L_levenesqrt <- leveneTest(sqrt(ProS_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 ProS_L_levenesqrt <- rownames_to_column(ProS_L_levenesqrt, "X")
 ProS_L_levenesqrt$measure <-"ProS_L"
 ProS_L_levenesqrt <- ProS_L_levenesqrt[-c(1)]
 ProS_L_levenesqrt <- ProS_L_levenesqrt[-c(2),]
 
 
-SelP_L_levenesqrt <- leveneTest(sqrt(SelP_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SelP_L_levenesqrt <- leveneTest(sqrt(SelP_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SelP_L_levenesqrt <- rownames_to_column(SelP_L_levenesqrt, "X")
 SelP_L_levenesqrt$measure <-"SelP_L"
 SelP_L_levenesqrt <- SelP_L_levenesqrt[-c(1)]
 SelP_L_levenesqrt <- SelP_L_levenesqrt[-c(2),]
 
 
-SelM_L_levenesqrt <- leveneTest(sqrt(SelM_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SelM_L_levenesqrt <- leveneTest(sqrt(SelM_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SelM_L_levenesqrt <- rownames_to_column(SelM_L_levenesqrt, "X")
 SelM_L_levenesqrt$measure <-"SelM_L"
 SelM_L_levenesqrt <- SelM_L_levenesqrt[-c(1)]
 SelM_L_levenesqrt <- SelM_L_levenesqrt[-c(2),]
 
 
-SnasM_C_levenesqrt <- leveneTest(sqrt(SnasM_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+SnasM_C_levenesqrt <- leveneTest(sqrt(SnasM_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 SnasM_C_levenesqrt <- rownames_to_column(SnasM_C_levenesqrt, "X")
 SnasM_C_levenesqrt$measure <-"SnasM_C"
 SnasM_C_levenesqrt <- SnasM_C_levenesqrt[-c(1)]
 SnasM_C_levenesqrt <- SnasM_C_levenesqrt[-c(2),]
 
 
-TrSman_C_levenesqrt <- leveneTest(sqrt(TrSman_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrSman_C_levenesqrt <- leveneTest(sqrt(TrSman_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrSman_C_levenesqrt <- rownames_to_column(TrSman_C_levenesqrt, "X")
 TrSman_C_levenesqrt$measure <-"TrSman_C"
 TrSman_C_levenesqrt <- TrSman_C_levenesqrt[-c(1)]
 TrSman_C_levenesqrt <- TrSman_C_levenesqrt[-c(2),]
 
 
-TrTr_C_levenesqrt <- leveneTest(sqrt(TrTr_C) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrTr_C_levenesqrt <- leveneTest(sqrt(TrTr_C) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrTr_C_levenesqrt <- rownames_to_column(TrTr_C_levenesqrt, "X")
 TrTr_C_levenesqrt$measure <-"TrTr_C"
 TrTr_C_levenesqrt <- TrTr_C_levenesqrt[-c(1)]
 TrTr_C_levenesqrt <- TrTr_C_levenesqrt[-c(2),]
 
 
-TrTr_L_levenesqrt <- leveneTest(sqrt(TrTr_L) ~ gender*race_eth*age_group, data=SA3_noout, center=mean)
+TrTr_L_levenesqrt <- leveneTest(sqrt(TrTr_L) ~ gender+race_eth+age_group, data=SA3_noout, center=mean)
 TrTr_L_levenesqrt <- rownames_to_column(TrTr_L_levenesqrt, "X")
 TrTr_L_levenesqrt$measure <-"TrTr_L"
 TrTr_L_levenesqrt <- TrTr_L_levenesqrt[-c(1)]
