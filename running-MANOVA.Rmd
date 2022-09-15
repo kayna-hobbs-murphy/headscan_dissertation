@@ -64,9 +64,28 @@ summary(manova_out_nona1)
 
 
 ```{r}
-manova_out_data<-as.data.frame(manova_out_nona1$SSPE)
+output1<-manova(variables ~ gender+race_eth+age_group, data=chosen_nona1)
+
+#type 3 and type 1 give same Pillai values
+
+tidy(output1)
 ```
 
 
+```{r}
+output2<-as.data.frame(tidy(output1))
+
+output2$p.value <- formatC(output2$p.value, format = "e")
+
+output2 <- rename(output2, f.statistic = statistic)
+
+#Autofit Width Table TNR
+flextable(output2) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Additive MANOVA Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
 
 
