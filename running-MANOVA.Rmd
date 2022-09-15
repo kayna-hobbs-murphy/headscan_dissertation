@@ -88,4 +88,16 @@ flextable(output2) %>%
   autofit()
 ```
 
+```{r}
+AA_Cout <- aov(AA_C ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(AA_Cout)
+AA_Cout_data <- as.data.frame(tidy(AA_Cout))
+```
+
+```{r}
+BiW_Lout <- aov(BiW_L ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(BiW_Lout)
+BiW_Lout_data <- as.data.frame(tidy(BiW_Lout))
+```
+
 
