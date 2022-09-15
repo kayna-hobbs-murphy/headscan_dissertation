@@ -218,7 +218,6 @@ ggplot(data=temp5, aes(x=fitted_vals, y=resid_vals))+
   theme_bw()+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Residuals vs. Fitted Values of Manova Model",
-       subtitle = "No Transformation",
        y= "Standardized Residuals",
        x= "Fitted Values")
 
@@ -230,7 +229,6 @@ ggplot(data=temp5, aes(sample=resid_vals))+
   theme_bw()+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="QQPlot of Manova Model",
-       subtitle = "No Transformation",
        y= "Sample Quantiles",
        x= "Theoretical Quantities")
 
@@ -238,9 +236,21 @@ ggplot(data=temp5, aes(x=resid_vals))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Normality of Manova Model",
-       subtitle = "No Transformation",
        y= "Count",
        x= "Standardized Residuals")
+```
+```{r}
+boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
+           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           TrSman_C, TrTr_C, TrTr_L) ~ race_eth, data=SA3_noout)
+
+boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
+           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           TrSman_C, TrTr_C, TrTr_L) ~ gender, data=SA3_noout)
+
+boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
+           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           TrSman_C, TrTr_C, TrTr_L) ~ age_group, data=SA3_noout)
 ```
 
 
@@ -265,26 +275,21 @@ boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C, SnasM_C, 
            TrSman_C, TrTr_C, TrTr_L) ~ race_eth, data=boxtest_data)
 
-boxM(Y=boxtest_data[, c("AA_C", "BiW_C", "BiW_L", "GoSub_C", "NRB_L", "ProS_L",
-           "SelP_L", "SelM_L", "SnasM_C", "SnasM_C", 
-           "TrSman_C", "TrTr_C", "TrTr_L")], group=boxtest_data$race_eth)
-
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C, SnasM_C, 
            TrSman_C, TrTr_C, TrTr_L) ~ gender, data=boxtest_data)
-
-boxM(Y=boxtest_data[, c("AA_C", "BiW_C", "BiW_L", "GoSub_C", "NRB_L", "ProS_L",
-           "SelP_L", "SelM_L", "SnasM_C", "SnasM_C", 
-           "TrSman_C", "TrTr_C", "TrTr_L")], group=boxtest_data$gender)
 
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C, SnasM_C, 
            TrSman_C, TrTr_C, TrTr_L) ~ age_group, data=boxtest_data)
 
-boxM(Y=boxtest_data[, c("AA_C", "BiW_C", "BiW_L", "GoSub_C", "NRB_L", "ProS_L",
-           "SelP_L", "SelM_L", "SnasM_C", "SnasM_C", 
-           "TrSman_C", "TrTr_C", "TrTr_L")], group=boxtest_data$age_group)
+
 ```
 
 
+Box's M:  If group sizes are over 30, then the MANOVA is robust against violations of homogeneity of variance-covariance matrices assumption.
+Levene's Test:     if homogeneity of variance can't be assumed for one (or more) dependent variables, then use an alpha level stricter than .05 (ie: use .001) when you evaluate the univariate ANOVAs.
+[From "SPSS for the Health and Behavioural Sciences" (Allen & Bennett, 2008)]
 
+
+Huberty, C. J, & Morris, J. D. (1989). Multivariate analysis versus multiple univariate analyses. Psychological Bulletin, 105, 302-308.
