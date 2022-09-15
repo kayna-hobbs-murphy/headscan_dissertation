@@ -1,0 +1,313 @@
+---
+title: "randomly-generated-vars"
+output: html_document
+date: "2022-09-15"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+checking assumptions using random variable: no transformation
+
+```{r}
+#make a random variable
+#any number over 2 in place of 10
+random <- rchisq(nrow(SA3_noout), 10)
+#run a fake regression
+fake <- lm(random~., data=SA3_noout[ , -1])
+#create standardized residuals 
+standardized <- rstandard(fake)
+#create the fitted values 
+fitted <- fake$fitted.values
+```
+
+```{r}
+#homogeneity
+#plot(fitted, standardized)
+#abline(0,0)
+#abline(v = 0)
+
+#linearity
+#qqnorm(standardized)
+#abline(0,1)
+
+#Normality
+#hist(standardized)
+```
+
+```{r}
+#creating dataframe for ggplot
+temp1 <- data.frame(fitted, standardized)
+str(temp1)
+```
+
+```{r}
+ ggplot(data=temp1, aes(x=fitted, y=standardized))+
+  geom_point(shape=1)+
+  geom_hline(yintercept=0)+  
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Residuals vs. Fitted Values of Randomly Generated Variable",
+       subtitle = "No Data Transformation",
+       y= "Standardized Residuals",
+       x= "Fitted Values")
+
+ggplot(data=temp1, aes(sample=standardized))+
+  stat_qq()+
+  stat_qq_line()+
+  scale_x_continuous(n.breaks = 7)+
+  #xlim(-3.5,3.5)+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="QQPlot of Randomly Generated Variable",
+       subtitle = "No Data Transformation",
+       y= "Sample Quantiles",
+       x= "Theoretical Quantities")
+
+ggplot(data=temp1, aes(x=standardized))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Normality of Randomly Generated Variable",
+       subtitle = "No Data Transformation",
+       y= "Count",
+       x= "Standardized Residuals")
+```
+
+
+
+
+
+
+
+checking assumptions using random variable: log base 10 transformation
+
+```{r}
+#make a random variable
+#any number over 2 in place of 7
+randomlog10 <- rchisq(nrow(SA3_noout), 10)
+#run a fake regression
+fakelog10 <- lm(log(randomlog10, base=10)~., data=SA3_noout[ , -1])
+#create standardized residuals 
+standardizedlog10 <- rstandard(fakelog10)
+#create the fitted values 
+fittedlog10 <- fakelog10$fitted.values
+```
+
+```{r}
+#homogeneity (unscaled)
+#plot(fakelog10$fitted.values, standardizedlog10)
+#abline(0,0)
+#abline(v = 0)
+
+##homogeneity (scaled)
+#plot(fittedlog10, standardizedlog10)
+#abline(0,0)
+#abline(v = 0)
+
+#linearity
+#qqnorm(standardizedlog10)
+#abline(0,1)
+
+#Normality
+#hist(standardizedlog10)
+
+
+```
+```{r}
+#creating dataframe for ggplot
+temp2 <- data.frame(fittedlog10, standardizedlog10)
+str(temp2)
+```
+
+```{r}
+ ggplot(data=temp2, aes(x=fittedlog10, y=standardizedlog10))+
+  geom_point(shape=1)+
+  geom_hline(yintercept=0)+  
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Residuals vs. Fitted Values of Randomly Generated Variable",
+       subtitle = "Log Base 10 Transformation",
+       y= "Standardized Residuals",
+       x= "Fitted Values")
+
+ggplot(data=temp2, aes(sample=standardizedlog10))+
+  stat_qq()+
+  stat_qq_line()+
+  scale_x_continuous(n.breaks = 7)+
+  #xlim(-3.5,3.5)+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="QQPlot of Randomly Generated Variable",
+       subtitle = "Log Base 10 Transformation",
+       y= "Sample Quantiles",
+       x= "Theoretical Quantities")
+
+ggplot(data=temp2, aes(x=standardizedlog10))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Normality of Randomly Generated Variable",
+       subtitle = "Log Base 10 Transformation",
+       y= "Count",
+       x= "Standardized Residuals")
+```
+
+
+checking assumptions using random variable: log base 10 transformation
+
+```{r}
+#make a random variable
+#any number over 2 in place of 7
+randomlog <- rchisq(nrow(SA3_noout), 10)
+#run a fake regression
+fakelog <- lm(log(randomlog)~., data=SA3_noout[ , -1])
+#create standardized residuals 
+standardizedlog <- rstandard(fakelog)
+#create the fitted values 
+fittedlog <- fakelog$fitted.values
+```
+
+```{r}
+#homogeneity (unscaled)
+#plot(fakelog$fitted.values, standardizedlog)
+#abline(0,0)
+#abline(v = 0)
+
+##homogeneity (scaled)
+#plot(fittedlog, standardizedlog)
+#abline(0,0)
+#abline(v = 0)
+
+#linearity
+#qqnorm(standardizedlog)
+#abline(0,1)
+
+#Normality
+#hist(standardizedlog)
+
+```
+```{r}
+#creating dataframe for ggplot
+temp3 <- data.frame(fittedlog, standardizedlog)
+str(temp3)
+```
+
+```{r}
+ ggplot(data=temp3, aes(x=fittedlog, y=standardizedlog))+
+  geom_point(shape=1)+
+  geom_hline(yintercept=0)+  
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Residuals vs. Fitted Values of Randomly Generated Variable",
+       subtitle = "Log e Transformation",
+       y= "Standardized Residuals",
+       x= "Fitted Values")
+
+ggplot(data=temp3, aes(sample=standardizedlog))+
+  stat_qq()+
+  stat_qq_line()+
+  scale_x_continuous(n.breaks = 7)+
+  #xlim(-3.5,3.5)+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="QQPlot of Randomly Generated Variable",
+       subtitle = "Log e Transformation",
+       y= "Sample Quantiles",
+       x= "Theoretical Quantities")
+
+ggplot(data=temp3, aes(x=standardizedlog))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Normality of Randomly Generated Variable",
+       subtitle = "Log e Transformation",
+       y= "Count",
+       x= "Standardized Residuals")
+```
+
+
+
+
+checking assumptions using random variable: sqrt transformation
+
+```{r}
+#make a random variable
+#any number over 2 in place of 7
+randomsqrt <- rchisq(nrow(SA3_noout), 10)
+#run a fake regression
+fakesqrt <- lm(sqrt(randomsqrt)~., data=SA3_noout[ , -1])
+#create standardized residuals 
+standardizedsqrt <- rstandard(fakesqrt)
+#create the fitted values 
+fittedsqrt <- fakesqrt$fitted.values
+```
+
+```{r}
+#homogeneity (unscaled)
+#plot(fakesqrt$fitted.values, standardizedsqrt)
+#abline(0,0)
+#abline(v = 0)
+
+##homogeneity (scaled)
+#plot(fittedsqrt, standardizedsqrt)
+#abline(0,0)
+#abline(v = 0)
+
+#linearity
+#qqnorm(standardizedsqrt)
+#abline(0,1)
+
+#Normality
+#hist(standardizedsqrt)
+
+
+```
+
+```{r}
+#creating dataframe for ggplot
+temp4 <- data.frame(fittedsqrt, standardizedsqrt)
+str(temp4)
+```
+
+```{r}
+ ggplot(data=temp4, aes(x=fittedsqrt, y=standardizedsqrt))+
+  geom_point(shape=1)+
+  geom_hline(yintercept=0)+  
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Residuals vs. Fitted Values of Randomly Generated Variable",
+       subtitle = "Square Root Transformation",
+       y= "Standardized Residuals",
+       x= "Fitted Values")
+
+ggplot(data=temp4, aes(sample=standardizedsqrt))+
+  stat_qq()+
+  stat_qq_line()+
+  scale_x_continuous(n.breaks = 7)+
+  #xlim(-3.5,3.5)+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="QQPlot of Randomly Generated Variable",
+       subtitle = "Square Root Transformation",
+       y= "Sample Quantiles",
+       x= "Theoretical Quantities")
+
+ggplot(data=temp4, aes(x=standardizedsqrt))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Normality of Randomly Generated Variable",
+       subtitle = "Square Root Transformation",
+       y= "Count",
+       x= "Standardized Residuals")
+```
+
+
+
+Checking for influencial measures in random sqrt transformation dataset
+
+```{r}
+#influencial observations (STAR 513: Lecture 5 examples)
+# overwhelming to look at
+inf_out <- influence.measures(fakesqrt)
+# check out Cook's D (column 6)
+sum(inf_out$is.inf[, 6])
+```
