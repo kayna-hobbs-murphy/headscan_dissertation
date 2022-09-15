@@ -21,6 +21,7 @@ library(corrplot)
 library(car)
 library(heplots)
 library(broom)
+library(emmeans)
 ```
 
 ```{r}
@@ -68,7 +69,7 @@ output1<-manova(variables ~ gender+race_eth+age_group, data=chosen_nona1)
 
 #type 3 and type 1 give same Pillai values
 
-tidy(output1)
+summary(output1)
 ```
 
 
@@ -95,9 +96,197 @@ AA_Cout_data <- as.data.frame(tidy(AA_Cout))
 ```
 
 ```{r}
+AA_Cout_data <- rename(AA_Cout_data, f.statistic = statistic)
+AA_Cout_data$p.value <- formatC(AA_Cout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(AA_Cout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("AA_C Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+emmeans(AA_Cout, ~ gender)
+emmip(AA_Cout, ~ gender)
+```
+```{r}
+emmeans(AA_Cout, ~ race_eth)
+emmip(AA_Cout, ~ race_eth)
+```
+```{r}
+emmeans(AA_Cout, ~ age_group)
+emmip(AA_Cout, ~ age_group)
+```
+
+
+
+
+```{r}
 BiW_Lout <- aov(BiW_L ~ gender+race_eth+age_group, data=chosen_nona1)
 summary(BiW_Lout)
 BiW_Lout_data <- as.data.frame(tidy(BiW_Lout))
 ```
+
+```{r}
+BiW_Lout_data <- rename(BiW_Lout_data, f.statistic = statistic)
+BiW_Lout_data$p.value <- formatC(BiW_Lout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(BiW_Lout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("BiW_L Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+emmeans(BiW_Lout, ~ gender)
+emmip(BiW_Lout, ~ gender)
+```
+```{r}
+emmeans(BiW_Lout, ~ race_eth)
+emmip(BiW_Lout, ~ race_eth)
+```
+```{r}
+emmeans(BiW_Lout, ~ age_group)
+emmip(BiW_Lout, ~ age_group)
+```
+
+
+```{r}
+BiW_Cout <- aov(BiW_C ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(BiW_Cout)
+BiW_Cout_data <- as.data.frame(tidy(BiW_Cout))
+```
+
+```{r}
+BiW_Cout_data <- rename(BiW_Cout_data, f.statistic = statistic)
+BiW_Cout_data$p.value <- formatC(BiW_Cout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(BiW_Cout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("BiW_C Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+emmeans(BiW_Cout, ~ gender)
+emmip(BiW_Cout, ~ gender)
+```
+```{r}
+emmeans(BiW_Cout, ~ race_eth)
+emmip(BiW_Cout, ~ race_eth)
+```
+
+
+```{r}
+GoSub_Cout <- aov(GoSub_C ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(GoSub_Cout)
+GoSub_Cout_data <- as.data.frame(tidy(GoSub_Cout))
+```
+
+```{r}
+GoSub_Cout_data <- rename(GoSub_Cout_data, f.statistic = statistic)
+GoSub_Cout_data$p.value <- formatC(GoSub_Cout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(GoSub_Cout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("GoSub_C Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+emmeans(GoSub_Cout, ~ gender)
+emmip(GoSub_Cout, ~ gender)
+```
+```{r}
+emmeans(GoSub_Cout, ~ race_eth)
+emmip(GoSub_Cout, ~ race_eth)
+```
+```{r}
+emmeans(GoSub_Cout, ~ age_group)
+emmip(GoSub_Cout, ~ age_group)
+```
+
+
+
+```{r}
+NRB_Lout <- aov(NRB_L ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(NRB_Lout)
+NRB_Lout_data <- as.data.frame(tidy(NRB_Lout))
+```
+
+```{r}
+NRB_Lout_data <- rename(NRB_Lout_data, f.statistic = statistic)
+NRB_Lout_data$p.value <- formatC(NRB_Lout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(NRB_Lout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("NRB_L Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+emmeans(NRB_Lout, ~ gender)
+emmip(NRB_Lout, ~ gender)
+```
+```{r}
+emmeans(NRB_Lout, ~ race_eth)
+emmip(NRB_Lout, ~ race_eth)
+```
+
+
+
+```{r}
+ProS_Lout <- aov(ProS_L ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(ProS_Lout)
+ProS_Lout_data <- as.data.frame(tidy(ProS_Lout))
+```
+
+```{r}
+ProS_Lout_data <- rename(ProS_Lout_data, f.statistic = statistic)
+ProS_Lout_data$p.value <- formatC(ProS_Lout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(ProS_Lout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("ProS_L Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+emmeans(ProS_Lout, ~ gender)
+emmip(ProS_Lout, ~ gender)
+```
+```{r}
+emmeans(ProS_Lout, ~ race_eth)
+emmip(ProS_Lout, ~ race_eth)
+```
+```{r}
+emmeans(ProS_Lout, ~ age_group)
+emmip(ProS_Lout, ~ age_group)
+```
+
 
 
