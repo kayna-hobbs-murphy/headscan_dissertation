@@ -1,6 +1,8 @@
 ---
 title: "running-MANOVA"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 date: "2022-09-15"
 ---
 
@@ -75,7 +77,7 @@ summary(output1)
 
 ```{r}
 output2<-as.data.frame(tidy(output1))
-
+output2$signif <- with(output2, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
 output2$p.value <- formatC(output2$p.value, format = "e")
 
 output2 <- rename(output2, f.statistic = statistic)
@@ -400,5 +402,1341 @@ emmip_BiW_La +
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
 ```
+
+
+
+
+```{r}
+BiW_Cout <- aov(BiW_C ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(BiW_Cout)
+BiW_Cout_data <- as.data.frame(tidy(BiW_Cout))
+```
+
+```{r}
+BiW_Cout_data <- rename(BiW_Cout_data, f.statistic = statistic)
+BiW_Cout_data$signif <- with(BiW_Cout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+BiW_Cout_data$p.value <- formatC(BiW_Cout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(BiW_Cout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("BiW_C Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+BiW_Cg_em <- emmeans(BiW_Cout, ~ gender)
+BiW_Cg_em1 <- as.data.frame(BiW_Cg_em)
+
+BiW_Cg_em 
+
+flextable(BiW_Cg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: BiW_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+BiW_Cg_em2 <- pairs(BiW_Cg_em, adjust="Tukey")
+BiW_Cg_em3 <- as.data.frame(BiW_Cg_em2)
+
+BiW_Cg_em3$signif <- with(BiW_Cg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+BiW_Cg_em3$p.value <- formatC(BiW_Cg_em3$p.value, format = "e")
+
+BiW_Cg_em2
+
+flextable(BiW_Cg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: BiW_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_BiW_Cg <- emmip(BiW_Cout, ~ gender, CIs = TRUE)
+
+emmip_BiW_Cg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="BiW_C and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+BiW_Cr_em <- emmeans(BiW_Cout, ~ race_eth)
+BiW_Cr_em1 <- as.data.frame(BiW_Cr_em)
+
+BiW_Cr_em 
+
+flextable(BiW_Cr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: BiW_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+BiW_Cr_em2 <- pairs(BiW_Cr_em, adjust="Tukey")
+BiW_Cr_em3 <- as.data.frame(BiW_Cr_em2)
+
+BiW_Cr_em3$signif <- with(BiW_Cr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+BiW_Cr_em3$p.value <- formatC(BiW_Cr_em3$p.value, format = "e")
+
+BiW_Cr_em2
+
+flextable(BiW_Cr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: BiW_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_BiW_Cr <- emmip(BiW_Cout, ~ race_eth, CIs = TRUE)
+
+emmip_BiW_Cr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="BiW_C and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
+```
+
+
+
+
+```{r}
+GoSub_Cout <- aov(GoSub_C ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(GoSub_Cout)
+GoSub_Cout_data <- as.data.frame(tidy(GoSub_Cout))
+```
+
+```{r}
+GoSub_Cout_data <- rename(GoSub_Cout_data, f.statistic = statistic)
+GoSub_Cout_data$signif <- with(GoSub_Cout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+GoSub_Cout_data$p.value <- formatC(GoSub_Cout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(GoSub_Cout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("GoSub_C Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+GoSub_Cg_em <- emmeans(GoSub_Cout, ~ gender)
+GoSub_Cg_em1 <- as.data.frame(GoSub_Cg_em)
+
+GoSub_Cg_em 
+
+flextable(GoSub_Cg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: GoSub_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+GoSub_Cg_em2 <- pairs(GoSub_Cg_em, adjust="Tukey")
+GoSub_Cg_em3 <- as.data.frame(GoSub_Cg_em2)
+
+GoSub_Cg_em3$signif <- with(GoSub_Cg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+GoSub_Cg_em3$p.value <- formatC(GoSub_Cg_em3$p.value, format = "e")
+
+GoSub_Cg_em2
+
+flextable(GoSub_Cg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: GoSub_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_GoSub_Cg <- emmip(GoSub_Cout, ~ gender, CIs = TRUE)
+
+emmip_GoSub_Cg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="GoSub_C and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+GoSub_Cr_em <- emmeans(GoSub_Cout, ~ race_eth)
+GoSub_Cr_em1 <- as.data.frame(GoSub_Cr_em)
+
+GoSub_Cr_em 
+
+flextable(GoSub_Cr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: GoSub_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+GoSub_Cr_em2 <- pairs(GoSub_Cr_em, adjust="Tukey")
+GoSub_Cr_em3 <- as.data.frame(GoSub_Cr_em2)
+
+GoSub_Cr_em3$signif <- with(GoSub_Cr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+GoSub_Cr_em3$p.value <- formatC(GoSub_Cr_em3$p.value, format = "e")
+
+GoSub_Cr_em2
+
+flextable(GoSub_Cr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: GoSub_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_GoSub_Cr <- emmip(GoSub_Cout, ~ race_eth, CIs = TRUE)
+
+emmip_GoSub_Cr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="GoSub_C and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
+```
+```{r}
+GoSub_Ca_em <- emmeans(GoSub_Cout, ~ age_group)
+GoSub_Ca_em1 <- as.data.frame(GoSub_Ca_em)
+
+GoSub_Ca_em 
+
+flextable(GoSub_Ca_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marainal Means: GoSub_C and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+GoSub_Ca_em2 <- pairs(GoSub_Ca_em, adjust="Tukey")
+GoSub_Ca_em3 <- as.data.frame(GoSub_Ca_em2)
+
+GoSub_Ca_em3$signif <- with(GoSub_Ca_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+GoSub_Ca_em3$p.value <- formatC(GoSub_Ca_em3$p.value, format = "e")
+
+GoSub_Ca_em2
+
+flextable(GoSub_Ca_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: GoSub_C and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_GoSub_Ca <- emmip(GoSub_Cout, ~ age_group, CIs = TRUE)
+
+emmip_GoSub_Ca + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="GoSub_C and Age Group: Estimated Marainal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
+```
+
+
+
+
+```{r}
+NRB_Lout <- aov(NRB_L ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(NRB_Lout)
+NRB_Lout_data <- as.data.frame(tidy(NRB_Lout))
+```
+
+```{r}
+NRB_Lout_data <- rename(NRB_Lout_data, f.statistic = statistic)
+NRB_Lout_data$signif <- with(NRB_Lout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+NRB_Lout_data$p.value <- formatC(NRB_Lout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(NRB_Lout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("NRB_L Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+NRB_Lg_em <- emmeans(NRB_Lout, ~ gender)
+NRB_Lg_em1 <- as.data.frame(NRB_Lg_em)
+
+NRB_Lg_em 
+
+flextable(NRB_Lg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: NRB_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+NRB_Lg_em2 <- pairs(NRB_Lg_em, adjust="Tukey")
+NRB_Lg_em3 <- as.data.frame(NRB_Lg_em2)
+
+NRB_Lg_em3$signif <- with(NRB_Lg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+NRB_Lg_em3$p.value <- formatC(NRB_Lg_em3$p.value, format = "e")
+
+NRB_Lg_em2
+
+flextable(NRB_Lg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: NRB_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_NRB_Lg <- emmip(NRB_Lout, ~ gender, CIs = TRUE)
+
+emmip_NRB_Lg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="NRB_L and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+NRB_Lr_em <- emmeans(NRB_Lout, ~ race_eth)
+NRB_Lr_em1 <- as.data.frame(NRB_Lr_em)
+
+NRB_Lr_em 
+
+flextable(NRB_Lr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: NRB_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+NRB_Lr_em2 <- pairs(NRB_Lr_em, adjust="Tukey")
+NRB_Lr_em3 <- as.data.frame(NRB_Lr_em2)
+
+NRB_Lr_em3$signif <- with(NRB_Lr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+NRB_Lr_em3$p.value <- formatC(NRB_Lr_em3$p.value, format = "e")
+
+NRB_Lr_em2
+
+flextable(NRB_Lr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: NRB_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_NRB_Lr <- emmip(NRB_Lout, ~ race_eth, CIs = TRUE)
+
+emmip_NRB_Lr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="NRB_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
+```
+
+
+
+
+
+```{r}
+ProS_Lout <- aov(ProS_L ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(ProS_Lout)
+ProS_Lout_data <- as.data.frame(tidy(ProS_Lout))
+```
+
+```{r}
+ProS_Lout_data <- rename(ProS_Lout_data, f.statistic = statistic)
+ProS_Lout_data$signif <- with(ProS_Lout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+ProS_Lout_data$p.value <- formatC(ProS_Lout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(ProS_Lout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("ProS_L Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+ProS_Lg_em <- emmeans(ProS_Lout, ~ gender)
+ProS_Lg_em1 <- as.data.frame(ProS_Lg_em)
+
+ProS_Lg_em 
+
+flextable(ProS_Lg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: ProS_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+ProS_Lg_em2 <- pairs(ProS_Lg_em, adjust="Tukey")
+ProS_Lg_em3 <- as.data.frame(ProS_Lg_em2)
+
+ProS_Lg_em3$signif <- with(ProS_Lg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+ProS_Lg_em3$p.value <- formatC(ProS_Lg_em3$p.value, format = "e")
+
+ProS_Lg_em2
+
+flextable(ProS_Lg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: ProS_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_ProS_Lg <- emmip(ProS_Lout, ~ gender, CIs = TRUE)
+
+emmip_ProS_Lg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="ProS_L and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+ProS_Lr_em <- emmeans(ProS_Lout, ~ race_eth)
+ProS_Lr_em1 <- as.data.frame(ProS_Lr_em)
+
+ProS_Lr_em 
+
+flextable(ProS_Lr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: ProS_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+ProS_Lr_em2 <- pairs(ProS_Lr_em, adjust="Tukey")
+ProS_Lr_em3 <- as.data.frame(ProS_Lr_em2)
+
+ProS_Lr_em3$signif <- with(ProS_Lr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+ProS_Lr_em3$p.value <- formatC(ProS_Lr_em3$p.value, format = "e")
+
+ProS_Lr_em2
+
+flextable(ProS_Lr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: ProS_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_ProS_Lr <- emmip(ProS_Lout, ~ race_eth, CIs = TRUE)
+
+emmip_ProS_Lr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="ProS_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
+```
+```{r}
+ProS_La_em <- emmeans(ProS_Lout, ~ age_group)
+ProS_La_em1 <- as.data.frame(ProS_La_em)
+
+ProS_La_em 
+
+flextable(ProS_La_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marainal Means: ProS_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+ProS_La_em2 <- pairs(ProS_La_em, adjust="Tukey")
+ProS_La_em3 <- as.data.frame(ProS_La_em2)
+
+ProS_La_em3$signif <- with(ProS_La_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+ProS_La_em3$p.value <- formatC(ProS_La_em3$p.value, format = "e")
+
+ProS_La_em2
+
+flextable(ProS_La_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: ProS_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_ProS_La <- emmip(ProS_Lout, ~ age_group, CIs = TRUE)
+
+emmip_ProS_La + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="ProS_L and Age Group: Estimated Marainal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
+```
+
+
+
+
+```{r}
+SelP_Lout <- aov(SelP_L ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(SelP_Lout)
+SelP_Lout_data <- as.data.frame(tidy(SelP_Lout))
+```
+
+```{r}
+SelP_Lout_data <- rename(SelP_Lout_data, f.statistic = statistic)
+SelP_Lout_data$signif <- with(SelP_Lout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SelP_Lout_data$p.value <- formatC(SelP_Lout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(SelP_Lout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SelP_L Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+SelP_Lg_em <- emmeans(SelP_Lout, ~ gender)
+SelP_Lg_em1 <- as.data.frame(SelP_Lg_em)
+
+SelP_Lg_em 
+
+flextable(SelP_Lg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: SelP_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+SelP_Lg_em2 <- pairs(SelP_Lg_em, adjust="Tukey")
+SelP_Lg_em3 <- as.data.frame(SelP_Lg_em2)
+
+SelP_Lg_em3$signif <- with(SelP_Lg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SelP_Lg_em3$p.value <- formatC(SelP_Lg_em3$p.value, format = "e")
+
+SelP_Lg_em2
+
+flextable(SelP_Lg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: SelP_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_SelP_Lg <- emmip(SelP_Lout, ~ gender, CIs = TRUE)
+
+emmip_SelP_Lg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SelP_L and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+SelP_Lr_em <- emmeans(SelP_Lout, ~ race_eth)
+SelP_Lr_em1 <- as.data.frame(SelP_Lr_em)
+
+SelP_Lr_em 
+
+flextable(SelP_Lr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: SelP_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+SelP_Lr_em2 <- pairs(SelP_Lr_em, adjust="Tukey")
+SelP_Lr_em3 <- as.data.frame(SelP_Lr_em2)
+
+SelP_Lr_em3$signif <- with(SelP_Lr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SelP_Lr_em3$p.value <- formatC(SelP_Lr_em3$p.value, format = "e")
+
+SelP_Lr_em2
+
+flextable(SelP_Lr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: SelP_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_SelP_Lr <- emmip(SelP_Lout, ~ race_eth, CIs = TRUE)
+
+emmip_SelP_Lr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SelP_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
+```
+```{r}
+SelP_La_em <- emmeans(SelP_Lout, ~ age_group)
+SelP_La_em1 <- as.data.frame(SelP_La_em)
+
+SelP_La_em 
+
+flextable(SelP_La_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marainal Means: SelP_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+SelP_La_em2 <- pairs(SelP_La_em, adjust="Tukey")
+SelP_La_em3 <- as.data.frame(SelP_La_em2)
+
+SelP_La_em3$signif <- with(SelP_La_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SelP_La_em3$p.value <- formatC(SelP_La_em3$p.value, format = "e")
+
+SelP_La_em2
+
+flextable(SelP_La_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: SelP_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_SelP_La <- emmip(SelP_Lout, ~ age_group, CIs = TRUE)
+
+emmip_SelP_La + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SelP_L and Age Group: Estimated Marainal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
+```
+
+
+
+
+```{r}
+SelM_Lout <- aov(SelM_L ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(SelM_Lout)
+SelM_Lout_data <- as.data.frame(tidy(SelM_Lout))
+```
+
+```{r}
+SelM_Lout_data <- rename(SelM_Lout_data, f.statistic = statistic)
+SelM_Lout_data$signif <- with(SelM_Lout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SelM_Lout_data$p.value <- formatC(SelM_Lout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(SelM_Lout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SelM_L Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+SelM_Lg_em <- emmeans(SelM_Lout, ~ gender)
+SelM_Lg_em1 <- as.data.frame(SelM_Lg_em)
+
+SelM_Lg_em 
+
+flextable(SelM_Lg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: SelM_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+SelM_Lg_em2 <- pairs(SelM_Lg_em, adjust="Tukey")
+SelM_Lg_em3 <- as.data.frame(SelM_Lg_em2)
+
+SelM_Lg_em3$signif <- with(SelM_Lg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SelM_Lg_em3$p.value <- formatC(SelM_Lg_em3$p.value, format = "e")
+
+SelM_Lg_em2
+
+flextable(SelM_Lg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: SelM_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_SelM_Lg <- emmip(SelM_Lout, ~ gender, CIs = TRUE)
+
+emmip_SelM_Lg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SelM_L and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+SelM_Lr_em <- emmeans(SelM_Lout, ~ race_eth)
+SelM_Lr_em1 <- as.data.frame(SelM_Lr_em)
+
+SelM_Lr_em 
+
+flextable(SelM_Lr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: SelM_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+SelM_Lr_em2 <- pairs(SelM_Lr_em, adjust="Tukey")
+SelM_Lr_em3 <- as.data.frame(SelM_Lr_em2)
+
+SelM_Lr_em3$signif <- with(SelM_Lr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SelM_Lr_em3$p.value <- formatC(SelM_Lr_em3$p.value, format = "e")
+
+SelM_Lr_em2
+
+flextable(SelM_Lr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: SelM_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_SelM_Lr <- emmip(SelM_Lout, ~ race_eth, CIs = TRUE)
+
+emmip_SelM_Lr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SelM_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
+```
+```{r}
+SelM_La_em <- emmeans(SelM_Lout, ~ age_group)
+SelM_La_em1 <- as.data.frame(SelM_La_em)
+
+SelM_La_em 
+
+flextable(SelM_La_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marainal Means: SelM_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+SelM_La_em2 <- pairs(SelM_La_em, adjust="Tukey")
+SelM_La_em3 <- as.data.frame(SelM_La_em2)
+
+SelM_La_em3$signif <- with(SelM_La_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SelM_La_em3$p.value <- formatC(SelM_La_em3$p.value, format = "e")
+
+SelM_La_em2
+
+flextable(SelM_La_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: SelM_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_SelM_La <- emmip(SelM_Lout, ~ age_group, CIs = TRUE)
+
+emmip_SelM_La + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SelM_L and Age Group: Estimated Marainal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
+```
+
+
+
+
+```{r}
+SnasM_Cout <- aov(SnasM_C ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(SnasM_Cout)
+SnasM_Cout_data <- as.data.frame(tidy(SnasM_Cout))
+```
+
+```{r}
+SnasM_Cout_data <- rename(SnasM_Cout_data, f.statistic = statistic)
+SnasM_Cout_data$signif <- with(SnasM_Cout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SnasM_Cout_data$p.value <- formatC(SnasM_Cout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(SnasM_Cout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SnasM_C Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+SnasM_Cg_em <- emmeans(SnasM_Cout, ~ gender)
+SnasM_Cg_em1 <- as.data.frame(SnasM_Cg_em)
+
+SnasM_Cg_em 
+
+flextable(SnasM_Cg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: SnasM_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+SnasM_Cg_em2 <- pairs(SnasM_Cg_em, adjust="Tukey")
+SnasM_Cg_em3 <- as.data.frame(SnasM_Cg_em2)
+
+SnasM_Cg_em3$signif <- with(SnasM_Cg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SnasM_Cg_em3$p.value <- formatC(SnasM_Cg_em3$p.value, format = "e")
+
+SnasM_Cg_em2
+
+flextable(SnasM_Cg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: SnasM_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_SnasM_Cg <- emmip(SnasM_Cout, ~ gender, CIs = TRUE)
+
+emmip_SnasM_Cg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SnasM_C and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+SnasM_Cr_em <- emmeans(SnasM_Cout, ~ race_eth)
+SnasM_Cr_em1 <- as.data.frame(SnasM_Cr_em)
+
+SnasM_Cr_em 
+
+flextable(SnasM_Cr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: SnasM_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+SnasM_Cr_em2 <- pairs(SnasM_Cr_em, adjust="Tukey")
+SnasM_Cr_em3 <- as.data.frame(SnasM_Cr_em2)
+
+SnasM_Cr_em3$signif <- with(SnasM_Cr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SnasM_Cr_em3$p.value <- formatC(SnasM_Cr_em3$p.value, format = "e")
+
+SnasM_Cr_em2
+
+flextable(SnasM_Cr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: SnasM_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_SnasM_Cr <- emmip(SnasM_Cout, ~ race_eth, CIs = TRUE)
+
+emmip_SnasM_Cr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SnasM_C and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
+```
+
+
+
+
+
+```{r}
+TrSman_Cout <- aov(TrSman_C ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(TrSman_Cout)
+TrSman_Cout_data <- as.data.frame(tidy(TrSman_Cout))
+```
+
+```{r}
+TrSman_Cout_data <- rename(TrSman_Cout_data, f.statistic = statistic)
+TrSman_Cout_data$signif <- with(TrSman_Cout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrSman_Cout_data$p.value <- formatC(TrSman_Cout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(TrSman_Cout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrSman_C Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+TrSman_Cg_em <- emmeans(TrSman_Cout, ~ gender)
+TrSman_Cg_em1 <- as.data.frame(TrSman_Cg_em)
+
+TrSman_Cg_em 
+
+flextable(TrSman_Cg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: TrSman_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+TrSman_Cg_em2 <- pairs(TrSman_Cg_em, adjust="Tukey")
+TrSman_Cg_em3 <- as.data.frame(TrSman_Cg_em2)
+
+TrSman_Cg_em3$signif <- with(TrSman_Cg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrSman_Cg_em3$p.value <- formatC(TrSman_Cg_em3$p.value, format = "e")
+
+TrSman_Cg_em2
+
+flextable(TrSman_Cg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: TrSman_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_TrSman_Cg <- emmip(TrSman_Cout, ~ gender, CIs = TRUE)
+
+emmip_TrSman_Cg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrSman_C and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+TrSman_Cr_em <- emmeans(TrSman_Cout, ~ race_eth)
+TrSman_Cr_em1 <- as.data.frame(TrSman_Cr_em)
+
+TrSman_Cr_em 
+
+flextable(TrSman_Cr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: TrSman_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+TrSman_Cr_em2 <- pairs(TrSman_Cr_em, adjust="Tukey")
+TrSman_Cr_em3 <- as.data.frame(TrSman_Cr_em2)
+
+TrSman_Cr_em3$signif <- with(TrSman_Cr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrSman_Cr_em3$p.value <- formatC(TrSman_Cr_em3$p.value, format = "e")
+
+TrSman_Cr_em2
+
+flextable(TrSman_Cr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: TrSman_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_TrSman_Cr <- emmip(TrSman_Cout, ~ race_eth, CIs = TRUE)
+
+emmip_TrSman_Cr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrSman_C and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
+```
+```{r}
+TrSman_Ca_em <- emmeans(TrSman_Cout, ~ age_group)
+TrSman_Ca_em1 <- as.data.frame(TrSman_Ca_em)
+
+TrSman_Ca_em 
+
+flextable(TrSman_Ca_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marainal Means: TrSman_C and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+TrSman_Ca_em2 <- pairs(TrSman_Ca_em, adjust="Tukey")
+TrSman_Ca_em3 <- as.data.frame(TrSman_Ca_em2)
+
+TrSman_Ca_em3$signif <- with(TrSman_Ca_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrSman_Ca_em3$p.value <- formatC(TrSman_Ca_em3$p.value, format = "e")
+
+TrSman_Ca_em2
+
+flextable(TrSman_Ca_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: TrSman_C and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_TrSman_Ca <- emmip(TrSman_Cout, ~ age_group, CIs = TRUE)
+
+emmip_TrSman_Ca + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrSman_C and Age Group: Estimated Marainal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
+```
+
+
+
+
+```{r}
+TrTr_Cout <- aov(TrTr_C ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(TrTr_Cout)
+TrTr_Cout_data <- as.data.frame(tidy(TrTr_Cout))
+```
+
+```{r}
+TrTr_Cout_data <- rename(TrTr_Cout_data, f.statistic = statistic)
+TrTr_Cout_data$signif <- with(TrTr_Cout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrTr_Cout_data$p.value <- formatC(TrTr_Cout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(TrTr_Cout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrTr_C Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+TrTr_Cg_em <- emmeans(TrTr_Cout, ~ gender)
+TrTr_Cg_em1 <- as.data.frame(TrTr_Cg_em)
+
+TrTr_Cg_em 
+
+flextable(TrTr_Cg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: TrTr_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+TrTr_Cg_em2 <- pairs(TrTr_Cg_em, adjust="Tukey")
+TrTr_Cg_em3 <- as.data.frame(TrTr_Cg_em2)
+
+TrTr_Cg_em3$signif <- with(TrTr_Cg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrTr_Cg_em3$p.value <- formatC(TrTr_Cg_em3$p.value, format = "e")
+
+TrTr_Cg_em2
+
+flextable(TrTr_Cg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: TrTr_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_TrTr_Cg <- emmip(TrTr_Cout, ~ gender, CIs = TRUE)
+
+emmip_TrTr_Cg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrTr_C and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+TrTr_Cr_em <- emmeans(TrTr_Cout, ~ race_eth)
+TrTr_Cr_em1 <- as.data.frame(TrTr_Cr_em)
+
+TrTr_Cr_em 
+
+flextable(TrTr_Cr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: TrTr_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+TrTr_Cr_em2 <- pairs(TrTr_Cr_em, adjust="Tukey")
+TrTr_Cr_em3 <- as.data.frame(TrTr_Cr_em2)
+
+TrTr_Cr_em3$signif <- with(TrTr_Cr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrTr_Cr_em3$p.value <- formatC(TrTr_Cr_em3$p.value, format = "e")
+
+TrTr_Cr_em2
+
+flextable(TrTr_Cr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: TrTr_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_TrTr_Cr <- emmip(TrTr_Cout, ~ race_eth, CIs = TRUE)
+
+emmip_TrTr_Cr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrTr_C and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
+```
+```{r}
+TrTr_Ca_em <- emmeans(TrTr_Cout, ~ age_group)
+TrTr_Ca_em1 <- as.data.frame(TrTr_Ca_em)
+
+TrTr_Ca_em 
+
+flextable(TrTr_Ca_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marainal Means: TrTr_C and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+TrTr_Ca_em2 <- pairs(TrTr_Ca_em, adjust="Tukey")
+TrTr_Ca_em3 <- as.data.frame(TrTr_Ca_em2)
+
+TrTr_Ca_em3$signif <- with(TrTr_Ca_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrTr_Ca_em3$p.value <- formatC(TrTr_Ca_em3$p.value, format = "e")
+
+TrTr_Ca_em2
+
+flextable(TrTr_Ca_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: TrTr_C and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_TrTr_Ca <- emmip(TrTr_Cout, ~ age_group, CIs = TRUE)
+
+emmip_TrTr_Ca + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrTr_C and Age Group: Estimated Marainal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
+```
+
+
+
+
+```{r}
+TrTr_Lout <- aov(TrTr_L ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(TrTr_Lout)
+TrTr_Lout_data <- as.data.frame(tidy(TrTr_Lout))
+```
+
+```{r}
+TrTr_Lout_data <- rename(TrTr_Lout_data, f.statistic = statistic)
+TrTr_Lout_data$signif <- with(TrTr_Lout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrTr_Lout_data$p.value <- formatC(TrTr_Lout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(TrTr_Lout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("TrTr_L Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+TrTr_Lg_em <- emmeans(TrTr_Lout, ~ gender)
+TrTr_Lg_em1 <- as.data.frame(TrTr_Lg_em)
+
+TrTr_Lg_em 
+
+flextable(TrTr_Lg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: TrTr_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+TrTr_Lg_em2 <- pairs(TrTr_Lg_em, adjust="Tukey")
+TrTr_Lg_em3 <- as.data.frame(TrTr_Lg_em2)
+
+TrTr_Lg_em3$signif <- with(TrTr_Lg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrTr_Lg_em3$p.value <- formatC(TrTr_Lg_em3$p.value, format = "e")
+
+TrTr_Lg_em2
+
+flextable(TrTr_Lg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: TrTr_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_TrTr_Lg <- emmip(TrTr_Lout, ~ gender, CIs = TRUE)
+
+emmip_TrTr_Lg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrTr_L and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+TrTr_Lr_em <- emmeans(TrTr_Lout, ~ race_eth)
+TrTr_Lr_em1 <- as.data.frame(TrTr_Lr_em)
+
+TrTr_Lr_em 
+
+flextable(TrTr_Lr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: TrTr_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+TrTr_Lr_em2 <- pairs(TrTr_Lr_em, adjust="Tukey")
+TrTr_Lr_em3 <- as.data.frame(TrTr_Lr_em2)
+
+TrTr_Lr_em3$signif <- with(TrTr_Lr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrTr_Lr_em3$p.value <- formatC(TrTr_Lr_em3$p.value, format = "e")
+
+TrTr_Lr_em2
+
+flextable(TrTr_Lr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: TrTr_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_TrTr_Lr <- emmip(TrTr_Lout, ~ race_eth, CIs = TRUE)
+
+emmip_TrTr_Lr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrTr_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
+```
+```{r}
+TrTr_La_em <- emmeans(TrTr_Lout, ~ age_group)
+TrTr_La_em1 <- as.data.frame(TrTr_La_em)
+
+TrTr_La_em 
+
+flextable(TrTr_La_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marainal Means: TrTr_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+TrTr_La_em2 <- pairs(TrTr_La_em, adjust="Tukey")
+TrTr_La_em3 <- as.data.frame(TrTr_La_em2)
+
+TrTr_La_em3$signif <- with(TrTr_La_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+TrTr_La_em3$p.value <- formatC(TrTr_La_em3$p.value, format = "e")
+
+TrTr_La_em2
+
+flextable(TrTr_La_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: TrTr_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_TrTr_La <- emmip(TrTr_Lout, ~ age_group, CIs = TRUE)
+
+emmip_TrTr_La + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="TrTr_L and Age Group: Estimated Marainal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
+```
+
 
 
