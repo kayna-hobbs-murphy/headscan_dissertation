@@ -89,6 +89,21 @@ flextable(output2) %>%
   autofit()
 ```
 
+From 511 notes: 
+
+The experimentwise error rate (EER) is the probability of having at
+least one false rejection in the group of tests from a single experiment
+or study. The “experiment” is the ANOVA analysis.
+
+
+John Tukey proposed a method that can be used to run all pairwise
+comparisons while controlling EER.
+
+Tukey ME > Unadj ME, hence we will find evidence of fewer
+differences (or weaker evidence of differences) using Tukey’s
+method.
+
+
 ```{r}
 AA_Cout <- aov(AA_C ~ gender+race_eth+age_group, data=chosen_nona1)
 summary(AA_Cout)
@@ -146,9 +161,57 @@ flextable(BiW_Lout_data) %>%
 
 
 ```{r}
-emmeans(BiW_Lout, ~ gender)
-emmip(BiW_Lout, ~ gender)
+BiW_Lem <- emmeans(BiW_Lout, ~ gender)
+BiW_Lem1 <- as.data.frame(BiW_Lem)
+
+BiW_Lem 
+
+flextable(BiW_Lem1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: BiW_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+BiW_Lem2 <- pairs(BiW_Lem, adjust="Tukey")
+BiW_Lem3 <- as.data.frame(BiW_Lem2)
+
+
+BiW_Lem3$p.value <- formatC(BiW_Lem3$p.value, format = "e")
+
+BiW_Lem2
+
+flextable(BiW_Lem3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: BiW_L and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_BiW_Lg <- emmip(BiW_Lout, ~ gender, CIs = TRUE)
+
+emmip_BiW_Lg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="BiW_L and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+
+BiW_Lem1 %>% 
+  ggplot(aes(x=gender, y=emmean))+
+  geom_bar(stat= "identity", color= "black", fill = "white")+
+  geom_errorbar(ymin=BiW_Lem1$lower.CL, ymax=BiW_Lem1$upper.CL)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="BiW_L and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
 ```
+
+
 ```{r}
 emmeans(BiW_Lout, ~ race_eth)
 emmip(BiW_Lout, ~ race_eth)
@@ -288,5 +351,104 @@ emmeans(ProS_Lout, ~ age_group)
 emmip(ProS_Lout, ~ age_group)
 ```
 
+
+```{r}
+SelP_Lout <- aov(SelP_L ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(SelP_Lout)
+SelP_Lout_data <- as.data.frame(tidy(SelP_Lout))
+```
+
+```{r}
+SelP_Lout_data <- rename(SelP_Lout_data, f.statistic = statistic)
+SelP_Lout_data$p.value <- formatC(SelP_Lout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(SelP_Lout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SelP_L Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+emmeans(SelP_Lout, ~ gender)
+emmip(SelP_Lout, ~ gender)
+```
+```{r}
+emmeans(SelP_Lout, ~ race_eth)
+emmip(SelP_Lout, ~ race_eth)
+```
+```{r}
+emmeans(SelP_Lout, ~ age_group)
+emmip(SelP_Lout, ~ age_group)
+```
+
+
+
+```{r}
+SelM_Lout <- aov(SelM_L ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(SelM_Lout)
+SelM_Lout_data <- as.data.frame(tidy(SelM_Lout))
+```
+
+```{r}
+SelM_Lout_data <- rename(SelM_Lout_data, f.statistic = statistic)
+SelM_Lout_data$p.value <- formatC(SelM_Lout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(SelM_Lout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SelM_L Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+emmeans(SelM_Lout, ~ gender)
+emmip(SelM_Lout, ~ gender)
+```
+```{r}
+emmeans(SelM_Lout, ~ race_eth)
+emmip(SelM_Lout, ~ race_eth)
+```
+```{r}
+emmeans(SelM_Lout, ~ age_group)
+emmip(SelM_Lout, ~ age_group)
+```
+
+
+
+```{r}
+SnasM_Cout <- aov(SnasM_C ~ gender+race_eth+age_group, data=chosen_nona1)
+summary(SnasM_Cout)
+SnasM_Cout_data <- as.data.frame(tidy(SnasM_Cout))
+```
+
+```{r}
+SnasM_Cout_data <- rename(SnasM_Cout_data, f.statistic = statistic)
+SnasM_Cout_data$p.value <- formatC(SnasM_Cout_data$p.value, format = "e")
+
+#Autofit Width Table TNR
+flextable(SnasM_Cout_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("SnasM_C Additive Anova Model Findings") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+emmeans(SnasM_Cout, ~ gender)
+emmip(SnasM_Cout, ~ gender)
+```
+```{r}
+emmeans(SnasM_Cout, ~ race_eth)
+emmip(SnasM_Cout, ~ race_eth)
+```
 
 
