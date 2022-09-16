@@ -113,7 +113,9 @@ AA_Cout_data <- as.data.frame(tidy(AA_Cout))
 
 ```{r}
 AA_Cout_data <- rename(AA_Cout_data, f.statistic = statistic)
+AA_Cout_data$signif <- with(AA_Cout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
 AA_Cout_data$p.value <- formatC(AA_Cout_data$p.value, format = "e")
+
 
 #Autofit Width Table TNR
 flextable(AA_Cout_data) %>%
@@ -142,7 +144,7 @@ flextable(AA_Cg_em1) %>%
 AA_Cg_em2 <- pairs(AA_Cg_em, adjust="Tukey")
 AA_Cg_em3 <- as.data.frame(AA_Cg_em2)
 
-
+AA_Cg_em3$signif <- with(AA_Cg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
 AA_Cg_em3$p.value <- formatC(AA_Cg_em3$p.value, format = "e")
 
 AA_Cg_em2
@@ -184,7 +186,7 @@ flextable(AA_Cr_em1) %>%
 AA_Cr_em2 <- pairs(AA_Cr_em, adjust="Tukey")
 AA_Cr_em3 <- as.data.frame(AA_Cr_em2)
 
-
+AA_Cr_em3$signif <- with(AA_Cr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
 AA_Cr_em3$p.value <- formatC(AA_Cr_em3$p.value, format = "e")
 
 
@@ -225,7 +227,7 @@ flextable(AA_Ca_em1) %>%
 AA_Ca_em2 <- pairs(AA_Ca_em, adjust="Tukey")
 AA_Ca_em3 <- as.data.frame(AA_Ca_em2)
 
-
+AA_Ca_em3$signif <- with(AA_Ca_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
 AA_Ca_em3$p.value <- formatC(AA_Ca_em3$p.value, format = "e")
 
 AA_Ca_em2
@@ -265,6 +267,7 @@ BiW_Lout_data <- as.data.frame(tidy(BiW_Lout))
 
 ```{r}
 BiW_Lout_data <- rename(BiW_Lout_data, f.statistic = statistic)
+BiW_Lout_data$signif <- with(BiW_Lout_data, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
 BiW_Lout_data$p.value <- formatC(BiW_Lout_data$p.value, format = "e")
 
 #Autofit Width Table TNR
@@ -294,7 +297,7 @@ flextable(BiW_Lg_em1) %>%
 BiW_Lg_em2 <- pairs(BiW_Lg_em, adjust="Tukey")
 BiW_Lg_em3 <- as.data.frame(BiW_Lg_em2)
 
-
+BiW_Lg_em3$signif <- with(BiW_Lg_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
 BiW_Lg_em3$p.value <- formatC(BiW_Lg_em3$p.value, format = "e")
 
 BiW_Lg_em2
@@ -336,7 +339,7 @@ flextable(BiW_Lr_em1) %>%
 BiW_Lr_em2 <- pairs(BiW_Lr_em, adjust="Tukey")
 BiW_Lr_em3 <- as.data.frame(BiW_Lr_em2)
 
-
+BiW_Lr_em3$signif <- with(BiW_Lr_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
 BiW_Lr_em3$p.value <- formatC(BiW_Lr_em3$p.value, format = "e")
 
 BiW_Lr_em2
@@ -375,7 +378,7 @@ flextable(BiW_La_em1) %>%
 BiW_La_em2 <- pairs(BiW_La_em, adjust="Tukey")
 BiW_La_em3 <- as.data.frame(BiW_La_em2)
 
-
+BiW_La_em3$signif <- with(BiW_La_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
 BiW_La_em3$p.value <- formatC(BiW_La_em3$p.value, format = "e")
 
 BiW_La_em2
@@ -396,236 +399,6 @@ emmip_BiW_La +
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
-```
-
-
-```{r}
-BiW_Cout <- aov(BiW_C ~ gender+race_eth+age_group, data=chosen_nona1)
-summary(BiW_Cout)
-BiW_Cout_data <- as.data.frame(tidy(BiW_Cout))
-```
-
-```{r}
-BiW_Cout_data <- rename(BiW_Cout_data, f.statistic = statistic)
-BiW_Cout_data$p.value <- formatC(BiW_Cout_data$p.value, format = "e")
-
-#Autofit Width Table TNR
-flextable(BiW_Cout_data) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("BiW_C Additive Anova Model Findings") %>% 
-  fit_to_width(7.5) %>% 
-  autofit()
-```
-
-
-```{r}
-emmeans(BiW_Cout, ~ gender)
-emmip(BiW_Cout, ~ gender)
-```
-```{r}
-emmeans(BiW_Cout, ~ race_eth)
-emmip(BiW_Cout, ~ race_eth)
-```
-
-
-```{r}
-GoSub_Cout <- aov(GoSub_C ~ gender+race_eth+age_group, data=chosen_nona1)
-summary(GoSub_Cout)
-GoSub_Cout_data <- as.data.frame(tidy(GoSub_Cout))
-```
-
-```{r}
-GoSub_Cout_data <- rename(GoSub_Cout_data, f.statistic = statistic)
-GoSub_Cout_data$p.value <- formatC(GoSub_Cout_data$p.value, format = "e")
-
-#Autofit Width Table TNR
-flextable(GoSub_Cout_data) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("GoSub_C Additive Anova Model Findings") %>% 
-  fit_to_width(7.5) %>% 
-  autofit()
-```
-
-
-```{r}
-emmeans(GoSub_Cout, ~ gender)
-emmip(GoSub_Cout, ~ gender)
-```
-```{r}
-emmeans(GoSub_Cout, ~ race_eth)
-emmip(GoSub_Cout, ~ race_eth)
-```
-```{r}
-emmeans(GoSub_Cout, ~ age_group)
-emmip(GoSub_Cout, ~ age_group)
-```
-
-
-
-```{r}
-NRB_Lout <- aov(NRB_L ~ gender+race_eth+age_group, data=chosen_nona1)
-summary(NRB_Lout)
-NRB_Lout_data <- as.data.frame(tidy(NRB_Lout))
-```
-
-```{r}
-NRB_Lout_data <- rename(NRB_Lout_data, f.statistic = statistic)
-NRB_Lout_data$p.value <- formatC(NRB_Lout_data$p.value, format = "e")
-
-#Autofit Width Table TNR
-flextable(NRB_Lout_data) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("NRB_L Additive Anova Model Findings") %>% 
-  fit_to_width(7.5) %>% 
-  autofit()
-```
-
-
-```{r}
-emmeans(NRB_Lout, ~ gender)
-emmip(NRB_Lout, ~ gender)
-```
-```{r}
-emmeans(NRB_Lout, ~ race_eth)
-emmip(NRB_Lout, ~ race_eth)
-```
-
-
-
-```{r}
-ProS_Lout <- aov(ProS_L ~ gender+race_eth+age_group, data=chosen_nona1)
-summary(ProS_Lout)
-ProS_Lout_data <- as.data.frame(tidy(ProS_Lout))
-```
-
-```{r}
-ProS_Lout_data <- rename(ProS_Lout_data, f.statistic = statistic)
-ProS_Lout_data$p.value <- formatC(ProS_Lout_data$p.value, format = "e")
-
-#Autofit Width Table TNR
-flextable(ProS_Lout_data) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("ProS_L Additive Anova Model Findings") %>% 
-  fit_to_width(7.5) %>% 
-  autofit()
-```
-
-
-```{r}
-emmeans(ProS_Lout, ~ gender)
-emmip(ProS_Lout, ~ gender)
-```
-```{r}
-emmeans(ProS_Lout, ~ race_eth)
-emmip(ProS_Lout, ~ race_eth)
-```
-```{r}
-emmeans(ProS_Lout, ~ age_group)
-emmip(ProS_Lout, ~ age_group)
-```
-
-
-```{r}
-SelP_Lout <- aov(SelP_L ~ gender+race_eth+age_group, data=chosen_nona1)
-summary(SelP_Lout)
-SelP_Lout_data <- as.data.frame(tidy(SelP_Lout))
-```
-
-```{r}
-SelP_Lout_data <- rename(SelP_Lout_data, f.statistic = statistic)
-SelP_Lout_data$p.value <- formatC(SelP_Lout_data$p.value, format = "e")
-
-#Autofit Width Table TNR
-flextable(SelP_Lout_data) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("SelP_L Additive Anova Model Findings") %>% 
-  fit_to_width(7.5) %>% 
-  autofit()
-```
-
-
-```{r}
-emmeans(SelP_Lout, ~ gender)
-emmip(SelP_Lout, ~ gender)
-```
-```{r}
-emmeans(SelP_Lout, ~ race_eth)
-emmip(SelP_Lout, ~ race_eth)
-```
-```{r}
-emmeans(SelP_Lout, ~ age_group)
-emmip(SelP_Lout, ~ age_group)
-```
-
-
-
-```{r}
-SelM_Lout <- aov(SelM_L ~ gender+race_eth+age_group, data=chosen_nona1)
-summary(SelM_Lout)
-SelM_Lout_data <- as.data.frame(tidy(SelM_Lout))
-```
-
-```{r}
-SelM_Lout_data <- rename(SelM_Lout_data, f.statistic = statistic)
-SelM_Lout_data$p.value <- formatC(SelM_Lout_data$p.value, format = "e")
-
-#Autofit Width Table TNR
-flextable(SelM_Lout_data) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("SelM_L Additive Anova Model Findings") %>% 
-  fit_to_width(7.5) %>% 
-  autofit()
-```
-
-
-```{r}
-emmeans(SelM_Lout, ~ gender)
-emmip(SelM_Lout, ~ gender)
-```
-```{r}
-emmeans(SelM_Lout, ~ race_eth)
-emmip(SelM_Lout, ~ race_eth)
-```
-```{r}
-emmeans(SelM_Lout, ~ age_group)
-emmip(SelM_Lout, ~ age_group)
-```
-
-
-
-```{r}
-SnasM_Cout <- aov(SnasM_C ~ gender+race_eth+age_group, data=chosen_nona1)
-summary(SnasM_Cout)
-SnasM_Cout_data <- as.data.frame(tidy(SnasM_Cout))
-```
-
-```{r}
-SnasM_Cout_data <- rename(SnasM_Cout_data, f.statistic = statistic)
-SnasM_Cout_data$p.value <- formatC(SnasM_Cout_data$p.value, format = "e")
-
-#Autofit Width Table TNR
-flextable(SnasM_Cout_data) %>%
-  my_ft_theme()%>% 
-  bold(part = "header") %>% 
-  set_caption("SnasM_C Additive Anova Model Findings") %>% 
-  fit_to_width(7.5) %>% 
-  autofit()
-```
-
-
-```{r}
-emmeans(SnasM_Cout, ~ gender)
-emmip(SnasM_Cout, ~ gender)
-```
-```{r}
-emmeans(SnasM_Cout, ~ race_eth)
-emmip(SnasM_Cout, ~ race_eth)
 ```
 
 
