@@ -104,6 +104,7 @@ differences (or weaker evidence of differences) using Tukey’s
 method.
 
 
+
 ```{r}
 AA_Cout <- aov(AA_C ~ gender+race_eth+age_group, data=chosen_nona1)
 summary(AA_Cout)
@@ -125,17 +126,133 @@ flextable(AA_Cout_data) %>%
 
 
 ```{r}
-emmeans(AA_Cout, ~ gender)
-emmip(AA_Cout, ~ gender)
+AA_Cg_em <- emmeans(AA_Cout, ~ gender)
+AA_Cg_em1 <- as.data.frame(AA_Cg_em)
+
+AA_Cg_em 
+
+flextable(AA_Cg_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: AA_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+AA_Cg_em2 <- pairs(AA_Cg_em, adjust="Tukey")
+AA_Cg_em3 <- as.data.frame(AA_Cg_em2)
+
+
+AA_Cg_em3$p.value <- formatC(AA_Cg_em3$p.value, format = "e")
+
+AA_Cg_em2
+
+flextable(AA_Cg_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: AA_C and Gender") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_AA_Cg <- emmip(AA_Cout, ~ gender, CIs = TRUE)
+
+emmip_AA_Cg + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="AA_C and Gender: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Gender")
+  
+```
+
+
+```{r}
+AA_Cr_em <- emmeans(AA_Cout, ~ race_eth)
+AA_Cr_em1 <- as.data.frame(AA_Cr_em)
+
+AA_Cr_em 
+
+flextable(AA_Cr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: AA_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+AA_Cr_em2 <- pairs(AA_Cr_em, adjust="Tukey")
+AA_Cr_em3 <- as.data.frame(AA_Cr_em2)
+
+
+AA_Cr_em3$p.value <- formatC(AA_Cr_em3$p.value, format = "e")
+
+
+
+AA_Cr_em2
+
+flextable(AA_Cr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: AA_C and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_AA_Cr <- emmip(AA_Cout, ~ race_eth, CIs = TRUE)
+
+emmip_AA_Cr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="AA_C and Race/Ethnicity: Estimated Marginal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
 ```
 ```{r}
-emmeans(AA_Cout, ~ race_eth)
-emmip(AA_Cout, ~ race_eth)
+AA_Ca_em <- emmeans(AA_Cout, ~ age_group)
+AA_Ca_em1 <- as.data.frame(AA_Ca_em)
+
+AA_Ca_em 
+
+flextable(AA_Ca_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marainal Means: AA_C and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+AA_Ca_em2 <- pairs(AA_Ca_em, adjust="Tukey")
+AA_Ca_em3 <- as.data.frame(AA_Ca_em2)
+
+
+AA_Ca_em3$p.value <- formatC(AA_Ca_em3$p.value, format = "e")
+
+AA_Ca_em2
+
+flextable(AA_Ca_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: AA_C and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_AA_Ca <- emmip(AA_Cout, ~ age_group, CIs = TRUE)
+
+emmip_AA_Ca + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="AA_C and Age Group: Estimated Marainal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
 ```
-```{r}
-emmeans(AA_Cout, ~ age_group)
-emmip(AA_Cout, ~ age_group)
-```
+
+
+
+
+
+
 
 
 
@@ -161,12 +278,12 @@ flextable(BiW_Lout_data) %>%
 
 
 ```{r}
-BiW_Lem <- emmeans(BiW_Lout, ~ gender)
-BiW_Lem1 <- as.data.frame(BiW_Lem)
+BiW_Lg_em <- emmeans(BiW_Lout, ~ gender)
+BiW_Lg_em1 <- as.data.frame(BiW_Lg_em)
 
-BiW_Lem 
+BiW_Lg_em 
 
-flextable(BiW_Lem1) %>%
+flextable(BiW_Lg_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Estimated Marginal Means: BiW_L and Gender") %>% 
@@ -174,15 +291,15 @@ flextable(BiW_Lem1) %>%
   autofit()
 
 
-BiW_Lem2 <- pairs(BiW_Lem, adjust="Tukey")
-BiW_Lem3 <- as.data.frame(BiW_Lem2)
+BiW_Lg_em2 <- pairs(BiW_Lg_em, adjust="Tukey")
+BiW_Lg_em3 <- as.data.frame(BiW_Lg_em2)
 
 
-BiW_Lem3$p.value <- formatC(BiW_Lem3$p.value, format = "e")
+BiW_Lg_em3$p.value <- formatC(BiW_Lg_em3$p.value, format = "e")
 
-BiW_Lem2
+BiW_Lg_em2
 
-flextable(BiW_Lem3) %>%
+flextable(BiW_Lg_em3) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Tukey Pairwise Comparisons: BiW_L and Gender") %>% 
@@ -198,27 +315,87 @@ emmip_BiW_Lg +
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Gender")
-
-BiW_Lem1 %>% 
-  ggplot(aes(x=gender, y=emmean))+
-  geom_bar(stat= "identity", color= "black", fill = "white")+
-  geom_errorbar(ymin=BiW_Lem1$lower.CL, ymax=BiW_Lem1$upper.CL)+
-  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="BiW_L and Gender: Estimated Marginal Means Plot",
-       subtitle="With Confidence Intervals",
-       y="Linear Prediction (of measurement in mm)",
-       x="Levels of Gender")
   
 ```
 
 
 ```{r}
-emmeans(BiW_Lout, ~ race_eth)
-emmip(BiW_Lout, ~ race_eth)
+BiW_Lr_em <- emmeans(BiW_Lout, ~ race_eth)
+BiW_Lr_em1 <- as.data.frame(BiW_Lr_em)
+
+BiW_Lr_em 
+
+flextable(BiW_Lr_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marrinal Means: BiW_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+BiW_Lr_em2 <- pairs(BiW_Lr_em, adjust="Tukey")
+BiW_Lr_em3 <- as.data.frame(BiW_Lr_em2)
+
+
+BiW_Lr_em3$p.value <- formatC(BiW_Lr_em3$p.value, format = "e")
+
+BiW_Lr_em2
+
+flextable(BiW_Lr_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: BiW_L and Race/Ethnicity") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_BiW_Lr <- emmip(BiW_Lout, ~ race_eth, CIs = TRUE)
+
+emmip_BiW_Lr + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="BiW_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Race/Ethnicity")
 ```
 ```{r}
-emmeans(BiW_Lout, ~ age_group)
-emmip(BiW_Lout, ~ age_group)
+BiW_La_em <- emmeans(BiW_Lout, ~ age_group)
+BiW_La_em1 <- as.data.frame(BiW_La_em)
+
+BiW_La_em 
+
+flextable(BiW_La_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marainal Means: BiW_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+BiW_La_em2 <- pairs(BiW_La_em, adjust="Tukey")
+BiW_La_em3 <- as.data.frame(BiW_La_em2)
+
+
+BiW_La_em3$p.value <- formatC(BiW_La_em3$p.value, format = "e")
+
+BiW_La_em2
+
+flextable(BiW_La_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: BiW_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_BiW_La <- emmip(BiW_Lout, ~ age_group, CIs = TRUE)
+
+emmip_BiW_La + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="BiW_L and Age Group: Estimated Marainal Means Plot",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
 ```
 
 
