@@ -175,7 +175,7 @@ AA_Cr_em
 flextable(AA_Cr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: AA_C and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: AA_C and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -328,7 +328,7 @@ BiW_Lr_em
 flextable(BiW_Lr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: BiW_L and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: BiW_L and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -353,7 +353,7 @@ emmip_BiW_Lr <- emmip(BiW_Lout, ~ race_eth, CIs = TRUE)
 
 emmip_BiW_Lr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="BiW_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="BiW_L and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
@@ -473,7 +473,7 @@ BiW_Cr_em
 flextable(BiW_Cr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: BiW_C and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: BiW_C and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -498,7 +498,7 @@ emmip_BiW_Cr <- emmip(BiW_Cout, ~ race_eth, CIs = TRUE)
 
 emmip_BiW_Cr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="BiW_C and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="BiW_C and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
@@ -579,7 +579,7 @@ GoSub_Cr_em
 flextable(GoSub_Cr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: GoSub_C and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: GoSub_C and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -604,7 +604,7 @@ emmip_GoSub_Cr <- emmip(GoSub_Cout, ~ race_eth, CIs = TRUE)
 
 emmip_GoSub_Cr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="GoSub_C and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="GoSub_C and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
@@ -724,7 +724,7 @@ NRB_Lr_em
 flextable(NRB_Lr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: NRB_L and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: NRB_L and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -749,7 +749,7 @@ emmip_NRB_Lr <- emmip(NRB_Lout, ~ race_eth, CIs = TRUE)
 
 emmip_NRB_Lr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="NRB_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="NRB_L and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
@@ -831,7 +831,7 @@ ProS_Lr_em
 flextable(ProS_Lr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: ProS_L and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: ProS_L and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -856,7 +856,7 @@ emmip_ProS_Lr <- emmip(ProS_Lout, ~ race_eth, CIs = TRUE)
 
 emmip_ProS_Lr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="ProS_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="ProS_L and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
@@ -976,7 +976,7 @@ SelP_Lr_em
 flextable(SelP_Lr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: SelP_L and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: SelP_L and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1001,7 +1001,7 @@ emmip_SelP_Lr <- emmip(SelP_Lout, ~ race_eth, CIs = TRUE)
 
 emmip_SelP_Lr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="SelP_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="SelP_L and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
@@ -1121,7 +1121,7 @@ SelM_Lr_em
 flextable(SelM_Lr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: SelM_L and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: SelM_L and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1146,7 +1146,7 @@ emmip_SelM_Lr <- emmip(SelM_Lout, ~ race_eth, CIs = TRUE)
 
 emmip_SelM_Lr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="SelM_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="SelM_L and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
@@ -1266,7 +1266,7 @@ SnasM_Cr_em
 flextable(SnasM_Cr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: SnasM_C and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: SnasM_C and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1291,7 +1291,7 @@ emmip_SnasM_Cr <- emmip(SnasM_Cout, ~ race_eth, CIs = TRUE)
 
 emmip_SnasM_Cr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="SnasM_C and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="SnasM_C and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
@@ -1373,7 +1373,7 @@ TrSman_Cr_em
 flextable(TrSman_Cr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: TrSman_C and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: TrSman_C and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1398,7 +1398,7 @@ emmip_TrSman_Cr <- emmip(TrSman_Cout, ~ race_eth, CIs = TRUE)
 
 emmip_TrSman_Cr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="TrSman_C and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="TrSman_C and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
@@ -1518,7 +1518,7 @@ TrTr_Cr_em
 flextable(TrTr_Cr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: TrTr_C and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: TrTr_C and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1543,7 +1543,7 @@ emmip_TrTr_Cr <- emmip(TrTr_Cout, ~ race_eth, CIs = TRUE)
 
 emmip_TrTr_Cr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="TrTr_C and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="TrTr_C and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
@@ -1663,7 +1663,7 @@ TrTr_Lr_em
 flextable(TrTr_Lr_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marrinal Means: TrTr_L and Race/Ethnicity") %>% 
+  set_caption("Estimated Marginal Means: TrTr_L and Race/Ethnicity") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1688,7 +1688,7 @@ emmip_TrTr_Lr <- emmip(TrTr_Lout, ~ race_eth, CIs = TRUE)
 
 emmip_TrTr_Lr + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="TrTr_L and Race/Ethnicity: Estimated Marrinal Means Plot",
+  labs(title="TrTr_L and Race/Ethnicity: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Race/Ethnicity")
