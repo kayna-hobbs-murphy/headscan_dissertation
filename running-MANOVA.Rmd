@@ -67,6 +67,7 @@ output1<-manova(variables ~ gender+race_eth+age_group, data=chosen_nona1)
 #type 3 and type 1 give same Pillai values
 
 summary(output1)
+
 ```
 
 
@@ -216,7 +217,7 @@ AA_Ca_em
 flextable(AA_Ca_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marainal Means: AA_C and Age Group") %>% 
+  set_caption("Estimated Marginal Means: AA_C and Age Group") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -241,7 +242,7 @@ emmip_AA_Ca <- emmip(AA_Cout, ~ age_group, CIs = TRUE)
 
 emmip_AA_Ca + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="AA_C and Age Group: Estimated Marainal Means Plot",
+  labs(title="AA_C and Age Group: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
@@ -367,7 +368,7 @@ BiW_La_em
 flextable(BiW_La_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marainal Means: BiW_L and Age Group") %>% 
+  set_caption("Estimated Marginal Means: BiW_L and Age Group") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -392,7 +393,7 @@ emmip_BiW_La <- emmip(BiW_Lout, ~ age_group, CIs = TRUE)
 
 emmip_BiW_La + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="BiW_L and Age Group: Estimated Marainal Means Plot",
+  labs(title="BiW_L and Age Group: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
@@ -618,7 +619,7 @@ GoSub_Ca_em
 flextable(GoSub_Ca_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marainal Means: GoSub_C and Age Group") %>% 
+  set_caption("Estimated Marginal Means: GoSub_C and Age Group") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -643,7 +644,7 @@ emmip_GoSub_Ca <- emmip(GoSub_Cout, ~ age_group, CIs = TRUE)
 
 emmip_GoSub_Ca + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="GoSub_C and Age Group: Estimated Marainal Means Plot",
+  labs(title="GoSub_C and Age Group: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
@@ -870,7 +871,7 @@ ProS_La_em
 flextable(ProS_La_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marainal Means: ProS_L and Age Group") %>% 
+  set_caption("Estimated Marginal Means: ProS_L and Age Group") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -895,7 +896,7 @@ emmip_ProS_La <- emmip(ProS_Lout, ~ age_group, CIs = TRUE)
 
 emmip_ProS_La + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="ProS_L and Age Group: Estimated Marainal Means Plot",
+  labs(title="ProS_L and Age Group: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
@@ -1015,7 +1016,7 @@ SelP_La_em
 flextable(SelP_La_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marainal Means: SelP_L and Age Group") %>% 
+  set_caption("Estimated Marginal Means: SelP_L and Age Group") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1040,7 +1041,7 @@ emmip_SelP_La <- emmip(SelP_Lout, ~ age_group, CIs = TRUE)
 
 emmip_SelP_La + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="SelP_L and Age Group: Estimated Marainal Means Plot",
+  labs(title="SelP_L and Age Group: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
@@ -1160,7 +1161,7 @@ SelM_La_em
 flextable(SelM_La_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marainal Means: SelM_L and Age Group") %>% 
+  set_caption("Estimated Marginal Means: SelM_L and Age Group") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1185,7 +1186,7 @@ emmip_SelM_La <- emmip(SelM_Lout, ~ age_group, CIs = TRUE)
 
 emmip_SelM_La + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="SelM_L and Age Group: Estimated Marainal Means Plot",
+  labs(title="SelM_L and Age Group: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
@@ -1412,7 +1413,7 @@ TrSman_Ca_em
 flextable(TrSman_Ca_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marainal Means: TrSman_C and Age Group") %>% 
+  set_caption("Estimated Marginal Means: TrSman_C and Age Group") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1437,7 +1438,7 @@ emmip_TrSman_Ca <- emmip(TrSman_Cout, ~ age_group, CIs = TRUE)
 
 emmip_TrSman_Ca + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="TrSman_C and Age Group: Estimated Marainal Means Plot",
+  labs(title="TrSman_C and Age Group: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
@@ -1557,7 +1558,7 @@ TrTr_Ca_em
 flextable(TrTr_Ca_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marainal Means: TrTr_C and Age Group") %>% 
+  set_caption("Estimated Marginal Means: TrTr_C and Age Group") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1582,7 +1583,7 @@ emmip_TrTr_Ca <- emmip(TrTr_Cout, ~ age_group, CIs = TRUE)
 
 emmip_TrTr_Ca + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="TrTr_C and Age Group: Estimated Marainal Means Plot",
+  labs(title="TrTr_C and Age Group: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
@@ -1702,7 +1703,7 @@ TrTr_La_em
 flextable(TrTr_La_em1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Estimated Marainal Means: TrTr_L and Age Group") %>% 
+  set_caption("Estimated Marginal Means: TrTr_L and Age Group") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 
@@ -1727,7 +1728,7 @@ emmip_TrTr_La <- emmip(TrTr_Lout, ~ age_group, CIs = TRUE)
 
 emmip_TrTr_La + 
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="TrTr_L and Age Group: Estimated Marainal Means Plot",
+  labs(title="TrTr_L and Age Group: Estimated Marginal Means Plot",
        subtitle="With Confidence Intervals",
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
