@@ -80,15 +80,12 @@ run anovas
 ```{r packages}
 library(tidyverse)
 library(readxl)
-library(officer)
 library(flextable)
 library(extrafont)
 library(writexl)
-library(rstatix)
 library(corrr)
 library(corrplot)
-library(car)
-library(heplots)
+library(heplots) #boxM function
 library(DFA.CANCOR)
 ```
 

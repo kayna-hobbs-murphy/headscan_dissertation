@@ -64,7 +64,8 @@ manova_out_nona1 <- Manova(output, type="III")
 
 summary(manova_out_nona1)
 ```
-
+#https://www.sagepub.com/sites/default/files/upm-assets/9761_book_item_9761.pdf
+Type I, hierarchical or sequential sums of squares, is appropriate when the groups in the MANOVA are of equal sizes. Type I sum of squares provides a breakdown of the sums of squares for the whole model used in the MANOVA but it is particularly sensitive to the order in which the independent variables are placed in the model. If a variable is entered first, it is not adjusted for any of the other variables; if it is entered second, it is adjusted for one other variable (the first one entered); if it is placed third, it will be adjusted for the two other variables already entered. 
 
 ```{r}
 output1<-manova(variables ~ gender+race_eth+age_group, data=chosen_nona1)
