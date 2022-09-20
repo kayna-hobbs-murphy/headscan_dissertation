@@ -13,17 +13,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r packages}
 library(tidyverse)
 library(readxl)
-library(officer)
 library(flextable)
 library(extrafont)
-library(writexl)
-library(rstatix)
-library(corrr)
-library(corrplot)
-library(car)
-library(heplots)
-library(broom)
-library(emmeans)
+library(car) #Manova function
+library(broom) #tidy function
+library(emmeans) #emmeans function
 ```
 
 ```{r}

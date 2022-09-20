@@ -8,6 +8,13 @@ date: "2022-09-15"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+```{r}
+library(car)
+```
+
+
+
 Levene's test, no transformation
 
 ```{r}
