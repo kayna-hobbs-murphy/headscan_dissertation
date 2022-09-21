@@ -73,7 +73,14 @@ gender_means_data %>%
 gender_means_data %>% 
   ggplot(aes(x=gender, y=emmean, fill=measure))+
   geom_bar(position=position_dodge(), stat="identity")+
-  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means",
+       subtitle= "All Genders in MANOVA",
+       y="Emmean in mm",
+       x="Gender",
+       fill="Measurement")
 ```
 
 ```{r}
@@ -83,10 +90,17 @@ gender_means_data %>%
 gender_means_data %>% 
   ggplot(aes(x=measure, y=emmean, fill=gender))+
   geom_bar(position=position_dodge(), stat="identity")+
-  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means",
+       subtitle= "All Genders in MANOVA",
+       y="Emmean in mm",
+       x="Measurement",
+       fill="Gender")
 ```
 
-```{r}
+```{r, fig.width=6.5, fig.height=3}
 gender_means_data1 <- gender_means_data %>% 
   filter(gender != "Other")
 
@@ -95,7 +109,14 @@ gender_means_data1$measure <- fct_reorder(gender_means_data1$measure, gender_mea
 gender_means_data1 %>% 
   ggplot(aes(x=measure, y=emmean, fill=gender))+
   geom_bar(position=position_dodge(), stat="identity")+
-  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means",
+       subtitle= "Two primary genders",
+       y="Emmean in mm",
+       x="Measurement",
+       fill="Gender")
 ```
 
 
@@ -108,13 +129,20 @@ sig_gender_est <- gender_est_data %>%
 
 
 ```{r}
+sig_gender_est$measure <- fct_reorder(sig_gender_est$measure, sig_gender_est$estimate, .desc=FALSE)
+
 sig_gender_est %>% 
   ggplot(aes(x=estimate, y= measure, fill=contrast))+
-  geom_bar(position=position_dodge(), stat="identity")
+  geom_bar(position=position_dodge(), stat="identity")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Gender Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
 ```
 
 ```{r}
-f_minus_m <- sig_gender_est %>% 
+g_f_minus_m <- sig_gender_est %>% 
   filter(contrast == "Female - Male")
 ```
 
@@ -137,31 +165,31 @@ measure_means <- measure_means %>%
 ```
 
 ```{r}
-f_minus_m <- full_join(f_minus_m, measure_means, by="measure")
+g_f_minus_m <- full_join(g_f_minus_m, measure_means, by="measure")
 ```
 
 ```{r}
-f_minus_m$prop_diff <- (f_minus_m$estimate/f_minus_m$measure_means)
-f_minus_m$percent_diff <- (f_minus_m$estimate/f_minus_m$measure_means) *100
+g_f_minus_m$prop_diff <- (g_f_minus_m$estimate/g_f_minus_m$measure_means)
+g_f_minus_m$percent_diff <- (g_f_minus_m$estimate/g_f_minus_m$measure_means) *100
 ```
 
 ```{r}
-m_minus_f <- f_minus_m
+g_m_minus_f <- g_f_minus_m
 
-m_minus_f$estimate <- m_minus_f$estimate*(-1)
-m_minus_f$prop_diff <- m_minus_f$prop_diff*(-1)
-m_minus_f$percent_diff <- m_minus_f$percent_diff*(-1)
+g_m_minus_f$estimate <- g_m_minus_f$estimate*(-1)
+g_m_minus_f$prop_diff <- g_m_minus_f$prop_diff*(-1)
+g_m_minus_f$percent_diff <- g_m_minus_f$percent_diff*(-1)
 
-m_minus_f$contrastx <- "Male - Female"
+g_m_minus_f$contrastx <- "Male - Female"
 ```
 
 
 
 
 ```{r}
-f_minus_m$measure <- fct_reorder(f_minus_m$measure, f_minus_m$estimate, .desc=FALSE)
+g_f_minus_m$measure <- fct_reorder(g_f_minus_m$measure, g_f_minus_m$estimate, .desc=FALSE)
 
-f_minus_m %>% 
+g_f_minus_m %>% 
   ggplot(aes(x=estimate, y= measure))+
   geom_bar(stat="identity", color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -173,9 +201,9 @@ f_minus_m %>%
 
 
 ```{r}
-m_minus_f$measure <- fct_reorder(m_minus_f$measure, m_minus_f$estimate, .desc=TRUE)
+g_m_minus_f$measure <- fct_reorder(g_m_minus_f$measure, g_m_minus_f$estimate, .desc=TRUE)
 
-m_minus_f %>% 
+g_m_minus_f %>% 
   ggplot(aes(x=estimate, y= measure))+
   geom_bar(stat="identity", color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -189,9 +217,9 @@ m_minus_f %>%
 
 
 ```{r}
-f_minus_m$measure <- fct_reorder(f_minus_m$measure, f_minus_m$prop_diff, .desc=FALSE)
+g_f_minus_m$measure <- fct_reorder(g_f_minus_m$measure, g_f_minus_m$prop_diff, .desc=FALSE)
 
-f_minus_m %>% 
+g_f_minus_m %>% 
   ggplot(aes(x=prop_diff, y= measure))+
   geom_bar(stat="identity", color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -203,9 +231,9 @@ f_minus_m %>%
 
 
 ```{r}
-m_minus_f$measure <- fct_reorder(m_minus_f$measure, m_minus_f$prop_diff, .desc=TRUE)
+g_m_minus_f$measure <- fct_reorder(g_m_minus_f$measure, g_m_minus_f$prop_diff, .desc=TRUE)
 
-m_minus_f %>% 
+g_m_minus_f %>% 
   ggplot(aes(x=prop_diff, y= measure))+
   geom_bar(stat="identity", color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
