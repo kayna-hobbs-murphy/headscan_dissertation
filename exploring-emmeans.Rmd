@@ -81,6 +81,8 @@ gender_means_data %>%
 ```{r}
 sig_gender_est <- gender_est_data %>% 
   filter(signif=="TRUE")
+
+
 ```
 
 
@@ -93,6 +95,8 @@ sig_gender_est %>%
 ```{r}
 f_minus_m <- sig_gender_est %>% 
   filter(contrast == "Female - Male")
+
+f_minus_m$measure <- fct_reorder(f_minus_m$measure, f_minus_m$estimate, .desc=FALSE)
 ```
 
 ```{r}
@@ -114,3 +118,17 @@ m_minus_f %>%
   ggplot(aes(x=estimate, y= measure, fill=contrastx))+
   geom_bar(position=position_dodge(), stat="identity")
 ```
+
+```{r}
+chosen_nona1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
+```
+
+```{r}
+chosennona1_num <- select_if(chosen_nona1, is.numeric)
+```
+
+```{r}
+measure_means <- colMeans(chosennona1_num)
+measure_means <- as.data.frame(measure_means)
+```
+
