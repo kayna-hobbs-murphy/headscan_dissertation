@@ -99,25 +99,6 @@ f_minus_m <- sig_gender_est %>%
 f_minus_m$measure <- fct_reorder(f_minus_m$measure, f_minus_m$estimate, .desc=FALSE)
 ```
 
-```{r}
-f_minus_m %>% 
-  ggplot(aes(x=estimate, y= measure, fill=contrast))+
-  geom_bar(position=position_dodge(), stat="identity")
-```
-
-```{r}
-m_minus_f <- f_minus_m
-
-m_minus_f$estimate <- m_minus_f$estimate*(-1)
-
-m_minus_f$contrastx <- "Male - Female"
-```
-
-```{r}
-m_minus_f %>% 
-  ggplot(aes(x=estimate, y= measure, fill=contrastx))+
-  geom_bar(position=position_dodge(), stat="identity")
-```
 
 ```{r}
 chosen_nona1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
@@ -130,5 +111,88 @@ chosennona1_num <- select_if(chosen_nona1, is.numeric)
 ```{r}
 measure_means <- colMeans(chosennona1_num)
 measure_means <- as.data.frame(measure_means)
+measure_means <- rownames_to_column(measure_means)
+
+measure_means <- measure_means %>% 
+  rename(measure=rowname)
+```
+
+```{r}
+f_minus_m <- full_join(f_minus_m, measure_means, by="measure")
+```
+
+```{r}
+f_minus_m$prop_diff <- (f_minus_m$estimate/f_minus_m$measure_means)
+f_minus_m$percent_diff <- (f_minus_m$estimate/f_minus_m$measure_means) *100
+```
+
+```{r}
+m_minus_f <- f_minus_m
+
+m_minus_f$estimate <- m_minus_f$estimate*(-1)
+m_minus_f$prop_diff <- m_minus_f$prop_diff*(-1)
+m_minus_f$percent_diff <- m_minus_f$percent_diff*(-1)
+
+m_minus_f$contrastx <- "Male - Female"
+```
+
+
+
+
+```{r}
+f_minus_m$measure <- fct_reorder(f_minus_m$measure, f_minus_m$estimate, .desc=FALSE)
+
+f_minus_m %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Female - Male Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
+
+
+```{r}
+m_minus_f$measure <- fct_reorder(m_minus_f$measure, m_minus_f$estimate, .desc=TRUE)
+
+m_minus_f %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Male - Female Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
+
+
+
+
+```{r}
+f_minus_m$measure <- fct_reorder(f_minus_m$measure, f_minus_m$prop_diff, .desc=FALSE)
+
+f_minus_m %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Female - Male Significant Differences (as Proportion of Measurement Mean)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Proportion = Estimated Marginal Mean/Measure Mean")
+```
+
+
+```{r}
+m_minus_f$measure <- fct_reorder(m_minus_f$measure, m_minus_f$prop_diff, .desc=TRUE)
+
+m_minus_f %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Male - Female Significant Differences (as Proportion of Measurement Mean)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Proportion = Estimated Marginal Mean/Measure Mean")
 ```
 

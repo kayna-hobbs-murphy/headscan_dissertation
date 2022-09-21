@@ -131,7 +131,7 @@ flextable(measureNAs) %>%
 #bar chart with counts
 ggplot(data=measureNAs, aes(x=measure_name, y=measureNAsums))+
   geom_bar(stat= "identity", color= "black", fill = "white")+
-  theme_bw()+theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
   labs(title="Missing Values by Measurement Location (Count)",
        y="Count of Missing Values",
