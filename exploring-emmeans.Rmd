@@ -56,6 +56,8 @@ gender_means_data %>%
   facet_wrap(~measure)
 ```
 ```{r}
+gender_means_data$measure <- fct_reorder(gender_means_data$measure, gender_means_data$emmean, .desc=FALSE)
+
 gender_means_data %>% 
   ggplot(aes(x=measure, y=emmean, color=gender))+
   geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL))+
@@ -65,6 +67,9 @@ gender_means_data %>%
 ```
 
 ```{r}
+
+#gender_means_data$measure <- fct_reorder(gender_means_data$measure, gender_means_data$emmean, .desc=FALSE)
+
 gender_means_data %>% 
   ggplot(aes(x=gender, y=emmean, fill=measure))+
   geom_bar(position=position_dodge(), stat="identity")+
@@ -72,11 +77,27 @@ gender_means_data %>%
 ```
 
 ```{r}
+
+#gender_means_data$measure <- fct_reorder(gender_means_data$measure, gender_means_data$emmean, .desc=FALSE)
+
 gender_means_data %>% 
   ggplot(aes(x=measure, y=emmean, fill=gender))+
   geom_bar(position=position_dodge(), stat="identity")+
   geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))
 ```
+
+```{r}
+gender_means_data1 <- gender_means_data %>% 
+  filter(gender != "Other")
+
+gender_means_data1$measure <- fct_reorder(gender_means_data1$measure, gender_means_data1$emmean, .desc=FALSE)
+
+gender_means_data1 %>% 
+  ggplot(aes(x=measure, y=emmean, fill=gender))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))
+```
+
 
 ```{r}
 sig_gender_est <- gender_est_data %>% 
@@ -95,8 +116,6 @@ sig_gender_est %>%
 ```{r}
 f_minus_m <- sig_gender_est %>% 
   filter(contrast == "Female - Male")
-
-f_minus_m$measure <- fct_reorder(f_minus_m$measure, f_minus_m$estimate, .desc=FALSE)
 ```
 
 
@@ -195,4 +214,7 @@ m_minus_f %>%
        y="Measurement Location",
        x="Proportion = Estimated Marginal Mean/Measure Mean")
 ```
+
+
+
 
