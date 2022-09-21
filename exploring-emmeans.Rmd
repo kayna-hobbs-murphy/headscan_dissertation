@@ -246,3 +246,167 @@ g_m_minus_f %>%
 
 
 
+AGE
+
+
+
+
+
+
+```{r}
+age_means_data %>% 
+  ggplot(aes(x=age_group, y=emmean, color=measure))+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL))+
+  geom_line()+
+  geom_point()+
+  facet_wrap(~measure)
+```
+```{r}
+age_means_data$measure <- fct_reorder(age_means_data$measure, age_means_data$emmean, .desc=FALSE)
+
+age_means_data %>% 
+  ggplot(aes(x=measure, y=emmean, color=age_group))+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL))+
+  geom_line()+
+  geom_point()+
+  facet_wrap(~age_group)
+```
+
+```{r}
+
+#age_means_data$measure <- fct_reorder(age_means_data$measure, age_means_data$emmean, .desc=FALSE)
+
+age_means_data %>% 
+  ggplot(aes(x=age_group, y=emmean, fill=measure))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means",
+       subtitle= "All ages in MANOVA",
+       y="Emmean in mm",
+       x="Age",
+       fill="Measurement")
+```
+
+```{r, fig.width=6.5, fig.height=3}
+
+#age_means_data$measure <- fct_reorder(age_means_data$measure, age_means_data$emmean, .desc=FALSE)
+
+age_means_data %>% 
+  ggplot(aes(x=measure, y=emmean, fill=age_group))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means",
+       subtitle= "All ages in MANOVA",
+       y="Emmean in mm",
+       x="Measurement",
+       fill="Age")
+```
+
+
+
+
+```{r}
+sig_age_est <- age_est_data %>% 
+  filter(signif=="TRUE")
+
+
+```
+
+
+```{r}
+sig_age_est$measure <- fct_reorder(sig_age_est$measure, sig_age_est$estimate, .desc=FALSE)
+
+sig_age_est %>% 
+  ggplot(aes(x=estimate, y= measure, fill=contrast))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
+
+
+```{r}
+age_est_data1 <- full_join(age_est_data, measure_means, by="measure")
+```
+
+```{r}
+age_est_data1$prop_diff <- (age_est_data1$estimate/age_est_data1$measure_means)
+age_est_data1$percent_diff <- (age_est_data1$estimate/age_est_data1$measure_means) *100
+```
+
+```{r}
+age_est_data1 <- drop_na(age_est_data1)
+
+age_est_data1$measure <- fct_reorder(age_est_data1$measure, age_est_data1$prop_diff, .desc=FALSE)
+
+age_est_data1 %>% 
+  ggplot(aes(x=prop_diff, y= measure, fill=contrast))+
+  geom_bar(stat="identity", position="dodge")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age-Related Significant Differences (as Proportion of Measurement Mean)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Proportion = Estimated Marginal Mean/Measure Mean")
+```
+
+
+
+```{r}
+y_v_m <- age_est_data1 %>% 
+  filter(contrast == "(18-36) - (37-54)")
+
+y_v_m$measure <- fct_reorder(y_v_m$measure, y_v_m$prop_diff, .desc=FALSE)
+
+y_v_m %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(18-36) - (37-54) Significant Differences (as Proportion of Measurement Mean)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Proportion = Estimated Marginal Mean/Measure Mean")
+```
+
+
+```{r}
+y_v_o <- age_est_data1 %>% 
+  filter(contrast == "(18-36) - (55-72)")
+
+y_v_o$measure <- fct_reorder(y_v_o$measure, y_v_o$prop_diff, .desc=FALSE)
+
+y_v_o %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(18-36) - (55-72) Significant Differences (as Proportion of Measurement Mean)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Proportion = Estimated Marginal Mean/Measure Mean")
+```
+
+
+```{r}
+m_v_o <- age_est_data1 %>% 
+  filter(contrast == "(37-54) - (55-72)")
+
+m_v_o$measure <- fct_reorder(m_v_o$measure, m_v_o$prop_diff, .desc=FALSE)
+
+m_v_o %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(37-54) - (55-72) Significant Differences (as Proportion of Measurement Mean)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Proportion = Estimated Marginal Mean/Measure Mean")
+```
+
+
+
+
