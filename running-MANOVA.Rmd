@@ -15,6 +15,7 @@ library(tidyverse)
 library(readxl)
 library(flextable)
 library(extrafont)
+library(writexl)
 library(car) #Manova function
 library(broom) #tidy function
 library(emmeans) #emmeans function
@@ -1733,6 +1734,137 @@ emmip_TrTr_La +
        y="Linear Prediction (of measurement in mm)",
        x="Levels of Age Group")
 ```
+
+
+```{r}
+#gender 
+AA_Cg_em1$measure  <- "AA_C"
+BiW_Lg_em1$measure  <- "BiW_L"
+BiW_Cg_em1$measure  <- "BiW_C"
+GoSub_Cg_em1$measure  <- "GoSub_C"
+NRB_Lg_em1$measure  <- "NRB_L"
+ProS_Lg_em1$measure  <- "ProS_L"
+SelP_Lg_em1$measure  <- "SelP_L"
+SelM_Lg_em1$measure  <- "SelM_L"
+SnasM_Cg_em1$measure  <- "SnasM_C"
+TrSman_Cg_em1$measure  <- "TrSman_C"
+TrTr_Cg_em1$measure  <- "TrTr_C"
+TrTr_Lg_em1$measure  <- "TrTr_L"
+
+gender_means_data <- rbind(AA_Cg_em1, BiW_Lg_em1, BiW_Cg_em1, GoSub_Cg_em1, NRB_Lg_em1,
+                    ProS_Lg_em1, SelP_Lg_em1, SelM_Lg_em1, SnasM_Cg_em1, TrSman_Cg_em1,
+                    TrTr_Cg_em1, TrTr_Lg_em1)
+
+write_xlsx(gender_means_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\gender_means_data.xlsx")
+```
+
+```{r}
+#race_eth
+AA_Cr_em1$measure  <- "AA_C"
+BiW_Lr_em1$measure  <- "BiW_L"
+BiW_Cr_em1$measure  <- "BiW_C"
+GoSub_Cr_em1$measure  <- "GoSub_C"
+NRB_Lr_em1$measure  <- "NRB_L"
+ProS_Lr_em1$measure  <- "ProS_L"
+SelP_Lr_em1$measure  <- "SelP_L"
+SelM_Lr_em1$measure  <- "SelM_L"
+SnasM_Cr_em1$measure  <- "SnasM_C"
+TrSman_Cr_em1$measure  <- "TrSman_C"
+TrTr_Cr_em1$measure  <- "TrTr_C"
+TrTr_Lr_em1$measure  <- "TrTr_L"
+
+race_means_data <- rbind(AA_Cr_em1, BiW_Lr_em1, BiW_Cr_em1, GoSub_Cr_em1, NRB_Lr_em1,
+                    ProS_Lr_em1, SelP_Lr_em1, SelM_Lr_em1, SnasM_Cr_em1, TrSman_Cr_em1,
+                    TrTr_Cr_em1, TrTr_Lr_em1)
+
+write_xlsx(race_means_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\race_means_data.xlsx")
+```
+
+```{r}
+#age 
+AA_Ca_em1$measure  <- "AA_C"
+BiW_La_em1$measure  <- "BiW_L"
+GoSub_Ca_em1$measure  <- "GoSub_C"
+ProS_La_em1$measure  <- "ProS_L"
+SelP_La_em1$measure  <- "SelP_L"
+SelM_La_em1$measure  <- "SelM_L"
+TrSman_Ca_em1$measure  <- "TrSman_C"
+TrTr_Ca_em1$measure  <- "TrTr_C"
+TrTr_La_em1$measure  <- "TrTr_L"
+
+age_means_data <- rbind(AA_Ca_em1, BiW_La_em1, GoSub_Ca_em1,
+                    ProS_La_em1, SelP_La_em1, SelM_La_em1, TrSman_Ca_em1,
+                    TrTr_Ca_em1, TrTr_La_em1)
+
+write_xlsx(age_means_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\age_means_data.xlsx")
+```
+
+
+
+```{r}
+#gender 
+AA_Cg_em3$measure  <- "AA_C"
+BiW_Lg_em3$measure  <- "BiW_L"
+BiW_Cg_em3$measure  <- "BiW_C"
+GoSub_Cg_em3$measure  <- "GoSub_C"
+NRB_Lg_em3$measure  <- "NRB_L"
+ProS_Lg_em3$measure  <- "ProS_L"
+SelP_Lg_em3$measure  <- "SelP_L"
+SelM_Lg_em3$measure  <- "SelM_L"
+SnasM_Cg_em3$measure  <- "SnasM_C"
+TrSman_Cg_em3$measure  <- "TrSman_C"
+TrTr_Cg_em3$measure  <- "TrTr_C"
+TrTr_Lg_em3$measure  <- "TrTr_L"
+
+gender_est_data <- rbind(AA_Cg_em3, BiW_Lg_em3, BiW_Cg_em3, GoSub_Cg_em3, NRB_Lg_em3,
+                    ProS_Lg_em3, SelP_Lg_em3, SelM_Lg_em3, SnasM_Cg_em3, TrSman_Cg_em3,
+                    TrTr_Cg_em3, TrTr_Lg_em3)
+
+write_xlsx(gender_est_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\gender_est_data.xlsx")
+```
+
+```{r}
+#race_eth
+AA_Cr_em3$measure  <- "AA_C"
+BiW_Lr_em3$measure  <- "BiW_L"
+BiW_Cr_em3$measure  <- "BiW_C"
+GoSub_Cr_em3$measure  <- "GoSub_C"
+NRB_Lr_em3$measure  <- "NRB_L"
+ProS_Lr_em3$measure  <- "ProS_L"
+SelP_Lr_em3$measure  <- "SelP_L"
+SelM_Lr_em3$measure  <- "SelM_L"
+SnasM_Cr_em3$measure  <- "SnasM_C"
+TrSman_Cr_em3$measure  <- "TrSman_C"
+TrTr_Cr_em3$measure  <- "TrTr_C"
+TrTr_Lr_em3$measure  <- "TrTr_L"
+
+race_est_data <- rbind(AA_Cr_em3, BiW_Lr_em3, BiW_Cr_em3, GoSub_Cr_em3, NRB_Lr_em3,
+                    ProS_Lr_em3, SelP_Lr_em3, SelM_Lr_em3, SnasM_Cr_em3, TrSman_Cr_em3,
+                    TrTr_Cr_em3, TrTr_Lr_em3)
+
+write_xlsx(race_est_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\race_est_data.xlsx")
+```
+
+```{r}
+#age 
+AA_Ca_em3$measure  <- "AA_C"
+BiW_La_em3$measure  <- "BiW_L"
+GoSub_Ca_em3$measure  <- "GoSub_C"
+ProS_La_em3$measure  <- "ProS_L"
+SelP_La_em3$measure  <- "SelP_L"
+SelM_La_em3$measure  <- "SelM_L"
+TrSman_Ca_em3$measure  <- "TrSman_C"
+TrTr_Ca_em3$measure  <- "TrTr_C"
+TrTr_La_em3$measure  <- "TrTr_L"
+
+age_est_data <- rbind(AA_Ca_em3, BiW_La_em3, GoSub_Ca_em3,
+                    ProS_La_em3, SelP_La_em3, SelM_La_em3, 
+                    TrSman_Ca_em3, TrTr_Ca_em3, TrTr_La_em3)
+
+write_xlsx(age_est_data, "C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\age_est_data.xlsx")
+```
+
+
 
 
 
