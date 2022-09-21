@@ -373,6 +373,20 @@ y_v_m %>%
        x="Proportion = Estimated Marginal Mean/Measure Mean")
 ```
 
+```{r}
+y_v_m$measure <- fct_reorder(y_v_m$measure, y_v_m$estimate, .desc=FALSE)
+
+y_v_m %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(18-36) - (37-54) Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
+
+
 
 ```{r}
 y_v_o <- age_est_data1 %>% 
@@ -388,6 +402,19 @@ y_v_o %>%
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Proportion = Estimated Marginal Mean/Measure Mean")
+```
+
+```{r}
+y_v_o$measure <- fct_reorder(y_v_o$measure, y_v_o$estimate, .desc=FALSE)
+
+y_v_o %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(18-36) - (55-72) Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
 ```
 
 
@@ -407,6 +434,17 @@ m_v_o %>%
        x="Proportion = Estimated Marginal Mean/Measure Mean")
 ```
 
+```{r}
+m_v_o$measure <- fct_reorder(m_v_o$measure, m_v_o$estimate, .desc=FALSE)
 
+m_v_o %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(37-54) - (55-72) Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
 
 
