@@ -332,7 +332,7 @@ sig_age_est %>%
 
 
 ```{r}
-age_est_data1 <- full_join(age_est_data, measure_means, by="measure")
+age_est_data1 <- full_join(sig_age_est, measure_means, by="measure")
 ```
 
 ```{r}
@@ -451,3 +451,109 @@ m_v_o %>%
 
 
 RACE/ETHNICITY
+
+
+```{r}
+race_means_data %>% 
+  ggplot(aes(x=race_eth, y=emmean, color=measure))+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL))+
+  geom_line()+
+  geom_point()+
+  facet_wrap(~measure)
+```
+```{r}
+race_means_data$measure <- fct_reorder(race_means_data$measure, race_means_data$emmean, .desc=FALSE)
+
+race_means_data %>% 
+  ggplot(aes(x=measure, y=emmean, color=race_eth))+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL))+
+  geom_line()+
+  geom_point()+
+  facet_wrap(~race_eth)
+```
+
+```{r}
+
+#race_means_data$measure <- fct_reorder(race_means_data$measure, race_means_data$emmean, .desc=FALSE)
+
+race_means_data %>% 
+  ggplot(aes(x=race_eth, y=emmean, fill=measure))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means",
+       subtitle= "All races/ethnicities in MANOVA",
+       y="Emmean in mm",
+       x="Age",
+       fill="Measurement")
+```
+
+```{r, fig.width=6.5, fig.height=3}
+
+#race_means_data$measure <- fct_reorder(race_means_data$measure, race_means_data$emmean, .desc=FALSE)
+
+race_means_data %>% 
+  ggplot(aes(x=measure, y=emmean, fill=race_eth))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means",
+       subtitle= "All races/ethnicities in MANOVA",
+       y="Emmean in mm",
+       x="Measurement",
+       fill="race")
+```
+
+
+
+
+```{r}
+sig_race_est <- race_est_data %>% 
+  filter(signif=="TRUE")
+
+
+```
+
+
+```{r}
+sig_race_est$measure <- fct_reorder(sig_race_est$measure, sig_race_est$estimate, .desc=FALSE)
+
+sig_race_est %>% 
+  ggplot(aes(x=estimate, y= measure, fill=contrast))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
+
+
+```{r}
+race_est_data1 <- full_join(sig_race_est, measure_means, by="measure")
+```
+
+```{r}
+race_est_data1$prop_diff <- (race_est_data1$estimate/race_est_data1$measure_means)
+race_est_data1$percent_diff <- (race_est_data1$estimate/race_est_data1$measure_means) *100
+```
+
+```{r}
+race1 <- race_est_data1 %>% 
+  filter(contrast == "Asian - Black")
+
+race1$measure <- fct_reorder(race1$measure, race1$prop_diff, .desc=FALSE)
+
+race1 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Asian - Black Significant Differences (as Proportion of Measurement Mean)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Proportion = Estimated Marginal Mean/Measure Mean")
+```
+
+
