@@ -14,6 +14,7 @@ library(tidyverse)
 library(readxl)
 library(flextable)
 library(extrafont)
+library(scales)
 ```
 
 
@@ -148,7 +149,7 @@ g_f_minus_m <- full_join(g_f_minus_m, measure_means, by="measure")
 
 ```{r}
 g_f_minus_m$prop_diff <- (g_f_minus_m$estimate/g_f_minus_m$measure_means)
-g_f_minus_m$percent_diff <- (g_f_minus_m$estimate/g_f_minus_m$measure_means) *100
+g_f_minus_m$percent_diff <- g_f_minus_m$prop_diff * 100
 ```
 
 
@@ -170,10 +171,12 @@ g_f_minus_m %>%
   ggplot(aes(x=prop_diff, y= measure))+
   geom_bar(stat="identity", color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Female - Male Significant Differences (as Proportion of Measurement Mean)",
+  scale_x_continuous(labels = scales::percent,
+                     breaks = scales::pretty_breaks(n = 8))+
+  labs(title="Female - Male Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
-       x="Proportion Difference = Estimated Difference/Measure Mean")
+       x="Percent Difference from Total Measurement Mean")
 ```
 
 
@@ -204,7 +207,7 @@ g_m_minus_f %>%
   labs(title="Male - Female Significant Differences (as Proportion of Measurement Mean)",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
-       x="Proportion Difference = Estimated Difference/Measure Mean")
+       x="Percent Difference from Total Measurement Mean")
 ```
 
 
@@ -273,7 +276,7 @@ sig_age_est %>%
 age_est_data1 <- full_join(sig_age_est, measure_means, by="measure")
 
 age_est_data1$prop_diff <- (age_est_data1$estimate/age_est_data1$measure_means)
-age_est_data1$percent_diff <- (age_est_data1$estimate/age_est_data1$measure_means) *100
+age_est_data1$percent_diff <- percent(age_est_data1$prop_diff)
 
 
 age_est_data1 <- drop_na(age_est_data1)
@@ -554,7 +557,8 @@ race_est_data1 <- full_join(sig_race_est, measure_means, by="measure")
 
 ```{r}
 race_est_data1$prop_diff <- (race_est_data1$estimate/race_est_data1$measure_means)
-race_est_data1$percent_diff <- (race_est_data1$estimate/race_est_data1$measure_means) *100
+
+race_est_data1$percent_diff <- percent(race_est_data1$prop_diff)
 ```
 
 ```{r}
@@ -585,20 +589,59 @@ race1 %>%
 ```
 
 
+
+```{r}
+race1.1 <- race1
+
+race1.1$estimate <- race1.1$estimate*(-1)
+race1.1$prop_diff <- race1.1$prop_diff*(-1)
+race1.1$percent_diff <- race1.1$percent_diff*(-1)
+
+race1.1$contrastx <- "Black - Asian"
+
+
+
+race1.1$measure <- fct_reorder(race1.1$measure, race1.1$prop_diff, .desc=TRUE)
+
+race1.1 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - Asian Significant Differences (as Proportion of Measurement Mean)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Proportion Difference = Estimated Difference/Measure Mean")
+
+
+race1.1$measure <- fct_reorder(race1.1$measure, race1.1$estimate, .desc=TRUE)
+
+race1.1 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - Asian Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
+
+
+
+
 ```{r}
 race2 <- race_est_data1 %>% 
   filter(contrast == "Asian - LatinX")
 
-race2$measure <- fct_reorder(race2$measure, race2$prop_diff, .desc=FALSE)
+race2$measure <- fct_reorder(race2$measure, race2$percent_diff, .desc=FALSE)
 
 race2 %>% 
-  ggplot(aes(x=prop_diff, y= measure))+
+  ggplot(aes(x=percent_diff, y= measure))+
   geom_bar(stat="identity", color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Asian - LatinX Significant Differences (as Proportion of Measurement Mean)",
+  labs(title="Asian - LatinX Significant Differences as Percentage of Data Mean",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
-       x="Proportion Difference = Estimated Difference/Measure Mean")
+       x="Percent Difference")
 
 race2$measure <- fct_reorder(race2$measure, race2$estimate, .desc=FALSE)
 
@@ -612,6 +655,42 @@ race2 %>%
        x="Difference in mm")
 ```
 
+
+
+```{r}
+race2.1 <- race2
+
+race2.1$estimate <- race2.1$estimate*(-1)
+race2.1$prop_diff <- race2.1$prop_diff*(-1)
+race2.1$percent_diff <- race2.1$percent_diff*(-1)
+
+race2.1$contrastx <- "Black - Asian"
+
+
+
+race2.1$measure <- fct_reorder(race2.1$measure, race2.1$prop_diff, .desc=TRUE)
+
+race2.1 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - Asian Significant Differences (as Proportion of Measurement Mean)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Proportion Difference = Estimated Difference/Measure Mean")
+
+
+race2.1$measure <- fct_reorder(race2.1$measure, race2.1$estimate, .desc=TRUE)
+
+race2.1 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - Asian Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
 
 
 ```{r}
@@ -646,7 +725,7 @@ race3 %>%
 race4 <- race_est_data1 %>% 
   filter(contrast == "Black - LatinX")
 
-race4$measure <- fct_reorder(race4$measure, race4$prop_diff, .desc=FALSE)
+race4$measure <- fct_reorder(race4$measure, race4$prop_diff, .desc=TRUE)
 
 race4 %>% 
   ggplot(aes(x=prop_diff, y= measure))+
@@ -657,7 +736,7 @@ race4 %>%
        y="Measurement Location",
        x="Proportion Difference = Estimated Difference/Measure Mean")
 
-race4$measure <- fct_reorder(race4$measure, race4$estimate, .desc=FALSE)
+race4$measure <- fct_reorder(race4$measure, race4$estimate, .desc=TRUE)
 
 race4 %>% 
   ggplot(aes(x=estimate, y= measure))+
@@ -674,7 +753,7 @@ race4 %>%
 race5 <- race_est_data1 %>% 
   filter(contrast == "Black - Other")
 
-race5$measure <- fct_reorder(race5$measure, race5$prop_diff, .desc=FALSE)
+race5$measure <- fct_reorder(race5$measure, race5$prop_diff, .desc=TRUE)
 
 race5 %>% 
   ggplot(aes(x=prop_diff, y= measure))+
@@ -685,7 +764,7 @@ race5 %>%
        y="Measurement Location",
        x="Proportion Difference = Estimated Difference/Measure Mean")
 
-race5$measure <- fct_reorder(race5$measure, race5$estimate, .desc=FALSE)
+race5$measure <- fct_reorder(race5$measure, race5$estimate, .desc=TRUE)
 
 race5 %>% 
   ggplot(aes(x=estimate, y= measure))+
