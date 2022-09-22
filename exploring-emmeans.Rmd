@@ -556,4 +556,44 @@ race1 %>%
        x="Proportion = Estimated Marginal Mean/Measure Mean")
 ```
 
+```{r}
+race1$measure <- fct_reorder(race1$measure, race1$estimate, .desc=FALSE)
 
+race1 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Asian - Black Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
+
+```{r}
+race2 <- race_est_data1 %>% 
+  filter(contrast == "Asian - LatinX")
+
+race2$measure <- fct_reorder(race2$measure, race2$prop_diff, .desc=FALSE)
+
+race2 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Asian - LatinX Significant Differences (as Proportion of Measurement Mean)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Proportion = Estimated Marginal Mean/Measure Mean")
+```
+
+```{r}
+race2$measure <- fct_reorder(race2$measure, race2$estimate, .desc=FALSE)
+
+race2 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Asian - LatinX Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
