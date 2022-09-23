@@ -85,6 +85,11 @@ gender_means_data %>%
        fill="Measurement")
 
 
+```
+
+```{r, fig.width=6.5, fig.height=3}
+
+
 gender_means_data %>% 
   ggplot(aes(x=measure, y=emmean, fill=gender))+
   geom_bar(position=position_dodge(), stat="identity")+
@@ -97,9 +102,7 @@ gender_means_data %>%
        y="Emmean in mm",
        x="Measurement",
        fill="Gender")
-```
 
-```{r, fig.width=6.5, fig.height=3}
 gender_means_data1 <- gender_means_data %>% 
   filter(gender != "Other")
 
@@ -749,6 +752,41 @@ race3 %>%
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
 ```
+```{r}
+race3.1 <- race3
+
+race3.1$estimate <- race3.1$estimate*(-1)
+race3.1$prop_diff <- race3.1$prop_diff*(-1)
+race3.1$percent_diff <- race3.1$percent_diff*(-1)
+
+race3.1$contrastx <- "white - Asian"
+
+
+
+race3.1$measure <- fct_reorder(race3.1$measure, race3.1$estimate, .desc=TRUE)
+
+race3.1 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="white - Asian Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+race3.1$measure <- fct_reorder(race3.1$measure, race3.1$prop_diff, .desc=TRUE)
+
+race3.1 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="white - Asian Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+```
 
 
 ```{r}
@@ -778,7 +816,41 @@ race4 %>%
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
 ```
+```{r}
+race4.1 <- race4
 
+race4.1$estimate <- race4.1$estimate*(-1)
+race4.1$prop_diff <- race4.1$prop_diff*(-1)
+race4.1$percent_diff <- race4.1$percent_diff*(-1)
+
+race4.1$contrastx <- "LatinX - Black"
+
+
+
+race4.1$measure <- fct_reorder(race4.1$measure, race4.1$estimate, .desc=FALSE)
+
+race4.1 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="LatinX - Black Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+race4.1$measure <- fct_reorder(race4.1$measure, race4.1$prop_diff, .desc=FALSE)
+
+race4.1 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="LatinX - Black Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+```
 
 ```{r}
 race5 <- race_est_data1 %>% 
