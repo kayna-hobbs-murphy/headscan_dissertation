@@ -181,6 +181,18 @@ g_f_minus_m %>%
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
+
+g_f_minus_m <- g_f_minus_m[c(8, 2, 6, 9, 10)]
+
+g_f_minus_m <- g_f_minus_m %>% 
+  mutate(across(where(is.numeric), round, digits=2))
+
+flextable(g_f_minus_m) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Female - Male Significant Differences in Estimated Marginal Means") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
 
 
