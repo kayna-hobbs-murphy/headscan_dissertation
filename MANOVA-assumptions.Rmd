@@ -239,47 +239,85 @@ ggplot(data=temp5, aes(x=resid_vals))+
 ```
 ```{r}
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
-           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           SelP_L, SelM_L, SnasM_C,  
            TrSman_C, TrTr_C, TrTr_L) ~ race_eth, data=SA3_noout)
 
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
-           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           SelP_L, SelM_L, SnasM_C,
            TrSman_C, TrTr_C, TrTr_L) ~ gender, data=SA3_noout)
 
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
-           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           SelP_L, SelM_L, SnasM_C,
            TrSman_C, TrTr_C, TrTr_L) ~ age_group, data=SA3_noout)
+
+boxtest_data <- SA3_noout
+
+boxtest_data$gender <-
+  recode_factor(boxtest_data$gender, 'Female'= "Female or Other",
+                'Other' = "Female or Other")
+
+boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
+           SelP_L, SelM_L, SnasM_C,
+           TrSman_C, TrTr_C, TrTr_L) ~ gender, data=boxtest_data)
 ```
 
-```{r}
+
+Box’s M test the assumption of equality of covariance matrices. However, Box's M is sensitive to large data files; therefore, it can detect even small departures from homogeneity. Moreover, it can be sensitive to departures from the assumption of normality.
+
+Box's M:  If group sizes are over 30, then the MANOVA is robust against violations of homogeneity of variance-covariance matrices assumption.
+Levene's Test:     if homogeneity of variance can't be assumed for one (or more) dependent variables, then use an alpha level stricter than .05 (ie: use .001) when you evaluate the univariate ANOVAs.
+[From "SPSS for the Health and Behavioural Sciences" (Allen & Bennett, 2008)]
+
+
+Huberty, C. J, & Morris, J. D. (1989). Multivariate analysis versus multiple univariate analyses. Psychological Bulletin, 105, 302-308.
+
+https://www.researchgate.net/post/What-if-the-Boxs-Test-in-two-way-MANOVA-is-significant
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#```{r}
 HOMOGENEITY(data=SA3_noout, groups='race_eth', variables=c('AA_C', 'BiW_C', 
                                                            'BiW_L', 'GoSub_C',
                                                            'NRB_L', 'ProS_L',
                                                            'SelP_L', 'SelM_L', 
-                                                           'SnasM_C', 'SnasM_C',
-                                                           'TrSman_C', 'TrTr_C', 'TrTr_L'))
-```
-```{r}
+                                                           'SnasM_C','TrSman_C', 
+                                                           'TrTr_C', 'TrTr_L'))
+#```
+#```{r}
 HOMOGENEITY(data=SA3_noout, groups='gender', variables=c('AA_C', 'BiW_C', 
                                                            'BiW_L', 'GoSub_C',
                                                            'NRB_L', 'ProS_L',
                                                            'SelP_L', 'SelM_L', 
-                                                           'SnasM_C', 'SnasM_C',
-                                                           'TrSman_C', 'TrTr_C', 'TrTr_L'))
-```
-```{r}
+                                                           'SnasM_C', 'TrSman_C', 
+                                                         'TrTr_C', 'TrTr_L'))
+#```
+#```{r}
 HOMOGENEITY(data=SA3_noout, groups='age_group', variables=c('AA_C', 'BiW_C', 
                                                            'BiW_L', 'GoSub_C',
                                                            'NRB_L', 'ProS_L',
                                                            'SelP_L', 'SelM_L', 
-                                                           'SnasM_C', 'SnasM_C',
-                                                           'TrSman_C', 'TrTr_C', 'TrTr_L'))
-```
+                                                           'SnasM_C', 'TrSman_C', 
+                                                           'TrTr_C', 'TrTr_L'))
+#```
 
 
 
 
-```{r}
+#```{r}
 boxtest_data <- column_to_rownames(SA3_noout, "ID")
 
 boxtest_data$race_eth <-
@@ -297,46 +335,48 @@ boxtest_data$age_group <- as.factor(boxtest_data$age_group)
 summary(boxtest_data)
 
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
-           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           SelP_L, SelM_L, SnasM_C, 
            TrSman_C, TrTr_C, TrTr_L) ~ race_eth, data=boxtest_data)
 
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
-           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           SelP_L, SelM_L, SnasM_C, 
            TrSman_C, TrTr_C, TrTr_L) ~ gender, data=boxtest_data)
 
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
-           SelP_L, SelM_L, SnasM_C, SnasM_C, 
+           SelP_L, SelM_L, SnasM_C,
            TrSman_C, TrTr_C, TrTr_L) ~ age_group, data=boxtest_data)
 
 
-```
-```{r}
+#```
+#```{r}
 HOMOGENEITY(data=boxtest_data, groups='race_eth', variables=c('AA_C', 'BiW_C', 
                                                            'BiW_L', 'GoSub_C',
                                                            'NRB_L', 'ProS_L',
                                                            'SelP_L', 'SelM_L', 
-                                                           'SnasM_C', 'SnasM_C',
-                                                           'TrSman_C', 'TrTr_C', 'TrTr_L'))
-```
+                                                           'SnasM_C', 'TrSman_C', 
+                                                           'TrTr_C', 'TrTr_L'))
+#```
 
-```{r}
+#```{r}
 HOMOGENEITY(data=boxtest_data, groups='gender', variables=c('AA_C', 'BiW_C', 
                                                            'BiW_L', 'GoSub_C',
                                                            'NRB_L', 'ProS_L',
                                                            'SelP_L', 'SelM_L', 
-                                                           'SnasM_C', 'SnasM_C',
-                                                           'TrSman_C', 'TrTr_C', 'TrTr_L'))
-```
+                                                           'SnasM_C', 'TrSman_C', 
+                                                           'TrTr_C', 'TrTr_L'))
+#```
 
-```{r}
+#```{r}
 HOMOGENEITY(data=boxtest_data, groups='age_group', variables=c('AA_C', 'BiW_C', 
                                                            'BiW_L', 'GoSub_C',
                                                            'NRB_L', 'ProS_L',
                                                            'SelP_L', 'SelM_L', 
-                                                           'SnasM_C', 'SnasM_C',
-                                                           'TrSman_C', 'TrTr_C', 'TrTr_L'))
-```
+                                                           'SnasM_C', 'TrSman_C', 
+                                                           'TrTr_C', 'TrTr_L'))
+#```
 
+
+Box’s M test the assumption of equality of covariance matrices. However, Box's M is sensitive to large data files; therefore, it can detect even small departures from homogeneity. Moreover, it can be sensitive to departures from the assumption of normality.
 
 Box's M:  If group sizes are over 30, then the MANOVA is robust against violations of homogeneity of variance-covariance matrices assumption.
 Levene's Test:     if homogeneity of variance can't be assumed for one (or more) dependent variables, then use an alpha level stricter than .05 (ie: use .001) when you evaluate the univariate ANOVAs.
