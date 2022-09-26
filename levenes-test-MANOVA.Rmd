@@ -10,10 +10,31 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
+library(tidyverse)
+library(readxl)
+library(flextable)
+library(extrafont)
+library(writexl)
 library(car)
 ```
 
+```{r}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
 
+
+```{r}
+SA3_noout <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
+```
 
 Levene's test, no transformation
 

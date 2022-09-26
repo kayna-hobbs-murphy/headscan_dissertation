@@ -276,7 +276,7 @@ https://www.researchgate.net/post/What-if-the-Boxs-Test-in-two-way-MANOVA-is-sig
 
 
 
-
+#don't really see the point of doing transformations, they didn't affect too much for visual assumptions or Levene's test
 
 
 
