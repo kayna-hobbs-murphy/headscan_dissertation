@@ -38,6 +38,18 @@ my_ft_theme <- function(ft, ...) {
 
 chosen_nona1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
 
+chosen_nona1$gender <- as.factor(chosen_nona1$gender)
+chosen_nona1$race_eth <- as.factor(chosen_nona1$race_eth)
+chosen_nona1$age_group <- as.factor(chosen_nona1$age_group)
+
+
+
+summary(chosen_nona1)
+
+chosen_nona1$gender <-
+  recode_factor(chosen_nona1$gender, 'Female'= "Female or Other",
+                'Other' = "Female or Other")
+
 variables <- cbind(chosen_nona1$AA_C, chosen_nona1$BiW_C, chosen_nona1$BiW_L, 
                    chosen_nona1$GoSub_C, chosen_nona1$NRB_L, chosen_nona1$ProS_L,
                    chosen_nona1$SelP_L, chosen_nona1$SelM_L, chosen_nona1$SnasM_C,
