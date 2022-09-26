@@ -118,6 +118,8 @@ method.
 
 
 
+
+
 ```{r}
 AA_Cout <- aov(AA_C ~ gender+race_eth+age_group, data=chosen_nona1)
 summary(AA_Cout)

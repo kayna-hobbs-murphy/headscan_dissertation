@@ -144,7 +144,7 @@ sig_gender_est %>%
 
 ```{r}
 g_f_minus_m <- sig_gender_est %>% 
-  filter(contrast == "Female - Male")
+  filter(contrast == "(Female/Other) - Male")
 ```
 
 
@@ -165,7 +165,7 @@ g_f_minus_m %>%
   ggplot(aes(x=estimate, y= measure))+
   geom_bar(stat="identity", color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Female - Male Significant Differences in Estimated Marginal Means",
+  labs(title="Female/Other - Male Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Difference in mm")
@@ -177,7 +177,7 @@ g_f_minus_m %>%
   geom_bar(stat="identity", color= "black", fill = "white")+
   scale_x_continuous(labels = scales::percent)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Female - Male Significant Differences in Estimated Marginal Means",
+  labs(title="Female/Other - Male Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
@@ -190,7 +190,7 @@ g_f_minus_m <- g_f_minus_m %>%
 flextable(g_f_minus_m) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Female - Male Significant Differences in Estimated Marginal Means") %>% 
+  set_caption("Female/Other - Male Significant Differences in Estimated Marginal Means") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 ```
@@ -201,9 +201,9 @@ g_m_minus_f <- g_f_minus_m
 
 g_m_minus_f$estimate <- g_m_minus_f$estimate*(-1)
 g_m_minus_f$prop_diff <- g_m_minus_f$prop_diff*(-1)
-g_m_minus_f$percent_diff <- g_m_minus_f$percent_diff*(-1)
+#g_m_minus_f$percent_diff <- g_m_minus_f$percent_diff*(-1)
 
-g_m_minus_f$contrastx <- "Male - Female"
+#g_m_minus_f$contrastx <- "Male - Female/Other"
 
 g_m_minus_f$measure <- fct_reorder(g_m_minus_f$measure, g_m_minus_f$estimate, .desc=TRUE)
 
@@ -211,7 +211,7 @@ g_m_minus_f %>%
   ggplot(aes(x=estimate, y= measure))+
   geom_bar(stat="identity", color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Male - Female Significant Differences in Estimated Marginal Means",
+  labs(title="Male - Female/Other Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Difference in mm")
@@ -223,10 +223,17 @@ g_m_minus_f %>%
   geom_bar(stat="identity", color= "black", fill = "white")+
   scale_x_continuous(labels = scales::percent)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Male - Female Significant Differences in Estimated Marginal Means",
+  labs(title="Male - Female/Other Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
+
+flextable(g_m_minus_f) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Male - Female/Other Significant Differences in Estimated Marginal Means") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
 
 
@@ -295,7 +302,7 @@ sig_age_est %>%
 age_est_data1 <- full_join(sig_age_est, measure_means, by="measure")
 
 age_est_data1$prop_diff <- (age_est_data1$estimate/age_est_data1$measure_means)
-age_est_data1$percent_diff <- (age_est_data1$prop_diff)*100
+#age_est_data1$percent_diff <- (age_est_data1$prop_diff)*100
 
 
 age_est_data1 <- drop_na(age_est_data1)
@@ -312,12 +319,38 @@ age_est_data1 %>%
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
 
+
+
+y_v_m <- age_est_data1 %>% 
+  filter(contrast == "(18-36) - (37-54)")
+
+y_v_o <- age_est_data1 %>% 
+  filter(contrast == "(18-36) - (55-72)")
+
+m_v_o <- age_est_data1 %>% 
+  filter(contrast == "(37-54) - (55-72)")
+
+
+
+age_est_data1 <- age_est_data1[c(8, 2, 6, 9, 10)]
+
+age_est_data1 <- age_est_data1 %>% 
+  mutate(across(where(is.numeric), round, digits=2))
+
+flextable(age_est_data1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Age-Related Significant Differences in Estimated Marginal Means") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
 ```
 
 
+
+
 ```{r}
-y_v_m <- age_est_data1 %>% 
-  filter(contrast == "(18-36) - (37-54)")
+
 
 
 y_v_m$measure <- fct_reorder(y_v_m$measure, y_v_m$estimate, .desc=FALSE)
@@ -343,6 +376,13 @@ y_v_m %>%
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
+
+flextable(y_v_m) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(18-36) - (37-54) Significant Differences in Estimated Marginal Means") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
 
 
@@ -351,9 +391,9 @@ m_v_y <- y_v_m
 
 m_v_y$estimate <- m_v_y$estimate*(-1)
 m_v_y$prop_diff <- m_v_y$prop_diff*(-1)
-m_v_y$percent_diff <- m_v_y$percent_diff*(-1)
+#m_v_y$percent_diff <- m_v_y$percent_diff*(-1)
 
-m_v_y$contrastx <- "(37-54) - (18-36)"
+#m_v_y$contrastx <- "(37-54) - (18-36)"
 
 
 m_v_y$measure <- fct_reorder(m_v_y$measure, m_v_y$estimate, .desc=TRUE)
@@ -379,13 +419,21 @@ m_v_y %>%
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
+
+
+
+flextable(m_v_y) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(37-54) - (18-36) Significant Differences in Estimated Marginal Means") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
 
 
 
 ```{r}
-y_v_o <- age_est_data1 %>% 
-  filter(contrast == "(18-36) - (55-72)")
+
 
 
 y_v_o$measure <- fct_reorder(y_v_o$measure, y_v_o$estimate, .desc=FALSE)
@@ -410,6 +458,14 @@ y_v_o %>%
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
+
+
+flextable(y_v_o) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(18-36) - (55-72) Significant Differences in Estimated Marginal Means") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
 
 ```{r}
@@ -417,9 +473,9 @@ o_v_y <- y_v_o
 
 o_v_y$estimate <- o_v_y$estimate*(-1)
 o_v_y$prop_diff <- o_v_y$prop_diff*(-1)
-o_v_y$percent_diff <- o_v_y$percent_diff*(-1)
+#o_v_y$percent_diff <- o_v_y$percent_diff*(-1)
 
-o_v_y$contrastx <- "(55-72) - (18-36)"
+#o_v_y$contrastx <- "(55-72) - (18-36)"
 
 
 
@@ -447,11 +503,18 @@ o_v_y %>%
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
+
+
+flextable(o_v_y) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(55-72) - (18-36) Significant Differences in Estimated Marginal Means") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
 
 ```{r}
-m_v_o <- age_est_data1 %>% 
-  filter(contrast == "(37-54) - (55-72)")
+
 
 
 
@@ -479,6 +542,13 @@ m_v_o %>%
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
+
+flextable(m_v_o) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(37-54) - (55-72) Significant Differences in Estimated Marginal Means") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
 
 ```{r}
@@ -486,9 +556,9 @@ o_v_m <- m_v_o
 
 o_v_m$estimate <- o_v_m$estimate*(-1)
 o_v_m$prop_diff <- o_v_m$prop_diff*(-1)
-o_v_m$percent_diff <- o_v_m$percent_diff*(-1)
+#o_v_m$percent_diff <- o_v_m$percent_diff*(-1)
 
-o_v_m$contrastx <- "(55-72) - (18-36)"
+#o_v_m$contrastx <- "(55-72) - (18-36)"
 
 
 
@@ -515,6 +585,13 @@ o_v_m %>%
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
+
+flextable(o_v_m) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(55-72) - (18-36) Significant Differences in Estimated Marginal Means") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
 
 
