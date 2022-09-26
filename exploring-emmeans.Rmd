@@ -126,6 +126,9 @@ gender_means_data1 %>%
 ```{r}
 sig_gender_est <- gender_est_data %>% 
   filter(signif=="TRUE")
+
+sig_gender_est <- sig_gender_est %>% 
+  mutate(across(where(is.numeric), round, digits=3))
 ```
 
 
@@ -155,6 +158,9 @@ g_f_minus_m <- full_join(g_f_minus_m, measure_means, by="measure")
 ```{r}
 g_f_minus_m$prop_diff <- (g_f_minus_m$estimate/g_f_minus_m$measure_means)
 g_f_minus_m$percent_diff <- g_f_minus_m$prop_diff * 100
+
+g_f_minus_m <- g_f_minus_m %>% 
+  mutate(across(where(is.numeric), round, digits=3))
 ```
 
 
@@ -183,9 +189,6 @@ g_f_minus_m %>%
        x="Percent Difference from Total Measurement Mean")
 
 g_f_minus_m <- g_f_minus_m[c(8, 2, 6, 9, 10)]
-
-g_f_minus_m <- g_f_minus_m %>% 
-  mutate(across(where(is.numeric), round, digits=2))
 
 flextable(g_f_minus_m) %>%
   my_ft_theme()%>% 
@@ -284,6 +287,9 @@ age_means_data %>%
 ```{r}
 sig_age_est <- age_est_data %>% 
   filter(signif=="TRUE")
+
+sig_age_est <- sig_age_est %>% 
+  mutate(across(where(is.numeric), round, digits=3))
 ```
 
 
@@ -303,6 +309,9 @@ age_est_data1 <- full_join(sig_age_est, measure_means, by="measure")
 
 age_est_data1$prop_diff <- (age_est_data1$estimate/age_est_data1$measure_means)
 #age_est_data1$percent_diff <- (age_est_data1$prop_diff)*100
+
+age_est_data <- age_est_data %>% 
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 age_est_data1 <- drop_na(age_est_data1)
@@ -335,7 +344,7 @@ m_v_o <- age_est_data1 %>%
 age_est_data1 <- age_est_data1[c(8, 2, 6, 9, 10)]
 
 age_est_data1 <- age_est_data1 %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 flextable(age_est_data1) %>%
   my_ft_theme()%>% 
@@ -379,8 +388,8 @@ y_v_m %>%
 
 y_v_m <- y_v_m[c(8, 2, 6, 9, 10)]
 
-y_v_m <- y_v_m %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+#y_v_m <- y_v_m %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(y_v_m) %>%
@@ -466,7 +475,7 @@ y_v_o %>%
 y_v_o <- y_v_o[c(8, 2, 6, 9, 10)]
 
 y_v_o <- y_v_o %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 flextable(y_v_o) %>%
   my_ft_theme()%>% 
@@ -556,7 +565,7 @@ m_v_o %>%
 m_v_o <- m_v_o[c(8, 2, 6, 9, 10)]
 
 m_v_o <- m_v_o %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(m_v_o) %>%
@@ -664,6 +673,9 @@ race_means_data %>%
 ```{r}
 sig_race_est <- race_est_data %>% 
   filter(signif=="TRUE")
+
+sig_race_est <- sig_race_est %>% 
+  mutate(across(where(is.numeric), round, digits=3))
 ```
 
 
@@ -687,6 +699,9 @@ race_est_data1 <- full_join(sig_race_est, measure_means, by="measure")
 
 ```{r}
 race_est_data1$prop_diff <- (race_est_data1$estimate/race_est_data1$measure_means)
+
+race_est_data1 <- race_est_data1 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
 
 #race_est_data1$percent_diff <- (race_est_data1$prop_diff) * 100
 ```
@@ -725,7 +740,7 @@ race1 %>%
 race1 <- race1[c(8, 2, 6, 9, 10)]
 
 race1 <- race1 %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race1) %>%
@@ -817,7 +832,7 @@ race2 %>%
 race2 <- race2[c(8, 2, 6, 9, 10)]
 
 race2 <- race2 %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race2) %>%
@@ -904,7 +919,7 @@ race3 %>%
 race3 <- race3[c(8, 2, 6, 9, 10)]
 
 race3 <- race3 %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race3) %>%
@@ -989,7 +1004,7 @@ race4 %>%
 race4 <- race4[c(8, 2, 6, 9, 10)]
 
 race4 <- race4 %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race4) %>%
@@ -1075,7 +1090,7 @@ race5 %>%
 race5 <- race5[c(8, 2, 6, 9, 10)]
 
 race5 <- race5 %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race5) %>%
@@ -1120,7 +1135,7 @@ race6 %>%
 race6 <- race6[c(8, 2, 6, 9, 10)]
 
 race6 <- race6 %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race6) %>%
@@ -1165,7 +1180,7 @@ race7 %>%
 race7 <- race7[c(8, 2, 6, 9, 10)]
 
 race7 <- race7 %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race7) %>%
@@ -1210,7 +1225,7 @@ race8 %>%
 race8 <- race8[c(8, 2, 6, 9, 10)]
 
 race8 <- race8 %>% 
-  mutate(across(where(is.numeric), round, digits=2))
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race8) %>%
