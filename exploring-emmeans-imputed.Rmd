@@ -1,0 +1,1239 @@
+---
+title: "exploring-emmeans"
+output: html_document
+date: "2022-09-21"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(flextable)
+library(extrafont)
+library(scales)
+```
+
+
+```{r}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
+
+```{r}
+gender_means_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\gender_means_data1.xlsx")
+
+race_means_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\race_means_data1.xlsx")
+
+age_means_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\age_means_data1.xlsx")
+
+
+gender_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\gender_est_data1.xlsx")
+
+race_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\race_est_data1.xlsx")
+
+age_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\age_est_data1.xlsx")
+```
+
+
+```{r}
+chosen_nona1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
+```
+
+```{r}
+chosennona1_num <- select_if(chosen_nona1, is.numeric)
+```
+
+```{r}
+measure_means <- colMeans(chosennona1_num)
+measure_means <- as.data.frame(measure_means)
+measure_means <- rownames_to_column(measure_means)
+
+measure_means <- measure_means %>% 
+  rename(measure=rowname)
+```
+
+
+GENDER
+
+```{r}
+
+gender_means_data$measure <- fct_reorder(gender_means_data$measure, gender_means_data$emmean, .desc=FALSE)
+
+gender_means_data %>% 
+  ggplot(aes(x=gender, y=emmean, fill=measure))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means (Imputed) (Imputed)",
+       subtitle= "All Genders in MANOVA",
+       y="Emmean in mm",
+       x="Gender",
+       fill="Measurement")
+
+
+```
+
+```{r, fig.width=6.5, fig.height=3}
+
+
+gender_means_data %>% 
+  ggplot(aes(x=measure, y=emmean, fill=gender))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme(text=element_text(family= "Times New Roman (Imputed)"))+
+  labs(title="Estimated Marginal Means (Imputed)",
+       subtitle= "All Genders in MANOVA",
+       y="Emmean in mm",
+       x="Measurement",
+       fill="Gender")
+
+gender_means_data1 <- gender_means_data %>% 
+  filter(gender != "Other")
+
+gender_means_data1$measure <- fct_reorder(gender_means_data1$measure, gender_means_data1$emmean, .desc=FALSE)
+
+gender_means_data1 %>% 
+  ggplot(aes(x=measure, y=emmean, fill=gender))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme(text=element_text(family= "Times New Roman (Imputed)"))+
+  labs(title="Estimated Marginal Means (Imputed)",
+       subtitle= "Two primary genders",
+       y="Emmean in mm",
+       x="Measurement",
+       fill="Gender")
+```
+
+
+```{r}
+sig_gender_est <- gender_est_data %>% 
+  filter(signif=="TRUE")
+
+sig_gender_est <- sig_gender_est %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+```
+
+
+```{r}
+sig_gender_est$measure <- fct_reorder(sig_gender_est$measure, sig_gender_est$estimate, .desc=FALSE)
+
+sig_gender_est %>% 
+  ggplot(aes(x=estimate, y= measure, fill=contrast))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Gender Significant Differences in Estimated Marginal Means (Imputed) (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
+
+```{r}
+g_f_minus_m <- sig_gender_est %>% 
+  filter(contrast == "(Female/Other) - Male")
+```
+
+
+```{r}
+g_f_minus_m <- full_join(g_f_minus_m, measure_means, by="measure")
+```
+
+```{r}
+g_f_minus_m$prop_diff <- (g_f_minus_m$estimate/g_f_minus_m$measure_means)
+g_f_minus_m$percent_diff <- g_f_minus_m$prop_diff * 100
+
+g_f_minus_m <- g_f_minus_m %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+```
+
+
+```{r}
+g_f_minus_m$measure <- fct_reorder(g_f_minus_m$measure, g_f_minus_m$estimate, .desc=FALSE)
+
+g_f_minus_m %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Female/Other - Male Significant Differences in Estimated Marginal Means (Imputed) (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+g_f_minus_m$measure <- fct_reorder(g_f_minus_m$measure, g_f_minus_m$prop_diff, .desc=FALSE)
+
+g_f_minus_m %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Female/Other - Male Significant Differences in Estimated Marginal Means (Imputed) (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+g_f_minus_m <- g_f_minus_m[c(8, 2, 6, 9, 10)]
+
+flextable(g_f_minus_m) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Female/Other - Male Significant Differences in Estimated Marginal Means (Imputed) (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+g_m_minus_f <- g_f_minus_m
+
+g_m_minus_f$estimate <- g_m_minus_f$estimate*(-1)
+g_m_minus_f$prop_diff <- g_m_minus_f$prop_diff*(-1)
+#g_m_minus_f$percent_diff <- g_m_minus_f$percent_diff*(-1)
+
+#g_m_minus_f$contrastx <- "Male - Female/Other"
+
+g_m_minus_f$measure <- fct_reorder(g_m_minus_f$measure, g_m_minus_f$estimate, .desc=TRUE)
+
+g_m_minus_f %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Male - Female/Other Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+g_m_minus_f$measure <- fct_reorder(g_m_minus_f$measure, g_m_minus_f$prop_diff, .desc=TRUE)
+
+g_m_minus_f %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Male - Female/Other Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+flextable(g_m_minus_f) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Male - Female/Other Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+
+
+
+
+
+AGE
+
+```{r}
+
+age_means_data$measure <- fct_reorder(age_means_data$measure, age_means_data$emmean, .desc=FALSE)
+
+age_means_data %>% 
+  ggplot(aes(x=age_group, y=emmean, fill=measure))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means (Imputed)",
+       subtitle= "All ages in MANOVA",
+       y="Emmean in mm",
+       x="Age",
+       fill="Measurement")
+```
+
+```{r, fig.width=6.5, fig.height=3}
+
+#age_means_data$measure <- fct_reorder(age_means_data$measure, age_means_data$emmean, .desc=FALSE)
+
+age_means_data %>% 
+  ggplot(aes(x=measure, y=emmean, fill=age_group))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means (Imputed)",
+       subtitle= "All ages in MANOVA",
+       y="Emmean in mm",
+       x="Measurement",
+       fill="Age")
+```
+
+
+
+
+```{r}
+sig_age_est <- age_est_data %>% 
+  filter(signif=="TRUE")
+
+sig_age_est <- sig_age_est %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+```
+
+
+```{r}
+sig_age_est$measure <- fct_reorder(sig_age_est$measure, sig_age_est$estimate, .desc=FALSE)
+
+sig_age_est %>% 
+  ggplot(aes(x=estimate, y= measure, fill=contrast))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+age_est_data1 <- full_join(sig_age_est, measure_means, by="measure")
+
+age_est_data1$prop_diff <- (age_est_data1$estimate/age_est_data1$measure_means)
+#age_est_data1$percent_diff <- (age_est_data1$prop_diff)*100
+
+age_est_data <- age_est_data %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+age_est_data1 <- drop_na(age_est_data1)
+
+age_est_data1$measure <- fct_reorder(age_est_data1$measure, age_est_data1$prop_diff, .desc=FALSE)
+
+age_est_data1 %>% 
+  ggplot(aes(x=prop_diff, y= measure, fill=contrast))+
+  geom_bar(stat="identity", position="dodge")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age-Related Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+
+
+y_v_m <- age_est_data1 %>% 
+  filter(contrast == "(18-36) - (37-54)")
+
+y_v_o <- age_est_data1 %>% 
+  filter(contrast == "(18-36) - (55-72)")
+
+m_v_o <- age_est_data1 %>% 
+  filter(contrast == "(37-54) - (55-72)")
+
+
+
+age_est_data1 <- age_est_data1[c(8, 2, 6, 9, 10)]
+
+age_est_data1 <- age_est_data1 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+flextable(age_est_data1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Age-Related Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+```
+
+
+
+
+```{r}
+
+
+
+y_v_m$measure <- fct_reorder(y_v_m$measure, y_v_m$estimate, .desc=FALSE)
+
+y_v_m %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(18-36) - (37-54) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+y_v_m$measure <- fct_reorder(y_v_m$measure, y_v_m$prop_diff, .desc=FALSE)
+
+y_v_m %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(18-36) - (37-54) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+y_v_m <- y_v_m[c(8, 2, 6, 9, 10)]
+
+y_v_m <- y_v_m %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+flextable(y_v_m) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(18-36) - (37-54) Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+m_v_y <- y_v_m
+
+m_v_y$estimate <- m_v_y$estimate*(-1)
+m_v_y$prop_diff <- m_v_y$prop_diff*(-1)
+#m_v_y$percent_diff <- m_v_y$percent_diff*(-1)
+
+#m_v_y$contrastx <- "(37-54) - (18-36)"
+
+
+m_v_y$measure <- fct_reorder(m_v_y$measure, m_v_y$estimate, .desc=TRUE)
+
+m_v_y %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(37-54) - (18-36) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+m_v_y$measure <- fct_reorder(m_v_y$measure, m_v_y$prop_diff, .desc=TRUE)
+
+m_v_y %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(37-54) - (18-36) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+flextable(m_v_y) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(37-54) - (18-36) Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+
+```{r}
+
+
+
+y_v_o$measure <- fct_reorder(y_v_o$measure, y_v_o$estimate, .desc=FALSE)
+
+y_v_o %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(18-36) - (55-72) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+y_v_o$measure <- fct_reorder(y_v_o$measure, y_v_o$prop_diff, .desc=FALSE)
+
+y_v_o %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(18-36) - (55-72) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+y_v_o <- y_v_o[c(8, 2, 6, 9, 10)]
+
+y_v_o <- y_v_o %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+flextable(y_v_o) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(18-36) - (55-72) Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+```{r}
+o_v_y <- y_v_o
+
+o_v_y$estimate <- o_v_y$estimate*(-1)
+o_v_y$prop_diff <- o_v_y$prop_diff*(-1)
+#o_v_y$percent_diff <- o_v_y$percent_diff*(-1)
+
+#o_v_y$contrastx <- "(55-72) - (18-36)"
+
+
+
+o_v_y$measure <- fct_reorder(o_v_y$measure, o_v_y$estimate, .desc=TRUE)
+
+o_v_y %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(55-72) - (18-36) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+
+o_v_y$measure <- fct_reorder(o_v_y$measure, o_v_y$prop_diff, .desc=TRUE)
+
+o_v_y %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(55-72) - (18-36) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+
+
+flextable(o_v_y) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(55-72) - (18-36) Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+```{r}
+
+
+
+
+
+m_v_o$measure <- fct_reorder(m_v_o$measure, m_v_o$estimate, .desc=FALSE)
+
+m_v_o %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(37-54) - (55-72) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+m_v_o$measure <- fct_reorder(m_v_o$measure, m_v_o$prop_diff, .desc=FALSE)
+
+m_v_o %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(37-54) - (55-72) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+
+m_v_o <- m_v_o[c(8, 2, 6, 9, 10)]
+
+m_v_o <- m_v_o %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+flextable(m_v_o) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(37-54) - (55-72) Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+```{r}
+o_v_m <- m_v_o
+
+o_v_m$estimate <- o_v_m$estimate*(-1)
+o_v_m$prop_diff <- o_v_m$prop_diff*(-1)
+#o_v_m$percent_diff <- o_v_m$percent_diff*(-1)
+
+#o_v_m$contrastx <- "(55-72) - (18-36)"
+
+
+
+o_v_m$measure <- fct_reorder(o_v_m$measure, o_v_m$estimate, .desc=TRUE)
+
+o_v_m %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(55-72) - (18-36) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+o_v_m$measure <- fct_reorder(o_v_m$measure, o_v_m$prop_diff, .desc=TRUE)
+
+o_v_m %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="(55-72) - (18-36) Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+
+
+
+flextable(o_v_m) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("(55-72) - (18-36) Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+
+
+
+
+RACE/ETHNICITY
+
+
+
+
+```{r}
+
+race_means_data$measure <- fct_reorder(race_means_data$measure, race_means_data$emmean, .desc=FALSE)
+
+race_means_data %>% 
+  ggplot(aes(x=race_eth, y=emmean, fill=measure))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means (Imputed)",
+       subtitle= "All races/ethnicities in MANOVA",
+       y="Emmean in mm",
+       x="Age",
+       fill="Measurement")
+```
+
+```{r, fig.width=6.5, fig.height=3}
+
+#race_means_data$measure <- fct_reorder(race_means_data$measure, race_means_data$emmean, .desc=FALSE)
+
+race_means_data %>% 
+  ggplot(aes(x=measure, y=emmean, fill=race_eth))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Estimated Marginal Means (Imputed)",
+       subtitle= "All races/ethnicities in MANOVA",
+       y="Emmean in mm",
+       x="Measurement",
+       fill="Race/Ethnicity")
+```
+
+
+
+
+```{r}
+sig_race_est <- race_est_data %>% 
+  filter(signif=="TRUE")
+
+sig_race_est <- sig_race_est %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+```
+
+
+```{r}
+sig_race_est$measure <- fct_reorder(sig_race_est$measure, sig_race_est$estimate, .desc=FALSE)
+
+sig_race_est %>% 
+  ggplot(aes(x=estimate, y= measure, fill=contrast))+
+  geom_bar(position=position_dodge(), stat="identity")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Age Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+```
+
+
+```{r}
+race_est_data1 <- full_join(sig_race_est, measure_means, by="measure")
+```
+
+```{r}
+race_est_data1$prop_diff <- (race_est_data1$estimate/race_est_data1$measure_means)
+
+race_est_data1 <- race_est_data1 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+#race_est_data1$percent_diff <- (race_est_data1$prop_diff) * 100
+```
+
+```{r}
+race1 <- race_est_data1 %>% 
+  filter(contrast == "Asian - Black")
+
+
+race1$measure <- fct_reorder(race1$measure, race1$estimate, .desc=FALSE)
+
+race1 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Asian - Black Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+
+race1$measure <- fct_reorder(race1$measure, race1$prop_diff, .desc=FALSE)
+
+race1 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Asian - Black Significant Differences in Estimated Marginal Mean",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+
+race1 <- race1[c(8, 2, 6, 9, 10)]
+
+race1 <- race1 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+flextable(race1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Asian - Black Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+
+```{r}
+race1.1 <- race1
+
+race1.1$estimate <- race1.1$estimate*(-1)
+race1.1$prop_diff <- race1.1$prop_diff*(-1)
+#race1.1$percent_diff <- race1.1$percent_diff*(-1)
+
+#race1.1$contrastx <- "Black - Asian"
+
+
+race1.1$measure <- fct_reorder(race1.1$measure, race1.1$estimate, .desc=TRUE)
+
+race1.1 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - Asian Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+
+race1.1$measure <- fct_reorder(race1.1$measure, race1.1$prop_diff, .desc=TRUE)
+
+race1.1 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - Asian Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+flextable(race1.1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Black - Asian Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+
+
+```{r}
+race2 <- race_est_data1 %>% 
+  filter(contrast == "Asian - LatinX")
+
+
+
+race2$measure <- fct_reorder(race2$measure, race2$estimate, .desc=FALSE)
+
+race2 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Asian - LatinX Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+race2$measure <- fct_reorder(race2$measure, race2$prop_diff, .desc=FALSE)
+
+race2 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Asian - LatinX Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+race2 <- race2[c(8, 2, 6, 9, 10)]
+
+race2 <- race2 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+flextable(race2) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Asian - LatinX Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+
+```{r}
+race2.1 <- race2
+
+race2.1$estimate <- race2.1$estimate*(-1)
+race2.1$prop_diff <- race2.1$prop_diff*(-1)
+#race2.1$percent_diff <- race2.1$percent_diff*(-1)
+
+#race2.1$contrastx <- "LatinX - Asian"
+
+
+
+race2.1$measure <- fct_reorder(race2.1$measure, race2.1$estimate, .desc=TRUE)
+
+race2.1 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="LatinX - Asian Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+race2.1$measure <- fct_reorder(race2.1$measure, race2.1$prop_diff, .desc=TRUE)
+
+race2.1 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="LatinX - Asian Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+flextable(race2.1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("LatinX - Asian Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+race3 <- race_est_data1 %>% 
+  filter(contrast == "Asian - white")
+
+race3$measure <- fct_reorder(race3$measure, race3$estimate, .desc=FALSE)
+
+race3 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Asian - white Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+race3$measure <- fct_reorder(race3$measure, race3$prop_diff, .desc=FALSE)
+
+race3 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Asian - white Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+race3 <- race3[c(8, 2, 6, 9, 10)]
+
+race3 <- race3 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+flextable(race3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Asian - white Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+```{r}
+race3.1 <- race3
+
+race3.1$estimate <- race3.1$estimate*(-1)
+race3.1$prop_diff <- race3.1$prop_diff*(-1)
+#race3.1$percent_diff <- race3.1$percent_diff*(-1)
+
+#race3.1$contrastx <- "white - Asian"
+
+
+
+race3.1$measure <- fct_reorder(race3.1$measure, race3.1$estimate, .desc=TRUE)
+
+race3.1 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="white - Asian Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+race3.1$measure <- fct_reorder(race3.1$measure, race3.1$prop_diff, .desc=TRUE)
+
+race3.1 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="white - Asian Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+flextable(race3.1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("white - Asian Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+race4 <- race_est_data1 %>% 
+  filter(contrast == "Black - LatinX")
+
+race4$measure <- fct_reorder(race4$measure, race4$estimate, .desc=TRUE)
+
+race4 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - LatinX Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+race4$measure <- fct_reorder(race4$measure, race4$prop_diff, .desc=TRUE)
+
+race4 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - LatinX Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+
+race4 <- race4[c(8, 2, 6, 9, 10)]
+
+race4 <- race4 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+flextable(race4) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Black - LatinX Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+race4.1 <- race4
+
+race4.1$estimate <- race4.1$estimate*(-1)
+race4.1$prop_diff <- race4.1$prop_diff*(-1)
+#race4.1$percent_diff <- race4.1$percent_diff*(-1)
+
+#race4.1$contrastx <- "LatinX - Black"
+
+
+
+race4.1$measure <- fct_reorder(race4.1$measure, race4.1$estimate, .desc=FALSE)
+
+race4.1 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="LatinX - Black Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+
+race4.1$measure <- fct_reorder(race4.1$measure, race4.1$prop_diff, .desc=FALSE)
+
+race4.1 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="LatinX - Black Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+flextable(race4.1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("LatinX - Black Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+```{r}
+race5 <- race_est_data1 %>% 
+  filter(contrast == "Black - Other")
+
+race5$measure <- fct_reorder(race5$measure, race5$estimate, .desc=TRUE)
+
+race5 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - Other Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+race5$measure <- fct_reorder(race5$measure, race5$prop_diff, .desc=TRUE)
+
+race5 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - Other Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+
+race5 <- race5[c(8, 2, 6, 9, 10)]
+
+race5 <- race5 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+flextable(race5) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Black - Other Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+
+
+```{r}
+race6 <- race_est_data1 %>% 
+  filter(contrast == "Black - white")
+
+
+race6$measure <- fct_reorder(race6$measure, race6$estimate, .desc=TRUE)
+
+race6 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - white Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+race6$measure <- fct_reorder(race6$measure, race6$prop_diff, .desc=TRUE)
+
+race6 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - white Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+race6 <- race6[c(8, 2, 6, 9, 10)]
+
+race6 <- race6 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+flextable(race6) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Black - white Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+
+```{r}
+race7 <- race_est_data1 %>% 
+  filter(contrast == "LatinX - white")
+
+
+
+race7$measure <- fct_reorder(race7$measure, race7$estimate, .desc=FALSE)
+
+race7 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="LatinX - white Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+race7$measure <- fct_reorder(race7$measure, race7$prop_diff, .desc=FALSE)
+
+race7 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="LatinX - white Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+race7 <- race7[c(8, 2, 6, 9, 10)]
+
+race7 <- race7 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+flextable(race7) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("LatinX - white Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+
+```{r}
+race8 <- race_est_data1 %>% 
+  filter(contrast == "Other - white")
+
+
+
+race8$measure <- fct_reorder(race8$measure, race8$estimate, .desc=FALSE)
+
+race8 %>% 
+  ggplot(aes(x=estimate, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Other - white Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+race8$measure <- fct_reorder(race8$measure, race8$prop_diff, .desc=FALSE)
+
+race8 %>% 
+  ggplot(aes(x=prop_diff, y= measure))+
+  geom_bar(stat="identity", color= "black", fill = "white")+
+  scale_x_continuous(labels = scales::percent)+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Other - white Significant Differences in Estimated Marginal Means (Imputed)",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+race8 <- race8[c(8, 2, 6, 9, 10)]
+
+race8 <- race8 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+
+flextable(race8) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Other - white Significant Differences in Estimated Marginal Means (Imputed)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
