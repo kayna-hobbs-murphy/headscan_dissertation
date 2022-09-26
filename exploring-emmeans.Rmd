@@ -388,8 +388,8 @@ y_v_m %>%
 
 y_v_m <- y_v_m[c(8, 2, 6, 9, 10)]
 
-#y_v_m <- y_v_m %>% 
-  #mutate(across(where(is.numeric), round, digits=3))
+y_v_m <- y_v_m %>% 
+  mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(y_v_m) %>%

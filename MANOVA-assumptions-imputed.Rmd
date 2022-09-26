@@ -1,7 +1,7 @@
 ---
 title: "MANOVA-equalcovars"
 output: html_document
-date: "2022-08-25"
+date: "2022-09-26"
 ---
 
 ```{r setup, include=FALSE}
@@ -109,13 +109,13 @@ my_ft_theme <- function(ft, ...) {
 
 
 ```{r}
-SA3_noout <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
+SA3_imputed <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed1.xlsx")
 ```
 
 
 ```{r}
-str(SA3_noout)
-SA3_num <- select_if(SA3_noout, is.numeric)
+str(SA3_imputed)
+SA3_num <- select_if(SA3_imputed, is.numeric)
 ```
 
 
@@ -145,14 +145,14 @@ corrplot(correl2, method = 'number')
 Checking assumptions on actual MANOVA model: setup
 
 ```{r}
-variables <- cbind(SA3_noout$AA_C, SA3_noout$BiW_C, SA3_noout$BiW_L, 
-                   SA3_noout$GoSub_C, SA3_noout$NRB_L, SA3_noout$ProS_L,
-                   SA3_noout$SelP_L, SA3_noout$SelM_L, SA3_noout$SnasM_C,
-                   SA3_noout$TrSman_C, SA3_noout$TrTr_C, SA3_noout$TrTr_L)
+variables <- cbind(SA3_imputed$AA_C, SA3_imputed$BiW_C, SA3_imputed$BiW_L, 
+                   SA3_imputed$GoSub_C, SA3_imputed$NRB_L, SA3_imputed$ProS_L,
+                   SA3_imputed$SelP_L, SA3_imputed$SelM_L, SA3_imputed$SnasM_C,
+                   SA3_imputed$TrSman_C, SA3_imputed$TrTr_C, SA3_imputed$TrTr_L)
 
 
 #part of Dr. Erin Buchanan's lecture, but Manova code returns error: Error in Anova.mlm(mod, ...) : model is singular
-#lm_notransf <- lm(variables ~ gender+race_eth+age_group, data=SA3_noout,
+#lm_notransf <- lm(variables ~ gender+race_eth+age_group, data=SA3_imputed,
                   #contrasts = list(gender=contr.sum, 
                                    #race_eth=contr.sum,
                                    #age_group=contr.sum))
@@ -169,7 +169,7 @@ Checking assumptions on actual MANOVA model: no transformation
 
 
 
-manova_out_nt <- manova(variables ~ gender+race_eth+age_group, data=SA3_noout)
+manova_out_nt <- manova(variables ~ gender+race_eth+age_group, data=SA3_imputed)
 fitted1 <- manova_out_nt$fitted.values
 resid1 <- rstandard(manova_out_nt)
 
@@ -216,6 +216,7 @@ ggplot(data=temp5, aes(x=fitted_vals, y=resid_vals))+
   theme_bw()+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="Residuals vs. Fitted Values of Manova Model",
+       subtitle="Imputed Data",
        y= "Standardized Residuals",
        x= "Fitted Values")
 
@@ -227,6 +228,7 @@ ggplot(data=temp5, aes(sample=resid_vals))+
   theme_bw()+
   theme(text=element_text(family= "Times New Roman"))+
   labs(title="QQPlot of Manova Model",
+       subtitle="Imputed Data",
        y= "Sample Quantiles",
        x= "Theoretical Quantities")
 
@@ -234,33 +236,34 @@ ggplot(data=temp5, aes(x=resid_vals))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Normality of Manova Model",
+       subtitle="Imputed Data",
        y= "Count",
        x= "Standardized Residuals")
 ```
 ```{r}
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C,  
-           TrSman_C, TrTr_C, TrTr_L) ~ race_eth, data=SA3_noout)
+           TrSman_C, TrTr_C, TrTr_L) ~ race_eth, data=SA3_imputed)
 
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C,
-           TrSman_C, TrTr_C, TrTr_L) ~ gender, data=SA3_noout)
+           TrSman_C, TrTr_C, TrTr_L) ~ gender, data=SA3_imputed)
 
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C,
-           TrSman_C, TrTr_C, TrTr_L) ~ age_group, data=SA3_noout)
+           TrSman_C, TrTr_C, TrTr_L) ~ age_group, data=SA3_imputed)
 
-SA3_noout$gender <- as.factor(SA3_noout$gender)
-SA3_noout$race_eth <- as.factor(SA3_noout$race_eth)
-SA3_noout$age_group <- as.factor(SA3_noout$age_group)
+SA3_imputed$gender <- as.factor(SA3_imputed$gender)
+SA3_imputed$race_eth <- as.factor(SA3_imputed$race_eth)
+SA3_imputed$age_group <- as.factor(SA3_imputed$age_group)
 
-summary(SA3_noout)
+summary(SA3_imputed)
 
-boxtest_data <- SA3_noout
+boxtest_data <- SA3_imputed
 
 boxtest_data$gender <-
-  recode_factor(boxtest_data$gender, 'Female'= "Female/Other",
-                'Other' = "Female/Other")
+  recode_factor(boxtest_data$gender, 'Female'= "Female or Other",
+                'Other' = "Female or Other")
 
 boxM( cbind(AA_C, BiW_C, BiW_L, GoSub_C, NRB_L, ProS_L,
            SelP_L, SelM_L, SnasM_C,
@@ -296,7 +299,7 @@ https://www.researchgate.net/post/What-if-the-Boxs-Test-in-two-way-MANOVA-is-sig
 
 
 #```{r}
-HOMOGENEITY(data=SA3_noout, groups='race_eth', variables=c('AA_C', 'BiW_C', 
+HOMOGENEITY(data=SA3_imputed, groups='race_eth', variables=c('AA_C', 'BiW_C', 
                                                            'BiW_L', 'GoSub_C',
                                                            'NRB_L', 'ProS_L',
                                                            'SelP_L', 'SelM_L', 
@@ -304,7 +307,7 @@ HOMOGENEITY(data=SA3_noout, groups='race_eth', variables=c('AA_C', 'BiW_C',
                                                            'TrTr_C', 'TrTr_L'))
 #```
 #```{r}
-HOMOGENEITY(data=SA3_noout, groups='gender', variables=c('AA_C', 'BiW_C', 
+HOMOGENEITY(data=SA3_imputed, groups='gender', variables=c('AA_C', 'BiW_C', 
                                                            'BiW_L', 'GoSub_C',
                                                            'NRB_L', 'ProS_L',
                                                            'SelP_L', 'SelM_L', 
@@ -312,7 +315,7 @@ HOMOGENEITY(data=SA3_noout, groups='gender', variables=c('AA_C', 'BiW_C',
                                                          'TrTr_C', 'TrTr_L'))
 #```
 #```{r}
-HOMOGENEITY(data=SA3_noout, groups='age_group', variables=c('AA_C', 'BiW_C', 
+HOMOGENEITY(data=SA3_imputed, groups='age_group', variables=c('AA_C', 'BiW_C', 
                                                            'BiW_L', 'GoSub_C',
                                                            'NRB_L', 'ProS_L',
                                                            'SelP_L', 'SelM_L', 
@@ -324,7 +327,7 @@ HOMOGENEITY(data=SA3_noout, groups='age_group', variables=c('AA_C', 'BiW_C',
 
 
 #```{r}
-boxtest_data <- column_to_rownames(SA3_noout, "ID")
+boxtest_data <- column_to_rownames(SA3_imputed, "ID")
 
 boxtest_data$race_eth <-
   recode_factor(boxtest_data$race_eth, 'LatinX'= "Other",
