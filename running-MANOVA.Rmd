@@ -47,8 +47,10 @@ chosen_nona1$age_group <- as.factor(chosen_nona1$age_group)
 summary(chosen_nona1)
 
 chosen_nona1$gender <-
-  recode_factor(chosen_nona1$gender, 'Female'= "Female or Other",
-                'Other' = "Female or Other")
+  recode_factor(chosen_nona1$gender, 'Female'= "Female/Other",
+                'Other' = "Female/Other")
+
+summary(chosen_nona1$gender)
 
 variables <- cbind(chosen_nona1$AA_C, chosen_nona1$BiW_C, chosen_nona1$BiW_L, 
                    chosen_nona1$GoSub_C, chosen_nona1$NRB_L, chosen_nona1$ProS_L,
