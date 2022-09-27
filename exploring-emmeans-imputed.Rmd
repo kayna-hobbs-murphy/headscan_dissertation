@@ -51,15 +51,15 @@ age_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dis
 
 
 ```{r}
-chosen_nona1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
+chosen_imputed1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed1.xlsx")
 ```
 
 ```{r}
-chosennona1_num <- select_if(chosen_nona1, is.numeric)
+chosenimputed1_num <- select_if(chosen_imputed1, is.numeric)
 ```
 
 ```{r}
-measure_means <- colMeans(chosennona1_num)
+measure_means <- colMeans(chosenimputed1_num)
 measure_means <- as.data.frame(measure_means)
 measure_means <- rownames_to_column(measure_means)
 
@@ -98,7 +98,7 @@ gender_means_data %>%
   geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
   theme_bw()+
   theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
-  theme(text=element_text(family= "Times New Roman (Imputed)"))+
+  theme(text=element_text(family= "Times New Roman"))+
   labs(title="Estimated Marginal Means (Imputed)",
        subtitle= "All Genders in MANOVA",
        y="Emmean in mm",
@@ -116,7 +116,7 @@ gender_means_data1 %>%
   geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
   theme_bw()+
   theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
-  theme(text=element_text(family= "Times New Roman (Imputed)"))+
+  theme(text=element_text(family= "Times New Roman"))+
   labs(title="Estimated Marginal Means (Imputed)",
        subtitle= "Two primary genders",
        y="Emmean in mm",
@@ -343,7 +343,7 @@ m_v_o <- age_est_data1 %>%
 
 
 
-age_est_data1 <- age_est_data1[c(8, 2, 6, 9, 10)]
+age_est_data1 <- age_est_data1[c(1, 8, 2, 6, 9, 10)]
 
 age_est_data1 <- age_est_data1 %>% 
   mutate(across(where(is.numeric), round, digits=3))
@@ -1018,7 +1018,7 @@ flextable(race4) %>%
 ```
 
 
-```{r}
+#```{r}
 race4.1 <- race4
 
 race4.1$estimate <- race4.1$estimate*(-1)
@@ -1059,7 +1059,7 @@ flextable(race4.1) %>%
   set_caption("LatinX - Black Significant Differences in Estimated Marginal Means (Imputed)") %>% 
   fit_to_width(7.5) %>% 
   autofit()
-```
+#```
 
 ```{r}
 race5 <- race_est_data1 %>% 
