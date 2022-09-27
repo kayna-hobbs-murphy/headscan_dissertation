@@ -46,6 +46,24 @@ age_est_data_imp <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\
 
 
 ```{r}
+gender_est_data_imp <- gender_est_data_imp %>% 
+  rename(p.value_imp = "p.value",
+         signif_imp = "signif",
+         estimate_imp = "estimate")
+
+race_est_data_imp <- race_est_data_imp %>% 
+  rename(p.value_imp = "p.value",
+         signif_imp = "signif",
+         estimate_imp = "estimate")
+
+age_est_data_imp <- age_est_data_imp %>% 
+  rename(p.value_imp = "p.value",
+         signif_imp = "signif",
+         estimate_imp = "estimate")
+```
+
+
+```{r}
 chosen_nona1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
 chosen_imputed1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed1.xlsx")
 
@@ -92,11 +110,11 @@ race_est_data$prop_diff <- (race_est_data$estimate/race_est_data$measure_means)
 
 age_est_data$prop_diff <- (age_est_data$estimate/age_est_data$measure_means)
 
-gender_est_data_imp$prop_diff <- (gender_est_data_imp$estimate/gender_est_data_imp$measure_means_imp)
+gender_est_data_imp$prop_diff_imp <- (gender_est_data_imp$estimate_imp/gender_est_data_imp$measure_means_imp)
 
-race_est_data_imp$prop_diff <- (race_est_data_imp$estimate/race_est_data_imp$measure_means_imp)
+race_est_data_imp$prop_diff_imp <- (race_est_data_imp$estimate_imp/race_est_data_imp$measure_means_imp)
 
-age_est_data_imp$prop_diff <- (age_est_data_imp$estimate/age_est_data_imp$measure_means_imp)
+age_est_data_imp$prop_diff_imp <- (age_est_data_imp$estimate_imp/age_est_data_imp$measure_means_imp)
 ```
 
 ```{r}
@@ -127,28 +145,26 @@ race_est_data$percent_diff <- percent(race_est_data$prop_diff)
 
 age_est_data$percent_diff <- percent(age_est_data$prop_diff)
 
-gender_est_data_imp$percent_diff <- percent(gender_est_data_imp$prop_diff)
+gender_est_data_imp$percent_diff_imp <- percent(gender_est_data_imp$prop_diff_imp)
 
-race_est_data_imp$percent_diff <- percent(race_est_data_imp$prop_diff)
+race_est_data_imp$percent_diff_imp <- percent(race_est_data_imp$prop_diff_imp)
 
-age_est_data_imp$percent_diff <- percent(age_est_data_imp$prop_diff)
+age_est_data_imp$percent_diff_imp <- percent(age_est_data_imp$prop_diff_imp)
 ```
 
 ```{r}
-gender_est_data <- gender_est_data[c(1, 8, 2, 6, 7, 9, 10, 11)]
+gender_est_data <- gender_est_data[c(1, 8, 6, 7, 2, 9, 10, 11)]
 
-race_est_data <- race_est_data[c(1, 8, 2, 6, 7, 9, 10, 11)]
+race_est_data <- race_est_data[c(1, 8, 6, 7, 2, 9, 10, 11)]
 
-age_est_data <- age_est_data[c(1, 8, 2, 6, 7, 9, 10, 11)]
+age_est_data <- age_est_data[c(1, 8, 6, 7, 2, 9, 10, 11)]
 
-gender_est_data_imp <- gender_est_data_imp[c(1, 8, 2, 6, 7, 9, 10, 11)]
+gender_est_data_imp <- gender_est_data_imp[c(1, 8, 6, 7, 2, 9, 10, 11)]
 
-race_est_data_imp <- race_est_data_imp[c(1, 8, 2, 6, 7, 9, 10, 11)]
+race_est_data_imp <- race_est_data_imp[c(1, 8, 6, 7, 2, 9, 10, 11)]
 
-age_est_data_imp <- age_est_data_imp[c(1, 8, 2, 6, 7, 9, 10, 11)]
+age_est_data_imp <- age_est_data_imp[c(1, 8, 6, 7, 2, 9, 10, 11)]
 ```
 
-```{r}
 
-```
 
