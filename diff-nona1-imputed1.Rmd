@@ -1,0 +1,154 @@
+---
+title: "diff-nona1-imputed1"
+output: html_document
+date: "2022-09-27"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(flextable)
+library(extrafont)
+library(scales)
+```
+
+```{r}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
+
+```{r}
+gender_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\gender_est_data.xlsx")
+
+race_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\race_est_data.xlsx")
+
+age_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\age_est_data.xlsx")
+
+gender_est_data_imp <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\gender_est_data1.xlsx")
+
+race_est_data_imp <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\race_est_data1.xlsx")
+
+age_est_data_imp <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\age_est_data1.xlsx")
+```
+
+
+```{r}
+chosen_nona1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
+chosen_imputed1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed1.xlsx")
+
+chosennona1_num <- select_if(chosen_nona1, is.numeric)
+chosenimputed1_num <- select_if(chosen_imputed1, is.numeric)
+```
+
+
+```{r}
+measure_means <- colMeans(chosennona1_num)
+measure_means <- as.data.frame(measure_means)
+measure_means <- rownames_to_column(measure_means)
+
+measure_means <- measure_means %>% 
+  rename(measure=rowname)
+
+measure_means_imp <- colMeans(chosenimputed1_num)
+measure_means_imp <- as.data.frame(measure_means_imp)
+measure_means_imp <- rownames_to_column(measure_means_imp)
+
+measure_means_imp <- measure_means_imp %>% 
+  rename(measure=rowname)
+```
+
+
+```{r}
+gender_est_data <- full_join(gender_est_data, measure_means, by="measure")
+
+race_est_data <- full_join(race_est_data, measure_means, by="measure")
+
+age_est_data <- full_join(age_est_data, measure_means, by="measure")
+
+gender_est_data_imp <- full_join(gender_est_data_imp, measure_means_imp, by="measure")
+
+race_est_data_imp <- full_join(race_est_data_imp, measure_means_imp, by="measure")
+
+age_est_data_imp <- full_join(age_est_data_imp, measure_means_imp, by="measure")
+```
+
+```{r}
+gender_est_data$prop_diff <- (gender_est_data$estimate/gender_est_data$measure_means)
+
+race_est_data$prop_diff <- (race_est_data$estimate/race_est_data$measure_means)
+
+age_est_data$prop_diff <- (age_est_data$estimate/age_est_data$measure_means)
+
+gender_est_data_imp$prop_diff <- (gender_est_data_imp$estimate/gender_est_data_imp$measure_means_imp)
+
+race_est_data_imp$prop_diff <- (race_est_data_imp$estimate/race_est_data_imp$measure_means_imp)
+
+age_est_data_imp$prop_diff <- (age_est_data_imp$estimate/age_est_data_imp$measure_means_imp)
+```
+
+```{r}
+gender_est_data <- gender_est_data %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+race_est_data <- race_est_data %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+age_est_data <- age_est_data %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+gender_est_data_imp <- gender_est_data_imp %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+race_est_data_imp <- race_est_data_imp %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+age_est_data_imp <- age_est_data_imp %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+```
+
+
+```{r}
+gender_est_data$percent_diff <- percent(gender_est_data$prop_diff)
+
+race_est_data$percent_diff <- percent(race_est_data$prop_diff)
+
+age_est_data$percent_diff <- percent(age_est_data$prop_diff)
+
+gender_est_data_imp$percent_diff <- percent(gender_est_data_imp$prop_diff)
+
+race_est_data_imp$percent_diff <- percent(race_est_data_imp$prop_diff)
+
+age_est_data_imp$percent_diff <- percent(age_est_data_imp$prop_diff)
+```
+
+```{r}
+gender_est_data <- gender_est_data[c(1, 8, 2, 6, 7, 9, 10, 11)]
+
+race_est_data <- race_est_data[c(1, 8, 2, 6, 7, 9, 10, 11)]
+
+age_est_data <- age_est_data[c(1, 8, 2, 6, 7, 9, 10, 11)]
+
+gender_est_data_imp <- gender_est_data_imp[c(1, 8, 2, 6, 7, 9, 10, 11)]
+
+race_est_data_imp <- race_est_data_imp[c(1, 8, 2, 6, 7, 9, 10, 11)]
+
+age_est_data_imp <- age_est_data_imp[c(1, 8, 2, 6, 7, 9, 10, 11)]
+```
+
+```{r}
+
+```
+
