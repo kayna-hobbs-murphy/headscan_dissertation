@@ -36,26 +36,26 @@ my_ft_theme <- function(ft, ...) {
 
 ```{r}
 
-chosen_nona1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona1.xlsx")
+chosen_imputed1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed1.xlsx")
 
-chosen_nona1$gender <- as.factor(chosen_nona1$gender)
-chosen_nona1$race_eth <- as.factor(chosen_nona1$race_eth)
-chosen_nona1$age_group <- as.factor(chosen_nona1$age_group)
+chosen_imputed1$gender <- as.factor(chosen_imputed1$gender)
+chosen_imputed1$race_eth <- as.factor(chosen_imputed1$race_eth)
+chosen_imputed1$age_group <- as.factor(chosen_imputed1$age_group)
 
 
 
-summary(chosen_nona1)
+summary(chosen_imputed1)
 
-chosen_nona1$gender <-
-  recode_factor(chosen_nona1$gender, 'Female'= "Female/Other",
+chosen_imputed1$gender <-
+  recode_factor(chosen_imputed1$gender, 'Female'= "Female/Other",
                 'Other' = "Female/Other")
 
-summary(chosen_nona1$gender)
+summary(chosen_imputed1$gender)
 
-variables <- cbind(chosen_nona1$AA_C, chosen_nona1$BiW_C, chosen_nona1$BiW_L, 
-                   chosen_nona1$GoSub_C, chosen_nona1$NRB_L, chosen_nona1$ProS_L,
-                   chosen_nona1$SelP_L, chosen_nona1$SelM_L, chosen_nona1$SnasM_C,
-                   chosen_nona1$TrSman_C, chosen_nona1$TrTr_C, chosen_nona1$TrTr_L)
+variables <- cbind(chosen_imputed1$AA_C, chosen_imputed1$BiW_C, chosen_imputed1$BiW_L, 
+                   chosen_imputed1$GoSub_C, chosen_imputed1$NRB_L, chosen_imputed1$ProS_L,
+                   chosen_imputed1$SelP_L, chosen_imputed1$SelM_L, chosen_imputed1$SnasM_C,
+                   chosen_imputed1$TrSman_C, chosen_imputed1$TrTr_C, chosen_imputed1$TrTr_L)
 ```
 
 #https://www.hindawi.com/journals/cmmm/2019/2173638/ 
@@ -66,18 +66,18 @@ Type III sum of squares can be used in models where there are uneven group sizes
 
 
 ```{r}
-output<-lm(variables ~ gender+race_eth+age_group, data=chosen_nona1,
+output<-lm(variables ~ gender+race_eth+age_group, data=chosen_imputed1,
            contrasts = list(gender=contr.sum, race_eth=contr.sum, age_group=contr.sum))
 
-manova_out_nona1 <- Manova(output, type="III")
+manova_out_imputed1 <- Manova(output, type="III")
 
-summary(manova_out_nona1)
+summary(manova_out_imputed1)
 ```
 #https://www.sagepub.com/sites/default/files/upm-assets/9761_book_item_9761.pdf
 Type I, hierarchical or sequential sums of squares, is appropriate when the groups in the MANOVA are of equal sizes. Type I sum of squares provides a breakdown of the sums of squares for the whole model used in the MANOVA but it is particularly sensitive to the order in which the independent variables are placed in the model. If a variable is entered first, it is not adjusted for any of the other variables; if it is entered second, it is adjusted for one other variable (the first one entered); if it is placed third, it will be adjusted for the two other variables already entered. 
 
 ```{r}
-output1<-manova(variables ~ gender+race_eth+age_group, data=chosen_nona1)
+output1<-manova(variables ~ gender+race_eth+age_group, data=chosen_imputed1)
 
 #type 3 and type 1 give same Pillai values
 
@@ -121,7 +121,7 @@ method.
 
 
 ```{r}
-AA_Cout <- aov(AA_C ~ gender+race_eth+age_group, data=chosen_nona1)
+AA_Cout <- aov(AA_C ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(AA_Cout)
 AA_Cout_data <- as.data.frame(tidy(AA_Cout))
 ```
@@ -301,7 +301,7 @@ emmip_AA_Ca +
 
 
 ```{r}
-BiW_Lout <- aov(BiW_L ~ gender+race_eth+age_group, data=chosen_nona1)
+BiW_Lout <- aov(BiW_L ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(BiW_Lout)
 BiW_Lout_data <- as.data.frame(tidy(BiW_Lout))
 ```
@@ -471,7 +471,7 @@ emmip_BiW_La +
 
 
 ```{r}
-BiW_Cout <- aov(BiW_C ~ gender+race_eth+age_group, data=chosen_nona1)
+BiW_Cout <- aov(BiW_C ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(BiW_Cout)
 BiW_Cout_data <- as.data.frame(tidy(BiW_Cout))
 ```
@@ -596,7 +596,7 @@ emmip_BiW_Cr +
 
 
 ```{r}
-GoSub_Cout <- aov(GoSub_C ~ gender+race_eth+age_group, data=chosen_nona1)
+GoSub_Cout <- aov(GoSub_C ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(GoSub_Cout)
 GoSub_Cout_data <- as.data.frame(tidy(GoSub_Cout))
 ```
@@ -771,7 +771,7 @@ emmip_GoSub_Ca +
 
 
 ```{r}
-NRB_Lout <- aov(NRB_L ~ gender+race_eth+age_group, data=chosen_nona1)
+NRB_Lout <- aov(NRB_L ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(NRB_Lout)
 NRB_Lout_data <- as.data.frame(tidy(NRB_Lout))
 ```
@@ -889,12 +889,58 @@ emmip_NRB_Lr +
        x="Levels of Race/Ethnicity")
 ```
 
+```{r}
+NRB_La_em <- emmeans(NRB_Lout, ~ age_group)
+NRB_La_em1 <- as.data.frame(NRB_La_em)
 
+NRB_La_em 
+
+
+NRB_La_em1 <- NRB_La_em1 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+flextable(NRB_La_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: NRB_L and Age Group (Imputed Data)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+NRB_La_em2 <- pairs(NRB_La_em, adjust="Tukey")
+NRB_La_em3 <- as.data.frame(NRB_La_em2)
+
+NRB_La_em3$signif <- with(NRB_La_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+NRB_La_em3$p.value <- formatC(NRB_La_em3$p.value, format = "e")
+
+NRB_La_em2
+
+
+NRB_La_em3 <- NRB_La_em3 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+flextable(NRB_La_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: NRB_L and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_NRB_La <- emmip(NRB_Lout, ~ age_group, CIs = TRUE)
+
+emmip_NRB_La + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="NRB_L and Age Group: Estimated Marginal Means Plot (Imputed Data)",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
+```
 
 
 
 ```{r}
-ProS_Lout <- aov(ProS_L ~ gender+race_eth+age_group, data=chosen_nona1)
+ProS_Lout <- aov(ProS_L ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(ProS_Lout)
 ProS_Lout_data <- as.data.frame(tidy(ProS_Lout))
 ```
@@ -1067,7 +1113,7 @@ emmip_ProS_La +
 
 
 ```{r}
-SelP_Lout <- aov(SelP_L ~ gender+race_eth+age_group, data=chosen_nona1)
+SelP_Lout <- aov(SelP_L ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(SelP_Lout)
 SelP_Lout_data <- as.data.frame(tidy(SelP_Lout))
 ```
@@ -1241,7 +1287,7 @@ emmip_SelP_La +
 
 
 ```{r}
-SelM_Lout <- aov(SelM_L ~ gender+race_eth+age_group, data=chosen_nona1)
+SelM_Lout <- aov(SelM_L ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(SelM_Lout)
 SelM_Lout_data <- as.data.frame(tidy(SelM_Lout))
 ```
@@ -1408,7 +1454,7 @@ emmip_SelM_La +
 
 
 ```{r}
-SnasM_Cout <- aov(SnasM_C ~ gender+race_eth+age_group, data=chosen_nona1)
+SnasM_Cout <- aov(SnasM_C ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(SnasM_Cout)
 SnasM_Cout_data <- as.data.frame(tidy(SnasM_Cout))
 ```
@@ -1526,12 +1572,58 @@ emmip_SnasM_Cr +
        x="Levels of Race/Ethnicity")
 ```
 
+```{r}
+SnasM_Ca_em <- emmeans(SnasM_Cout, ~ age_group)
+SnasM_Ca_em1 <- as.data.frame(SnasM_Ca_em)
 
+SnasM_Ca_em 
+
+
+SnasM_Ca_em1 <- SnasM_Ca_em1 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+flextable(SnasM_Ca_em1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Estimated Marginal Means: SnasM_C and Age Group (Imputed Data)") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+SnasM_Ca_em2 <- pairs(SnasM_Ca_em, adjust="Tukey")
+SnasM_Ca_em3 <- as.data.frame(SnasM_Ca_em2)
+
+SnasM_Ca_em3$signif <- with(SnasM_Ca_em3, ifelse(p.value < 0.05, 'TRUE', 'FALSE'))
+SnasM_Ca_em3$p.value <- formatC(SnasM_Ca_em3$p.value, format = "e")
+
+SnasM_Ca_em2
+
+
+SnasM_Ca_em3 <- SnasM_Ca_em3 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+flextable(SnasM_Ca_em3) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Tukey Pairwise Comparisons: SnasM_C and Age Group") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+
+emmip_SnasM_Ca <- emmip(SnasM_Cout, ~ age_group, CIs = TRUE)
+
+emmip_SnasM_Ca + 
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="SnasM_C and Age Group: Estimated Marginal Means Plot (Imputed Data)",
+       subtitle="With Confidence Intervals",
+       y="Linear Prediction (of measurement in mm)",
+       x="Levels of Age Group")
+```
 
 
 
 ```{r}
-TrSman_Cout <- aov(TrSman_C ~ gender+race_eth+age_group, data=chosen_nona1)
+TrSman_Cout <- aov(TrSman_C ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(TrSman_Cout)
 TrSman_Cout_data <- as.data.frame(tidy(TrSman_Cout))
 ```
@@ -1699,7 +1791,7 @@ emmip_TrSman_Ca +
 
 
 ```{r}
-TrTr_Cout <- aov(TrTr_C ~ gender+race_eth+age_group, data=chosen_nona1)
+TrTr_Cout <- aov(TrTr_C ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(TrTr_Cout)
 TrTr_Cout_data <- as.data.frame(tidy(TrTr_Cout))
 ```
@@ -1868,7 +1960,7 @@ emmip_TrTr_Ca +
 
 
 ```{r}
-TrTr_Lout <- aov(TrTr_L ~ gender+race_eth+age_group, data=chosen_nona1)
+TrTr_Lout <- aov(TrTr_L ~ gender+race_eth+age_group, data=chosen_imputed1)
 summary(TrTr_Lout)
 TrTr_Lout_data <- as.data.frame(tidy(TrTr_Lout))
 ```
