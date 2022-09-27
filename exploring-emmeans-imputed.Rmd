@@ -1,6 +1,8 @@
 ---
-title: "exploring-emmeans"
-output: html_document
+title: "exploring-emmeans-imputed"
+output:
+  word_document: default
+  html_document: default
 date: "2022-09-21"
 ---
 
