@@ -167,4 +167,35 @@ age_est_data_imp <- age_est_data_imp[c(1, 8, 6, 7, 2, 9, 10, 11)]
 ```
 
 
+```{r}
+gender_data_joined <- full_join(gender_est_data, gender_est_data_imp, by=c("contrast", 
+                                                                           "measure"))
+
+race_data_joined <- full_join(race_est_data, race_est_data_imp, by=c("contrast",
+                                                                     "measure"))
+
+age_data_joined <- full_join(age_est_data, age_est_data_imp, by=c("contrast",
+                                                                  "measure"))
+```
+
+
+```{r}
+gender_data_joined <- gender_data_joined[c(1, 2, 3, 9, 4, 10, 5, 11, 6, 12, 7, 13, 8, 14)]
+
+race_data_joined <- race_data_joined[c(1, 2, 3, 9, 4, 10, 5, 11, 6, 12, 7, 13, 8, 14)]
+
+age_data_joined <- age_data_joined[c(1, 2, 3, 9, 4, 10, 5, 11, 6, 12, 7, 13, 8, 14)]
+```
+
+
+```{r}
+#don't need gender code of below, all are TRUE and TRUE
+
+race_data_joined <- race_data_joined %>% 
+    filter(!(signif=="FALSE" & signif_imp=="FALSE"))
+
+age_data_joined <- age_data_joined %>% 
+    filter(!(signif=="FALSE" & signif_imp=="FALSE"))
+```
+
 
