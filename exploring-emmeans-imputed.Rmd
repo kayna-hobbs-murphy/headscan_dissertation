@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 library(tidyverse)
 library(readxl)
 library(flextable)
@@ -20,7 +20,7 @@ library(scales)
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 #times new roman tables
 my_ft_theme <- function(ft, ...) {
   # Remove vertical cell padding
@@ -34,7 +34,7 @@ my_ft_theme <- function(ft, ...) {
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 gender_means_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\gender_means_data1.xlsx")
 
 race_means_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\race_means_data1.xlsx")
@@ -50,15 +50,15 @@ age_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dis
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 chosen_imputed1 <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_imputed1.xlsx")
 ```
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 chosenimputed1_num <- select_if(chosen_imputed1, is.numeric)
 ```
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 measure_means <- colMeans(chosenimputed1_num)
 measure_means <- as.data.frame(measure_means)
 measure_means <- rownames_to_column(measure_means)
@@ -70,7 +70,7 @@ measure_means <- measure_means %>%
 
 GENDER
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 
 gender_means_data$measure <- fct_reorder(gender_means_data$measure, gender_means_data$emmean, .desc=FALSE)
 
@@ -80,7 +80,7 @@ gender_means_data %>%
   geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.2, position=position_dodge(0.9))+
   theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Estimated Marginal Means (Imputed) (Imputed)",
+  labs(title="Estimated Marginal Means (Imputed)",
        subtitle= "All Genders in MANOVA",
        y="Emmean in mm",
        x="Gender",
@@ -89,7 +89,7 @@ gender_means_data %>%
 
 ```
 
-```{r, fig.width=6.5, fig.height=3}
+```{r, fig.width=7, fig.height=3}
 
 
 gender_means_data %>% 
@@ -125,7 +125,7 @@ gender_means_data1 %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 sig_gender_est <- gender_est_data %>% 
   filter(signif=="TRUE")
 
@@ -134,30 +134,30 @@ sig_gender_est <- sig_gender_est %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7.5}
 sig_gender_est$measure <- fct_reorder(sig_gender_est$measure, sig_gender_est$estimate, .desc=FALSE)
 
 sig_gender_est %>% 
   ggplot(aes(x=estimate, y= measure, fill=contrast))+
   geom_bar(position=position_dodge(), stat="identity")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Gender Significant Differences in Estimated Marginal Means (Imputed) (Imputed)",
+  labs(title="Gender Significant Differences in Estimated Marginal Means (Imputed)",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Difference in mm")
 ```
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 g_f_minus_m <- sig_gender_est %>% 
   filter(contrast == "(Female/Other) - Male")
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 g_f_minus_m <- full_join(g_f_minus_m, measure_means, by="measure")
 ```
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 g_f_minus_m$prop_diff <- (g_f_minus_m$estimate/g_f_minus_m$measure_means)
 g_f_minus_m$percent_diff <- g_f_minus_m$prop_diff * 100
 
@@ -166,14 +166,14 @@ g_f_minus_m <- g_f_minus_m %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7.5}
 g_f_minus_m$measure <- fct_reorder(g_f_minus_m$measure, g_f_minus_m$estimate, .desc=FALSE)
 
 g_f_minus_m %>% 
   ggplot(aes(x=estimate, y= measure))+
   geom_bar(stat="identity", color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Female/Other - Male Significant Differences in Estimated Marginal Means (Imputed) (Imputed)",
+  labs(title="Female/Other - Male Significant Differences in Estimated Marginal Means (Imputed)",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Difference in mm")
@@ -185,7 +185,7 @@ g_f_minus_m %>%
   geom_bar(stat="identity", color= "black", fill = "white")+
   scale_x_continuous(labels = scales::percent)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Female/Other - Male Significant Differences in Estimated Marginal Means (Imputed) (Imputed)",
+  labs(title="Female/Other - Male Significant Differences in Estimated Marginal Means (Imputed)",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
@@ -195,13 +195,13 @@ g_f_minus_m <- g_f_minus_m[c(8, 2, 6, 9, 10)]
 flextable(g_f_minus_m) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Female/Other - Male Significant Differences in Estimated Marginal Means (Imputed) (Imputed)") %>% 
+  set_caption("Female/Other - Male Significant Differences in Estimated Marginal Means (Imputed)") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7.5}
 g_m_minus_f <- g_f_minus_m
 
 g_m_minus_f$estimate <- g_m_minus_f$estimate*(-1)
@@ -249,7 +249,7 @@ flextable(g_m_minus_f) %>%
 
 AGE
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 
 age_means_data$measure <- fct_reorder(age_means_data$measure, age_means_data$emmean, .desc=FALSE)
 
@@ -266,7 +266,7 @@ age_means_data %>%
        fill="Measurement")
 ```
 
-```{r, fig.width=6.5, fig.height=3}
+```{r, fig.width=7, fig.height=3}
 
 #age_means_data$measure <- fct_reorder(age_means_data$measure, age_means_data$emmean, .desc=FALSE)
 
@@ -286,7 +286,7 @@ age_means_data %>%
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 sig_age_est <- age_est_data %>% 
   filter(signif=="TRUE")
 
@@ -295,7 +295,7 @@ sig_age_est <- sig_age_est %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 sig_age_est$measure <- fct_reorder(sig_age_est$measure, sig_age_est$estimate, .desc=FALSE)
 
 sig_age_est %>% 
@@ -360,7 +360,7 @@ flextable(age_est_data1) %>%
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 
 
 
@@ -403,7 +403,7 @@ flextable(y_v_m) %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 m_v_y <- y_v_m
 
 m_v_y$estimate <- m_v_y$estimate*(-1)
@@ -447,7 +447,7 @@ flextable(m_v_y) %>%
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 
 
 
@@ -487,7 +487,7 @@ flextable(y_v_o) %>%
   autofit()
 ```
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 o_v_y <- y_v_o
 
 o_v_y$estimate <- o_v_y$estimate*(-1)
@@ -533,7 +533,7 @@ flextable(o_v_y) %>%
   autofit()
 ```
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 
 
 
@@ -578,7 +578,7 @@ flextable(m_v_o) %>%
   autofit()
 ```
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 o_v_m <- m_v_o
 
 o_v_m$estimate <- o_v_m$estimate*(-1)
@@ -634,7 +634,7 @@ RACE/ETHNICITY
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 
 race_means_data$measure <- fct_reorder(race_means_data$measure, race_means_data$emmean, .desc=FALSE)
 
@@ -651,7 +651,7 @@ race_means_data %>%
        fill="Measurement")
 ```
 
-```{r, fig.width=6.5, fig.height=3}
+```{r, fig.width=7, fig.height=3}
 
 #race_means_data$measure <- fct_reorder(race_means_data$measure, race_means_data$emmean, .desc=FALSE)
 
@@ -672,7 +672,7 @@ race_means_data %>%
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 sig_race_est <- race_est_data %>% 
   filter(signif=="TRUE")
 
@@ -681,7 +681,7 @@ sig_race_est <- sig_race_est %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 sig_race_est$measure <- fct_reorder(sig_race_est$measure, sig_race_est$estimate, .desc=FALSE)
 
 sig_race_est %>% 
@@ -695,11 +695,11 @@ sig_race_est %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race_est_data1 <- full_join(sig_race_est, measure_means, by="measure")
 ```
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race_est_data1$prop_diff <- (race_est_data1$estimate/race_est_data1$measure_means)
 
 race_est_data1 <- race_est_data1 %>% 
@@ -708,7 +708,7 @@ race_est_data1 <- race_est_data1 %>%
 #race_est_data1$percent_diff <- (race_est_data1$prop_diff) * 100
 ```
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race1 <- race_est_data1 %>% 
   filter(contrast == "Asian - Black")
 
@@ -733,7 +733,7 @@ race1 %>%
   geom_bar(stat="identity", color= "black", fill = "white")+
   scale_x_continuous(labels = scales::percent)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Asian - Black Significant Differences in Estimated Marginal Mean",
+  labs(title="Asian - Black Significant Differences in Estimated Marginal Means (Imputed)",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
@@ -755,7 +755,7 @@ flextable(race1) %>%
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race1.1 <- race1
 
 race1.1$estimate <- race1.1$estimate*(-1)
@@ -801,7 +801,7 @@ flextable(race1.1) %>%
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race2 <- race_est_data1 %>% 
   filter(contrast == "Asian - LatinX")
 
@@ -847,7 +847,7 @@ flextable(race2) %>%
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race2.1 <- race2
 
 race2.1$estimate <- race2.1$estimate*(-1)
@@ -891,7 +891,7 @@ flextable(race2.1) %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race3 <- race_est_data1 %>% 
   filter(contrast == "Asian - white")
 
@@ -931,7 +931,7 @@ flextable(race3) %>%
   fit_to_width(7.5) %>% 
   autofit()
 ```
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race3.1 <- race3
 
 race3.1$estimate <- race3.1$estimate*(-1)
@@ -975,7 +975,7 @@ flextable(race3.1) %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race4 <- race_est_data1 %>% 
   filter(contrast == "Black - LatinX")
 
@@ -1018,7 +1018,7 @@ flextable(race4) %>%
 ```
 
 
-#```{r}
+#```{r, fig.height=4.5, fig.width=7}
 race4.1 <- race4
 
 race4.1$estimate <- race4.1$estimate*(-1)
@@ -1061,7 +1061,7 @@ flextable(race4.1) %>%
   autofit()
 #```
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race5 <- race_est_data1 %>% 
   filter(contrast == "Black - Other")
 
@@ -1106,7 +1106,7 @@ flextable(race5) %>%
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race6 <- race_est_data1 %>% 
   filter(contrast == "Black - white")
 
@@ -1150,7 +1150,7 @@ flextable(race6) %>%
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race7 <- race_est_data1 %>% 
   filter(contrast == "LatinX - white")
 
@@ -1195,7 +1195,7 @@ flextable(race7) %>%
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 race8 <- race_est_data1 %>% 
   filter(contrast == "Other - white")
 
