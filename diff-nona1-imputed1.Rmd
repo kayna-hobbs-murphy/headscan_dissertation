@@ -209,12 +209,24 @@ gender_data_joined <- gender_data_joined %>%
 gender_data_joined$measure <- fct_reorder(gender_data_joined$measure, gender_data_joined$diff_est, .desc=FALSE)
 
 gender_data_joined %>% 
-  ggplot(aes(x=measure, y=diff_est, label=diff_est, fill=contrast))+
-  geom_bar(stat="identity", color= "black")+
+  ggplot(aes(x=measure, y=diff_est, label=diff_est))+
+  geom_bar(stat="identity", color= "black", fill="white")+
   geom_text(vjust=1.1, position = position_dodge(.9), size = 2.7, family= "Times New Roman")+
   scale_y_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Difference Between Estimates for Gender Differences")
+  labs(title="Difference Between Non- and Imputed Estimates",
+       subtitle="Female/Other-Male Contrast",
+       y="Differnce in Estimate in mm",
+       x="Measurement Location")
+
+gender_data_joined <- gender_data_joined[c(1,2,5,6,7,8,15)]
+
+flextable(gender_data_joined) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Comparison b/w Imputed and Non-Imputed Emmeans Contrast Estimates") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
 
 ```{r}
@@ -232,6 +244,15 @@ race_data_joined %>%
   scale_y_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Difference Between Estimates for Race Differences")
+
+race_data_joined <- race_data_joined[c(1,2,5,6,7,8,15)]
+
+flextable(race_data_joined) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Comparison b/w Imputed and Non-Imputed Emmeans Contrast Estimates") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
 
 
@@ -250,5 +271,14 @@ age_data_joined %>%
   geom_text(vjust=1.1, position = position_dodge(.9), size = 2.7, family= "Times New Roman")+
   scale_y_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Difference Between Estimates for age Differences")
+  labs(title="Difference Between Estimates for Age Differences")
+
+age_data_joined <- age_data_joined[c(1,2,5,6,7,8,15)]
+
+flextable(age_data_joined) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Comparison b/w Imputed and Non-Imputed Emmeans Contrast Estimates") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
 ```
