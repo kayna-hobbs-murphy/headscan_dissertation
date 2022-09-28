@@ -1,0 +1,34 @@
+---
+title: "chernoff-faces"
+output: html_document
+date: "2022-09-28"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(flextable)
+library(extrafont)
+```
+
+
+```{r}
+gender_means_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\gender_means_data.xlsx")
+
+race_means_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\race_means_data.xlsx")
+
+age_means_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\age_means_data.xlsx")
+
+gender_means_data_imp <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\gender_means_data1.xlsx")
+
+race_means_data_imp <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\race_means_data1.xlsx")
+
+age_means_data_imp <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\age_means_data1.xlsx")
+```
+```
+
