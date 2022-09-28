@@ -199,3 +199,56 @@ age_data_joined <- age_data_joined %>%
 ```
 
 
+
+```{r}
+gender_data_joined$diff_est <- (gender_data_joined$estimate - gender_data_joined$estimate_imp)
+
+gender_data_joined <- gender_data_joined %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+gender_data_joined$measure <- fct_reorder(gender_data_joined$measure, gender_data_joined$diff_est, .desc=FALSE)
+
+gender_data_joined %>% 
+  ggplot(aes(x=measure, y=diff_est, label=diff_est, fill=contrast))+
+  geom_bar(stat="identity", color= "black")+
+  geom_text(vjust=1.1, position = position_dodge(.9), size = 2.7, family= "Times New Roman")+
+  scale_y_continuous(expand = expansion(mult = 0.1))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Difference Between Estimates for Gender Differences")
+```
+
+```{r}
+race_data_joined$diff_est <- (race_data_joined$estimate - race_data_joined$estimate_imp)
+
+race_data_joined <- race_data_joined %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+race_data_joined$measure <- fct_reorder(race_data_joined$measure, race_data_joined$diff_est, .desc=FALSE)
+
+race_data_joined %>% 
+  ggplot(aes(x=measure, y=diff_est, label=diff_est, fill=contrast))+
+  geom_bar(stat="identity", color= "black", position="dodge")+
+  geom_text(vjust=1.1, position = position_dodge(.9), size = 2.7, family= "Times New Roman")+
+  scale_y_continuous(expand = expansion(mult = 0.1))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Difference Between Estimates for Race Differences")
+```
+
+
+
+```{r}
+age_data_joined$diff_est <- (age_data_joined$estimate - age_data_joined$estimate_imp)
+
+age_data_joined <- age_data_joined %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+age_data_joined$measure <- fct_reorder(age_data_joined$measure, age_data_joined$diff_est, .desc=FALSE)
+
+age_data_joined %>% 
+  ggplot(aes(x=measure, y=diff_est, label=diff_est, fill=contrast))+
+  geom_bar(stat="identity", color= "black", position="dodge")+
+  geom_text(vjust=1.1, position = position_dodge(.9), size = 2.7, family= "Times New Roman")+
+  scale_y_continuous(expand = expansion(mult = 0.1))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Difference Between Estimates for age Differences")
+```
