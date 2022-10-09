@@ -4859,6 +4859,917 @@ ggplot(data=SnasM_C_no_out, aes(y=SnasM_C, x=age_group))+
        x="Age Group")
 ```
 
+
+
+
+
+SmanM_L  
+
+```{r SmanM_L-histogram-w-outliers}
+#histogram of all SmanM_L values
+ggplot(data=headscan_full, aes(x=SmanM_L))+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Submandibular to Menton Length Measurement Distribution",
+       subtitle = "without outliers removed",
+       y="Frequency",
+       x="Submandibular to Menton Length (mm)")
+
+SmanM_Lsumstats <- headscan_full %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_L)),
+            min = min(SmanM_L, na.rm = TRUE),
+            max = max(SmanM_L, na.rm = TRUE),
+            mean = mean(SmanM_L, na.rm = TRUE),
+            mdn = median(SmanM_L, na.rm = TRUE),
+            sd = sd(SmanM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_L, 0.95, na.rm=TRUE)) 
+
+SmanM_Lsumstats <- round(SmanM_Lsumstats, 2)
+
+#Size 12 Table TNR
+flextable(SmanM_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Length SumStats (mm) w/o outliers removed") 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubmanaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Lsumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Length SumStats (mm) w/o outliers removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubmanaleCont"))
+```
+
+
+```{r SmanM_L-raceeth-w-outliers}
+#SmanM_L race/eth sumstats
+SmanM_Lrace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_L)),
+            min = min(SmanM_L, na.rm = TRUE),
+            max = max(SmanM_L, na.rm = TRUE),
+            mean = mean(SmanM_L, na.rm = TRUE),
+            mdn = median(SmanM_L, na.rm = TRUE),
+            sd = sd(SmanM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_L, 0.95, na.rm=TRUE)) 
+
+SmanM_Lrace_sumstats <- SmanM_Lrace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SmanM_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Length SumStats (mm) by Race/Ethnicity w/o outliers removed") 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubmanaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Lrace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Length SumStats (mm) by Race/Ethnicity w/o outliers removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubmanaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, SmanM_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_L, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Length values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SmanM_L, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Length values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Race/Ethnicity")
+
+```
+
+```{r SmanM_L-gender-w-outliers}
+#SmanM_L gender sumstats
+SmanM_Lgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_L)),
+            min = min(SmanM_L, na.rm = TRUE),
+            max = max(SmanM_L, na.rm = TRUE),
+            mean = mean(SmanM_L, na.rm = TRUE),
+            mdn = median(SmanM_L, na.rm = TRUE),
+            sd = sd(SmanM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_L, 0.95, na.rm=TRUE))
+
+SmanM_Lgender_sumstats <- SmanM_Lgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(SmanM_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Length SumStats (mm) by Gender w/o outliers removed") 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubmanaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Lgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Length SumStats (mm) by Gender w/o outliers removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubmanaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, SmanM_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_L, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Length values by Gender",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SmanM_L, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Length values by Gender",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Gender")
+```
+
+```{r SmanM_L-agegroup-w-outliers}
+#SmanM_L age group sumstats
+SmanM_Lage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_L)),
+            min = min(SmanM_L, na.rm = TRUE),
+            max = max(SmanM_L, na.rm = TRUE),
+            mean = mean(SmanM_L, na.rm = TRUE),
+            mdn = median(SmanM_L, na.rm = TRUE),
+            sd = sd(SmanM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_L, 0.95, na.rm=TRUE))
+
+SmanM_Lage_sumstats <- SmanM_Lage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SmanM_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Length SumStats (mm) by Age Group w/o outliers removed") 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubmanaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Lage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Length SumStats (mm) by Age Group w/o outliers removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubmanaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, SmanM_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_L, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Length values by Age Group",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SmanM_L, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Length values by Age Group",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Age Group")
+```
+
+
+```{r SmanM_L-removing-outlier}
+#REMOVING OUTLIER SmanM_L
+
+max(headscan_full$SmanM_L, na.rm = TRUE)
+
+
+#CODE TO REMOVE OUTLIER, use later to remove from headscan_full
+SmanM_L_no_out <- headscan_full %>% mutate(SmanM_L = replace(SmanM_L, SmanM_L>100, NA))
+```
+
+```{r SmanM_L-histogram}
+#histogram of all SmanM_L values
+ggplot(data=SmanM_L_no_out, aes(x=SmanM_L))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Submandibular to Menton Linear Measurement Distribution",
+       y="Frequency",
+       x="Submandibular to Menton Linear (mm)")
+
+SmanM_Lsumstats1 <- SmanM_L_no_out %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_L)),
+            min = min(SmanM_L, na.rm = TRUE),
+            max = max(SmanM_L, na.rm = TRUE),
+            mean = mean(SmanM_L, na.rm = TRUE),
+            mdn = median(SmanM_L, na.rm = TRUE),
+            sd = sd(SmanM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_L, 0.95, na.rm=TRUE)) 
+
+SmanM_Lsumstats1 <- round(SmanM_Lsumstats1, 2)
+
+#Size 12 Table TNR
+flextable(SmanM_Lsumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm)") 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Lsumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm)") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubnasaleCont"))
+```
+
+```{r SmanM_L-raceeth}
+#SmanM_L race/eth sumstats
+SmanM_Lrace_sumstats1 <- SmanM_L_no_out %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_L)),
+            min = min(SmanM_L, na.rm = TRUE),
+            max = max(SmanM_L, na.rm = TRUE),
+            mean = mean(SmanM_L, na.rm = TRUE),
+            mdn = median(SmanM_L, na.rm = TRUE),
+            sd = sd(SmanM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_L, 0.95, na.rm=TRUE)) 
+
+SmanM_Lrace_sumstats1 <- SmanM_Lrace_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SmanM_Lrace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Lrace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Race/Ethnicity") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubnasaleCont"))
+
+#boxplot reorderd by median
+SmanM_L_no_out %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, SmanM_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_L, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Race/Ethnicity",
+       y="Measurement (mm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=SmanM_L_no_out, aes(y=SmanM_L, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Race/Ethnicity")
+
+```
+
+```{r SmanM_L-gender}
+#SmanM_L gender sumstats
+SmanM_Lgender_sumstats1 <- SmanM_L_no_out %>% 
+  group_by(gender) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_L)),
+            min = min(SmanM_L, na.rm = TRUE),
+            max = max(SmanM_L, na.rm = TRUE),
+            mean = mean(SmanM_L, na.rm = TRUE),
+            mdn = median(SmanM_L, na.rm = TRUE),
+            sd = sd(SmanM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_L, 0.95, na.rm=TRUE))
+
+SmanM_Lgender_sumstats1 <- SmanM_Lgender_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(SmanM_Lgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Gender") 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Lgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Gender") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubnasaleCont"))
+
+#boxplot reorderd by median
+SmanM_L_no_out %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, SmanM_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_L, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Gender",
+       y="Measurement (mm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=SmanM_L_no_out, aes(y=SmanM_L, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Gender",
+       y="Measurement (mm)",
+       x="Gender")
+```
+
+```{r SmanM_L-agegroup}
+#SmanM_L age group sumstats
+SmanM_Lage_sumstats1 <- SmanM_L_no_out %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_L)),
+            min = min(SmanM_L, na.rm = TRUE),
+            max = max(SmanM_L, na.rm = TRUE),
+            mean = mean(SmanM_L, na.rm = TRUE),
+            sd = sd(SmanM_L, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_L, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_L, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_L, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_L, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_L, 0.95, na.rm=TRUE))
+
+SmanM_Lage_sumstats1 <- SmanM_Lage_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SmanM_Lage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Age Group") 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Lage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Age Group") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_L = "Submandibular/SubnasaleCont"))
+
+#boxplot reorderd by median
+SmanM_L_no_out %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, SmanM_L, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_L, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Age Group",
+       y="Measurement (mm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=SmanM_L_no_out, aes(y=SmanM_L, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Age Group",
+       y="Measurement (mm)",
+       x="Age Group")
+```
+
+
+SmanM_C  
+
+```{r SmanM_C-histogram-w-outliers}
+#histogram of all SmanM_C values
+ggplot(data=headscan_full, aes(x=SmanM_C))+
+  geom_bar(stat="bin", bins=25, color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Submandibular to Menton Contour Measurement Distribution",
+       subtitle = "without outliers removed",
+       y="Frequency",
+       x="Submandibular to Menton Contour (mm)")
+
+SmanM_Csumstats <- headscan_full %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_C)),
+            min = min(SmanM_C, na.rm = TRUE),
+            max = max(SmanM_C, na.rm = TRUE),
+            mean = mean(SmanM_C, na.rm = TRUE),
+            mdn = median(SmanM_C, na.rm = TRUE),
+            sd = sd(SmanM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_C, 0.95, na.rm=TRUE)) 
+
+SmanM_Csumstats <- round(SmanM_Csumstats, 2)
+
+#Size 12 Table TNR
+flextable(SmanM_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) w/o outliers removed") 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubmanaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Csumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) w/o outliers removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubmanaleCont"))
+```
+
+
+```{r SmanM_C-raceeth-w-outliers}
+#SmanM_C race/eth sumstats
+SmanM_Crace_sumstats <- headscan_full %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_C)),
+            min = min(SmanM_C, na.rm = TRUE),
+            max = max(SmanM_C, na.rm = TRUE),
+            mean = mean(SmanM_C, na.rm = TRUE),
+            mdn = median(SmanM_C, na.rm = TRUE),
+            sd = sd(SmanM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_C, 0.95, na.rm=TRUE)) 
+
+SmanM_Crace_sumstats <- SmanM_Crace_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SmanM_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Race/Ethnicity w/o outliers removed") 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubmanaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Crace_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Race/Ethnicity w/o outliers removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubmanaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, SmanM_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Contour values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SmanM_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Contour values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Race/Ethnicity")
+
+```
+
+```{r SmanM_C-gender-w-outliers}
+#SmanM_C gender sumstats
+SmanM_Cgender_sumstats <- headscan_full %>% 
+  group_by(gender) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_C)),
+            min = min(SmanM_C, na.rm = TRUE),
+            max = max(SmanM_C, na.rm = TRUE),
+            mean = mean(SmanM_C, na.rm = TRUE),
+            mdn = median(SmanM_C, na.rm = TRUE),
+            sd = sd(SmanM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_C, 0.95, na.rm=TRUE))
+
+SmanM_Cgender_sumstats <- SmanM_Cgender_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(SmanM_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Gender w/o outliers removed") 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubmanaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Cgender_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Gender w/o outliers removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubmanaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, SmanM_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Contour values by Gender",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SmanM_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Contour values by Gender",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Gender")
+```
+
+```{r SmanM_C-agegroup-w-outliers}
+#SmanM_C age group sumstats
+SmanM_Cage_sumstats <- headscan_full %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_C)),
+            min = min(SmanM_C, na.rm = TRUE),
+            max = max(SmanM_C, na.rm = TRUE),
+            mean = mean(SmanM_C, na.rm = TRUE),
+            mdn = median(SmanM_C, na.rm = TRUE),
+            sd = sd(SmanM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_C, 0.95, na.rm=TRUE))
+
+SmanM_Cage_sumstats <- SmanM_Cage_sumstats %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SmanM_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Age Group w/o outliers removed") 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubmanaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Cage_sumstats) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Age Group w/o outliers removed") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubmanaleCont"))
+
+#boxplot reorderd by median
+headscan_full %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, SmanM_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Contour values by Age Group",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=headscan_full, aes(y=SmanM_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Contour values by Age Group",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Age Group")
+```
+
+
+```{r SmanM_C-removing-outlier}
+#REMOVING OUTLIER SmanM_C
+
+max(headscan_full$SmanM_C, na.rm = TRUE)
+
+
+#CODE TO REMOVE OUTLIER, use later to remove from headscan_full
+SmanM_C_no_out <- headscan_full %>% mutate(SmanM_C = replace(SmanM_C, SmanM_C>115, NA))
+```
+
+```{r SmanM_C-histogram}
+#histogram of all SmanM_C values
+ggplot(data=SmanM_C_no_out, aes(x=SmanM_C))+
+  geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Submandibular to Menton Linear Measurement Distribution",
+       y="Frequency",
+       x="Submandibular to Menton Linear (mm)")
+
+SmanM_Csumstats1 <- SmanM_C_no_out %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_C)),
+            min = min(SmanM_C, na.rm = TRUE),
+            max = max(SmanM_C, na.rm = TRUE),
+            mean = mean(SmanM_C, na.rm = TRUE),
+            mdn = median(SmanM_C, na.rm = TRUE),
+            sd = sd(SmanM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_C, 0.95, na.rm=TRUE)) 
+
+SmanM_Csumstats1 <- round(SmanM_Csumstats1, 2)
+
+#Size 12 Table TNR
+flextable(SmanM_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm)") 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Csumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm)") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
+```
+
+```{r SmanM_C-raceeth}
+#SmanM_C race/eth sumstats
+SmanM_Crace_sumstats1 <- SmanM_C_no_out %>% 
+  group_by(race_eth) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_C)),
+            min = min(SmanM_C, na.rm = TRUE),
+            max = max(SmanM_C, na.rm = TRUE),
+            mean = mean(SmanM_C, na.rm = TRUE),
+            mdn = median(SmanM_C, na.rm = TRUE),
+            sd = sd(SmanM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_C, 0.95, na.rm=TRUE)) 
+
+SmanM_Crace_sumstats1 <- SmanM_Crace_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SmanM_Crace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Race/Ethnicity") 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Crace_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Race/Ethnicity") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
+
+#boxplot reorderd by median
+SmanM_C_no_out %>% 
+  ungroup() %>% 
+  mutate(race_eth= fct_reorder(race_eth, SmanM_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Race/Ethnicity",
+       y="Measurement (mm)",
+       x="Race/Ethnicity")
+
+#boxplot not reordered by median
+ggplot(data=SmanM_C_no_out, aes(y=SmanM_C, x=race_eth))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Race/Ethnicity",
+       subtitle = "without outliers removed",
+       y="Measurement (mm)",
+       x="Race/Ethnicity")
+
+```
+
+```{r SmanM_C-gender}
+#SmanM_C gender sumstats
+SmanM_Cgender_sumstats1 <- SmanM_C_no_out %>% 
+  group_by(gender) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_C)),
+            min = min(SmanM_C, na.rm = TRUE),
+            max = max(SmanM_C, na.rm = TRUE),
+            mean = mean(SmanM_C, na.rm = TRUE),
+            mdn = median(SmanM_C, na.rm = TRUE),
+            sd = sd(SmanM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_C, 0.95, na.rm=TRUE))
+
+SmanM_Cgender_sumstats1 <- SmanM_Cgender_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+#Size 12 Table TNR
+flextable(SmanM_Cgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Gender") 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Cgender_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Gender") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
+
+#boxplot reorderd by median
+SmanM_C_no_out %>% 
+  ungroup() %>% 
+  mutate(gender= fct_reorder(gender, SmanM_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Gender",
+       y="Measurement (mm)",
+       x="Gender")
+
+#boxplot not reordered by median
+ggplot(data=SmanM_C_no_out, aes(y=SmanM_C, x=gender))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Gender",
+       y="Measurement (mm)",
+       x="Gender")
+```
+
+```{r SmanM_C-agegroup}
+#SmanM_C age group sumstats
+SmanM_Cage_sumstats1 <- SmanM_C_no_out %>% 
+  group_by(age_group) %>% 
+  summarise(n = n(), na = sum(is.na(SmanM_C)),
+            min = min(SmanM_C, na.rm = TRUE),
+            max = max(SmanM_C, na.rm = TRUE),
+            mean = mean(SmanM_C, na.rm = TRUE),
+            sd = sd(SmanM_C, na.rm = TRUE),
+            se = sd/sqrt(n),
+            percent5th = quantile(SmanM_C, 0.05, na.rm=TRUE),
+            percent25th = quantile(SmanM_C, 0.25, na.rm=TRUE),
+            percent50th = quantile(SmanM_C, 0.50, na.rm=TRUE),
+            percent75th = quantile(SmanM_C, 0.75, na.rm=TRUE),
+            percent95th = quantile(SmanM_C, 0.95, na.rm=TRUE))
+
+SmanM_Cage_sumstats1 <- SmanM_Cage_sumstats1 %>% 
+  mutate(across(where(is.numeric), round, 2))
+
+
+#Size 12 Table TNR
+flextable(SmanM_Cage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Age Group") 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
+
+#Autofit Width Table TNR
+flextable(SmanM_Cage_sumstats1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Submandibular to Menton Linear SumStats (mm) by Age Group") %>% 
+  fit_to_width(7.5) 
+#%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
+
+#boxplot reorderd by median
+SmanM_C_no_out %>% 
+  ungroup() %>% 
+  mutate(age_group= fct_reorder(age_group, SmanM_C, FUN=median, na.rm=TRUE)) %>% 
+  ggplot(aes(y=SmanM_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Age Group",
+       y="Measurement (mm)",
+       x="Age Group")
+
+#boxplot not reordered by median
+ggplot(data=SmanM_C_no_out, aes(y=SmanM_C, x=age_group))+
+  geom_boxplot(color= "black", fill = "white")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
+  labs(title="Submandibular to Menton Linear values by Age Group",
+       y="Measurement (mm)",
+       x="Age Group")
+```
+
+
+
+
+
 TrHO_C  
 
 ```{r TrHO_C-histogram}
@@ -7338,6 +8249,5 @@ ggplot(data=headscan_full, aes(y=TrTr_L, x=age_group))+
        y="Measurement (mm)",
        x="Age Group")
 ```
-
 
 

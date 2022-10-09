@@ -1,0 +1,93 @@
+---
+title: "summary-stats-SA1pt2"
+output: html_document
+date: "2022-10-09"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+library(flextable)
+library(readxl)
+library(extrafont)
+library(forcats)
+library(writexl)
+```
+
+```{r table-function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
+```{r}
+AA_Cgender_sumstats$measure <- "AA_C"
+BGl_Cgender_sumstats$measure <- "BGl_C"
+BiW_Cgender_sumstats$measure <- "BiW_C"
+BiW_Lgender_sumstats$measure <- "BiW_L"
+ChCh_Cgender_sumstats$measure <- "ChCh_C"
+GoSub_Cgender_sumstats1$measure <- "GoSub_C"
+NRB_Lgender_sumstats1$measure <- "NRB_L"
+ProA_Lgender_sumstats$measure <- "ProA_L"
+ProA_Cgender_sumstats$measure <- "ProA_C"
+ProS_Lgender_sumstats$measure <- "ProS_L"
+ProS_Cgender_sumstats$measure <- "ProS_C"
+SelP_Cgender_sumstats$measure <- "SelP_C"
+SelP_Lgender_sumstats$measure <- "SelP_L"
+SelDH_Cgender_sumstats1$measure <- "SelDH_C"
+SelM_Lgender_sumstats$measure <- "SelM_L"
+SnasM_Lgender_sumstats$measure <- "SnasM_L"
+SnasM_Cgender_sumstats1$measure <- "SnasM_C"
+SmanM_Cgender_sumstats1$measure <- "SmanM_C"
+SmanM_Lgender_sumstats1$measure <- "SmanM_L"
+TrHO_Cgender_sumstats$measure <- "TrHO_C"
+TrEJ_Cgender_sumstats$measure <- "TrEJ_C"
+TrGo_Cgender_sumstats1$measure <- "TrGo_C"
+TrSel_Cgender_sumstats$measure <- "TrSel_C"
+TrSman_Cgender_sumstats1$measure <- "TrSman_C"
+TrSnas_Cgender_sumstats1$measure <- "TrSnas_C"
+TrTr_Cgender_sumstats$measure <- "TrTr_C"
+TrTr_Lgender_sumstats$measure <- "TrTr_L"
+```
+
+
+```{r}
+gender_sumdata <- rbind(AA_Cgender_sumstats,
+                        BGl_Cgender_sumstats,
+                        BiW_Cgender_sumstats,
+                        BiW_Lgender_sumstats,
+                        ChCh_Cgender_sumstats,
+                        GoSub_Cgender_sumstats1,
+                        NRB_Lgender_sumstats1,
+                        ProA_Lgender_sumstats$measure <- "ProA_L"
+ProA_Cgender_sumstats$measure <- "ProA_C"
+ProS_Lgender_sumstats$measure <- "ProS_L"
+ProS_Cgender_sumstats$measure <- "ProS_C"
+SelP_Cgender_sumstats$measure <- "SelP_C"
+SelP_Lgender_sumstats$measure <- "SelP_L"
+SelDH_Cgender_sumstats1$measure <- "SelDH_C"
+SelM_Lgender_sumstats$measure <- "SelM_L"
+SnasM_Lgender_sumstats$measure <- "SnasM_L"
+SnasM_Cgender_sumstats1$measure <- "SnasM_C"
+SmanM_Cgender_sumstats1$measure <- "SmanM_C"
+SmanM_Lgender_sumstats1$measure <- "SmanM_L"
+TrHO_Cgender_sumstats$measure <- "TrHO_C"
+TrEJ_Cgender_sumstats$measure <- "TrEJ_C"
+TrGo_Cgender_sumstats1$measure <- "TrGo_C"
+TrSel_Cgender_sumstats$measure <- "TrSel_C"
+TrSman_Cgender_sumstats1$measure <- "TrSman_C"
+TrSnas_Cgender_sumstats1$measure <- "TrSnas_C"
+TrTr_Cgender_sumstats$measure <- "TrTr_C"
+TrTr_Lgender_sumstats$measure <- "TrTr_L")
+```
+
