@@ -98,7 +98,9 @@ gender_sumdata <- gender_sumdata[c(15, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 ```{r}
 gender_sumdata1 <- filter(gender_sumdata, gender %in% c("Female", "Male"))
 gender_sumdata_f <- filter(gender_sumdata, gender == "Female")
+gender_sumdata_f <- gender_sumdata_f[-c(2,4,8,10)]
 gender_sumdata_m <- filter(gender_sumdata, gender == "Male")
+gender_sumdata_m <- gender_sumdata_m[-c(2,4,8,10)]
 ```
 
 ```{r}
@@ -118,10 +120,38 @@ flextable(gender_sumdata_m) %>%
 ```
 
 ```{r}
-zhuang_sumstats<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\Zhuang_sumstats.xlsx")
+zhuang_sumstats<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\Zhuang-sumstats.xlsx")
 ```
 
 
+```{r}
+zhuang_sumstats_f <- filter(zhuang_sumstats, gender == "Female")
+zhuang_sumstats_f <- zhuang_sumstats_f[-c(12)]
+zhuang_sumstats_m <- filter(zhuang_sumstats, gender == "Male")
+zhuang_sumstats_m <- zhuang_sumstats_m[-c(12)]
+```
 
+
+```{r}
+flextable(zhuang_sumstats_f) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Zhuang Female SumStats") %>% 
+  fit_to_width(7.5) 
+```
+
+
+```{r}
+flextable(zhuang_sumstats_m) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Zhuang Male SumStats") %>% 
+  fit_to_width(7.5) 
+```
+
+
+```{r}
+
+```
 
 
