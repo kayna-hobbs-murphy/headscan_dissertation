@@ -69,25 +69,59 @@ gender_sumdata <- rbind(AA_Cgender_sumstats,
                         ChCh_Cgender_sumstats,
                         GoSub_Cgender_sumstats1,
                         NRB_Lgender_sumstats1,
-                        ProA_Lgender_sumstats$measure <- "ProA_L"
-ProA_Cgender_sumstats$measure <- "ProA_C"
-ProS_Lgender_sumstats$measure <- "ProS_L"
-ProS_Cgender_sumstats$measure <- "ProS_C"
-SelP_Cgender_sumstats$measure <- "SelP_C"
-SelP_Lgender_sumstats$measure <- "SelP_L"
-SelDH_Cgender_sumstats1$measure <- "SelDH_C"
-SelM_Lgender_sumstats$measure <- "SelM_L"
-SnasM_Lgender_sumstats$measure <- "SnasM_L"
-SnasM_Cgender_sumstats1$measure <- "SnasM_C"
-SmanM_Cgender_sumstats1$measure <- "SmanM_C"
-SmanM_Lgender_sumstats1$measure <- "SmanM_L"
-TrHO_Cgender_sumstats$measure <- "TrHO_C"
-TrEJ_Cgender_sumstats$measure <- "TrEJ_C"
-TrGo_Cgender_sumstats1$measure <- "TrGo_C"
-TrSel_Cgender_sumstats$measure <- "TrSel_C"
-TrSman_Cgender_sumstats1$measure <- "TrSman_C"
-TrSnas_Cgender_sumstats1$measure <- "TrSnas_C"
-TrTr_Cgender_sumstats$measure <- "TrTr_C"
-TrTr_Lgender_sumstats$measure <- "TrTr_L")
+                        ProA_Lgender_sumstats,
+                        ProA_Cgender_sumstats,
+                        ProS_Lgender_sumstats,
+                        ProS_Cgender_sumstats,
+                        SelP_Cgender_sumstats,
+                        SelP_Lgender_sumstats,
+                        SelDH_Cgender_sumstats1,
+                        SelM_Lgender_sumstats,
+                        SnasM_Lgender_sumstats,
+                        SnasM_Cgender_sumstats1,
+                        SmanM_Cgender_sumstats1,
+                        SmanM_Lgender_sumstats1,
+                        TrHO_Cgender_sumstats,
+                        TrEJ_Cgender_sumstats,
+                        TrGo_Cgender_sumstats1,
+                        TrSel_Cgender_sumstats,
+                        TrSman_Cgender_sumstats1,
+                        TrSnas_Cgender_sumstats1,
+                        TrTr_Cgender_sumstats,
+                        TrTr_Lgender_sumstats)
 ```
+
+```{r}
+gender_sumdata <- gender_sumdata[c(15, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)]
+```
+
+```{r}
+gender_sumdata1 <- filter(gender_sumdata, gender %in% c("Female", "Male"))
+gender_sumdata_f <- filter(gender_sumdata, gender == "Female")
+gender_sumdata_m <- filter(gender_sumdata, gender == "Male")
+```
+
+```{r}
+flextable(gender_sumdata_f) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Female SumStats") %>% 
+  fit_to_width(7.5) 
+```
+
+```{r}
+flextable(gender_sumdata_m) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Male SumStats") %>% 
+  fit_to_width(7.5) 
+```
+
+```{r}
+zhuang_sumstats<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\Zhuang_sumstats.xlsx")
+```
+
+
+
+
 
