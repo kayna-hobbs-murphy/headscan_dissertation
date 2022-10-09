@@ -151,7 +151,8 @@ flextable(zhuang_sumstats_m) %>%
 
 
 ```{r}
-
+zhuang_sumstats_f1 <- zhuang_sumstats_f[c(17, 9, 6, 11, 15, 18, 13, 3, 5),]
+zhuang_sumstats_m1 <- zhuang_sumstats_m[c(17, 9, 6, 11, 15, 18, 13, 3, 5),]
 ```
 
 
