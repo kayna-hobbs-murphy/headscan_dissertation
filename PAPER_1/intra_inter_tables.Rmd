@@ -16,6 +16,7 @@ library(readxl)
 library(flextable)
 library(extrafont)
 library(scales)
+library(forcats)
 ```
 
 ```{r, fig.height=4.5, fig.width=7}
@@ -32,13 +33,18 @@ my_ft_theme <- function(ft, ...) {
 ```
 
 
+
+
+
 ```{r, fig.height=4.5, fig.width=7}
 intra_data_all <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PAPER_1\\intra_ICC_all.xlsx")
 ```
 
 ```{r}
 intra_data_all <- intra_data_all %>% 
-  rename(rater="coder")
+  rename(rater="coder",
+         lower="Lower CI",
+         upper="Upper CI")
 ```
 
 
@@ -52,7 +58,7 @@ flextable(intra_data_all) %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 phase_one_intra <- intra_data_all %>% 
   filter(phase == "phase 1")
 
@@ -62,11 +68,23 @@ flextable(phase_one_intra) %>%
   set_caption("Phase 1 ICC statistics for IntraRR") %>% 
   fit_to_width(7.5) %>% 
   autofit()
+
+phase_one_intra %>% 
+  ggplot(aes(x=fct_rev(measure), y=ICC, ymin=lower, ymax=upper))+
+  geom_pointrange()+
+  geom_hline(yintercept = c(0.5, 0.75, 0.9), linetype=2)+
+  coord_flip(ylim = c(0, 1))+
+  facet_grid(cols=vars(rater))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Phase 1 IntraRR, per individual rater",
+       subtitle="ICC reliability limits indicated by dashed lines",
+       x="3D Measurement Abbreviation",
+       y="ICC with 95% Confidence Interval")
 ```
 
 
-
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 phase_three_intra <- intra_data_all %>% 
   filter(phase == "phase 3")
 
@@ -76,11 +94,28 @@ flextable(phase_three_intra) %>%
   set_caption("Phase 3 ICC statistics for IntraRR") %>% 
   fit_to_width(7.5) %>% 
   autofit()
+
+phase_three_intra %>% 
+  ggplot(aes(x=fct_rev(measure), y=ICC, ymin=lower, ymax=upper))+
+  geom_pointrange()+
+  geom_hline(yintercept = c(0.5, 0.75, 0.9), linetype=2)+
+  coord_flip(ylim = c(0, 1))+
+  facet_grid(cols=vars(rater))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Phase 3 IntraRR, per individual rater",
+       subtitle="ICC reliability limits indicated by dashed lines",
+       x="3D Measurement Abbreviation",
+       y="ICC with 95% Confidence Interval")
 ```
 
 
 ```{r, fig.height=4.5, fig.width=7}
 inter_data_all <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PAPER_1\\inter_ICC_all.xlsx")
+
+inter_data_all <- inter_data_all %>% 
+  rename(lower="Lower CI",
+         upper="Upper CI")
 ```
 
 
@@ -94,7 +129,7 @@ flextable(inter_data_all) %>%
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=5}
 phase_one_inter <- inter_data_all %>% 
   filter(phase == "phase 1")
 
@@ -104,11 +139,24 @@ flextable(phase_one_inter) %>%
   set_caption("Phase 1 ICC statistics for InterRR") %>% 
   fit_to_width(7.5) %>% 
   autofit()
+
+phase_one_inter %>% 
+  ggplot(aes(x=fct_rev(measure), y=ICC, ymin=lower, ymax=upper))+
+  geom_pointrange()+
+  geom_hline(yintercept = c(0.5, 0.75, 0.9), linetype=2)+
+  coord_flip(ylim = c(0, 1))+
+  #facet_grid(cols=vars(rater))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Phase 1 InterRR, for all raters",
+       subtitle="ICC reliability limits indicated by dashed lines",
+       x="3D Measurement Abbreviation",
+       y="ICC with 95% Confidence Interval")
 ```
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=5}
 phase_two_inter <- inter_data_all %>% 
   filter(phase == "phase 2")
 
@@ -118,10 +166,23 @@ flextable(phase_two_inter) %>%
   set_caption("Phase 2 ICC statistics for InterRR") %>% 
   fit_to_width(7.5) %>% 
   autofit()
+
+phase_two_inter %>% 
+  ggplot(aes(x=fct_rev(measure), y=ICC, ymin=lower, ymax=upper))+
+  geom_pointrange()+
+  geom_hline(yintercept = c(0.5, 0.75, 0.9), linetype=2)+
+  coord_flip(ylim = c(0, 1))+
+  #facet_grid(cols=vars(rater))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Phase 2 InterRR, for all raters",
+       subtitle="ICC reliability limits indicated by dashed lines",
+       x="3D Measurement Abbreviation",
+       y="ICC with 95% Confidence Interval")
 ```
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=5}
 phase_three_inter <- inter_data_all %>% 
   filter(phase == "phase 3")
 
@@ -131,4 +192,17 @@ flextable(phase_three_inter) %>%
   set_caption("Phase 3 ICC statistics for InterRR") %>% 
   fit_to_width(7.5) %>% 
   autofit()
+
+phase_three_inter %>% 
+  ggplot(aes(x=fct_rev(measure), y=ICC, ymin=lower, ymax=upper))+
+  geom_pointrange()+
+  geom_hline(yintercept = c(0.5, 0.75, 0.9), linetype=2)+
+  coord_flip(ylim = c(0, 1))+
+  #facet_grid(cols=vars(rater))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Phase 3 InterRR, for all raters",
+       subtitle="ICC reliability limits indicated by dashed lines",
+       x="3D Measurement Abbreviation",
+       y="ICC with 95% Confidence Interval")
 ```
