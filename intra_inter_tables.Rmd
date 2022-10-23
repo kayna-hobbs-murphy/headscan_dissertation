@@ -1,0 +1,46 @@
+---
+title: "intra/inter-tables"
+output: html_document
+date: "2022-10-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(flextable)
+library(extrafont)
+library(scales)
+```
+
+```{r, fig.height=4.5, fig.width=7}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
+
+```{r, fig.height=4.5, fig.width=7}
+intra_data_all <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\intra_ICC_all.xlsx")
+```
+
+
+```{r}
+flextable(intra_data_all) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption(" ") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
