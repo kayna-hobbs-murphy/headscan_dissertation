@@ -1,6 +1,8 @@
 ---
 title: "intra/inter-tables"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 date: "2022-10-23"
 ---
 
@@ -31,7 +33,7 @@ my_ft_theme <- function(ft, ...) {
 
 
 ```{r, fig.height=4.5, fig.width=7}
-intra_data_all <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\intra_ICC_all.xlsx")
+intra_data_all <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PAPER_1\\intra_ICC_all.xlsx")
 ```
 
 ```{r}
@@ -68,7 +70,7 @@ flextable(phase_one_intra) %>%
 phase_three_intra <- intra_data_all %>% 
   filter(phase == "phase 3")
 
-flextable(phase_one_intra) %>%
+flextable(phase_three_intra) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
   set_caption("Phase 3 ICC statistics for IntraRR") %>% 
@@ -78,7 +80,7 @@ flextable(phase_one_intra) %>%
 
 
 ```{r, fig.height=4.5, fig.width=7}
-inter_data_all <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\inter_ICC_all.xlsx")
+inter_data_all <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PAPER_1\\inter_ICC_all.xlsx")
 ```
 
 
@@ -91,3 +93,42 @@ flextable(inter_data_all) %>%
   autofit()
 ```
 
+
+```{r}
+phase_one_inter <- inter_data_all %>% 
+  filter(phase == "phase 1")
+
+flextable(phase_one_inter) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Phase 1 ICC statistics for InterRR") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+
+```{r}
+phase_two_inter <- inter_data_all %>% 
+  filter(phase == "phase 2")
+
+flextable(phase_two_inter) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Phase 2 ICC statistics for InterRR") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+
+
+```{r}
+phase_three_inter <- inter_data_all %>% 
+  filter(phase == "phase 3")
+
+flextable(phase_three_inter) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Phase 3 ICC statistics for InterRR") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
