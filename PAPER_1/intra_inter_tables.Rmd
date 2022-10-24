@@ -206,3 +206,151 @@ phase_three_inter %>%
        x="3D Measurement Abbreviation",
        y="ICC with 95% Confidence Interval")
 ```
+
+
+```{r, fig.height=4.5, fig.width=7}
+rater_a_data <- intra_data_all %>% 
+  filter(rater == "A")
+
+flextable(rater_a_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Rater A ICC statistics for IntraRR, Phases 1 and 3") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+rater_a_data$phase <- recode_factor(rater_a_data$phase, 
+                                    'phase 1' = "Phase 1",
+                                    'phase 3' = "Phase 3")
+
+rater_a_data %>% 
+  ggplot(aes(x=fct_reorder(measure, ICC), y=ICC, ymin=lower, ymax=upper))+
+  geom_pointrange()+
+  geom_hline(yintercept = c(0.5, 0.75, 0.9), linetype=2)+
+  coord_flip(ylim = c(0, 1))+
+  facet_grid(cols=vars(phase))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Rater A IntraRR, Phases 1 and 3",
+       subtitle="ICC reliability limits indicated by dashed lines",
+       x="3D Measurement Abbreviation",
+       y="ICC with 95% Confidence Interval")
+```
+
+```{r, fig.height=4.5, fig.width=7}
+rater_b_data <- intra_data_all %>% 
+  filter(rater == "B")
+
+flextable(rater_b_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Rater B ICC statistics for IntraRR, Phases 1 and 3") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+rater_b_data$phase <- recode_factor(rater_b_data$phase, 
+                                    'phase 1' = "Phase 1",
+                                    'phase 3' = "Phase 3")
+
+rater_b_data %>% 
+  ggplot(aes(x=fct_reorder(measure, ICC), y=ICC, ymin=lower, ymax=upper))+
+  geom_pointrange()+
+  geom_hline(yintercept = c(0.5, 0.75, 0.9), linetype=2)+
+  coord_flip(ylim = c(0, 1))+
+  facet_grid(cols=vars(phase))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Rater B IntraRR, Phases 1 and 3",
+       subtitle="ICC reliability limits indicated by dashed lines",
+       x="3D Measurement Abbreviation",
+       y="ICC with 95% Confidence Interval")
+```
+
+
+```{r, fig.height=4.5, fig.width=7}
+rater_c_data <- intra_data_all %>% 
+  filter(rater == "C")
+
+flextable(rater_c_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Rater C ICC statistics for IntraRR, Phases 1 and 3") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+rater_c_data$phase <- recode_factor(rater_c_data$phase, 
+                                    'phase 1' = "Phase 1",
+                                    'phase 3' = "Phase 3")
+
+rater_c_data %>% 
+  ggplot(aes(x=fct_reorder(measure, ICC), y=ICC, ymin=lower, ymax=upper))+
+  geom_pointrange()+
+  geom_hline(yintercept = c(0.5, 0.75, 0.9), linetype=2)+
+  coord_flip(ylim = c(0, 1))+
+  facet_grid(cols=vars(phase))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Rater C IntraRR, Phases 1 and 3",
+       subtitle="ICC reliability limits indicated by dashed lines",
+       x="3D Measurement Abbreviation",
+       y="ICC with 95% Confidence Interval")
+```
+
+
+```{r, fig.height=4.5, fig.width=7}
+rater_d_data <- intra_data_all %>% 
+  filter(rater == "D")
+
+flextable(rater_d_data) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Rater D ICC statistics for IntraRR, Phases 1 and 3") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+
+rater_d_data$phase <- recode_factor(rater_d_data$phase, 
+                                    'phase 1' = "Phase 1",
+                                    'phase 3' = "Phase 3")
+
+rater_d_data %>% 
+  ggplot(aes(x=fct_reorder(measure, ICC), y=ICC, ymin=lower, ymax=upper))+
+  geom_pointrange()+
+  geom_hline(yintercept = c(0.5, 0.75, 0.9), linetype=2)+
+  coord_flip(ylim = c(0, 1))+
+  facet_grid(cols=vars(phase))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Rater D IntraRR, Phases 1 and 3",
+       subtitle="ICC reliability limits indicated by dashed lines",
+       x="3D Measurement Abbreviation",
+       y="ICC with 95% Confidence Interval")
+```
+
+
+
+```{r}
+inter_data_all$phase <- recode_factor(inter_data_all$phase, 
+                                    'phase 1' = "Phase 1",
+                                    'phase 2' = "Phase 2",
+                                    'phase 3' = "Phase 3")
+
+
+inter_data_all %>% 
+  ggplot(aes(x=fct_reorder(measure, ICC), y=ICC, ymin=lower, ymax=upper))+
+  geom_pointrange()+
+  geom_hline(yintercept = c(0.5, 0.75, 0.9), linetype=2)+
+  coord_flip(ylim = c(0, 1))+
+  facet_grid(cols=vars(phase))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="InterRR, Phases 1, 2, and 3",
+       subtitle="ICC reliability limits indicated by dashed lines",
+       x="3D Measurement Abbreviation",
+       y="ICC with 95% Confidence Interval")
+```
+
+
+```{r}
+
+```
+
