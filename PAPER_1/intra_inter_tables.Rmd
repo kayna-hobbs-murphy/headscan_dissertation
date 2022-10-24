@@ -69,6 +69,8 @@ flextable(phase_one_intra) %>%
   fit_to_width(7.5) %>% 
   autofit()
 
+
+
 phase_one_intra %>% 
   ggplot(aes(x=fct_rev(measure), y=ICC, ymin=lower, ymax=upper))+
   geom_pointrange()+
@@ -235,6 +237,28 @@ rater_a_data %>%
        subtitle="ICC reliability limits indicated by dashed lines",
        x="3D Measurement Abbreviation",
        y="ICC with 95% Confidence Interval")
+
+rater_a_data$intraRR <- as.factor(ifelse(rater_a_data$ICC < 0.5, 'Poor',
+                                    ifelse(rater_a_data$ICC < 0.75, 'Moderate',
+                                    ifelse(rater_a_data$ICC < 0.9, 'Good',
+                                    ifelse(rater_a_data$ICC < 1, 'Excellent')))))
+
+
+  
+rater_a_data %>% 
+  ggplot(aes(x=intraRR, label=scales::percent(prop.table(stat(count)))))+
+  geom_histogram(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  facet_grid(cols=vars(phase))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Rater A IntraRR, Phases 1 and 3",
+       subtitle="Comparison of reliabilities",
+       x="IntraRR",
+       y="Count")
 ```
 
 ```{r, fig.height=4.5, fig.width=7}
@@ -264,6 +288,28 @@ rater_b_data %>%
        subtitle="ICC reliability limits indicated by dashed lines",
        x="3D Measurement Abbreviation",
        y="ICC with 95% Confidence Interval")
+
+rater_b_data$intraRR <- as.factor(ifelse(rater_b_data$ICC < 0.5, 'Poor',
+                                    ifelse(rater_b_data$ICC < 0.75, 'Moderate',
+                                    ifelse(rater_b_data$ICC < 0.9, 'Good',
+                                    ifelse(rater_b_data$ICC < 1, 'Excellent')))))
+
+
+  
+rater_b_data %>% 
+  ggplot(aes(x=intraRR, label=scales::percent(prop.table(stat(count)))))+
+  geom_histogram(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  facet_grid(cols=vars(phase))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Rater B IntraRR, Phases 1 and 3",
+       subtitle="Comparison of reliabilities",
+       x="IntraRR",
+       y="Count")
 ```
 
 
@@ -294,6 +340,28 @@ rater_c_data %>%
        subtitle="ICC reliability limits indicated by dashed lines",
        x="3D Measurement Abbreviation",
        y="ICC with 95% Confidence Interval")
+
+rater_c_data$intraRR <- as.factor(ifelse(rater_c_data$ICC < 0.5, 'Poor',
+                                    ifelse(rater_c_data$ICC < 0.75, 'Moderate',
+                                    ifelse(rater_c_data$ICC < 0.9, 'Good',
+                                    ifelse(rater_c_data$ICC < 1, 'Excellent')))))
+
+
+  
+rater_c_data %>% 
+  ggplot(aes(x=intraRR, label=scales::percent(prop.table(stat(count)))))+
+  geom_histogram(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  facet_grid(cols=vars(phase))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Rater C IntraRR, Phases 1 and 3",
+       subtitle="Comparison of reliabilities",
+       x="IntraRR",
+       y="Count")
 ```
 
 
@@ -324,11 +392,33 @@ rater_d_data %>%
        subtitle="ICC reliability limits indicated by dashed lines",
        x="3D Measurement Abbreviation",
        y="ICC with 95% Confidence Interval")
+
+rater_d_data$intraRR <- as.factor(ifelse(rater_d_data$ICC < 0.5, 'Poor',
+                                    ifelse(rater_d_data$ICC < 0.75, 'Moderate',
+                                    ifelse(rater_d_data$ICC < 0.9, 'Good',
+                                    ifelse(rater_d_data$ICC < 1, 'Excellent')))))
+
+
+  
+rater_d_data %>% 
+  ggplot(aes(x=intraRR, label=scales::percent(prop.table(stat(count)))))+
+  geom_histogram(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  facet_grid(cols=vars(phase))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Rater D IntraRR, Phases 1 and 3",
+       subtitle="Comparison of reliabilities",
+       x="IntraRR",
+       y="Count")
 ```
 
 
 
-```{r}
+```{r, fig.height=4.5, fig.width=7}
 inter_data_all$phase <- recode_factor(inter_data_all$phase, 
                                     'phase 1' = "Phase 1",
                                     'phase 2' = "Phase 2",
@@ -343,14 +433,34 @@ inter_data_all %>%
   facet_grid(cols=vars(phase))+
   theme_bw()+
   theme(text=element_text(family= "Times New Roman"))+
-  labs(title="InterRR, Phases 1, 2, and 3",
+  labs(title="InterRR at Phases 1, 2, and 3",
        subtitle="ICC reliability limits indicated by dashed lines",
        x="3D Measurement Abbreviation",
        y="ICC with 95% Confidence Interval")
+
+inter_data_all$interRR <- as.factor(ifelse(inter_data_all$ICC < 0.5, 'Poor',
+                                    ifelse(inter_data_all$ICC < 0.75, 'Moderate',
+                                    ifelse(inter_data_all$ICC < 0.9, 'Good',
+                                    ifelse(inter_data_all$ICC < 1, 'Excellent')))))
+
+
+  
+inter_data_all %>% 
+  ggplot(aes(x=interRR, label=scales::percent(prop.table(stat(count)))))+
+  geom_histogram(stat="count", color= "black", fill = "white")+
+  geom_text(stat="count",
+              position= position_dodge(0.9),
+              vjust = -0.5, 
+              size = 3)+
+  facet_grid(cols=vars(phase))+
+  theme_bw()+
+  theme(text=element_text(family= "Times New Roman"))+
+  labs(title="InterRR at Phases 1, 2, and 3",
+       subtitle="Comparison of reliabilities",
+       x="InterRR",
+       y="Count")
 ```
 
 
-```{r}
 
-```
 
