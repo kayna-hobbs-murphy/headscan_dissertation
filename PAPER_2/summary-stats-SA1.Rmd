@@ -8342,7 +8342,7 @@ flextable(gender_sumdata_m) %>%
 ```
 
 ```{r}
-zhuang_sumstats<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\Zhuang-sumstats.xlsx")
+zhuang_sumstats<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PAPER_2\\Zhuang-sumstats.xlsx")
 ```
 
 
