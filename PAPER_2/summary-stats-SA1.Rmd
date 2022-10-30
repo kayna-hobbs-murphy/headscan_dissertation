@@ -5556,9 +5556,9 @@ SmanM_C_no_out <- headscan_full %>% mutate(SmanM_C = replace(SmanM_C, SmanM_C>11
 ggplot(data=SmanM_C_no_out, aes(x=SmanM_C))+
   geom_bar(stat="bin", bins=20, color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Submandibular to Menton Linear Measurement Distribution",
+  labs(title="Submandibular to Menton Contour Measurement Distribution",
        y="Frequency",
-       x="Submandibular to Menton Linear (mm)")
+       x="Submandibular to Menton Contour (mm)")
 
 SmanM_Csumstats1 <- SmanM_C_no_out %>% 
   summarise(n = n(), na = sum(is.na(SmanM_C)),
@@ -5580,14 +5580,14 @@ SmanM_Csumstats1 <- round(SmanM_Csumstats1, 2)
 flextable(SmanM_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Submandibular to Menton Linear SumStats (mm)") 
+  set_caption("Submandibular to Menton Contour SumStats (mm)") 
 #%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SmanM_Csumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Submandibular to Menton Linear SumStats (mm)") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm)") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
 ```
@@ -5617,14 +5617,14 @@ SmanM_Crace_sumstats1 <- SmanM_Crace_sumstats1 %>%
 flextable(SmanM_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Submandibular to Menton Linear SumStats (mm) by Race/Ethnicity") 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Race/Ethnicity") 
 #%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SmanM_Crace_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Submandibular to Menton Linear SumStats (mm) by Race/Ethnicity") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Race/Ethnicity") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
 
@@ -5636,7 +5636,7 @@ SmanM_C_no_out %>%
   geom_boxplot(color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Submandibular to Menton Linear values by Race/Ethnicity",
+  labs(title="Submandibular to Menton Contour values by Race/Ethnicity",
        y="Measurement (mm)",
        x="Race/Ethnicity")
 
@@ -5645,7 +5645,7 @@ ggplot(data=SmanM_C_no_out, aes(y=SmanM_C, x=race_eth))+
   geom_boxplot(color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Submandibular to Menton Linear values by Race/Ethnicity",
+  labs(title="Submandibular to Menton Contour values by Race/Ethnicity",
        subtitle = "without outliers removed",
        y="Measurement (mm)",
        x="Race/Ethnicity")
@@ -5676,14 +5676,14 @@ SmanM_Cgender_sumstats1 <- SmanM_Cgender_sumstats1 %>%
 flextable(SmanM_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Submandibular to Menton Linear SumStats (mm) by Gender") 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Gender") 
 #%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SmanM_Cgender_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Submandibular to Menton Linear SumStats (mm) by Gender") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Gender") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
 
@@ -5695,7 +5695,7 @@ SmanM_C_no_out %>%
   geom_boxplot(color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Submandibular to Menton Linear values by Gender",
+  labs(title="Submandibular to Menton Contour values by Gender",
        y="Measurement (mm)",
        x="Gender")
 
@@ -5704,7 +5704,7 @@ ggplot(data=SmanM_C_no_out, aes(y=SmanM_C, x=gender))+
   geom_boxplot(color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Submandibular to Menton Linear values by Gender",
+  labs(title="Submandibular to Menton Contour values by Gender",
        y="Measurement (mm)",
        x="Gender")
 ```
@@ -5733,14 +5733,14 @@ SmanM_Cage_sumstats1 <- SmanM_Cage_sumstats1 %>%
 flextable(SmanM_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Submandibular to Menton Linear SumStats (mm) by Age Group") 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Age Group") 
 #%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
 
 #Autofit Width Table TNR
 flextable(SmanM_Cage_sumstats1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Submandibular to Menton Linear SumStats (mm) by Age Group") %>% 
+  set_caption("Submandibular to Menton Contour SumStats (mm) by Age Group") %>% 
   fit_to_width(7.5) 
 #%>% set_header_Cabels(values = list(SmanM_C = "Submandibular/SubnasaleCont"))
 
@@ -5752,7 +5752,7 @@ SmanM_C_no_out %>%
   geom_boxplot(color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Submandibular to Menton Linear values by Age Group",
+  labs(title="Submandibular to Menton Contour values by Age Group",
        y="Measurement (mm)",
        x="Age Group")
 
@@ -5761,7 +5761,7 @@ ggplot(data=SmanM_C_no_out, aes(y=SmanM_C, x=age_group))+
   geom_boxplot(color= "black", fill = "white")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   #theme(axis.text.x = element_text(angle = 20, vjust=0.7))+
-  labs(title="Submandibular to Menton Linear values by Age Group",
+  labs(title="Submandibular to Menton Contour values by Age Group",
        y="Measurement (mm)",
        x="Age Group")
 ```
