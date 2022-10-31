@@ -78,7 +78,7 @@ str(panel_numbers)
 
 From Zhaung 2007: menton-nasal root depression length is face length, bizygomatic breath is face width
 
-```{r bivariate overall, fig.width=8, fig.height=5}
+```{r bivariate overall, fig.width=7, fig.height=5}
 biv1 <- headscan_fullmm %>% 
   ggplot(aes(x=BiW_L, y=SelM_L))+
   geom_point(color="darkgray")+
@@ -94,10 +94,10 @@ biv1 <- headscan_fullmm %>%
   geom_rect(aes(xmin=134.5, xmax=146.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
-  labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
-       subtitle = "226 missing values omitted",
-       y="Face Length (mm)",
-       x="Face Width (mm)")
+  labs(title="Face Width (BiW_L) by Face Length (SelM_L)",
+       subtitle = "Bivariate Panel Comparision",
+       y="Face Length/SelM_L (mm)",
+       x="Face Width/BiW_L (mm)")
 
 biv1 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
@@ -114,7 +114,7 @@ headscan_fullmm <- headscan_fullmm %>% mutate(SelM_L = replace(SelM_L, SelM_L<70
 ```
 
 
-```{r bivariate overall 2, fig.width=8, fig.height=5}
+```{r bivariate overall 2, fig.width=7, fig.height=5}
 biv1 <- headscan_fullmm %>% 
   ggplot(aes(x=BiW_L, y=SelM_L))+
   geom_point(color="darkgray")+
@@ -130,8 +130,8 @@ biv1 <- headscan_fullmm %>%
   geom_rect(aes(xmin=134.5, xmax=146.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
   geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
-  labs(title="Face Width by Face Length (measurements used in NIOSH Bivariate Panel)",
-       subtitle = "227 missing values omitted",
+  labs(title="Face Width (BiW_L) by Face Length (SelM_L)",
+       subtitle = "Bivariate Panel Comparision",
        y="Face Length (mm)",
        x="Face Width (mm)")
 
@@ -161,6 +161,33 @@ biv2 <- headscan_fullmm %>%
        x="Face Width (mm)")
 
 biv2 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
+```
+
+
+```{r, fig.width=8, fig.height=5}
+bivx <- headscan_fullmm %>% 
+  ggplot(aes(x=BiW_L, y=SelM_L))+
+  geom_point(aes(shape=gender), color="darkgray")+
+  scale_shape_manual(values=c(16, 1, 3, 4))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  xlim(80,160)+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=144.5, xmax=158.5, ymin=98.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=132.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=132.5, xmax=144.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=120.5, xmax=134.5, ymin=118.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=134.5, xmax=146.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=146.5, xmax=158.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  labs(title="Face Width (BiW_L) by Face Length (SelM_L)",
+       subtitle = "Bivariate Panel Comparision",
+       y="Face Length (mm)",
+       x="Face Width (mm)", 
+       shape="Self-Reported Gender")
+
+bivx + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
 
 
