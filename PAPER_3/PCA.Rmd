@@ -101,6 +101,23 @@ pca_res$rotation <- -1*pca_res$rotation
 pca_res$rotation
 ```
 
+```{r}
+pcloadings <- as.data.frame(pca_res$rotation)
+
+pcloadings <- rownames_to_column(pcloadings)
+
+pcloadings <- pcloadings %>% 
+  rename(measure = "rowname")
+
+flextable(pcloadings) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Principal Component Loadings") %>% 
+  autofit()
+```
+
+
+
 
 ```{r}
 var_explained = pca_res$sdev^2 / sum(pca_res$sdev^2)
