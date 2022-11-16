@@ -205,11 +205,10 @@ pca_res$x[,1] <- pca_res$x[,1] * -1
 
 ```{r, fig.width=8, fig.height=5}
 autoplot(pca_res, data=PCAdata_full,
-         loadings = TRUE, loadings.colour = 'black',
-         loadings.label = TRUE, loadings.label.colour='black', loadings.label.size = 3)+
+         loadings = TRUE, loadings.colour = 'blue',
+         loadings.label = TRUE, loadings.label.size=3)+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  geom_point(alpha=0.5)+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+  
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
