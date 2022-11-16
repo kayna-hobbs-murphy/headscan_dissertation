@@ -19,6 +19,8 @@ library(extrafont)
 library(fauxnaif) #na if in
 library(reshape2) #melt
 library(FactoMineR) #PCA
+library(kohonen)
+library(adegenet)
 ```
 
 
@@ -57,7 +59,14 @@ for (i in 1:length(colnames(PCAdata_full1))){
 pca1 <- PCA(PCAdata_full1[ ,c("AA_C", "BiW_C", "BiW_L", "GoSub_C", "NRB_L", "ProS_L", "SelP_L", 
                              "SelM_L", "SnasM_C", "TrSman_C", "TrTr_C", "TrTr_L")])
 
-summary(pca1)
+summary(pca1)+ theme(text=element_text(family= "Times New Roman"))
+                                    
+```
+
+
+
+```{r}
+#loadingplot(pca1, show.names = TRUE)
 ```
 
 ```{r}
