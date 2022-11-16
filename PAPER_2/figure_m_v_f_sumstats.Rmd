@@ -1,0 +1,34 @@
+---
+title: "figure_m_v_f_sumstats"
+output:
+  word_document: default
+  html_document: default
+date: "2022-08-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+library(readxl)
+library(extrafont)
+```
+
+```{r}
+m_f_sumstats <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\PAPER_2\\m_f_sumstats.xlsx")
+```
+
+```{r, fig.height=3, fig.width=8}
+ggplot(data=m_f_sumstats, aes(x=Measure, y=Mean, fill=Gender))+
+  geom_bar(position="dodge", stat= "identity")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  theme(axis.text.x = element_text(angle = 45, vjust=0.7))+
+  scale_fill_manual(values = c("grey80", "gray40"))+
+  scale_colour_manual(values="black")+
+  labs(title="Measurement Means for Male and Female Genders",
+       y="Measurement (mm)",
+       x="Measurement Location")
+```
+
