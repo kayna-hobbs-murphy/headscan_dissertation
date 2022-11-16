@@ -49,7 +49,7 @@ flextable(PCA_NAs) %>%
                                   measureNAprops = "Proportion of NA values",
                                   measureNAsums = "Count of NA values"))
 ```
-```{r na-measure-count, fig.height=6, fig.width=8}
+```{r na-measure-count, fig.height=3, fig.width=8}
 PCA_NAs$measure_name <- fct_reorder(PCA_NAs$measure_name, PCA_NAs$measureNAsums, .desc=TRUE)
 
 #bar chart with counts
@@ -62,7 +62,7 @@ ggplot(data=PCA_NAs, aes(x=measure_name, y=measureNAsums))+
        x="Measurement Location")
 ```
 
-```{r na-measure-prop, fig.height=6, fig.width=8}
+```{r na-measure-prop, fig.height=3, fig.width=8}
 #bar chart with proportions
 ggplot(data=PCA_NAs, aes(x=measure_name, y=measureNAprops))+
   geom_bar(stat= "identity", color= "black", fill = "white")+
@@ -128,14 +128,14 @@ var_explained_total <- var_explained
 
 
 
-```{r, fig.width=5, fig.height=4}
+```{r, fig.width=5, fig.height=3}
 qplot(c(1:12), var_explained) + 
   geom_line() + 
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   xlab("Principal Component") + 
   ylab("Variance Explained (proportion)") +
   ggtitle("Scree Plot") +
-  ylim(0, 1) +
+  ylim(0, 0.5) +
   scale_x_discrete(limits=c("PC1","PC2","PC3","PC4","PC5","PC6","PC7","PC8","PC9","PC10","PC11","PC12")) 
 ```
 
@@ -171,7 +171,7 @@ var_explained_data$PC_num <-
                 '12'= "PC12")
 ```
 
-```{r}
+```{r, fig.width=8, fig.height=4}
 ggplot(data=var_explained_data, aes(x=PC_num, y=v_e, group=1)) + 
   geom_line() +
   geom_point() + 
@@ -204,9 +204,12 @@ pca_res$x[,1] <- pca_res$x[,1] * -1
 #https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html
 
 ```{r, fig.width=8, fig.height=5}
-autoplot(pca_res, data=PCAdata_full)+
+autoplot(pca_res, data=PCAdata_full,
+         loadings = TRUE, loadings.colour = 'black',
+         loadings.label = TRUE, loadings.label.colour='black', loadings.label.size = 3)+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
+  geom_point(alpha=0.5)+
   theme_bw() + theme(text=element_text(family= "Times New Roman"))+  
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",

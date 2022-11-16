@@ -94,7 +94,7 @@ pca.vars.m <- melt(pca.vars, id.vars = "vars")
 
 ```{r, fig.width=8, fig.height=5}
 ggplot(data = PCAdata_full1, aes(x = pc1, y = pc2)) +
-  geom_point()+
+  geom_point(color="darkgray")+
   labs(y="PC2 (18.83%)",
        x="PC1 (38.4%)",
        title="PCA plot")+
