@@ -127,7 +127,7 @@ flextable(measureNAs) %>%
        #x="Measure Abbreviation")
 ```
 
-```{r na-measure-count, fig.height=6, fig.width=8}
+```{r na-measure-count, fig.height=3, fig.width=8}
 #bar chart with counts
 ggplot(data=measureNAs, aes(x=measure_name, y=measureNAsums))+
   geom_bar(stat= "identity", color= "black", fill = "white")+
@@ -138,7 +138,7 @@ ggplot(data=measureNAs, aes(x=measure_name, y=measureNAsums))+
        x="Measure Abbreviation (see Appendix B)")
 ```
 
-```{r na-measure-prop, fig.height=6, fig.width=8}
+```{r na-measure-prop, fig.height=3, fig.width=8}
 #bar chart with proportions
 ggplot(data=measureNAs, aes(x=measure_name, y=measureNAprops))+
   geom_bar(stat= "identity", color= "black", fill = "white")+
