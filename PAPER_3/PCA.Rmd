@@ -18,6 +18,7 @@ library(extrafont)
 library(writexl)
 library(ggfortify) #autoplot
 library(scales) #percent()
+library(ggrepel)
 ```
 
 ```{r table-function}
@@ -200,41 +201,69 @@ pca_res$x[,1] <- pca_res$x[,1] * -1
 #pca_res$x
 ```
 
+```{r}
+summary(pca_res)
+```
+
 
 #https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html
 
-```{r, fig.width=8, fig.height=5}
+```{r, fig.width=16, fig.height=10}
 autoplot(pca_res, data=PCAdata_full,
          loadings = TRUE, loadings.colour = 'blue',
-         loadings.label = TRUE, loadings.label.size=3)+
+         loadings.label = TRUE, loadings.label.size=6)+
+  #geom_text_repel()+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  theme_bw() + theme(text=element_text(family= "Times New Roman"))+  
-  labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)",
-       title="PCA plot")
+  theme_bw(base_size = 24) + theme(text=element_text(family= "Times New Roman"))+  
+  labs(y="PC2 (19.51%)",
+       x="PC1 (39.36%)",
+       title="PCA plot",
+       subtitle = "with factor loadings")
 ```
 
+```{r}
 
-```{r, fig.width=8, fig.height=5}
-autoplot(pca_res, data=PCAdata_full, colour="race_eth")+
+
+PCAdata_full$race_eth <- as.factor(PCAdata_full$race_eth)
+PCAdata_full$gender <- as.factor(PCAdata_full$gender)
+PCAdata_full$age_group <- as.factor(PCAdata_full$age_group)
+```
+
+```{r, fig.width=18, fig.height=10}
+PCAdata_race_eth <- PCAdata_full
+
+PCAdata_race_eth$race_eth <-  
+  recode_factor(PCAdata_race_eth$race_eth, 'AIAN'= "Other",
+                'NHOPI' = "Other",
+                'PTNS' = "Other")
+
+autoplot(pca_res, data=PCAdata_race_eth, colour="race_eth")+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  theme_bw() + theme(text=element_text(family= "Times New Roman")) +
-  labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)",
+  theme_bw(base_size = 24) + theme(text=element_text(family= "Times New Roman")) +
+  stat_ellipse(geom="polygon", aes(fill = race_eth), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95) +
+  labs(y="PC2 (19.51%)",
+       x="PC1 (39.36%)",
        title = "All Race/Ethnicities PCA plot",
        color = "Race/Ethnicity")
 ```
-```{r, fig.width=8, fig.height=5}
-autoplot(pca_res, data=PCAdata_full, colour="race_eth",
+```{r, fig.width=18, fig.height=10}
+autoplot(pca_res, data=PCAdata_race_eth, colour="race_eth",
          loadings = TRUE, loadings.colour = 'blue',
          loadings.label = TRUE, loadings.label.size = 3)+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
-  labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)",
+  theme_bw(base_size = 24) + theme(text=element_text(family= "Times New Roman"))+
+  stat_ellipse(geom="polygon", aes(fill = race_eth), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95) +
+  labs(y="PC2 (19.51%)",
+       x="PC1 (39.36%)",
        title = "All Race/Ethnicities PCA plot",
        subtitle = "with factor loadings",
        color = "Race/Ethnicity")
@@ -245,53 +274,77 @@ COULD add ellipses (like in PCA2) to this graph with factor loadings..
 but cannot add loadings to plot in PCA2 with ellipses 
 
 
-```{r, fig.width=8, fig.height=5}
-autoplot(pca_res, data=PCAdata_full, colour="gender")+
+```{r, fig.width=18, fig.height=10}
+PCAdata_gender <- PCAdata_full
+
+PCAdata_gender$gender <-
+  recode_factor(PCAdata_gender$gender, 'Female'= "Female/Other",
+                'Prefer not to say' = "Female/Other",
+                'Non-binary or Other' = "Female/Other")
+
+autoplot(pca_res, data=PCAdata_gender, colour="gender")+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
-  labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)",
+  theme_bw(base_size = 24) + 
+  theme(text=element_text(family= "Times New Roman"))+
+  stat_ellipse(geom="polygon", aes(fill = gender), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95)
+  labs(y="PC2 (19.51%)",
+       x="PC1 (39.36%)",
        title = "All Genders PCA plot",
        color = "Gender")
 ```
 
-```{r, fig.width=8, fig.height=5}
-autoplot(pca_res, data=PCAdata_full, colour="gender",
+```{r, fig.width=18, fig.height=10}
+autoplot(pca_res, data=PCAdata_gender, colour="gender",
          loadings = TRUE, loadings.colour = 'blue',
          loadings.label = TRUE, loadings.label.size = 3)+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
-  labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)",
+  theme_bw(base_size = 24) + theme(text=element_text(family= "Times New Roman"))+
+  stat_ellipse(geom="polygon", aes(fill = gender), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95)
+  labs(y="PC2 (19.51%)",
+       x="PC1 (39.36%)",
        title = "All Genders PCA plot",
        subtitle = "with factor loadings",
        color = "Gender")
 ```
 
 
-```{r, fig.width=8, fig.height=5}
+```{r, fig.width=18, fig.height=10}
 autoplot(pca_res, data=PCAdata_full, colour="age_group")+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
-  labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)",
+  theme_bw(base_size = 24) + theme(text=element_text(family= "Times New Roman"))+
+  stat_ellipse(geom="polygon", aes(fill = age_group), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95)
+  labs(y="PC2 (19.51%)",
+       x="PC1 (39.36%)",
        title = "All Age Groups PCA plot",
        color = "Age Group")
 ```
 
 
-```{r, fig.width=8, fig.height=5}
+```{r, fig.width=18, fig.height=10}
 autoplot(pca_res, data=PCAdata_full, colour="age_group",
          loadings = TRUE, loadings.colour = 'blue',
          loadings.label = TRUE, loadings.label.size = 3)+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
-  labs(y="PC2 (18.83%)",
-       x="PC1 (38.4%)",
+  theme_bw(base_size = 24) + theme(text=element_text(family= "Times New Roman"))+
+  stat_ellipse(geom="polygon", aes(fill = age_group), 
+               alpha = 0.2, 
+               show.legend = FALSE,
+               level = 0.95)
+  labs(y="PC2 (19.51%)",
+       x="PC1 (39.36%)",
        title = "All Age Groups PCA plot",
        subtitle = "with factor loadings",
        color = "Age Group")
