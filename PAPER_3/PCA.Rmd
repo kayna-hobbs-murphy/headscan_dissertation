@@ -218,8 +218,7 @@ autoplot(pca_res, data=PCAdata_full,
   theme_bw(base_size = 24) + theme(text=element_text(family= "Times New Roman"))+  
   labs(y="PC2 (19.51%)",
        x="PC1 (39.36%)",
-       title="PCA plot",
-       subtitle = "with factor loadings")
+       title="PCA Plot with Factor Loadings")
 ```
 
 ```{r}
@@ -230,7 +229,7 @@ PCAdata_full$gender <- as.factor(PCAdata_full$gender)
 PCAdata_full$age_group <- as.factor(PCAdata_full$age_group)
 ```
 
-```{r, fig.width=18, fig.height=10}
+```{r, fig.width=8, fig.height=5}
 PCAdata_race_eth <- PCAdata_full
 
 PCAdata_race_eth$race_eth <-  
@@ -241,14 +240,14 @@ PCAdata_race_eth$race_eth <-
 autoplot(pca_res, data=PCAdata_race_eth, colour="race_eth")+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  theme_bw(base_size = 24) + theme(text=element_text(family= "Times New Roman")) +
+  theme_bw() + theme(text=element_text(family= "Times New Roman")) +
   stat_ellipse(geom="polygon", aes(fill = race_eth), 
                alpha = 0.2, 
                show.legend = FALSE,
                level = 0.95) +
   labs(y="PC2 (19.51%)",
        x="PC1 (39.36%)",
-       title = "All Race/Ethnicities PCA plot",
+       title = "Race/Ethnicity PCA Plot",
        color = "Race/Ethnicity")
 ```
 ```{r, fig.width=18, fig.height=10}
@@ -264,8 +263,7 @@ autoplot(pca_res, data=PCAdata_race_eth, colour="race_eth",
                level = 0.95) +
   labs(y="PC2 (19.51%)",
        x="PC1 (39.36%)",
-       title = "All Race/Ethnicities PCA plot",
-       subtitle = "with factor loadings",
+       title = "Race/Ethnicity PCA Plot with Factor Loadings",
        color = "Race/Ethnicity")
 ```
 arrows close together=higher correlation
@@ -274,7 +272,7 @@ COULD add ellipses (like in PCA2) to this graph with factor loadings..
 but cannot add loadings to plot in PCA2 with ellipses 
 
 
-```{r, fig.width=18, fig.height=10}
+```{r, fig.width=8, fig.height=5}
 PCAdata_gender <- PCAdata_full
 
 PCAdata_gender$gender <-
@@ -285,15 +283,15 @@ PCAdata_gender$gender <-
 autoplot(pca_res, data=PCAdata_gender, colour="gender")+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  theme_bw(base_size = 24) + 
+  theme_bw() + 
   theme(text=element_text(family= "Times New Roman"))+
   stat_ellipse(geom="polygon", aes(fill = gender), 
                alpha = 0.2, 
                show.legend = FALSE,
-               level = 0.95)
+               level = 0.95)+
   labs(y="PC2 (19.51%)",
        x="PC1 (39.36%)",
-       title = "All Genders PCA plot",
+       title = "Gender PCA Plot",
        color = "Gender")
 ```
 
@@ -307,27 +305,26 @@ autoplot(pca_res, data=PCAdata_gender, colour="gender",
   stat_ellipse(geom="polygon", aes(fill = gender), 
                alpha = 0.2, 
                show.legend = FALSE,
-               level = 0.95)
+               level = 0.95)+
   labs(y="PC2 (19.51%)",
        x="PC1 (39.36%)",
-       title = "All Genders PCA plot",
-       subtitle = "with factor loadings",
+       title = "Gender PCA Plot with Factor Loadings",
        color = "Gender")
 ```
 
 
-```{r, fig.width=18, fig.height=10}
+```{r, fig.width=8, fig.height=5}
 autoplot(pca_res, data=PCAdata_full, colour="age_group")+
   geom_hline(yintercept = 0, lty = 2) +
   geom_vline(xintercept = 0, lty = 2) +
-  theme_bw(base_size = 24) + theme(text=element_text(family= "Times New Roman"))+
+  theme_bw() + theme(text=element_text(family= "Times New Roman"))+
   stat_ellipse(geom="polygon", aes(fill = age_group), 
                alpha = 0.2, 
                show.legend = FALSE,
-               level = 0.95)
+               level = 0.95)+
   labs(y="PC2 (19.51%)",
        x="PC1 (39.36%)",
-       title = "All Age Groups PCA plot",
+       title = "Age Group PCA Plot",
        color = "Age Group")
 ```
 
@@ -342,11 +339,10 @@ autoplot(pca_res, data=PCAdata_full, colour="age_group",
   stat_ellipse(geom="polygon", aes(fill = age_group), 
                alpha = 0.2, 
                show.legend = FALSE,
-               level = 0.95)
+               level = 0.95)+
   labs(y="PC2 (19.51%)",
        x="PC1 (39.36%)",
-       title = "All Age Groups PCA plot",
-       subtitle = "with factor loadings",
+       title = "Age Group PCA Plot with Factor Loadings",
        color = "Age Group")
 ```
 
