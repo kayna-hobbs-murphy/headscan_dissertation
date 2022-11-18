@@ -89,6 +89,7 @@ str(PCAdata_num)
 ```
 
 
+
 ```{r}
 #https://www.statology.org/principal-components-analysis-in-r/
 
@@ -227,6 +228,9 @@ autoplot(pca_res, data=PCAdata_full,
 PCAdata_full$race_eth <- as.factor(PCAdata_full$race_eth)
 PCAdata_full$gender <- as.factor(PCAdata_full$gender)
 PCAdata_full$age_group <- as.factor(PCAdata_full$age_group)
+
+summary(PCAdata_full)
+
 ```
 
 ```{r, fig.width=8, fig.height=5}
@@ -250,6 +254,12 @@ autoplot(pca_res, data=PCAdata_race_eth, colour="race_eth")+
        title = "Race/Ethnicity PCA Plot",
        color = "Race/Ethnicity")
 ```
+
+```{r}
+summary(PCAdata_race_eth)
+```
+
+
 ```{r, fig.width=18, fig.height=10}
 autoplot(pca_res, data=PCAdata_race_eth, colour="race_eth",
          loadings = TRUE, loadings.colour = 'blue',
@@ -293,6 +303,10 @@ autoplot(pca_res, data=PCAdata_gender, colour="gender")+
        x="PC1 (39.36%)",
        title = "Gender PCA Plot",
        color = "Gender")
+```
+
+```{r}
+summary(PCAdata_gender)
 ```
 
 ```{r, fig.width=18, fig.height=10}
