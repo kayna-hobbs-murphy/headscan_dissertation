@@ -1,0 +1,46 @@
+---
+title: "exporting_package_citations"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+date: "2022-11-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(knitr)
+library(readxl)
+library(writexl)
+library(extrafont)
+library(flextable)
+library(forcats)
+library(rstatix)
+library(corrr)
+library(ggcorrplot)
+library(ggrepel)
+library(fauxnaif)
+library(missMDA)
+library(psych)
+library(scales)
+library(ggfortify)
+library(reshape2)
+library(FactoMineR)
+library(corrplot)
+library(heplots)
+library(DFA.CANCOR)
+library(car)
+library(broom)
+library(emmeans)
+```
+
+
+```{r}
+write_bib(c(.packages(), "base"), "packages.bib")
+```
+
+
+
