@@ -246,7 +246,7 @@ rater_a_data$intraRR <- as.factor(ifelse(rater_a_data$ICC < 0.5, 'Poor',
 
   
 rater_a_data %>% 
-  ggplot(aes(x=intraRR, label=scales::percent(prop.table(stat(count)))))+
+  ggplot(aes(x=intraRR, label=stat(count)))+
   geom_histogram(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
               position= position_dodge(0.9),
@@ -297,7 +297,7 @@ rater_b_data$intraRR <- as.factor(ifelse(rater_b_data$ICC < 0.5, 'Poor',
 
   
 rater_b_data %>% 
-  ggplot(aes(x=intraRR, label=scales::percent(prop.table(stat(count)))))+
+  ggplot(aes(x=intraRR, label=stat(count)))+
   geom_histogram(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
               position= position_dodge(0.9),
@@ -349,7 +349,7 @@ rater_c_data$intraRR <- as.factor(ifelse(rater_c_data$ICC < 0.5, 'Poor',
 
   
 rater_c_data %>% 
-  ggplot(aes(x=intraRR, label=scales::percent(prop.table(stat(count)))))+
+  ggplot(aes(x=intraRR, label=stat(count)))+
   geom_histogram(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
               position= position_dodge(0.9),
@@ -401,7 +401,7 @@ rater_d_data$intraRR <- as.factor(ifelse(rater_d_data$ICC < 0.5, 'Poor',
 
   
 rater_d_data %>% 
-  ggplot(aes(x=intraRR, label=scales::percent(prop.table(stat(count)))))+
+  ggplot(aes(x=intraRR, label=stat(count)))+
   geom_histogram(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
               position= position_dodge(0.9),
@@ -446,7 +446,7 @@ inter_data_all$interRR <- as.factor(ifelse(inter_data_all$ICC < 0.5, 'Poor',
 
   
 inter_data_all %>% 
-  ggplot(aes(x=interRR, label=scales::percent(prop.table(stat(count)))))+
+  ggplot(aes(x=interRR, label=stat(count)))+
   geom_histogram(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
               position= position_dodge(0.9),
@@ -459,6 +459,7 @@ inter_data_all %>%
        subtitle="Comparison of reliabilities",
        x="InterRR",
        y="Count")
+
 ```
 
 
