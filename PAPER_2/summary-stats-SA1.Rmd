@@ -5549,6 +5549,7 @@ max(headscan_full$SmanM_C, na.rm = TRUE)
 
 #CODE TO REMOVE OUTLIER, use later to remove from headscan_full
 SmanM_C_no_out <- headscan_full %>% mutate(SmanM_C = replace(SmanM_C, SmanM_C>115, NA))
+SmanM_C_no_out <- SmanM_C_no_out %>% mutate(SmanM_C = replace(SmanM_C, SmanM_C<1, NA))
 ```
 
 ```{r SmanM_C-histogram}
