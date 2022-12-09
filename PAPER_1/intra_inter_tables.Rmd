@@ -79,6 +79,7 @@ phase_one_intra %>%
   facet_grid(cols=vars(rater))+
   theme_bw()+
   theme(text=element_text(family= "Times New Roman"))+
+  theme(panel.spacing = unit(1, "lines"))+
   labs(title="Phase 1 IntraRR, per individual rater",
        subtitle="ICC reliability limits indicated by dashed lines",
        x="3D Measurement Abbreviation",
@@ -105,6 +106,7 @@ phase_three_intra %>%
   facet_grid(cols=vars(rater))+
   theme_bw()+
   theme(text=element_text(family= "Times New Roman"))+
+  theme(panel.spacing = unit(1, "lines"))+
   labs(title="Phase 3 IntraRR, per individual rater",
        subtitle="ICC reliability limits indicated by dashed lines",
        x="3D Measurement Abbreviation",
@@ -433,6 +435,7 @@ inter_data_all %>%
   facet_grid(cols=vars(phase))+
   theme_bw()+
   theme(text=element_text(family= "Times New Roman"))+
+  theme(panel.spacing = unit(0.5, "lines"))+
   labs(title="InterRR at Phases 1, 2, and 3",
        subtitle="ICC reliability limits indicated by dashed lines",
        x="3D Measurement Abbreviation",
