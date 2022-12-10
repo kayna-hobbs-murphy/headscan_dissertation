@@ -89,7 +89,8 @@ flextable(age_sumstats) %>%
   set_caption("Age SumStats") %>% 
   autofit() %>% 
   fit_to_width(7.5)
-
+```
+```{r, fig.height=4, fig.width=9}
 #bar chart
 ggplot(data=headscan_full, aes(x=age))+
   geom_bar(stat="bin", binwidth = 4, color= "black", fill = "white")+
@@ -146,7 +147,9 @@ ggplot(data=headscan_full, aes(y=age, x=race_eth))+
   labs(title="Age Frequency per Race/Ethnicity",
        y="Age",
        x="Race/Ethnicity")
+```
 
+```{r, fig.height=4, fig.width=9}
 headscan_full %>% 
   ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count)))))+
   geom_bar(stat="count", color= "black", fill = "white")+
@@ -156,7 +159,6 @@ headscan_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Race/Ethnicity Frequency",
-       subtitle="Full dataset",
        y="Count",
        x="Race/Ethnicity")
 
@@ -212,7 +214,9 @@ ggplot(data=headscan_full, aes(y=age, x=gender))+
   labs(title="Age Frequency per Gender",
        y="Age",
        x="Gender")
+```
 
+```{r, fig.height=4, fig.width=9}
 #bar chart
 headscan_full %>% 
   ggplot(aes(x=fct_infreq(gender), label=scales::percent(prop.table(stat(count)))))+
@@ -223,7 +227,6 @@ headscan_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Gender Frequency",
-       subtitle="Full dataset",
        y="Count",
        x="Gender")
 ```
@@ -275,7 +278,8 @@ ggplot(data=headscan_full, aes(y=age, x=age_group))+
   labs(title="Age Frequency per Age Group",
        y="Age",
        x="Age Group")
-
+```
+```{r, fig.height=3, fig.width=8}
 #bar chart
 headscan_full %>% 
   ggplot(aes(x=fct_infreq(age_group), label=scales::percent(prop.table(stat(count)))))+
@@ -286,7 +290,6 @@ headscan_full %>%
               size = 3)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="Age Group Frequency",
-       subtitle="Full dataset",
        y="Count",
        x="Age Group")
 ```
