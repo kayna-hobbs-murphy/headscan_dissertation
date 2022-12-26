@@ -186,7 +186,7 @@ str(coders)
 
 
 
-```{r collection-numbers-per-coder}
+```{r collection-numbers-per-coder, fig.height=4, fig.width=8}
 coders %>% 
   ggplot(aes(x=fct_infreq(coder), label=scales::percent(prop.table(stat(count)))))+
     geom_bar(stat="count", binwidth = 4, color= "black", fill = "white")+
@@ -195,7 +195,7 @@ coders %>%
               vjust = -0.5, 
               size = 3)+
     theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-    labs(title="Data Collection Count per Coder",
+    labs(title="3D Data Collection per Coder",
          y="# of Scans Digitized",
          x="Coder")
 ```
