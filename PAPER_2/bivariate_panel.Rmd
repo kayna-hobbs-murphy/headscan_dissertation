@@ -286,8 +286,8 @@ biv_new <- headscan_fullmm %>%
   geom_rect(aes(xmin=116.5, xmax=128.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
   labs(title="Face Width (BiW_L) by Face Length (SelM_L)",
        subtitle = "Bivariate Panel Adjustment for 3D",
-       y="Face Length/SelM_L (mm)",
-       x="Face Width/BiW_L (mm)")
+       y="Face Length (mm)",
+       x="Face Width (mm)")
 
 biv_new + geom_text(data=panel_numbers1, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
