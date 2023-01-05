@@ -175,10 +175,10 @@ coders <- coders %>%
 
 coders <- coders %>% 
   mutate(coder= case_when(
-    coder_name == "Isabel" ~ "A",
-    coder_name == "Kayna" ~ "B",
-    coder_name == "Chandler" ~ "C",
-    coder_name == "Jared" ~ "D"
+    coder_name == "Isabel" ~ "Rater A",
+    coder_name == "Kayna" ~ "Rater B",
+    coder_name == "Chandler" ~ "Rater C",
+    coder_name == "Jared" ~ "Rater D"
   ))
 
 str(coders)
@@ -195,9 +195,9 @@ coders %>%
               vjust = -0.5, 
               size = 3)+
     theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-    labs(title="3D Data Collection per Coder",
+    labs(title="3D Measurment Data Collection per Rater",
          y="# of Scans Digitized",
-         x="Coder")
+         x="Rater")
 ```
 
 
