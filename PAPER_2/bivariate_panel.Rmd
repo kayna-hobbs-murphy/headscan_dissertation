@@ -101,6 +101,10 @@ biv1 <- headscan_fullmm %>%
 
 biv1 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
+
+
+
+
 ```{r}
 facelen_outl<-headscan_fullmm %>% 
   identify_outliers(SelM_L)
@@ -139,6 +143,9 @@ biv1 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
 
 
+
+
+
 ```{r bivariate gender, fig.width=8, fig.height=5}
 biv2 <- headscan_fullmm %>% 
   ggplot(aes(x=BiW_L, y=SelM_L, color=gender))+
@@ -162,6 +169,10 @@ biv2 <- headscan_fullmm %>%
 
 biv2 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
+
+
+
+
 
 
 ```{r, fig.width=8, fig.height=5}
@@ -239,3 +250,46 @@ biv4 <- headscan_fullmm %>%
 
 biv4 + geom_text(data=panel_numbers, aes(x=BiW_L, y=SelM_L, label=cell_num))
 ```
+
+
+
+
+#ADJUSTING FOR 3D
+
+```{r}
+panel_numbers1 <- data.frame(cell_num = c("#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9", "#10"),
+                            SelM_L = c(103.5, 103.5, 113.5, 113.5, 108.5, 128.5, 123.5, 123.5, 133.5, 133.5),
+                            BiW_L = c(96.5, 108.5, 96.5, 108.5, 121.5, 97.5, 110.5, 122.5, 110.5, 122.5),
+                            gender = NA,
+                            age_group = NA,
+                            race_eth = NA)
+
+str(panel_numbers1)
+```
+
+
+```{r, fig.width=7, fig.height=5}
+biv_new <- headscan_fullmm %>% 
+  ggplot(aes(x=BiW_L, y=SelM_L))+
+  geom_point(color="darkgray")+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  xlim(80,160)+
+  geom_rect(aes(xmin=90.5, xmax=102.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=102.5, xmax=114.5, ymin=98.5, ymax=108.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=114.5, xmax=128.5, ymin=98.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=90.5, xmax=102.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=102.5, xmax=114.5, ymin=108.5, ymax=118.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=90.5, xmax=104.5, ymin=118.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=104.5, xmax=116.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=104.5, xmax=116.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=116.5, xmax=128.5, ymin=118.5, ymax=128.5), fill= NA, alpha=0.4, colour="black")+
+  geom_rect(aes(xmin=116.5, xmax=128.5, ymin=128.5, ymax=138.5), fill= NA, alpha=0.4, colour="black")+
+  labs(title="Face Width (BiW_L) by Face Length (SelM_L)",
+       subtitle = "Bivariate Panel Adjustment for 3D",
+       y="Face Length/SelM_L (mm)",
+       x="Face Width/BiW_L (mm)")
+
+biv_new + geom_text(data=panel_numbers1, aes(x=BiW_L, y=SelM_L, label=cell_num))
+```
+
+
