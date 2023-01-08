@@ -46,7 +46,7 @@ headscan_full$gender <- as.factor(headscan_full$gender)
 headscan_full$race_eth <- as.factor(headscan_full$race_eth)
 headscan_full$age_group <- as.factor(headscan_full$age_group)
 #reordering factors by frequency
-headscan_full$race_eth <- factor(headscan_full$race_eth, levels = c("white", "Black", "LatinX", "Asian", "Other", "AIAN", "PTNS", "NHOPI"))
+headscan_full$race_eth <- factor(headscan_full$race_eth, levels = c("White", "Black", "LatinX", "Asian", "Other", "AIAN", "PTNS", "NHOPI"))
 #view
 str(headscan_full)
 ```

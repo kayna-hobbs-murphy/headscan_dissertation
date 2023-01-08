@@ -38,6 +38,10 @@ my_ft_theme <- function(ft, ...) {
 ```{r}
 measureNAs <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\measureNAs.xlsx")
 
+
+
+
+
 PCA_NAs <- slice(measureNAs, c(1,3,4,6,7,11,13,15,16,24,26,27))
 
 #Size 12 Table TNR
@@ -81,7 +85,8 @@ ggplot(data=PCA_NAs, aes(x=measure_name, y=measureNAprops))+
 #PCAdata_num <- PCAdata_num %>% drop_na()
 PCAdata_full<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\chosen_nona.xlsx")
 
-
+PCAdata_full$race_eth <- 
+  recode_factor(PCAdata_full$race_eth, 'white'= "White")
 
 PCAdata_num <- select_if(PCAdata_full, is.numeric)
 

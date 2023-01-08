@@ -104,7 +104,7 @@ demographic$Ethnicity <-
                 'Native Hawaiian or Other Pacific Islander' = "NHOPI",
                 'Other' = "Other",
                 'Prefer not to say' = "PTNS",
-                'White/Caucasian' = "white")
+                'White/Caucasian' = "White")
 ```
 
 ```{r making age groups}

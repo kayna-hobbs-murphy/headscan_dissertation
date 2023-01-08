@@ -174,7 +174,7 @@ g_f_minus_m$measure <- fct_reorder(g_f_minus_m$measure, g_f_minus_m$estimate, .d
 
 g_f_minus_m %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.2, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -187,7 +187,7 @@ g_f_minus_m$measure <- fct_reorder(g_f_minus_m$measure, g_f_minus_m$prop_diff, .
 
 g_f_minus_m %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.15, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -222,7 +222,7 @@ g_m_minus_f$measure <- fct_reorder(g_m_minus_f$measure, g_m_minus_f$estimate, .d
 
 g_m_minus_f %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -235,7 +235,7 @@ g_m_minus_f$measure <- fct_reorder(g_m_minus_f$measure, g_m_minus_f$prop_diff, .
 
 g_m_minus_f %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -366,7 +366,7 @@ y_v_m$measure <- fct_reorder(y_v_m$measure, y_v_m$estimate, .desc=FALSE)
 
 y_v_m %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -380,7 +380,7 @@ y_v_m$measure <- fct_reorder(y_v_m$measure, y_v_m$prop_diff, .desc=FALSE)
 
 y_v_m %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.1, position = position_dodge(.9), size = 2.7, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -418,7 +418,7 @@ m_v_y$measure <- fct_reorder(m_v_y$measure, m_v_y$estimate, .desc=TRUE)
 
 m_v_y %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -432,7 +432,7 @@ m_v_y$measure <- fct_reorder(m_v_y$measure, m_v_y$prop_diff, .desc=TRUE)
 
 m_v_y %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.2, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -466,7 +466,7 @@ y_v_o$measure <- fct_reorder(y_v_o$measure, y_v_o$estimate, .desc=FALSE)
 
 y_v_o %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.15, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -479,7 +479,7 @@ y_v_o$measure <- fct_reorder(y_v_o$measure, y_v_o$prop_diff, .desc=FALSE)
 
 y_v_o %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.15, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -518,7 +518,7 @@ o_v_y$measure <- fct_reorder(o_v_y$measure, o_v_y$estimate, .desc=TRUE)
 
 o_v_y %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -533,7 +533,7 @@ o_v_y$measure <- fct_reorder(o_v_y$measure, o_v_y$prop_diff, .desc=TRUE)
 
 o_v_y %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -567,7 +567,7 @@ m_v_o$measure <- fct_reorder(m_v_o$measure, m_v_o$estimate, .desc=FALSE)
 
 m_v_o %>% 
   ggplot(aes(x=estimate, y= measure))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="(37-54) - (55-72) Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
@@ -579,7 +579,7 @@ m_v_o$measure <- fct_reorder(m_v_o$measure, m_v_o$prop_diff, .desc=FALSE)
 
 m_v_o %>% 
   ggplot(aes(x=prop_diff, y= measure))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   scale_x_continuous(labels = scales::percent)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="(37-54) - (55-72) Significant Differences in Estimated Marginal Means",
@@ -617,7 +617,7 @@ o_v_m$measure <- fct_reorder(o_v_m$measure, o_v_m$estimate, .desc=TRUE)
 
 o_v_m %>% 
   ggplot(aes(x=estimate, y= measure))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="(55-72) - (37-54) Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
@@ -629,7 +629,7 @@ o_v_m$measure <- fct_reorder(o_v_m$measure, o_v_m$prop_diff, .desc=TRUE)
 
 o_v_m %>% 
   ggplot(aes(x=prop_diff, y= measure))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   scale_x_continuous(labels = scales::percent)+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
   labs(title="(55-72) - (37-54) Significant Differences in Estimated Marginal Means",
@@ -741,7 +741,7 @@ race1$measure <- fct_reorder(race1$measure, race1$estimate, .desc=FALSE)
 
 race1 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.15, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -756,7 +756,7 @@ race1$measure <- fct_reorder(race1$measure, race1$prop_diff, .desc=FALSE)
 
 race1 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.15, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -796,7 +796,7 @@ race1.1$measure <- fct_reorder(race1.1$measure, race1.1$estimate, .desc=TRUE)
 
 race1.1 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -811,7 +811,7 @@ race1.1$measure <- fct_reorder(race1.1$measure, race1.1$prop_diff, .desc=TRUE)
 
 race1.1 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -844,7 +844,7 @@ race2$measure <- fct_reorder(race2$measure, race2$estimate, .desc=FALSE)
 
 race2 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.15, position = position_dodge(.9), size = 5, family="Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -858,7 +858,7 @@ race2$measure <- fct_reorder(race2$measure, race2$prop_diff, .desc=FALSE)
 
 race2 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.15, position = position_dodge(.9), size = 5, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -898,7 +898,7 @@ race2.1$measure <- fct_reorder(race2.1$measure, race2.1$estimate, .desc=TRUE)
 
 race2.1 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 5, family="Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -912,7 +912,7 @@ race2.1$measure <- fct_reorder(race2.1$measure, race2.1$prop_diff, .desc=TRUE)
 
 race2.1 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 5, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -936,31 +936,31 @@ flextable(race2.1) %>%
 
 ```{r, fig.height=4.5, fig.width=7}
 race3 <- race_est_data1 %>% 
-  filter(contrast == "Asian - white")
+  filter(contrast == "White - Asian")
 
-race3$measure <- fct_reorder(race3$measure, race3$estimate, .desc=FALSE)
+race3$measure <- fct_reorder(race3$measure, race3$estimate, .desc=TRUE)
 
 race3 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.15, position = position_dodge(.9), size = 4, family="Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Asian - white Significant Differences in Estimated Marginal Means",
+  labs(title="White - Asian Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Difference in mm")
 
-race3$measure <- fct_reorder(race3$measure, race3$prop_diff, .desc=FALSE)
+race3$measure <- fct_reorder(race3$measure, race3$prop_diff, .desc=TRUE)
 
 race3 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=-0.15, position = position_dodge(.9), size = 4, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Asian - white Significant Differences in Estimated Marginal Means",
+  labs(title="White - Asian Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
@@ -974,7 +974,7 @@ race3 <- race3 %>%
 flextable(race3) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Asian - white Significant Differences in Estimated Marginal Means") %>% 
+  set_caption("White - Asian Significant Differences in Estimated Marginal Means") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 ```
@@ -993,11 +993,11 @@ race3.1$measure <- fct_reorder(race3.1$measure, race3.1$estimate, .desc=TRUE)
 
 race3.1 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 4, family="Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="white - Asian Significant Differences in Estimated Marginal Means",
+  labs(title="Asian - White Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Difference in mm")
@@ -1007,12 +1007,12 @@ race3.1$measure <- fct_reorder(race3.1$measure, race3.1$prop_diff, .desc=TRUE)
 
 race3.1 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 4, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="white - Asian Significant Differences in Estimated Marginal Means",
+  labs(title="Asian - White Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
@@ -1020,7 +1020,7 @@ race3.1 %>%
 flextable(race3.1) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("white - Asian Significant Differences in Estimated Marginal Means") %>% 
+  set_caption("Asian - White Significant Differences in Estimated Marginal Means") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 ```
@@ -1034,7 +1034,7 @@ race4$measure <- fct_reorder(race4$measure, race4$estimate, .desc=TRUE)
 
 race4 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family="Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -1047,7 +1047,7 @@ race4$measure <- fct_reorder(race4$measure, race4$prop_diff, .desc=TRUE)
 
 race4 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -1083,7 +1083,7 @@ race5$measure <- fct_reorder(race5$measure, race5$estimate, .desc=TRUE)
 
 race5 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 5, family="Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -1096,7 +1096,7 @@ race5$measure <- fct_reorder(race5$measure, race5$prop_diff, .desc=TRUE)
 
 race5 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 5, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
@@ -1126,18 +1126,18 @@ flextable(race5) %>%
 
 ```{r, fig.height=4.5, fig.width=7}
 race6 <- race_est_data1 %>% 
-  filter(contrast == "Black - white")
+  filter(contrast == "White - Black")
 
 
 race6$measure <- fct_reorder(race6$measure, race6$estimate, .desc=TRUE)
 
 race6 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family="Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Black - white Significant Differences in Estimated Marginal Means",
+  labs(title="White - Black Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Difference in mm")
@@ -1146,26 +1146,78 @@ race6$measure <- fct_reorder(race6$measure, race6$prop_diff, .desc=TRUE)
 
 race6 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Black - white Significant Differences in Estimated Marginal Means",
+  labs(title="White - Black Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
 
-race6 <- race6[c(8, 2, 6, 9, 10)]
+race6x <- race6[c(8, 2, 6, 9, 10)]
 
-race6 <- race6 %>% 
+race6x <- race6x %>% 
   mutate(across(where(is.numeric), round, digits=3))
 
 
-flextable(race6) %>%
+flextable(race6x) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Black - white Significant Differences in Estimated Marginal Means") %>% 
+  set_caption("White - Black Significant Differences in Estimated Marginal Means") %>% 
+  fit_to_width(7.5) %>% 
+  autofit()
+```
+```{r, fig.height=4.5, fig.width=7}
+race6.1 <- race6
+
+race6.1$estimate <- race6.1$estimate*(-1)
+race6.1$prop_diff <- race6.1$prop_diff*(-1)
+
+
+race6.1$percent_diff <- percent(race6.1$prop_diff)
+
+race6.1$measure <- fct_reorder(race6.1$measure, race6.1$estimate, .desc=TRUE)
+
+race6.1 <- race6.1 %>% 
+  mutate(across(where(is.numeric), round, digits=3))
+
+race6.1 %>% 
+  ggplot(aes(x=estimate, y= measure, label=estimate))+
+  geom_bar(stat="identity", color= "black", fill = "White")+
+  geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family="Times New Roman")+
+  scale_x_continuous(expand = expansion(mult = 0.1))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - White Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Difference in mm")
+
+race6.1$measure <- fct_reorder(race6$measure, race6$prop_diff, .desc=FALSE)
+
+race6.1 %>% 
+  ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
+  geom_bar(stat="identity", color= "black", fill = "White")+
+  geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
+  scale_x_continuous(labels = scales::percent,
+                     expand = expansion(mult = 0.1))+
+  theme_bw()+theme(text=element_text(family= "Times New Roman"))+
+  labs(title="Black - White Significant Differences in Estimated Marginal Means",
+       subtitle= "Tukey significance level 0.05",
+       y="Measurement Location",
+       x="Percent Difference from Total Measurement Mean")
+
+race6.1 <- race6.1[c(8, 2, 6, 9, 10)]
+
+
+
+
+
+flextable(race6.1) %>%
+  my_ft_theme()%>% 
+  bold(part = "header") %>% 
+  set_caption("Black - White Significant Differences in Estimated Marginal Means") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 ```
@@ -1174,33 +1226,33 @@ flextable(race6) %>%
 
 ```{r, fig.height=4.5, fig.width=7}
 race7 <- race_est_data1 %>% 
-  filter(contrast == "LatinX - white")
+  filter(contrast == "White - LatinX")
 
 
 
-race7$measure <- fct_reorder(race7$measure, race7$estimate, .desc=FALSE)
+race7$measure <- fct_reorder(race7$measure, race7$estimate, .desc=TRUE)
 
 race7 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family="Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="LatinX - white Significant Differences in Estimated Marginal Means",
+  labs(title="White - LatinX Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Difference in mm")
 
-race7$measure <- fct_reorder(race7$measure, race7$prop_diff, .desc=FALSE)
+race7$measure <- fct_reorder(race7$measure, race7$prop_diff, .desc=TRUE)
 
 race7 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="LatinX - white Significant Differences in Estimated Marginal Means",
+  labs(title="White - LatinX Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
@@ -1214,7 +1266,7 @@ race7 <- race7 %>%
 flextable(race7) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("LatinX - white Significant Differences in Estimated Marginal Means") %>% 
+  set_caption("White - LatinX Significant Differences in Estimated Marginal Means") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 ```
@@ -1223,33 +1275,33 @@ flextable(race7) %>%
 
 ```{r, fig.height=4.5, fig.width=7}
 race8 <- race_est_data1 %>% 
-  filter(contrast == "Other - white")
+  filter(contrast == "White - Other")
 
 
 
-race8$measure <- fct_reorder(race8$measure, race8$estimate, .desc=FALSE)
+race8$measure <- fct_reorder(race8$measure, race8$estimate, .desc=TRUE)
 
 race8 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family="Times New Roman")+
   scale_x_continuous(expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Other - white Significant Differences in Estimated Marginal Means",
+  labs(title="White - Other Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Difference in mm")
 
-race8$measure <- fct_reorder(race8$measure, race8$prop_diff, .desc=FALSE)
+race8$measure <- fct_reorder(race8$measure, race8$prop_diff, .desc=TRUE)
 
 race8 %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
-  geom_bar(stat="identity", color= "black", fill = "white")+
+  geom_bar(stat="identity", color= "black", fill = "White")+
   geom_text(hjust=1.1, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
-  labs(title="Other - white Significant Differences in Estimated Marginal Means",
+  labs(title="White - Other Significant Differences in Estimated Marginal Means",
        subtitle= "Tukey significance level 0.05",
        y="Measurement Location",
        x="Percent Difference from Total Measurement Mean")
@@ -1263,7 +1315,7 @@ race8 <- race8 %>%
 flextable(race8) %>%
   my_ft_theme()%>% 
   bold(part = "header") %>% 
-  set_caption("Other - white Significant Differences in Estimated Marginal Means") %>% 
+  set_caption("White - Other Significant Differences in Estimated Marginal Means") %>% 
   fit_to_width(7.5) %>% 
   autofit()
 ```
