@@ -44,9 +44,18 @@ age_means_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\D
 
 gender_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\gender_est_data.xlsx")
 
+gender_est_data <- gender_est_data %>% 
+  mutate(across(where(is.numeric), round, digits=2))
+
 race_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\race_est_data.xlsx")
 
+race_est_data <- race_est_data %>% 
+  mutate(across(where(is.numeric), round, digits=2))
+
 age_est_data <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\age_est_data.xlsx")
+
+age_est_data <- age_est_data %>% 
+  mutate(across(where(is.numeric), round, digits=2))
 ```
 
 
@@ -129,8 +138,8 @@ gender_means_data1 %>%
 sig_gender_est <- gender_est_data %>% 
   filter(signif=="TRUE")
 
-sig_gender_est <- sig_gender_est %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#sig_gender_est <- sig_gender_est %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 ```
 
 
@@ -160,10 +169,10 @@ g_f_minus_m <- full_join(g_f_minus_m, measure_means, by="measure")
 ```{r, fig.height=4.5, fig.width=7}
 g_f_minus_m$prop_diff <- (g_f_minus_m$estimate/g_f_minus_m$measure_means)
 
-g_f_minus_m <- g_f_minus_m %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#g_f_minus_m <- g_f_minus_m %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
-g_f_minus_m$percent_diff <- percent(g_f_minus_m$prop_diff)
+g_f_minus_m$percent_diff <- percent(g_f_minus_m$prop_diff, accuracy = 0.01)
 
 
 ```
@@ -214,7 +223,7 @@ g_m_minus_f <- g_f_minus_m
 g_m_minus_f$estimate <- g_m_minus_f$estimate*(-1)
 g_m_minus_f$prop_diff <- g_m_minus_f$prop_diff*(-1)
 
-g_m_minus_f$percent_diff <- percent(g_m_minus_f$prop_diff)
+g_m_minus_f$percent_diff <- percent(g_m_minus_f$prop_diff, accuracy = 0.01)
 
 #g_m_minus_f$contrastx <- "Male - Female/Other"
 
@@ -304,8 +313,8 @@ age_means_data %>%
 sig_age_est <- age_est_data %>% 
   filter(signif=="TRUE")
 
-sig_age_est <- sig_age_est %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#sig_age_est <- sig_age_est %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 ```
 
 
@@ -325,10 +334,10 @@ age_est_data1 <- full_join(sig_age_est, measure_means, by="measure")
 
 age_est_data1$prop_diff <- (age_est_data1$estimate/age_est_data1$measure_means)
 
-age_est_data1 <- age_est_data1 %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#age_est_data1 <- age_est_data1 %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
-age_est_data1$percent_diff <- percent(age_est_data1$prop_diff)
+age_est_data1$percent_diff <- percent(age_est_data1$prop_diff, accuracy = 0.01)
 
 age_est_data1 <- drop_na(age_est_data1)
 
@@ -359,8 +368,8 @@ age_est_data1 %>%
 y_v_m <- age_est_data1 %>% 
   filter(contrast == "(18-36) - (37-54)")
 
-y_v_m <- y_v_m %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#y_v_m <- y_v_m %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 y_v_m$measure <- fct_reorder(y_v_m$measure, y_v_m$estimate, .desc=FALSE)
 
@@ -409,7 +418,7 @@ m_v_y <- y_v_m
 
 m_v_y$estimate <- m_v_y$estimate*(-1)
 m_v_y$prop_diff <- m_v_y$prop_diff*(-1)
-m_v_y$percent_diff <- percent(m_v_y$prop_diff)
+m_v_y$percent_diff <- percent(m_v_y$prop_diff, accuracy = 0.01)
 
 #m_v_y$contrastx <- "(37-54) - (18-36)"
 
@@ -433,7 +442,7 @@ m_v_y$measure <- fct_reorder(m_v_y$measure, m_v_y$prop_diff, .desc=TRUE)
 m_v_y %>% 
   ggplot(aes(x=prop_diff, y= measure, label=percent_diff))+
   geom_bar(stat="identity", color= "black", fill = "White")+
-  geom_text(hjust=1.2, position = position_dodge(.9), size = 3, family= "Times New Roman")+
+  geom_text(hjust=1.0, position = position_dodge(.9), size = 3, family= "Times New Roman")+
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = 0.1))+
   theme_bw()+theme(text=element_text(family= "Times New Roman"))+
@@ -491,8 +500,8 @@ y_v_o %>%
 
 y_v_o <- y_v_o[c(8, 2, 6, 9, 10)]
 
-y_v_o <- y_v_o %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#y_v_o <- y_v_o %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 flextable(y_v_o) %>%
   my_ft_theme()%>% 
@@ -508,7 +517,7 @@ o_v_y <- y_v_o
 o_v_y$estimate <- o_v_y$estimate*(-1)
 o_v_y$prop_diff <- o_v_y$prop_diff*(-1)
 
-o_v_y$percent_diff <- percent(o_v_y$prop_diff)
+o_v_y$percent_diff <- percent(o_v_y$prop_diff, accuracy = 0.01)
 
 #o_v_y$contrastx <- "(55-72) - (18-36)"
 
@@ -590,8 +599,8 @@ m_v_o %>%
 
 m_v_o <- m_v_o[c(8, 2, 6, 9, 10)]
 
-m_v_o <- m_v_o %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#m_v_o <- m_v_o %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(m_v_o) %>%
@@ -700,8 +709,8 @@ race_means_data %>%
 sig_race_est <- race_est_data %>% 
   filter(signif=="TRUE")
 
-sig_race_est <- sig_race_est %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#sig_race_est <- sig_race_est %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 ```
 
 
@@ -726,10 +735,10 @@ race_est_data1 <- full_join(sig_race_est, measure_means, by="measure")
 ```{r, fig.height=4.5, fig.width=7}
 race_est_data1$prop_diff <- (race_est_data1$estimate/race_est_data1$measure_means)
 
-race_est_data1 <- race_est_data1 %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#race_est_data1 <- race_est_data1 %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
-race_est_data1$percent_diff <- percent(race_est_data1$prop_diff)
+race_est_data1$percent_diff <- percent(race_est_data1$prop_diff, accuracy = 0.01)
 ```
 
 ```{r, fig.height=4.5, fig.width=7}
@@ -767,10 +776,10 @@ race1 %>%
        x="Percent Difference from Total Measurement Mean")
 
 
-race1 <- race1[c(8, 2, 6, 9, 10)]
+race1 <- race1[c(8, 2, 6, 9, 10, 11)]
 
-race1 <- race1 %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#race1 <- race1 %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race1) %>%
@@ -789,7 +798,7 @@ race1.1 <- race1
 race1.1$estimate <- race1.1$estimate*(-1)
 race1.1$prop_diff <- race1.1$prop_diff*(-1)
 
-race1.1$percent_diff <- percent(race1.1$prop_diff)
+race1.1$percent_diff <- percent(race1.1$prop_diff, accuracy = 0.01)
 
 
 race1.1$measure <- fct_reorder(race1.1$measure, race1.1$estimate, .desc=TRUE)
@@ -870,8 +879,8 @@ race2 %>%
 
 race2 <- race2[c(8, 2, 6, 9, 10)]
 
-race2 <- race2 %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#race2 <- race2 %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race2) %>%
@@ -890,7 +899,7 @@ race2.1 <- race2
 race2.1$estimate <- race2.1$estimate*(-1)
 race2.1$prop_diff <- race2.1$prop_diff*(-1)
 
-race2.1$percent_diff <- percent(race2.1$prop_diff)
+race2.1$percent_diff <- percent(race2.1$prop_diff, accuracy = 0.01)
 
 
 
@@ -967,8 +976,8 @@ race3 %>%
 
 race3 <- race3[c(8, 2, 6, 9, 10)]
 
-race3 <- race3 %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#race3 <- race3 %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race3) %>%
@@ -985,7 +994,7 @@ race3.1$estimate <- race3.1$estimate*(-1)
 race3.1$prop_diff <- race3.1$prop_diff*(-1)
 
 
-race3.1$percent_diff <- percent(race3.1$prop_diff)
+race3.1$percent_diff <- percent(race3.1$prop_diff, accuracy = 0.01)
 
 
 
@@ -1060,8 +1069,8 @@ race4 %>%
 
 race4 <- race4[c(8, 2, 6, 9, 10)]
 
-race4 <- race4 %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#race4 <- race4 %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race4) %>%
@@ -1109,8 +1118,8 @@ race5 %>%
 
 race5 <- race5[c(8, 2, 6, 9, 10)]
 
-race5 <- race5 %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#race5 <- race5 %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race5) %>%
@@ -1158,8 +1167,8 @@ race6 %>%
 
 race6x <- race6[c(8, 2, 6, 9, 10)]
 
-race6x <- race6x %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#race6x <- race6x %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race6x) %>%
@@ -1176,12 +1185,12 @@ race6.1$estimate <- race6.1$estimate*(-1)
 race6.1$prop_diff <- race6.1$prop_diff*(-1)
 
 
-race6.1$percent_diff <- percent(race6.1$prop_diff)
+race6.1$percent_diff <- percent(race6.1$prop_diff, accuracy = 0.01)
 
 race6.1$measure <- fct_reorder(race6.1$measure, race6.1$estimate, .desc=TRUE)
 
-race6.1 <- race6.1 %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#race6.1 <- race6.1 %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 race6.1 %>% 
   ggplot(aes(x=estimate, y= measure, label=estimate))+
@@ -1259,8 +1268,8 @@ race7 %>%
 
 race7 <- race7[c(8, 2, 6, 9, 10)]
 
-race7 <- race7 %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#race7 <- race7 %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race7) %>%
@@ -1308,8 +1317,8 @@ race8 %>%
 
 race8 <- race8[c(8, 2, 6, 9, 10)]
 
-race8 <- race8 %>% 
-  mutate(across(where(is.numeric), round, digits=3))
+#race8 <- race8 %>% 
+  #mutate(across(where(is.numeric), round, digits=3))
 
 
 flextable(race8) %>%
