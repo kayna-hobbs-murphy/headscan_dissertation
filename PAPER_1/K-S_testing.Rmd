@@ -1,0 +1,78 @@
+---
+title: "K-S testing"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir= normalizePath('..'))
+knitr::opts_chunk$set(error = FALSE)
+```
+
+```{r packages}
+library(tidyverse)
+library(flextable)
+library(readxl)
+library(extrafont)
+library(forcats)
+library(writexl)
+library(car)
+library(moments)
+```
+
+```{r table-function}
+#times new roman tables
+my_ft_theme <- function(ft, ...) {
+  # Remove vertical cell padding
+  ft <- padding(ft, padding.top = 0, padding.bottom = 0, part = "all")
+  
+  # Change font to TNR 11
+  ft <- font(ft, fontname = "Times New Roman", part = "all")
+  ft <- fontsize(ft, part = "all", size = 12)
+  ft
+}
+```
+
+
+```{r}
+headscan_full1<-read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full1.xlsx")
+str(headscan_full1)
+```
+
+Skewness is a measure of the asymmetry of a distribution. This value can be positive or negative.
+
+A negative skew indicates that the tail is on the left side of the distribution, which extends towards more negative values.
+A positive skew indicates that the tail is on the right side of the distribution, which extends towards more positive values.
+A value of zero indicates that there is no skewness in the distribution at all, meaning the distribution is perfectly symmetrical.
+Kurtosis is a measure of whether or not a distribution is heavy-tailed or light-tailed relative to a normal distribution.
+
+The rule of thumb seems to be: If the skewness is between -0.5 and 0.5, the data are fairly symmetrical. If the skewness is between -1 and – 0.5 or between 0.5 and 1, the data are moderately skewed. If the skewness is less than -1 or greater than 1, the data are highly skewed.
+
+The kurtosis of a normal distribution is 3.
+If a given distribution has a kurtosis less than 3, it is said to be playkurtic, which means it tends to produce fewer and less extreme outliers than the normal distribution.
+If a given distribution has a kurtosis greater than 3, it is said to be leptokurtic, which means it tends to produce more outliers than the normal distribution.
+
+```{r, fig.height=5.5, fig.width=7.5}
+AA_Cx <- headscan_full1$AA_C
+
+kurtosis(AA_Cx, na.rm = TRUE)
+
+skewness(AA_Cx, na.rm = TRUE)
+
+nortest::lillie.test(AA_Cx)
+
+hist(AA_Cx, breaks=30)
+
+qqnorm(AA_Cx)
+qqline(AA_Cx)
+
+qqPlot(AA_Cx, distribution = "norm")
+
+
+```
+```{r}
+kurtosis(headscan_full1$AA_C, na.rm = TRUE)
+```
+
