@@ -20,6 +20,7 @@ library(forcats)
 library(writexl)
 library(car)
 library(moments)
+library(PerformanceAnalytics)
 ```
 
 ```{r table-function}
@@ -46,20 +47,20 @@ Skewness is a measure of the asymmetry of a distribution. This value can be posi
 A negative skew indicates that the tail is on the left side of the distribution, which extends towards more negative values.
 A positive skew indicates that the tail is on the right side of the distribution, which extends towards more positive values.
 A value of zero indicates that there is no skewness in the distribution at all, meaning the distribution is perfectly symmetrical.
-Kurtosis is a measure of whether or not a distribution is heavy-tailed or light-tailed relative to a normal distribution.
+PerformanceAnalytics::PerformanceAnalytics::kurtosis is a measure of whether or not a distribution is heavy-tailed or light-tailed relative to a normal distribution.
 
 The rule of thumb seems to be: If the skewness is between -0.5 and 0.5, the data are fairly symmetrical. If the skewness is between -1 and – 0.5 or between 0.5 and 1, the data are moderately skewed. If the skewness is less than -1 or greater than 1, the data are highly skewed.
 
-The kurtosis of a normal distribution is 3.
-If a given distribution has a kurtosis less than 3, it is said to be playkurtic, which means it tends to produce fewer and less extreme outliers than the normal distribution.
-If a given distribution has a kurtosis greater than 3, it is said to be leptokurtic, which means it tends to produce more outliers than the normal distribution.
+The PerformanceAnalytics::kurtosis of a normal distribution is 3.
+If a given distribution has a PerformanceAnalytics::kurtosis less than 3, it is said to be playkurtic, which means it tends to produce fewer and less extreme outliers than the normal distribution.
+If a given distribution has a PerformanceAnalytics::kurtosis greater than 3, it is said to be leptokurtic, which means it tends to produce more outliers than the normal distribution.
 
 ```{r, fig.height=5.5, fig.width=7.5}
 qqPlot(headscan_full1$AA_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$AA_C, breaks = 30)
 
-kurtosis(headscan_full1$AA_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$AA_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$AA_C, na.rm = TRUE)
 ```
@@ -70,7 +71,7 @@ qqPlot(headscan_full1$BGl_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$BGl_C, breaks = 30)
 
-kurtosis(headscan_full1$BGl_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$BGl_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$BGl_C, na.rm = TRUE)
 ```
@@ -80,7 +81,7 @@ qqPlot(headscan_full1$BiW_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$BiW_C, breaks = 30)
 
-kurtosis(headscan_full1$BiW_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$BiW_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$BiW_C, na.rm = TRUE)
 ```
@@ -90,7 +91,7 @@ qqPlot(headscan_full1$BiW_L, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$BiW_L, breaks = 30)
 
-kurtosis(headscan_full1$BiW_L, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$BiW_L, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$BiW_L, na.rm = TRUE)
 ```
@@ -100,7 +101,7 @@ qqPlot(headscan_full1$ChCh_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$ChCh_C, breaks = 30)
 
-kurtosis(headscan_full1$ChCh_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$ChCh_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$ChCh_C, na.rm = TRUE)
 ```
@@ -111,7 +112,7 @@ qqPlot(headscan_full1$GoSub_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$GoSub_C, breaks = 30)
 
-kurtosis(headscan_full1$GoSub_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$GoSub_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$GoSub_C, na.rm = TRUE)
 ```
@@ -121,7 +122,7 @@ qqPlot(headscan_full1$NRB_L, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$NRB_L, breaks = 30)
 
-kurtosis(headscan_full1$NRB_L, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$NRB_L, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$NRB_L, na.rm = TRUE)
 ```
@@ -131,7 +132,7 @@ qqPlot(headscan_full1$ProA_L, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$ProA_L, breaks = 30)
 
-kurtosis(headscan_full1$ProA_L, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$ProA_L, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$ProA_L, na.rm = TRUE)
 ```
@@ -141,7 +142,7 @@ qqPlot(headscan_full1$ProA_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$ProA_C, breaks = 30)
 
-kurtosis(headscan_full1$ProA_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$ProA_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$ProA_C, na.rm = TRUE)
 ```
@@ -151,7 +152,7 @@ qqPlot(headscan_full1$ProS_L, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$ProS_L, breaks = 30)
 
-kurtosis(headscan_full1$ProS_L, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$ProS_L, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$ProS_L, na.rm = TRUE)
 ```
@@ -161,7 +162,7 @@ qqPlot(headscan_full1$ProS_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$ProS_C, breaks = 30)
 
-kurtosis(headscan_full1$ProS_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$ProS_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$ProS_C, na.rm = TRUE)
 ```
@@ -171,7 +172,7 @@ qqPlot(headscan_full1$SelP_L, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$SelP_L, breaks = 30)
 
-kurtosis(headscan_full1$SelP_L, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$SelP_L, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$SelP_L, na.rm = TRUE)
 ```
@@ -181,7 +182,7 @@ qqPlot(headscan_full1$SelP_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$SelP_C, breaks = 30)
 
-kurtosis(headscan_full1$SelP_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$SelP_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$SelP_C, na.rm = TRUE)
 ```
@@ -191,7 +192,7 @@ qqPlot(headscan_full1$SelDH_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$SelDH_C, breaks = 30)
 
-kurtosis(headscan_full1$SelDH_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$SelDH_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$SelDH_C, na.rm = TRUE)
 ```
@@ -201,7 +202,7 @@ qqPlot(headscan_full1$SelM_L, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$SelM_L, breaks = 30)
 
-kurtosis(headscan_full1$SelM_L, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$SelM_L, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$SelM_L, na.rm = TRUE)
 ```
@@ -211,7 +212,7 @@ qqPlot(headscan_full1$SnasM_L, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$SnasM_L, breaks = 30)
 
-kurtosis(headscan_full1$SnasM_L, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$SnasM_L, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$SnasM_L, na.rm = TRUE)
 ```
@@ -221,7 +222,7 @@ qqPlot(headscan_full1$SnasM_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$SnasM_C, breaks = 30)
 
-kurtosis(headscan_full1$SnasM_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$SnasM_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$SnasM_C, na.rm = TRUE)
 ```
@@ -231,7 +232,7 @@ qqPlot(headscan_full1$SmanM_L, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$SmanM_L, breaks = 30)
 
-kurtosis(headscan_full1$SmanM_L, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$SmanM_L, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$SmanM_L, na.rm = TRUE)
 ```
@@ -241,7 +242,7 @@ qqPlot(headscan_full1$SmanM_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$SmanM_C, breaks = 30)
 
-kurtosis(headscan_full1$SmanM_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$SmanM_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$SmanM_C, na.rm = TRUE)
 ```
@@ -251,7 +252,7 @@ qqPlot(headscan_full1$TrHO_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$TrHO_C, breaks = 30)
 
-kurtosis(headscan_full1$TrHO_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$TrHO_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$TrHO_C, na.rm = TRUE)
 ```
@@ -261,7 +262,7 @@ qqPlot(headscan_full1$TrEJ_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$TrEJ_C, breaks = 30)
 
-kurtosis(headscan_full1$TrEJ_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$TrEJ_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$TrEJ_C, na.rm = TRUE)
 ```
@@ -271,7 +272,7 @@ qqPlot(headscan_full1$TrGo_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$TrGo_C, breaks = 30)
 
-kurtosis(headscan_full1$TrGo_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$TrGo_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$TrGo_C, na.rm = TRUE)
 ```
@@ -281,7 +282,7 @@ qqPlot(headscan_full1$TrSel_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$TrSel_C, breaks = 30)
 
-kurtosis(headscan_full1$TrSel_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$TrSel_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$TrSel_C, na.rm = TRUE)
 ```
@@ -291,7 +292,7 @@ qqPlot(headscan_full1$TrSman_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$TrSman_C, breaks = 30)
 
-kurtosis(headscan_full1$TrSman_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$TrSman_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$TrSman_C, na.rm = TRUE)
 ```
@@ -301,7 +302,7 @@ qqPlot(headscan_full1$TrSnas_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$TrSnas_C, breaks = 30)
 
-kurtosis(headscan_full1$TrSnas_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$TrSnas_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$TrSnas_C, na.rm = TRUE)
 ```
@@ -311,7 +312,7 @@ qqPlot(headscan_full1$TrTr_C, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$TrTr_C, breaks = 30)
 
-kurtosis(headscan_full1$TrTr_C, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$TrTr_C, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$TrTr_C, na.rm = TRUE)
 ```
@@ -321,7 +322,7 @@ qqPlot(headscan_full1$TrTr_L, distribution = "norm", col.lines = "grey")
 
 hist(headscan_full1$TrTr_L, breaks = 30)
 
-kurtosis(headscan_full1$TrTr_L, na.rm = TRUE)
+PerformanceAnalytics::kurtosis(headscan_full1$TrTr_L, na.rm = TRUE, method= "excess")
 
 skewness(headscan_full1$TrTr_L, na.rm = TRUE)
 ```
