@@ -55,24 +55,273 @@ If a given distribution has a kurtosis less than 3, it is said to be playkurtic,
 If a given distribution has a kurtosis greater than 3, it is said to be leptokurtic, which means it tends to produce more outliers than the normal distribution.
 
 ```{r, fig.height=5.5, fig.width=7.5}
-AA_Cx <- headscan_full1$AA_C
+qqPlot(headscan_full1$AA_C, distribution = "norm", col.lines = "grey")
 
-kurtosis(AA_Cx, na.rm = TRUE)
+hist(headscan_full1$AA_C, breaks = 30)
 
-skewness(AA_Cx, na.rm = TRUE)
-
-nortest::lillie.test(AA_Cx)
-
-hist(AA_Cx, breaks=30)
-
-qqnorm(AA_Cx)
-qqline(AA_Cx)
-
-qqPlot(AA_Cx, distribution = "norm")
-
-
-```
-```{r}
 kurtosis(headscan_full1$AA_C, na.rm = TRUE)
+
+skewness(headscan_full1$AA_C, na.rm = TRUE)
 ```
 
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$BGl_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$BGl_C, breaks = 30)
+
+kurtosis(headscan_full1$BGl_C, na.rm = TRUE)
+
+skewness(headscan_full1$BGl_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$BiW_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$BiW_C, breaks = 30)
+
+kurtosis(headscan_full1$BiW_C, na.rm = TRUE)
+
+skewness(headscan_full1$BiW_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$BiW_L, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$BiW_L, breaks = 30)
+
+kurtosis(headscan_full1$BiW_L, na.rm = TRUE)
+
+skewness(headscan_full1$BiW_L, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$ChCh_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$ChCh_C, breaks = 30)
+
+kurtosis(headscan_full1$ChCh_C, na.rm = TRUE)
+
+skewness(headscan_full1$ChCh_C, na.rm = TRUE)
+```
+
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$GoSub_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$GoSub_C, breaks = 30)
+
+kurtosis(headscan_full1$GoSub_C, na.rm = TRUE)
+
+skewness(headscan_full1$GoSub_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$NRB_L, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$NRB_L, breaks = 30)
+
+kurtosis(headscan_full1$NRB_L, na.rm = TRUE)
+
+skewness(headscan_full1$NRB_L, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$ProA_L, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$ProA_L, breaks = 30)
+
+kurtosis(headscan_full1$ProA_L, na.rm = TRUE)
+
+skewness(headscan_full1$ProA_L, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$ProA_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$ProA_C, breaks = 30)
+
+kurtosis(headscan_full1$ProA_C, na.rm = TRUE)
+
+skewness(headscan_full1$ProA_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$ProS_L, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$ProS_L, breaks = 30)
+
+kurtosis(headscan_full1$ProS_L, na.rm = TRUE)
+
+skewness(headscan_full1$ProS_L, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$ProS_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$ProS_C, breaks = 30)
+
+kurtosis(headscan_full1$ProS_C, na.rm = TRUE)
+
+skewness(headscan_full1$ProS_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$SelP_L, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$SelP_L, breaks = 30)
+
+kurtosis(headscan_full1$SelP_L, na.rm = TRUE)
+
+skewness(headscan_full1$SelP_L, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$SelP_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$SelP_C, breaks = 30)
+
+kurtosis(headscan_full1$SelP_C, na.rm = TRUE)
+
+skewness(headscan_full1$SelP_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$SelDH_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$SelDH_C, breaks = 30)
+
+kurtosis(headscan_full1$SelDH_C, na.rm = TRUE)
+
+skewness(headscan_full1$SelDH_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$SelM_L, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$SelM_L, breaks = 30)
+
+kurtosis(headscan_full1$SelM_L, na.rm = TRUE)
+
+skewness(headscan_full1$SelM_L, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$SnasM_L, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$SnasM_L, breaks = 30)
+
+kurtosis(headscan_full1$SnasM_L, na.rm = TRUE)
+
+skewness(headscan_full1$SnasM_L, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$SnasM_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$SnasM_C, breaks = 30)
+
+kurtosis(headscan_full1$SnasM_C, na.rm = TRUE)
+
+skewness(headscan_full1$SnasM_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$SmanM_L, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$SmanM_L, breaks = 30)
+
+kurtosis(headscan_full1$SmanM_L, na.rm = TRUE)
+
+skewness(headscan_full1$SmanM_L, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$SmanM_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$SmanM_C, breaks = 30)
+
+kurtosis(headscan_full1$SmanM_C, na.rm = TRUE)
+
+skewness(headscan_full1$SmanM_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$TrHO_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$TrHO_C, breaks = 30)
+
+kurtosis(headscan_full1$TrHO_C, na.rm = TRUE)
+
+skewness(headscan_full1$TrHO_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$TrEJ_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$TrEJ_C, breaks = 30)
+
+kurtosis(headscan_full1$TrEJ_C, na.rm = TRUE)
+
+skewness(headscan_full1$TrEJ_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$TrGo_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$TrGo_C, breaks = 30)
+
+kurtosis(headscan_full1$TrGo_C, na.rm = TRUE)
+
+skewness(headscan_full1$TrGo_C, na.rm = TRUE)
+```
+
+```{r, fig.height=5.5, fig.width=7.5}
+qqPlot(headscan_full1$TrSel_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$TrSel_C, breaks = 30)
+
+kurtosis(headscan_full1$TrSel_C, na.rm = TRUE)
+
+skewness(headscan_full1$TrSel_C, na.rm = TRUE)
+```
+
+```{r}
+qqPlot(headscan_full1$TrSman_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$TrSman_C, breaks = 30)
+
+kurtosis(headscan_full1$TrSman_C, na.rm = TRUE)
+
+skewness(headscan_full1$TrSman_C, na.rm = TRUE)
+```
+
+```{r}
+qqPlot(headscan_full1$TrSnas_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$TrSnas_C, breaks = 30)
+
+kurtosis(headscan_full1$TrSnas_C, na.rm = TRUE)
+
+skewness(headscan_full1$TrSnas_C, na.rm = TRUE)
+```
+
+```{r}
+qqPlot(headscan_full1$TrTr_C, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$TrTr_C, breaks = 30)
+
+kurtosis(headscan_full1$TrTr_C, na.rm = TRUE)
+
+skewness(headscan_full1$TrTr_C, na.rm = TRUE)
+```
+
+```{r}
+qqPlot(headscan_full1$TrTr_L, distribution = "norm", col.lines = "grey")
+
+hist(headscan_full1$TrTr_L, breaks = 30)
+
+kurtosis(headscan_full1$TrTr_L, na.rm = TRUE)
+
+skewness(headscan_full1$TrTr_L, na.rm = TRUE)
+```
