@@ -35,6 +35,8 @@ library(DFA.CANCOR)
 library(car)
 library(broom)
 library(emmeans)
+library(lpSolve)
+library(irr)
 ```
 
 
