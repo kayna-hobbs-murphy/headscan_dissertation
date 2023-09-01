@@ -40,7 +40,7 @@ my_ft_theme <- function(ft, ...) {
 
 
 ```{r loading-data}
-headscan_full <- read_excel("C:\\Users\\19177\\OneDrive - Colostate\\Desktop\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
+headscan_full <- read_excel("C:\\Users\\Kayna\\OneDrive - Colostate\\research topics\\Dissertation\\headscan_dissertation\\headscan_full.xlsx")
 headscan_full$coder <- as.factor(headscan_full$coder)
 headscan_full$gender <- as.factor(headscan_full$gender)
 headscan_full$race_eth <- as.factor(headscan_full$race_eth)
@@ -151,7 +151,7 @@ ggplot(data=headscan_full, aes(y=age, x=race_eth))+
 
 ```{r, fig.height=4, fig.width=9}
 headscan_full %>% 
-  ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count)))))+
+  ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count, accuracy=0.1)))))+
   geom_bar(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
               position= position_dodge(0.9),
