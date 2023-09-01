@@ -151,7 +151,7 @@ ggplot(data=headscan_full, aes(y=age, x=race_eth))+
 
 ```{r, fig.height=4, fig.width=9}
 headscan_full %>% 
-  ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count, accuracy=0.1)))))+
+  ggplot(aes(x=fct_infreq(race_eth), label=scales::percent(prop.table(stat(count)), accuracy=0.01)))+
   geom_bar(stat="count", color= "black", fill = "white")+
   geom_text(stat="count",
               position= position_dodge(0.9),
